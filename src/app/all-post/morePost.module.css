@@ -20,9 +20,9 @@
   margin-top: 4rem;
 }
 
-.readMoreBtn{
-    display: flex;
-    flex-direction: row-reverse;
+.readMoreBtn {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .btn {
@@ -33,4 +33,18 @@
   font-weight: 600;
   margin-top: 1rem;
   margin-right: 1rem;
+}
+
+@media (max-width: 576px) {
+  .morePostContainer {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .latestNewsSectionTabs,
+  .OtherNewsSectionTabs {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+  }
 }

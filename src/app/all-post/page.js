@@ -12,7 +12,7 @@ const page = () => {
             <ButtonTab title="Latest News" />
             <ButtonTab title="Fantasy Tips" />
           </div>
-          <div className={styles.latestNewsSectionTabs}>
+          <div className={styles.latestNewsSectionCards}>
             <NewsCard />
             <NewsCard />
             <NewsCard />
@@ -30,7 +30,7 @@ const page = () => {
             <ButtonTab title="Latest News" />
             <ButtonTab title="Fantasy Tips" />
           </div>
-          <div className={styles.OtherNewsSectionTabs}>
+          <div className={styles.OtherNewsSectionCards}>
             <NewsCard />
             <NewsCard />
             <NewsCard />

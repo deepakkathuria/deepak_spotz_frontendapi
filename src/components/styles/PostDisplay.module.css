@@ -40,8 +40,13 @@
   font-size: 1.2rem;
 }
 
-/* @media (max-width: 768px) {
-  .postSummary {
+@media (max-width: 768px) {
+  /* .postSummary {
     width: 100px;
+  } */
+
+  .postDisplayContainer {
+    width: 100%;
+    margin-top: 1.3rem;
   }
-} */
+}

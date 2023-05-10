@@ -1,0 +1,19 @@
+.postListBarContainer {
+  margin-top: 1.3rem;
+}
+
+.postListTitle {
+  color: #d03f38;
+  font-size: 1.2rem;
+}
+
+.postListTitle h3 span {
+  color: #003161;
+}
+
+.postList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 0.6rem;
+}

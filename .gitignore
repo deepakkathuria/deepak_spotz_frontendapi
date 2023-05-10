@@ -33,3 +33,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+#others
+
+src/app/server-sitemap.xml/
+/src/app/dynamic-sitemap/
+/dynamic-sitemap
+/public/sitemap-0.xml
+/public/sitemap.xml

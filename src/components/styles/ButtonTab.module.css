@@ -1,0 +1,27 @@
+.button {
+  background-color: #fff;
+  border: none;
+  color: #003161;
+  text-decoration: underline;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 576px) {
+  .selected {
+    background-color: #fff !important;
+    color: #003161 !important;
+    border: 1px solid #003161;
+  }
+
+  .button {
+    background-color: #003161;
+    color: #fff;
+    width: 100%;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    font-size: 1.3rem;
+    text-decoration: none;
+  }
+}

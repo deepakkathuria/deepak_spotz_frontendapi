@@ -1,0 +1,23 @@
+.postTagsContainer {
+  margin-top: 1.8rem;
+  display: flex;
+  gap: 0.5rem;
+}
+.tagTitle {
+  color: #0c4c8a;
+  font-size: 1.3rem;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tags h3 {
+  background-color: rgba(152, 204, 255, 0.4);
+  color: #000;
+  border-radius: 3px;
+  padding: 0.3rem;
+}

@@ -1,0 +1,71 @@
+/* .NavLogo{
+    margin-left: 2.4rem;
+} */
+
+.navContainer {
+  display: flex;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /*Position the navbar at the top of the page */
+  width: 100%;
+  z-index: 999;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 2rem;
+  background-color: #0c4c8a;
+  height: 4rem;
+  /* padding: 0 165px 0 165px; */
+  /* padding: 0 26rem 0 26rem; */
+}
+
+.NavbarOption {
+  margin-left: 2.4rem;
+  margin-right: 21.7rem;
+}
+
+.NavbarOption ul {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  list-style-type: none;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.navIcon {
+  height: 1rem;
+}
+.navLi {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.navOptions {
+  display: flex;
+  gap: 2rem;
+}
+
+.navLogin {
+  display: flex;
+  color: #fff;
+  align-items: baseline;
+  font-size: 8px;
+}
+
+@media (max-width: 576px) {
+  .NavbarOption,
+  .navLoginText {
+    display: none;
+  }
+
+  .navContainer {
+    gap: 0;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    justify-content: space-between;
+  }
+}

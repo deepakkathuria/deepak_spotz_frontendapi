@@ -1,0 +1,11 @@
+.breadCrumbContainer {
+  margin-top: 5.4rem;
+  color: #98ccff;
+  font-size: 1rem;
+}
+
+@media (max-width: 576px) {
+  .breadCrumbContainer{
+    width: 100%;
+  }
+}

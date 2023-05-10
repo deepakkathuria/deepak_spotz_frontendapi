@@ -21,3 +21,9 @@
   border-radius: 3px;
   padding: 0.3rem;
 }
+
+@media (max-width: 576px) {
+  .tags{
+    overflow: scroll;
+  }
+}

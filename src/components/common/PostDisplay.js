@@ -4,6 +4,7 @@ import { FaUserTag, FaRegCalendarAlt } from "react-icons/fa";
 import Image from "next/image";
 import PostTags from "./PostTags";
 
+
 const PostDisplay = () => {
   return (
     <>
@@ -32,14 +33,14 @@ const PostDisplay = () => {
           </div>
 
           <div className={styles.postCover}>
-            <Image
+            {/* <Image
               src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1005&q=80"
               width={0}
               height={0}
               sizes="100%"
-              style={{ width: "100%", height: "320px" }}
+              style={{ width: "100%", height: "220px" }}
               alt="Picture of the author"
-            />
+            /> */}
           </div>
 
           <div className={styles.postDescription}>
@@ -98,21 +99,6 @@ const PostDisplay = () => {
             minus minima vel placeat laboriosam aliquam, deserunt modi
             distinctio. Quis error, necessitatibus et omnis quo temporibus
             dolorum eum quam inventore iste, porro quod similique aliquid
-            dolorem? Fugit nisi esse unde officiis voluptatibus eos porro animi
-            ipsam recusandae? Nisi, corrupti? Vitae tenetur at voluptate
-            suscipit animi repellat dolorem. Nulla quidem animi quia ducimus
-            illo? Est in dolor quas culpa harum, et cupiditate, expedita nisi
-            recusandae, possimus numquam ab! Cupiditate, natus. Obcaecati fugiat
-            expedita beatae, veniam accusantium, enim accusamus eaque nostrum
-            excepturi officia reiciendis at vero possimus quas ea. Quasi et quis
-            qui repellendus! Sint ratione dolores tempora reiciendis nobis
-            excepturi. Nam quia quod veniam ex ad molestiae, libero labore vitae
-            id tenetur iure fuga facere, corrupti alias! Voluptates, architecto
-            cupiditate incidunt repellendus nobis, soluta iste tempore sed sequi
-            quis reiciendis? Ipsum magni odit dolorem officiis nihil eius
-            veritatis ex eveniet! Adipisci non assumenda quaerat autem explicabo
-            quis cupiditate placeat dolorem nulla ipsa quisquam atque cum minus
-            aliquam eos, maiores tempora.
           </div>
           <PostTags />
         </div>

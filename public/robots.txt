@@ -8,4 +8,5 @@ Host: localhost:3000
 
 # Sitemaps
 Sitemap: localhost:3000/sitemap.xml
-Sitemap: localhost:3000/server-sitemap.xml
+Sitemap: localhost:3000/images-sitemap.xml
+Sitemap: localhost:3000/post-sitemap.xml

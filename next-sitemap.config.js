@@ -4,7 +4,7 @@ const siteUrl =
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,
-  sitemapSize: 10000,
+  sitemapSize: 7000,
   robotsTxtOptions: {
     policies: [
       {
@@ -15,9 +15,9 @@ module.exports = {
     ],
 
     additionalSitemaps: [
-      `${siteUrl}/sitemap.xml`,
-      `${siteUrl}/server-sitemap.xml`,
+      `${siteUrl}/images-sitemap.xml`,
+      `${siteUrl}/post-sitemap.xml`,
     ],
   },
-  exclude: ["/secret"],
+  exclude: ["/secret", "/server-sitemap-index.xml"],
 };

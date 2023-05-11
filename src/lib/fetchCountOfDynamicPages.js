@@ -1,11 +1,13 @@
 import axios from "axios";
+const baseUrl = process.env.baseUrl;
 
 const fetchCountOfDynamicPages = async () => {
   try {
-    const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
-    console.log(res.data.length);
+    const res = await axios.get(`${baseUrl}/getpostslug`);
+
+    return res.data.length;
   } catch (err) {
-    console.error(err);
+    console.log(err);
   }
 };
 

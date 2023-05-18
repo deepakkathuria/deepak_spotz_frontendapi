@@ -9,7 +9,7 @@ module.exports = {
     policies: [
       {
         userAgent: "*",
-        disallow: "/secret",
+        disallow: ["/secret", "/gaurav"],
         allow: "/",
       },
     ],
@@ -17,7 +17,15 @@ module.exports = {
     additionalSitemaps: [
       `${siteUrl}/images-sitemap.xml`,
       `${siteUrl}/post-sitemap.xml`,
+      `${siteUrl}/categories-sitemap.xml`,
     ],
   },
-  exclude: ["/secret", "/server-sitemap-index.xml"],
+  exclude: [
+    "/secret",
+    "/server-sitemap-index.xml",
+    "/images-sitemap.xml",
+    "/server-sitemap.xml",
+    "/post-sitemap.xml",
+    "/categories-sitemap.xml",
+  ],
 };

@@ -2,6 +2,7 @@
 User-agent: *
 Allow: /
 Disallow: /secret
+Disallow: /gaurav
 
 # Host
 Host: localhost:3000
@@ -10,3 +11,4 @@ Host: localhost:3000
 Sitemap: localhost:3000/sitemap.xml
 Sitemap: localhost:3000/images-sitemap.xml
 Sitemap: localhost:3000/post-sitemap.xml
+Sitemap: localhost:3000/categories-sitemap.xml

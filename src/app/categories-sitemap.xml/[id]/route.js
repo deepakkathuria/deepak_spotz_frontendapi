@@ -14,12 +14,14 @@ export async function GET(request, { params }) {
 
   try {
     const response = await axios.get(
-      `${API_URL}/getpostslug?page=${id}&limit=${URLS_PER_SITEMAP}`
+      `${API_URL}/getcategoryslug?page=${id}&limit=${URLS_PER_SITEMAP}`
     );
 
     const sitemap_data = response.data?.map((ele) => {
       return {
-        loc: `${site_url}/${ele.category}/${ele.slug}`,
+        loc: `${site_url}/${ele.taxonomy == "post_tag" ? "wiki/" : ""}${
+          ele.slug
+        }`,
         lastmod: ele.last_modified,
       };
     });

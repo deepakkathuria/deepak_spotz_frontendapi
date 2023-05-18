@@ -3,9 +3,8 @@ const baseUrl = process.env.baseUrl;
 
 const fetchCountOfDynamicPages = async () => {
   try {
-    const res = await axios.get(`${baseUrl}/getpostslug`);
-
-    return res.data.length;
+    const res = await axios.get(`${baseUrl}/totalposts`);
+    return res.data[0].total_posts;
   } catch (err) {
     console.log(err);
   }

@@ -18,6 +18,11 @@ const nextConfig = {
       destination: "/post-sitemap.xml/:id",
     },
 
+    {
+      source: "/categories-sitemap-:id.xml",
+      destination: "/categories-sitemap.xml/:id",
+    },
+
     // {
     //   source: '/dynamic-sitemap-:page.xml',
     //   destination: '/dynamic-sitemap/:page',

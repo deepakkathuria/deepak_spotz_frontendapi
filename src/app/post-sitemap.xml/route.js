@@ -1,4 +1,3 @@
-// app/server-sitemap-index.xml/route.ts
 import fetchCountOfDynamicPages from "@/lib/fetchCountOfDynamicPages";
 import { getServerSideSitemapIndex } from "next-sitemap";
 const baseUrl = process.env.siteUrl;
@@ -7,7 +6,6 @@ const URLS_PER_SITEMAP = 10000;
 
 export async function GET(request) {
   const count = await fetchCountOfDynamicPages();
-  // console.log(count)
   const amountOfSitemapFiles = Math.ceil(count / URLS_PER_SITEMAP);
 
   const sitemaps = Array(amountOfSitemapFiles)

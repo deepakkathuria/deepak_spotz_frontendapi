@@ -13,11 +13,14 @@
     "axios": "^1.4.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "html-react-parser": "^3.0.16",
     "next": "13.4.1",
     "next-sitemap": "^4.0.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.8.0"
+    "react-icons": "^4.8.0",
+    "react-twitter-embed": "^4.0.4",
+    "swr": "^2.1.5"
   },
   "devDependencies": {
     "@types/node": "20.1.1",

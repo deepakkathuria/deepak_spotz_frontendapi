@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
 
-const NewsCard = () => {
+const NewsCard = (props) => {
   return (
     <>
       <div className={styles.newsCardContainer}>
@@ -18,13 +18,18 @@ const NewsCard = () => {
         </div>
         <div className={styles.newsDetails}>
           <p className={styles.newsTitle}>
-            GT vs RR: “It’s Unbelievable How He Does Such Things”
+            {/* GT vs RR: “It’s Unbelievable How He Does Such Things” */}
+            {props.title}
           </p>
           <p className={styles.newsDescription}>
-            During the match between New Zealand and Ireland. New Zealand now
-            holds...
+            {/* During the match between New Zealand and Ireland. New Zealand now
+            holds... */}
+            {props.content?.substring(0, 50)}
           </p>
-          <p className={styles.newsDate}>April 17, 2023</p>
+          <p className={styles.newsDate}>
+            {/* April 17, 2023 */}
+            {props.date}
+          </p>
         </div>
       </div>
     </>

@@ -24,6 +24,16 @@ const nextConfig = {
     },
 
     // {
+    //   source: "/",
+    //   destination: "/home",
+    // },
+
+    // {
+    //   source: "/:slug",
+    //   destination: "/home/:slug",
+    // },
+
+    // {
     //   source: '/dynamic-sitemap-:page.xml',
     //   destination: '/dynamic-sitemap/:page',
     // },

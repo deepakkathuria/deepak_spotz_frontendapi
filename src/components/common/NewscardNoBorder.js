@@ -2,7 +2,7 @@ import React from "react";
 import styles from "../styles/NewscardNoBorder.module.css";
 import Image from "next/image";
 
-const NewscardNoBorder = () => {
+const NewscardNoBorder = (props) => {
   return (
     <>
       <div className={styles.newsCardContainer}>
@@ -17,17 +17,16 @@ const NewscardNoBorder = () => {
         </div>
         <div className={styles.postDetails}>
           <div className={styles.cardTitle}>
-            <p>GT vs RR: “It’s Unbelievable How He Does Such Things” </p>
+            <p>{props.title}</p>
           </div>
 
           <div className={styles.cardDescription}>
-            <p>
-              During the match between New Zealand and Ireland. New Zealand now
-              holds...
-            </p>
+            <p>{props.content}...</p>
           </div>
 
-          <div className={styles.cardDate}>April 17, 2023</div>
+          <div className={styles.cardDate}>
+            {new Date(props.date).toLocaleString()}
+          </div>
         </div>
       </div>
     </>

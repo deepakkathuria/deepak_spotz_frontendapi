@@ -5,11 +5,12 @@ import ButtonTab from "./ButtonTab";
 import NewsCard from "./NewsCard";
 import axios from "axios";
 import Link from "next/link";
+const base_url = process.env.baseUrl;
 
 const NewsSection = async (props) => {
   try {
     var data = await axios.get(
-      `http://localhost:5000/api/v1/getPostByCategorySlug?slug=${props.slug}&page=1&limit=6`
+      `${base_url}/getPostByCategorySlug?slug=${props.slug}&page=1&limit=9`
     );
   } catch (e) {
     console.log(e.message);

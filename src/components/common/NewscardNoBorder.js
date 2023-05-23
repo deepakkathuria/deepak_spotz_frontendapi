@@ -8,7 +8,7 @@ const NewscardNoBorder = (props) => {
       <div className={styles.newsCardContainer}>
         <div className={styles.cardImage}>
           <Image
-            src="https://images.unsplash.com/photo-1587280501635-a19de238a81e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"
+            src="https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
             width={0}
             height={0}
             sizes="100vw"

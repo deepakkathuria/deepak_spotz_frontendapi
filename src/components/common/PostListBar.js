@@ -18,7 +18,7 @@ const PostListBar = async (props) => {
     <>
       <div className={styles.postListBarContainer}>
         <div className={styles.postListTitle}>
-          <h3>{props.category}</h3>
+          <h3>{props.category.toUpperCase()}</h3>
         </div>
         <div className={styles.postList}>
           {postsList.data?.map((item) => {

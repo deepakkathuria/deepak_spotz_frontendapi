@@ -7,7 +7,6 @@ import TweetClientSideRender from "./TweetClientSideRender";
 import parse from "html-react-parser";
 
 const PostDisplay = (props) => {
-
   const tweetRegex = /https:\/\/twitter\.com\/\w+\/status\/(\d+)\?s=20/g;
   const tweetLinks = props.description?.match(tweetRegex);
   const tweetIDs = tweetLinks
@@ -17,12 +16,6 @@ const PostDisplay = (props) => {
       })
     : [];
   const sections = props.description?.split(tweetRegex);
-
-  const updatedDescription = props.description
-    ? tweetLinks
-      ? props.description.replace(tweetRegex, "")
-      : props.description
-    : "";
 
   return (
     <>
@@ -47,7 +40,7 @@ const PostDisplay = (props) => {
 
           <div className={styles.postCover}>
             <Image
-              src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1005&q=80"
+              src="https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
               width={0}
               height={0}
               sizes="100%"
@@ -68,9 +61,11 @@ const PostDisplay = (props) => {
           </div> */}
 
           <div className={styles.postDescription}>
+            {/* {parse(props.description)} */}
+            {/* <div dangerouslySetInnerHTML={{ __html: props.description }} /> */}
             {sections?.map((section, index) => (
               <div key={index}>
-                {parse(section)}
+                <div dangerouslySetInnerHTML={{ __html: section }} />
                 {index < tweetIDs.length && (
                   <TweetClientSideRender tweetId={tweetIDs[index]} />
                 )}

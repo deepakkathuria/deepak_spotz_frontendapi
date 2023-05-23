@@ -1,11 +1,19 @@
 import React from "react";
 import styles from "../styles/breadcrumb.module.css";
+import Link from "next/link";
 
-const Breadcrumb = () => {
+const Breadcrumb = (props) => {
   return (
     <>
       <div className={styles.breadCrumbContainer}>
-        {`HOME / NEWS / GT vs RR: “It’s Unbelievable How he Does Such Things”`}
+        <ul className={styles.breadCrumbUl}>
+          {props.breadcrumbsObj?.map((breadCrumb, index) => (
+            <li>
+              <Link href={breadCrumb.url}>{breadCrumb.name}</Link>
+              {props.breadcrumbsObj?.length - 1 !== index && <i> /</i>}
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );

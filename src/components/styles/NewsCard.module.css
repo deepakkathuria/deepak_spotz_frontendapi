@@ -46,7 +46,7 @@
 
 @media (max-width: 576px) {
   .newsCardContainer {
-    width: auto;
+    width: 100%;
     height: 11rem;
     border: none;
     border-bottom: solid rgba(0, 0, 0, 0.2);

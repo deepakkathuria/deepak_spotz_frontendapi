@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
 import axios from "axios";
+import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 const page = async () => {
@@ -15,6 +16,7 @@ const page = async () => {
 
   return (
     <>
+      <MobSecondaryNav />
       <div className={styles.homeContainer}>
         <div className={styles.newsSectionDiv}>
           {data.data?.map((item) => {

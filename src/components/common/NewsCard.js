@@ -13,23 +13,15 @@ const NewsCard = (props) => {
             height={0}
             alt="SportzWiki Logo"
             sizes="100vh"
-            style={{ width: "10.5rem", height: "10rem" }}
+            style={{ width: "10.5rem", height: "10rem", borderRadius: "3px" }}
           />
         </div>
         <div className={styles.newsDetails}>
-          <p className={styles.newsTitle}>
-            {/* GT vs RR: “It’s Unbelievable How He Does Such Things” */}
-            {props.title}
-          </p>
+          <p className={styles.newsTitle}>{props.title}</p>
           <p className={styles.newsDescription}>
-            {/* During the match between New Zealand and Ireland. New Zealand now
-            holds... */}
             {props.content?.substring(0, 50)}
           </p>
-          <p className={styles.newsDate}>
-            {/* April 17, 2023 */}
-            {props.date}
-          </p>
+          <p className={styles.newsDate}>{props.date}</p>
         </div>
       </div>
     </>

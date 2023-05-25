@@ -4,7 +4,6 @@ import { FaUserTag, FaRegCalendarAlt } from "react-icons/fa";
 import Image from "next/image";
 import PostTags from "./PostTags";
 import TweetClientSideRender from "./TweetClientSideRender";
-import parse from "html-react-parser";
 
 const PostDisplay = (props) => {
   const tweetRegex = /https:\/\/twitter\.com\/\w+\/status\/(\d+)\?s=20/g;

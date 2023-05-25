@@ -42,13 +42,6 @@ const NewsSection = async (props) => {
               </div>
             );
           })}
-
-          {/* <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard />
-          <NewsCard /> */}
         </div>
         <div className={styles.readMoreLabel}>Read More</div>
       </div>

@@ -1,6 +1,9 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import styles from "../styles/Navbar.module.css";
 import Image from "next/image";
+import { navBarLinks } from "@/utils/navLinks";
+// import HamburgerIcon from "../../../public/images/menu_ic.png";
 // import { FcHome } from "react-icons/fc";
 // import {
 //   GiCricketBat,
@@ -14,6 +17,12 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => {
+    setSidebar(!sidebar);
+  };
+
   return (
     <>
       <div className={styles.navbarDiv}>
@@ -102,7 +111,31 @@ const Navbar = () => {
                 {/* <CgMenuMotion color="#fff" size={20} /> */}
               </div>
             </Link>
+            <div className={styles.navOptionsMobile}></div>
           </div>
+          <div className="hamburger-ic">
+            <Image
+              src="https://res.cloudinary.com/dbb7g0jqa/image/upload/v1684927069/sportzwiki/menu-motion-svgrepo-com_ds6v8o.svg"
+              width={20}
+              height={20}
+              alt="menu_ic"
+              style={{ fill: "white", color: "white", overflow: "hidden" }}
+              onClick={showSidebar}
+            />
+          </div>
+        </div>
+        <div
+          className={
+            sidebar
+              ? `${styles.sideBarMobile} ${styles.active}`
+              : styles.sideBarMobile
+          }
+        >
+          <ul className={styles.navMenuList}>
+            {navBarLinks?.map((item) => {
+              return <li key={item.id}>{item.title}</li>;
+            })}
+          </ul>
         </div>
       </div>
     </>

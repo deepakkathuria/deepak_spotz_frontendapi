@@ -56,6 +56,10 @@
   font-size: 8px;
 }
 
+.sideBarMobile {
+  display: none;
+}
+
 @media (max-width: 576px) {
   .NavbarOption,
   .navLoginText {
@@ -67,5 +71,43 @@
     padding-left: 1rem;
     padding-right: 1rem;
     justify-content: space-between;
+  }
+
+  .active {
+    right: 0 !important;
+    transition: 350ms;
+  }
+
+  .sideBarMobile {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    right: -80%;
+    height: 100vh;
+    background-color: #0c4c8a;
+    color: #fff;
+    width: 70%;
+    box-shadow: -2px 0px 20px 1px #000;
+    transition: right 0.3s ease-out;
+  }
+
+  .sideBarMobile ul {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    list-style-type: none;
+    font-size: 2.5rem;
+    margin-top: 5rem;
+    width: 100%;
+  }
+
+  .sideBarMobile ul li {
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    /* border-bottom: 0.5px solid #000; */
+    width: 100%;
   }
 }

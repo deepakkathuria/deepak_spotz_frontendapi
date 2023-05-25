@@ -1,4 +1,6 @@
-/** @type {import('next').NextConfig} */
+const withImages = require("next-images");
+module.exports = withImages();
+
 const nextConfig = {
   images: {
     domains: [
@@ -8,11 +10,8 @@ const nextConfig = {
       "feetfirst.org",
     ],
   },
+
   rewrites: async () => [
-    // {
-    //   source: "/dynamic-sitemap.xml",
-    //   destination: "/dynamic-sitemap",
-    // },
     {
       source: "/images-sitemap-:id.xml",
       destination: "/images-sitemap.xml/:id",
@@ -27,22 +26,17 @@ const nextConfig = {
       source: "/categories-sitemap-:id.xml",
       destination: "/categories-sitemap.xml/:id",
     },
-
-    // {
-    //   source: "/",
-    //   destination: "/home",
-    // },
-
-    // {
-    //   source: "/:slug",
-    //   destination: "/home/:slug",
-    // },
-
-    // {
-    //   source: '/dynamic-sitemap-:page.xml',
-    //   destination: '/dynamic-sitemap/:page',
-    // },
   ],
+
+  // webpack: (config) => {
+  //   config.module.rules.push({
+  //     test: /\.svg$/i,
+  //     issuer: /\.[jt]sx?$/,
+  //     use: ["@svgr/webpack"],
+  //   });
+
+  //   return config;
+  // },
 };
 
 module.exports = nextConfig;

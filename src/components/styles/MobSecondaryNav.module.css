@@ -6,7 +6,7 @@
 @media (max-width: 576px) {
   .mobSecondaryNavContainer {
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     /* padding: 0.5rem; */
     /* overflow: scroll; */
     padding-left: 1.3rem;
@@ -16,7 +16,7 @@
     /* background-color: aquamarine; */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; 
+    scrollbar-width: none;
   }
 
   .mobSecondaryNavUl {
@@ -32,14 +32,23 @@
     padding-right: 8rem;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; 
+    scrollbar-width: none;
+    align-items: center;
+  }
+
+  .icon{
+    display: flex;
+    align-items: center;
   }
 
   .mobSecondaryNavUl li {
     display: flex;
     gap: 0.5rem;
-    border-bottom: 2px solid #000;
+    border-bottom: 1.3px solid rgba(12, 76, 138, 1);
     line-height: 2.2rem;
+    align-items: center;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
     /* height: 100%; */
   }
 

@@ -20,6 +20,8 @@
 }
 
 .NavbarOption {
+  display: flex;
+  align-items: center;
   margin-left: 2.4rem;
   margin-right: 21.7rem;
 }
@@ -27,10 +29,16 @@
 .NavbarOption ul {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 2rem;
   list-style-type: none;
   font-size: 1.2rem;
   color: #fff;
+}
+
+.navItemIcon{
+  display: flex;
+  align-items: center;
 }
 
 .navIcon {
@@ -58,6 +66,10 @@
 
 .sideBarMobile {
   display: none;
+}
+
+.plainIc {
+  filter: invert(1);
 }
 
 @media (max-width: 576px) {

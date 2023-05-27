@@ -41,8 +41,13 @@ const Navbar = () => {
             <ul>
               <Link href={"#"}>
                 <li className={styles.navLi}>
-                  <div className="navItemIcon">
-                    {/* <FcHome size={"15px"} /> */}
+                  <div className={styles.navItemIcon}>
+                    <Image
+                      src="/gaurav/home_ic.svg"
+                      alt="home menu icon"
+                      width={16}
+                      height={16}
+                    />
                   </div>
                   <div className="navItemName">Home</div>
                 </li>
@@ -50,8 +55,13 @@ const Navbar = () => {
 
               <Link href={"#"}>
                 <li className={styles.navLi}>
-                  <div className="navItemIcon">
-                    {/* <GiCricketBat size={"15px"} /> */}
+                  <div className={styles.navItemIcon}>
+                    <Image
+                      src="/gaurav/cricket_ic.svg"
+                      alt="cricket bat icon"
+                      width={16}
+                      height={16}
+                    />
                   </div>
                   <div className="navItemName">Cricket</div>
                 </li>
@@ -59,8 +69,14 @@ const Navbar = () => {
 
               <Link href={"#"}>
                 <li className={styles.navLi}>
-                  <div className="navItemIcon">
-                    {/* <GiSoccerBall size={"15px"} /> */}
+                  <div className={styles.navItemIcon}>
+                    <Image
+                      src="/gaurav/football_ic.svg"
+                      alt="home menu icon"
+                      width={16}
+                      height={16}
+                      className={styles.plainIc}
+                    />
                   </div>
                   <div className="navItemName">Football</div>
                 </li>
@@ -68,8 +84,14 @@ const Navbar = () => {
 
               <Link href={"#"}>
                 <li className={styles.navLi}>
-                  <div className="navItemIcon">
-                    {/* <SiWwe size={"15px"} /> */}
+                  <div className={styles.navItemIcon}>
+                    <Image
+                      src="/gaurav/wwe_ic.svg"
+                      alt="home menu icon"
+                      width={16}
+                      height={16}
+                      className={styles.plainIc}
+                    />
                   </div>
                   <div className="navItemName">WWE</div>
                 </li>
@@ -77,8 +99,14 @@ const Navbar = () => {
 
               <Link href={"#"}>
                 <li className={styles.navLi}>
-                  <div className="navItemIcon">
-                    {/* <GiConsoleController size={"18px"} /> */}
+                  <div className={styles.navItemIcon}>
+                    <Image
+                      src="/gaurav/gamepad_ic.svg"
+                      alt="home menu icon"
+                      width={16}
+                      height={16}
+                      className={styles.plainIc}
+                    />
                   </div>
                   <div className="navItemName">Esports</div>
                 </li>
@@ -86,10 +114,16 @@ const Navbar = () => {
 
               <Link href={"#"}>
                 <li className={styles.navLi}>
-                  <div className="navItemIcon">
-                    {/* <IoIosArrowDown size={"18px"} /> */}
-                  </div>
                   <div className="navItemName">More</div>
+                  <div className={styles.navItemIcon}>
+                    <Image
+                      src="/gaurav/down_arrow_ic.svg"
+                      alt="more icon"
+                      width={12}
+                      height={12}
+                      className={styles.plainIc}
+                    />
+                  </div>
                 </li>
               </Link>
             </ul>
@@ -97,7 +131,13 @@ const Navbar = () => {
           <div className={styles.navOptions}>
             <Link href={"#"}>
               <div className="navSearch">
-                {/* <BiSearchAlt color="#fff" size={"20"} /> */}
+                <Image
+                  src="/gaurav/search_ic.svg"
+                  alt="search icon"
+                  width={22}
+                  height={22}
+                  className={styles.plainIc}
+                />
               </div>
             </Link>
             <Link href={"#"}>
@@ -115,12 +155,14 @@ const Navbar = () => {
           </div>
           <div className="hamburger-ic">
             <Image
-              src="https://res.cloudinary.com/dbb7g0jqa/image/upload/v1684927069/sportzwiki/menu-motion-svgrepo-com_ds6v8o.svg"
-              width={20}
-              height={20}
-              alt="menu_ic"
-              style={{ fill: "white", color: "white", overflow: "hidden" }}
+              src="/gaurav/Menu_ic.svg"
+              alt="hamburger menu icon"
+              width={25}
+              height={25}
+              // 20 /20 size
+              className={styles.plainIc}
               onClick={showSidebar}
+              // priority
             />
           </div>
         </div>

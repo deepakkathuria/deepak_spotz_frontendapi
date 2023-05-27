@@ -41,7 +41,7 @@ const page = async ({ params }) => {
     var randomIndex = Math.floor(Math.random() * tagsArray.length);
     var randomTag = tagsArray[randomIndex];
   } else {
-    console.log("Error at tags selection of posts");
+    console.log("Error at tags selection of posts" + slug);
   }
 
   try {
@@ -84,12 +84,12 @@ const page = async ({ params }) => {
               return (
                 <div key={card.ID}>
                   <Link href={`/${category}/${card.post_name}`}>
-                  <NewsCard
-                    title={card.post_title}
-                    content={`${(card.post_content).substring(0,40)}...`}
-                    date={new Date(card.post_modified).toLocaleString()}
+                    <NewsCard
+                      title={card.post_title}
+                      content={`${card.post_content.substring(0, 40)}...`}
+                      date={new Date(card.post_modified).toLocaleString()}
                     />
-                    </Link>
+                  </Link>
                 </div>
               );
             })}

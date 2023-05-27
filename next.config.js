@@ -27,7 +27,9 @@ const nextConfig = {
       destination: "/categories-sitemap.xml/:id",
     },
   ],
+};
 
+module.exports = {
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
@@ -55,6 +57,8 @@ const nextConfig = {
 
     return config;
   },
+
+  // ...other config
 };
 
 module.exports = nextConfig;

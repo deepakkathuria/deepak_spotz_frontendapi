@@ -143,6 +143,13 @@ const Navbar = () => {
             <Link href={"#"}>
               <div className={styles.navLogin}>
                 {/* <CgProfile color="#fff" size={"20"} /> */}
+                <Image
+                  src="/gaurav/profile_ic.svg"
+                  alt="home menu icon"
+                  width={20}
+                  height={20}
+                  className={styles.plainIc}
+                />
                 <div className={styles.navLoginText}>Login/SignUp</div>
               </div>
             </Link>
@@ -151,19 +158,20 @@ const Navbar = () => {
                 {/* <CgMenuMotion color="#fff" size={20} /> */}
               </div>
             </Link>
-            <div className={styles.navOptionsMobile}></div>
-          </div>
-          <div className="hamburger-ic">
-            <Image
-              src="/gaurav/Menu_ic.svg"
-              alt="hamburger menu icon"
-              width={25}
-              height={25}
-              // 20 /20 size
-              className={styles.plainIc}
-              onClick={showSidebar}
-              // priority
-            />
+            <div className={styles.navOptionsMobile}>
+              <div className="hamburger-ic">
+                <Image
+                  src="/gaurav/Menu_ic.svg"
+                  alt="hamburger menu icon"
+                  width={25}
+                  height={25}
+                  // 20 /20 size
+                  className={styles.plainIc}
+                  onClick={showSidebar}
+                  // priority
+                />
+              </div>
+            </div>
           </div>
         </div>
         <div

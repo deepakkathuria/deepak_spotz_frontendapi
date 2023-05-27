@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import styles from "../styles/MobSecondaryNav.module.css";
+import Image from "next/image";
 
 const MobSecondaryNav = () => {
   const [moreItems, setMoreItem] = useState(false);
@@ -13,11 +14,66 @@ const MobSecondaryNav = () => {
     <>
       <div className={styles.mobSecondaryNavContainer}>
         <ul className={styles.mobSecondaryNavUl}>
-          <li>HOME</li>
-          <li>CRICKET</li>
-          <li>FOOTBALL</li>
-          <li>WWE</li>
-          <li>ESPORTS</li>
+          <li>
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/home_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            HOME
+          </li>
+          <li>
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/cricket_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            CRICKET
+          </li>
+          <li>
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/football_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            FOOTBALL
+          </li>
+          <li>
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/wwe_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            WWE
+          </li>
+          <li>
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            ESPORTS
+          </li>
         </ul>
         <div onClick={handleMoreButton} className={styles.moreItems}>
           More

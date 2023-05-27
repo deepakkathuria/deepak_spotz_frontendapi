@@ -14,7 +14,7 @@ const MobSecondaryNav = () => {
     <>
       <div className={styles.mobSecondaryNavContainer}>
         <ul className={styles.mobSecondaryNavUl}>
-          <li>
+          <li className={styles.activeLi}>
             <div className={styles.icon}>
               <Image
                 src="/gaurav/home_ic.svg"
@@ -24,7 +24,7 @@ const MobSecondaryNav = () => {
                 // className={styles.plainIc}
               />
             </div>
-            HOME
+            <p>HOME</p>
           </li>
           <li>
             <div className={styles.icon}>
@@ -36,7 +36,7 @@ const MobSecondaryNav = () => {
                 // className={styles.plainIc}
               />
             </div>
-            CRICKET
+            <p>CRICKET</p>
           </li>
           <li>
             <div className={styles.icon}>
@@ -48,7 +48,7 @@ const MobSecondaryNav = () => {
                 // className={styles.plainIc}
               />
             </div>
-            FOOTBALL
+            <p>FOOTBALL</p>
           </li>
           <li>
             <div className={styles.icon}>
@@ -60,7 +60,7 @@ const MobSecondaryNav = () => {
                 // className={styles.plainIc}
               />
             </div>
-            WWE
+            <p>WWE</p>
           </li>
           <li>
             <div className={styles.icon}>
@@ -72,7 +72,7 @@ const MobSecondaryNav = () => {
                 // className={styles.plainIc}
               />
             </div>
-            ESPORTS
+            <p>ESPORTS</p>
           </li>
         </ul>
         <div onClick={handleMoreButton} className={styles.moreItems}>

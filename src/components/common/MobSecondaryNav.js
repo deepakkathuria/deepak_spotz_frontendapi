@@ -77,6 +77,15 @@ const MobSecondaryNav = () => {
         </ul>
         <div onClick={handleMoreButton} className={styles.moreItems}>
           More
+          <div className={styles.icon}>
+            <Image
+              src="/gaurav/down_arrow_ic.svg"
+              alt="home menu icon"
+              width={12}
+              height={12}
+              // className={styles.plainIc}
+            />
+          </div>
         </div>
       </div>
 
@@ -88,36 +97,395 @@ const MobSecondaryNav = () => {
         }
       >
         <ul>
-          <li>Kabbadi</li>
-          <li>Wiki</li>
-          <li>Basket Ball</li>
-          <li>Indian Football</li>
-          <li>Mine Culture</li>
-          <li>Nascar</li>
-          <li>Pop Culture</li>
-          <li>College Football</li>
-          <li>Hockey</li>
-          <li>Athletics</li>
-          <li>Badminton</li>
-          <li>Gymnastics</li>
-          <li>Wrestling</li>
-          <li>Swimming</li>
-          <li>Shooting</li>
-          <li>Boxing</li>
-          <li>Archery</li>
-          <li>Winter Sports</li>
-          <li>Roblox</li>
-          <li>Free Picks</li>
-          <li>Skateboarding</li>
-          <li>kho kho</li>
-          <li>lifestyle</li>
-          <li>MMO</li>
-          <li>NBA</li>
-          <li>NFL</li>
-          <li>MMA</li>
-          <li>Tennis</li>
-          <li>Golf</li>
-          <li>F1</li>
+          <li>
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Kabbadi
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Wiki
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Basket Ball
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Indian Football
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Mine Culture
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Nascar
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Pop Culture
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            College Football
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Hockey
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Athletics
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Badminton
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Gymnastics
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Wrestling
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Swimming
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Shooting
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Boxing
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Archery
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Winter Sports
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Roblox
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Free Picks
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Skateboarding
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            kho kho
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            lifestyle
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            MMO
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            NBA
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            NFL
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            MMA
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Tennis
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            Golf
+          </li>
+          <li>
+            {" "}
+            <div className={styles.icon}>
+              <Image
+                src="/gaurav/gamepad_ic.svg"
+                alt="home menu icon"
+                width={12}
+                height={12}
+                // className={styles.plainIc}
+              />
+            </div>
+            F1
+          </li>
         </ul>
       </div>
     </>

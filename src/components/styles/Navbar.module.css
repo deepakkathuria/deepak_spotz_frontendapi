@@ -79,6 +79,12 @@
     display: none;
   }
 
+  .plainIc {
+    filter: invert(1);
+    height: 3rem;
+    width: 3rem;
+  }
+
   .navOptions {
     gap: 0.4rem;
   }
@@ -88,6 +94,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     justify-content: space-between;
+    height: 5rem;
   }
 
   .active {

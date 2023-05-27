@@ -30,9 +30,9 @@ const Navbar = () => {
           <div className={styles.NavLogo}>
             <Link href={"#"}>
               <Image
-                src="https://i0.wp.com/sportzwiki.com/wp-content/uploads/2021/02/SW.png?fit=200%2C40&ssl=1"
-                width={136}
-                height={14}
+                src="/gaurav/sportzwiki_logo.svg"
+                width={130}
+                height={30}
                 alt="SportzWiki Logo"
               />
             </Link>

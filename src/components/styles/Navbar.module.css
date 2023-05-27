@@ -72,6 +72,10 @@
   filter: invert(1);
 }
 
+.navLoginText {
+  color: #98ccff;
+}
+
 @media (max-width: 576px) {
   .NavbarOption,
   .navLoginText,

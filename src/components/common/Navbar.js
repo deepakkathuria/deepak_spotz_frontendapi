@@ -136,7 +136,7 @@ const Navbar = () => {
                   alt="search icon"
                   width={22}
                   height={22}
-                  className={styles.plainIc}
+                  // className={styles.plainIc}
                 />
               </div>
             </Link>
@@ -145,10 +145,10 @@ const Navbar = () => {
                 {/* <CgProfile color="#fff" size={"20"} /> */}
                 <Image
                   src="/gaurav/profile_ic.svg"
-                  alt="home menu icon"
+                  alt="profile menu icon"
                   width={20}
                   height={20}
-                  className={styles.plainIc}
+                  // className={styles.plainIc}
                 />
                 <div className={styles.navLoginText}>Login/SignUp</div>
               </div>
@@ -166,7 +166,8 @@ const Navbar = () => {
                   width={25}
                   height={25}
                   // 20 /20 size
-                  className={styles.plainIc}
+                  // className={styles.plainIc}
+                  style={{ color: "#98CCFF", fill: "#98CCFF", stroke:"#98CCFF" }}
                   onClick={showSidebar}
                   // priority
                 />

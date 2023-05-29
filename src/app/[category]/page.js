@@ -31,11 +31,13 @@ const CategoryPosts = async ({ params }) => {
 
         <div className={styles.newsCardsDisplay}>
           {data.data?.map((post) => (
-            <NewsCard
-              title={post.post_title}
-              content={post.post_content}
-              date={new Date(post.post_modified).toLocaleString()}
-            />
+            <div className="card" key={post.ID}>
+              <NewsCard
+                title={post.post_title}
+                content={post.post_content}
+                date={new Date(post.post_modified).toLocaleString()}
+              />
+            </div>
           ))}
         </div>
       </div>

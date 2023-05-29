@@ -1,0 +1,19 @@
+.CategoryPosts {
+  margin-top: 8rem;
+  margin-left: 12.5rem;
+  margin-right: 12.5rem;
+}
+
+.categoryTitle {
+  margin-bottom: 2rem;
+}
+
+.newsCardsDisplay {
+  margin-top: 4rem;
+}
+
+.newsCardsDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

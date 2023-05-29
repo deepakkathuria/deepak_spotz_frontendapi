@@ -13,9 +13,11 @@ const PostTags = async (props) => {
         <div className={styles.tags}>
           {props?.tags?.split(",")?.map((tag) => {
             return (
-              <Link href={`/wiki/${slugify(tag)}`}>
-                <h3 key={tag}>{tag}</h3>
-              </Link>
+              <div key={tag} className="tag">
+                <Link href={`/wiki/${slugify(tag)}`}>
+                  <h3 key={tag}>{tag}</h3>
+                </Link>
+              </div>
             );
           })}
         </div>

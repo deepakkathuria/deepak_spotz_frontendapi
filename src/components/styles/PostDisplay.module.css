@@ -1,7 +1,8 @@
 .postDisplayContainer {
   width: 62.4rem;
   margin-top: 1.3rem;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
+  height: 100%;
 }
 
 .postHeading {

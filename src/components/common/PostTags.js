@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "../styles/PostTags.module.css";
+import Link from "next/link";
+import slugify from "slugify";
 
-const PostTags = (props) => {
+const PostTags = async (props) => {
   return (
     <>
       <div className={styles.postTagsContainer}>
@@ -10,7 +12,11 @@ const PostTags = (props) => {
         </div>
         <div className={styles.tags}>
           {props?.tags?.split(",")?.map((tag) => {
-            return <h3 key={tag}>{tag}</h3>;
+            return (
+              <Link href={`/wiki/${slugify(tag)}`}>
+                <h3 key={tag}>{tag}</h3>
+              </Link>
+            );
           })}
         </div>
       </div>

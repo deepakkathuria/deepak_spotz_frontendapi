@@ -36,7 +36,6 @@ const PostDisplay = (props) => {
           <div className={styles.postSummary}>
             <p>Description of new article will be put here #GAURAV TANWAR</p>
           </div>
-
           <div className={styles.postCover}>
             <Image
               src="https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
@@ -47,7 +46,6 @@ const PostDisplay = (props) => {
               alt="Picture of the author"
             />
           </div>
-
           {/* <div className={styles.postDescription}>
             {sections?.map((section, index) => (
               <div key={index}>
@@ -58,7 +56,17 @@ const PostDisplay = (props) => {
               </div>
             ))}
           </div> */}
+          {/* <div className={styles.postDescription}>
+            {sections?.map((section, index) => (
+              <div key={index}>
+                {htmlparser2.parseDocument(section)}
 
+                {index < tweetIDs.length && (
+                  <TweetClientSideRender tweetId={tweetIDs[index]} />
+                )}
+              </div>
+            ))}
+          </div> */}
           <div className={styles.postDescription}>
             {sections?.map((section, index) => (
               <div key={index}>
@@ -70,6 +78,9 @@ const PostDisplay = (props) => {
             ))}
           </div>
 
+          {/* <div className={styles.postDescription}>
+            <div dangerouslySetInnerHTML={{ __html: props.description }} />
+          </div> */}
           <PostTags tags={props.tags} />
         </div>
       </div>

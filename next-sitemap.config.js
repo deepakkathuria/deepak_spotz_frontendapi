@@ -9,8 +9,9 @@ module.exports = {
     policies: [
       {
         userAgent: "*",
-        disallow: ["/secret", "/gaurav"],
-        allow: "/",
+        // disallow: ["/secret", "/gaurav"],
+        disallow: "/",
+        // allow: "/",
       },
     ],
 

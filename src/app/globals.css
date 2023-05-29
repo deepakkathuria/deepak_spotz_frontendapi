@@ -17,7 +17,8 @@
 
 html,
 body {
-  margin: 0 auto;
+  /* margin: 0 auto; */
+  margin-inline: auto;
   /* max-width: 1896px; */
   max-width: 1720px;
   font-size: 10px;

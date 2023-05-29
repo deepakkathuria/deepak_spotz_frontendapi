@@ -12,7 +12,12 @@ const NewscardNoBorder = (props) => {
             width={0}
             height={0}
             sizes="100vw"
-            style={{ width: "10rem", height: "10rem", objectFit: "cover" }} // optional
+            style={{
+              width: "10rem",
+              height: "10rem",
+              objectFit: "cover",
+              borderRadius: "3px",
+            }} // optional
           />
         </div>
         <div className={styles.postDetails}>

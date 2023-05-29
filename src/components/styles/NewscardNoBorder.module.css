@@ -13,6 +13,7 @@
 
 .postDetails {
   padding: 0.3rem;
+  padding-left: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

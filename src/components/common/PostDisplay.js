@@ -60,8 +60,6 @@ const PostDisplay = (props) => {
           </div> */}
 
           <div className={styles.postDescription}>
-            {/* {parse(props.description)} */}
-            {/* <div dangerouslySetInnerHTML={{ __html: props.description }} /> */}
             {sections?.map((section, index) => (
               <div key={index}>
                 <div dangerouslySetInnerHTML={{ __html: section }} />

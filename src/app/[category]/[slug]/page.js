@@ -59,6 +59,21 @@ export async function generateMetadata({ params }) {
       // creatorId: "1467726470533754880",
       images: ["https://nextjs.org/og.png"],
     },
+
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: "prismic.asText(article.data.title)",
+      author: {
+        "@type": "Person",
+        name: "prismic.asText(article.data.author.data.name)",
+        // The full URL must be provided, including the website's domain.
+        url: "https://example.com",
+      },
+      image: "biufbi",
+      datePublished: "article.data.publication_date",
+      dateModified: "article.last_publication_date",
+    },
   };
 }
 
@@ -128,7 +143,7 @@ const page = async ({ params }) => {
             description={formattedContent}
             tags={post?.data[0]?.tags}
             categories={post?.data[0]?.categories}
-            summary = {postMeta?.data[0]?.meta_description}
+            summary={postMeta?.data[0]?.meta_description}
           />
           <PostListBar category={category} />
         </div>

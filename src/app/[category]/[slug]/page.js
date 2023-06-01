@@ -8,6 +8,59 @@ import NewsCard from "../../../components/common/NewsCard";
 import Link from "next/link";
 import axios from "axios";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+
+// export const metadata = {
+//   title: "post",
+//   description: "Sports news | events",
+// };
+
+export async function generateMetadata({ params }) {
+  const { category, slug } = params;
+  const post = await axios.get(
+    `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
+  );
+
+  const postMeta = await axios.get(
+    `${base_url}/getpostmetabypostslug?slug=${slug}`
+  );
+  return {
+    title: post?.data[0]?.title,
+    description: postMeta?.data[0]?.meta_description,
+
+    openGraph: {
+      title: post?.data[0]?.title,
+      description: postMeta?.data[0]?.meta_description,
+      url: site_url,
+      siteName: "SportzWiki",
+      images: [
+        {
+          url: "https://nextjs.org/og.png",
+          width: 800,
+          height: 600,
+        },
+        {
+          url: "https://nextjs.org/og-alt.png",
+          width: 1800,
+          height: 1600,
+          alt: "My custom alt",
+        },
+      ],
+      locale: "en_US",
+      type: "website",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title: post?.data[0]?.title,
+      description: postMeta?.data[0]?.meta_description,
+      // siteId: "1467726470533754880",
+      creator: "@gaurav",
+      // creatorId: "1467726470533754880",
+      images: ["https://nextjs.org/og.png"],
+    },
+  };
+}
 
 const page = async ({ params }) => {
   const { category, slug } = params;
@@ -30,6 +83,9 @@ const page = async ({ params }) => {
   try {
     var post = await axios.get(
       `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
+    );
+    var postMeta = await axios.get(
+      `${base_url}/getpostmetabypostslug?slug=${slug}`
     );
   } catch (err) {
     console.log(err);
@@ -72,6 +128,7 @@ const page = async ({ params }) => {
             description={formattedContent}
             tags={post?.data[0]?.tags}
             categories={post?.data[0]?.categories}
+            summary = {postMeta?.data[0]?.meta_description}
           />
           <PostListBar category={category} />
         </div>

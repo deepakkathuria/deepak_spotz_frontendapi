@@ -5,6 +5,14 @@ import axios from "axios";
 import Link from "next/link";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
+export async function generateMetadata({ params }) {
+  const category = params.category;
+  return {
+    title: `SportzWiki | ${category}`,
+    description: "this is a comment",
+  };
+}
+
 const CategoryPosts = async ({ params }) => {
   const category = params.category;
 
@@ -19,7 +27,7 @@ const CategoryPosts = async ({ params }) => {
           <h1 className={styles.categoryTitle}>
             {params.category.toUpperCase()}
           </h1>
-          <p className={styles.categoryDescription}>
+          {/* <p className={styles.categoryDescription}>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum
             eligendi possimus molestias dolores fugit qui saepe quos quo dolor.
             Illum illo aspernatur itaque necessitatibus modi voluptas libero
@@ -27,7 +35,7 @@ const CategoryPosts = async ({ params }) => {
             possimus, exercitationem quidem velit nostrum iusto quo commodi?
             Veritatis culpa ea perspiciatis, incidunt nisi vel amet qui ducimus
             excepturi mollitia sed laboriosam repellat consequuntur? Voluptas.
-          </p>
+          </p> */}
         </div>
 
         <div className={styles.newsCardsDisplay}>

@@ -17,6 +17,8 @@
 
 html,
 body {
+  /* height: 100dvh;
+  height: 100vh; */
   /* margin: 0 auto; */
   margin-inline: auto;
   /* max-width: 1896px; */

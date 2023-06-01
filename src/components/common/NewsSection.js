@@ -43,7 +43,9 @@ const NewsSection = async (props) => {
             );
           })}
         </div>
-        <div className={styles.readMoreLabel}>Read More</div>
+        <div className={styles.readMoreLabel}>
+          <Link href={`/${props.slug}`}>Read More</Link>
+        </div>
       </div>
     </>
   );

@@ -34,7 +34,7 @@ const PostDisplay = (props) => {
             </div>
           </div>
           <div className={styles.postSummary}>
-            <p>Description of new article will be put here #GAURAV TANWAR</p>
+            <p>{props.summary}</p>
           </div>
           <div className={styles.postCover}>
             <Image

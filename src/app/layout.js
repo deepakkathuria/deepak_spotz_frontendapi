@@ -7,8 +7,9 @@ import Navbar from "@/components/common/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "SportzWiki",
+  title: "Sports News, Breaking Sports News, Latest Sports News - Sportzwiki",
   description: "Sports news | events",
+  themeColor: "black",
 };
 
 export default function RootLayout({ children }) {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Navbar />
         {children}
+        {/* <GlobalContextProvider>{children}</GlobalContextProvider> */}
         <Analytics />
       </body>
     </html>

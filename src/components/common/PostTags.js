@@ -3,7 +3,7 @@ import styles from "../styles/PostTags.module.css";
 import Link from "next/link";
 import slugify from "slugify";
 
-const PostTags = async (props) => {
+const PostTags = (props) => {
   return (
     <>
       <div className={styles.postTagsContainer}>

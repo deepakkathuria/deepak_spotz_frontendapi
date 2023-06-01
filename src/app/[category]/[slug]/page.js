@@ -27,6 +27,32 @@ export async function generateMetadata({ params }) {
   return {
     title: post?.data[0]?.title,
     description: postMeta?.data[0]?.meta_description,
+    // ##############################################
+
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: "Title of a News Article",
+    image: [
+      "https://example.com/photos/1x1/photo.jpg",
+      "https://example.com/photos/4x3/photo.jpg",
+      "https://example.com/photos/16x9/photo.jpg",
+    ],
+    datePublished: "2015-02-05T08:00:00+08:00",
+    dateModified: "2015-02-05T09:20:00+08:00",
+    author: [
+      {
+        "@type": "Person",
+        name: "Jane Doe",
+        url: "https://example.com/profile/janedoe123",
+      },
+      {
+        "@type": "Person",
+        name: "John Doe",
+        url: "https://example.com/profile/johndoe123",
+      },
+    ],
+
+    // ##############################################
 
     openGraph: {
       title: post?.data[0]?.title,
@@ -58,21 +84,6 @@ export async function generateMetadata({ params }) {
       creator: "@gaurav",
       // creatorId: "1467726470533754880",
       images: ["https://nextjs.org/og.png"],
-    },
-
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: "prismic.asText(article.data.title)",
-      author: {
-        "@type": "Person",
-        name: "prismic.asText(article.data.author.data.name)",
-        // The full URL must be provided, including the website's domain.
-        url: "https://example.com",
-      },
-      image: "biufbi",
-      datePublished: "article.data.publication_date",
-      dateModified: "article.last_publication_date",
     },
   };
 }

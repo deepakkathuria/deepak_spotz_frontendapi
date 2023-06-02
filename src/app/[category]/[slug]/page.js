@@ -7,13 +7,14 @@ import PostListBar from "../../../components/common/PostListBar";
 import NewsCard from "../../../components/common/NewsCard";
 import Link from "next/link";
 import axios from "axios";
+
+{
+  /* <NextSeo useAppDir={true} />; */
+}
+import { ArticleJsonLd } from "next-seo";
+
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
-
-// export const metadata = {
-//   title: "post",
-//   description: "Sports news | events",
-// };
 
 export async function generateMetadata({ params }) {
   const { category, slug } = params;
@@ -134,15 +135,18 @@ const page = async ({ params }) => {
     console.log(err);
   }
 
-  // console.log("################");
-  // console.log(relatedPosts);
-  // console.log(randomTag);
-  // console.log("################");
-
   const formattedContent = post?.data[0]?.content.replace(/\r?\n/g, "<br>");
 
   return (
     <>
+      {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
+      <ArticleJsonLd
+        useAppDir={true}
+        url="https://example.com/article"
+        title="Article headline"
+      />
+      {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
+
       <div className={styles.postPageContainer}>
         <Breadcrumb breadcrumbsObj={breadcrumbs} />
         <PostCategoryBox categories={post?.data[0]?.categories} />

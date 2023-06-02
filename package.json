@@ -19,6 +19,7 @@
     "htmlparser2": "^9.0.0",
     "next": "13.4.1",
     "next-images": "^1.8.5",
+    "next-seo": "^6.0.0",
     "next-sitemap": "^4.0.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -19,7 +19,7 @@ const page = async () => {
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
         <div className={styles.newsSectionDiv}>
-          {data.data?.map((item) => {
+          {data?.data?.map((item) => {
             return (
               <div key={item.slug}>
                 <NewsSection name={item.name} slug={item.slug} />

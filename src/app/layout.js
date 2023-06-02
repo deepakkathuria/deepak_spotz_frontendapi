@@ -10,14 +10,13 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Sports News, Breaking Sports News, Latest Sports News - Sportzwiki",
   description: "Sports news | events",
-  themeColor: "black",
+  themeColor: "#092d55",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-      </head>
+      <head></head>
       <body className={inter.className}>
         <Navbar />
         {children}

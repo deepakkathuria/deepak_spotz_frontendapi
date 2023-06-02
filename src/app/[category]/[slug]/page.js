@@ -8,10 +8,10 @@ import NewsCard from "../../../components/common/NewsCard";
 import Link from "next/link";
 import axios from "axios";
 
+import { ArticleJsonLd, OrganizationJsonLd, BreadcrumbJsonLd } from "next-seo";
 {
   /* <NextSeo useAppDir={true} />; */
 }
-import { ArticleJsonLd } from "next-seo";
 
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
@@ -30,28 +30,28 @@ export async function generateMetadata({ params }) {
     description: postMeta?.data[0]?.meta_description,
     // ##############################################
 
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
-    headline: "Title of a News Article",
-    image: [
-      "https://example.com/photos/1x1/photo.jpg",
-      "https://example.com/photos/4x3/photo.jpg",
-      "https://example.com/photos/16x9/photo.jpg",
-    ],
-    datePublished: "2015-02-05T08:00:00+08:00",
-    dateModified: "2015-02-05T09:20:00+08:00",
-    author: [
-      {
-        "@type": "Person",
-        name: "Jane Doe",
-        url: "https://example.com/profile/janedoe123",
-      },
-      {
-        "@type": "Person",
-        name: "John Doe",
-        url: "https://example.com/profile/johndoe123",
-      },
-    ],
+    // "@context": "https://schema.org",
+    // "@type": "NewsArticle",
+    // headline: "Title of a News Article",
+    // image: [
+    //   "https://example.com/photos/1x1/photo.jpg",
+    //   "https://example.com/photos/4x3/photo.jpg",
+    //   "https://example.com/photos/16x9/photo.jpg",
+    // ],
+    // datePublished: "2015-02-05T08:00:00+08:00",
+    // dateModified: "2015-02-05T09:20:00+08:00",
+    // author: [
+    //   {
+    //     "@type": "Person",
+    //     name: "Jane Doe",
+    //     url: "https://example.com/profile/janedoe123",
+    //   },
+    //   {
+    //     "@type": "Person",
+    //     name: "John Doe",
+    //     url: "https://example.com/profile/johndoe123",
+    //   },
+    // ],
 
     // ##############################################
 
@@ -137,6 +137,14 @@ const page = async ({ params }) => {
 
   const formattedContent = post?.data[0]?.content.replace(/\r?\n/g, "<br>");
 
+  // const itemListElements = breadcrumbs.map((breadcrumb, index) => {
+  //   return {
+  //     position: index + 1,
+  //     name: breadcrumb.name,
+  //     item: breadcrumb.url,
+  //   };
+  // });
+
   return (
     <>
       {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
@@ -144,6 +152,88 @@ const page = async ({ params }) => {
         useAppDir={true}
         url="https://example.com/article"
         title="Article headline"
+        images={[
+          "https://example.com/photos/1x1/photo.jpg",
+          "https://example.com/photos/4x3/photo.jpg",
+          "https://example.com/photos/16x9/photo.jpg",
+        ]}
+        datePublished="2015-02-05T08:00:00+08:00"
+        dateModified="2015-02-05T09:00:00+08:00"
+        authorName={[
+          {
+            name: "Jane Blogs",
+            url: "https://example.com",
+          },
+          {
+            name: "Mary Stone",
+            url: "https://example.com",
+          },
+        ]}
+        publisherName="Gary Meehan"
+        publisherLogo="https://www.example.com/photos/logo.jpg"
+        description="This is a mighty good description of this article."
+      />
+
+      <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: "HOME",
+            item: `site_url`,
+          },
+          {
+            position: 2,
+            name: `${category.toUpperCase()}`,
+            item: `${site_url}/${category}`,
+          },
+          {
+            position: 3,
+            name: `${slug.toUpperCase().substring(0, 80)}...`,
+            item: `${site_url}/${category}/${slug}`,
+          },
+        ]}
+      />
+
+      <OrganizationJsonLd
+        useAppDir={true}
+        type="Corporation"
+        id={site_url}
+        logo="https://www.example.com/photos/logo.jpg"
+        legalName="Sportzwiki Media Pvt ltd"
+        name="Purple Fox"
+        address={{
+          streetAddress: "1600 Saratoga Ave",
+          addressLocality: "San Jose",
+          addressRegion: "CA",
+          postalCode: "95129",
+          addressCountry: "US",
+        }}
+        contactPoint={[
+          {
+            telephone: "+1-401-555-1212",
+            contactType: "customer service",
+            email: "customerservice@email.com",
+            areaServed: "US",
+            availableLanguage: ["English", "Spanish", "French"],
+          },
+          {
+            telephone: "+1-877-746-0909",
+            contactType: "customer service",
+            email: "servicecustomer@email.com",
+            contactOption: "TollFree",
+            availableLanguage: "English",
+          },
+          {
+            telephone: "+1-877-453-1304",
+            contactType: "technical support",
+            contactOption: "TollFree",
+            areaServed: ["US", "CA"],
+            availableLanguage: ["English", "French"],
+          },
+        ]}
+        sameAs={["https://www.orange-fox.com"]}
+        url="https://www.purpule-fox.io/"
       />
       {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
 

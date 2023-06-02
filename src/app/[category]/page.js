@@ -5,6 +5,11 @@ import axios from "axios";
 import Link from "next/link";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+
+import { BreadcrumbJsonLd } from "next-seo";
+import { OrganizationJsonLd } from "next-seo";
+
 export async function generateMetadata({ params }) {
   const category = params.category;
   return {
@@ -16,12 +21,89 @@ export async function generateMetadata({ params }) {
 const CategoryPosts = async ({ params }) => {
   const category = params.category;
 
+  const breadcrumbs = [
+    {
+      name: "HOME",
+      url: { site_url },
+    },
+    // {
+    //   name: `WIKI`,
+    //   url: `/`,
+    // },
+    {
+      name: `${category.toUpperCase().substring(0, 80)}...`,
+      url: `/${category}`,
+    },
+  ];
+
   const data = await axios.get(
     `${base_url}/getpostsbycategoryname?name=${category}&page=1&limit=100`
   );
 
   return (
     <>
+      <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: "HOME",
+            item: `${site_url}/`,
+          },
+          // {
+          //   position: 2,
+          //   name: "WIKI",
+          //   item: `${site_url}/`,
+          // },
+          {
+            position: 2,
+            name: `${category}`,
+            item: `${site_url}/${category}/`,
+          },
+        ]}
+      />
+
+      <OrganizationJsonLd
+        useAppDir={true}
+        type="Corporation"
+        id="SportzWiki.com"
+        logo="https://www.example.com/photos/logo.jpg"
+        legalName="SportzWiki.com"
+        name="SportzWiki Media"
+        address={{
+          streetAddress: "91 SpringBoard",
+          addressLocality: "gurgaon",
+          addressRegion: "HR",
+          postalCode: "127021",
+          addressCountry: "IN",
+        }}
+        contactPoint={[
+          {
+            telephone: "+1-401-555-1212",
+            contactType: "customer service",
+            email: "customerservice@email.com",
+            areaServed: "US",
+            availableLanguage: ["English", "Spanish", "French"],
+          },
+          {
+            telephone: "+1-877-746-0909",
+            contactType: "customer service",
+            email: "servicecustomer@email.com",
+            contactOption: "TollFree",
+            availableLanguage: "English",
+          },
+          {
+            telephone: "+1-877-453-1304",
+            contactType: "technical support",
+            contactOption: "TollFree",
+            areaServed: ["US", "CA"],
+            availableLanguage: ["English", "French"],
+          },
+        ]}
+        sameAs={["https://www.orange-fox.com"]}
+        url="https://www.purpule-fox.io/"
+      />
+
       <div className={styles.CategoryPosts}>
         <div className={styles.categoryTitleDescription}>
           <h1 className={styles.categoryTitle}>

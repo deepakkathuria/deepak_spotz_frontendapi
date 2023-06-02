@@ -4,6 +4,8 @@ import NewsSection from "@/components/common/NewsSection";
 import axios from "axios";
 import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+import { OrganizationJsonLd } from "next-seo";
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const page = async () => {
   try {
@@ -16,6 +18,46 @@ const page = async () => {
 
   return (
     <>
+      <OrganizationJsonLd
+        useAppDir={true}
+        type="Corporation"
+        id={site_url}
+        logo="https://www.example.com/photos/logo.jpg"
+        legalName="Sportzwiki Media Pvt ltd"
+        name="Purple Fox"
+        address={{
+          streetAddress: "1600 Saratoga Ave",
+          addressLocality: "San Jose",
+          addressRegion: "CA",
+          postalCode: "95129",
+          addressCountry: "US",
+        }}
+        contactPoint={[
+          {
+            telephone: "+1-401-555-1212",
+            contactType: "customer service",
+            email: "customerservice@email.com",
+            areaServed: "US",
+            availableLanguage: ["English", "Spanish", "French"],
+          },
+          {
+            telephone: "+1-877-746-0909",
+            contactType: "customer service",
+            email: "servicecustomer@email.com",
+            contactOption: "TollFree",
+            availableLanguage: "English",
+          },
+          {
+            telephone: "+1-877-453-1304",
+            contactType: "technical support",
+            contactOption: "TollFree",
+            areaServed: ["US", "CA"],
+            availableLanguage: ["English", "French"],
+          },
+        ]}
+        sameAs={["https://www.orange-fox.com"]}
+        url="https://www.purpule-fox.io/"
+      />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
         <div className={styles.newsSectionDiv}>

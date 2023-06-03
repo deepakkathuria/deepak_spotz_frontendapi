@@ -102,14 +102,14 @@ const page = async ({ params }) => {
       url: `/${category}`,
     },
     {
-      name: `${slug.toUpperCase().substring(0, 80)}...`,
+      name: `${decodeURIComponent(slug).toUpperCase().substring(0, 80)}...`,
       url: `/${category}/${slug}`,
     },
   ];
 
   try {
     var post = await axios.get(
-      `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
+      `${base_url}/getsinglepostbypostslug?slug=${decodeURIComponent(slug)}`
     );
     var postMeta = await axios.get(
       `${base_url}/getpostmetabypostslug?slug=${slug}`

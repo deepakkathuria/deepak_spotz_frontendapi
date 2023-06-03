@@ -98,7 +98,7 @@ const page = async ({ params }) => {
       url: "/",
     },
     {
-      name: `${category.toUpperCase()}`,
+      name: `${decodeURIComponent(category).toUpperCase()}`,
       url: `/${category}`,
     },
     {
@@ -250,7 +250,7 @@ const page = async ({ params }) => {
             categories={post?.data[0]?.categories}
             summary={postMeta?.data[0]?.meta_description}
           />
-          <PostListBar category={category} />
+          <PostListBar category={decodeURIComponent(category)} />
         </div>
         <div className={styles.relatedArticleSection}>
           <div className={styles.relatedArticleTitle}>

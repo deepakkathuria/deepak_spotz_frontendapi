@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiUrl = process.env.apiUrl;
+const apiUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 const fetchPosts = async () => {
   try {

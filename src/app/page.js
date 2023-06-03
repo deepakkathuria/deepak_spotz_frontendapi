@@ -10,7 +10,7 @@ const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 const page = async () => {
   try {
     var data = await axios.get(
-      `${base_url}/getcategoriesbyname?category1=Kabaddi&category2=News&category3=sports`
+      `${base_url}/getcategoriesbyname?category1=cricket&category2=football&category3=wwe`
     );
   } catch (e) {
     console.log(e.message);

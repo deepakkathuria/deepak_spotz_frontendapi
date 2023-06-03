@@ -5,7 +5,7 @@ import ButtonTab from "./ButtonTab";
 import NewsCard from "./NewsCard";
 import axios from "axios";
 import Link from "next/link";
-const base_url = process.env.baseUrl;
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 const NewsSection = async (props) => {
   try {

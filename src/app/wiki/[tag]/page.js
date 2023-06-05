@@ -16,7 +16,7 @@ import { OrganizationJsonLd } from "next-seo";
 export async function generateMetadata({ params }) {
   const { tag } = params;
   return {
-    title: `SportzWiki | ${tag}`,
+    title: `SportzWiki | ${decodeURIComponent(tag)}`,
     description: "this is a comment",
   };
 }
@@ -34,7 +34,7 @@ const CategoryPosts = async ({ params }) => {
       url: `/`,
     },
     {
-      name: `${tag.toUpperCase().substring(0, 80)}...`,
+      name: `${decodeURIComponent(tag).toUpperCase().substring(0, 80)}...`,
       url: `/${tag}`,
     },
   ];
@@ -113,8 +113,9 @@ const CategoryPosts = async ({ params }) => {
       <div className={styles.CategoryPosts}>
         <Breadcrumb breadcrumbsObj={breadcrumbs} />
         <div className={styles.categoryTitleDescription}>
-          <h1 className={styles.categoryTitle}>{params.tag?.toUpperCase()}</h1>
-          {/* <CategoryDescriptionDisplay category={params.tag} /> */}
+          <h1 className={styles.categoryTitle}>
+            {decodeURIComponent(params.tag)?.toUpperCase()}
+          </h1>
         </div>
 
         <div className={styles.newsCardsDisplay}>

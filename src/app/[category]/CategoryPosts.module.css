@@ -17,3 +17,28 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+@media (max-width: 576px) {
+  .CategoryPosts {
+    margin: 0;
+    /* margin-top: 8rem; */
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .categoryTitle {
+    margin-top: 0.5rem;
+  }
+
+  .categoryTitle {
+    margin-bottom: 0;
+  }
+
+  .newsCardsDisplay {
+    margin-top: 0;
+  }
+
+  .categoryTitleDescription {
+    margin-top: 0rem;
+  }
+}

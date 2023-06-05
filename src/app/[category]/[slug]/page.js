@@ -9,10 +9,6 @@ import Link from "next/link";
 import axios from "axios";
 
 import { ArticleJsonLd, OrganizationJsonLd, BreadcrumbJsonLd } from "next-seo";
-{
-  /* <NextSeo useAppDir={true} />; */
-}
-
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -28,32 +24,6 @@ export async function generateMetadata({ params }) {
   return {
     title: post?.data[0]?.title,
     description: postMeta?.data[0]?.meta_description,
-    // ##############################################
-
-    // "@context": "https://schema.org",
-    // "@type": "NewsArticle",
-    // headline: "Title of a News Article",
-    // image: [
-    //   "https://example.com/photos/1x1/photo.jpg",
-    //   "https://example.com/photos/4x3/photo.jpg",
-    //   "https://example.com/photos/16x9/photo.jpg",
-    // ],
-    // datePublished: "2015-02-05T08:00:00+08:00",
-    // dateModified: "2015-02-05T09:20:00+08:00",
-    // author: [
-    //   {
-    //     "@type": "Person",
-    //     name: "Jane Doe",
-    //     url: "https://example.com/profile/janedoe123",
-    //   },
-    //   {
-    //     "@type": "Person",
-    //     name: "John Doe",
-    //     url: "https://example.com/profile/johndoe123",
-    //   },
-    // ],
-
-    // ##############################################
 
     openGraph: {
       title: post?.data[0]?.title,
@@ -109,7 +79,7 @@ const page = async ({ params }) => {
 
   try {
     var post = await axios.get(
-      `${base_url}/getsinglepostbypostslug?slug=${decodeURIComponent(slug)}`
+      `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
     );
     var postMeta = await axios.get(
       `${base_url}/getpostmetabypostslug?slug=${slug}`
@@ -135,15 +105,11 @@ const page = async ({ params }) => {
     console.log(err);
   }
 
-  const formattedContent = post?.data[0]?.content.replace(/\r?\n/g, "<br>");
+  const formattedContent = post?.data[0]?.post_content.replace(
+    /\r?\n/g,
+    "<br>"
+  );
 
-  // const itemListElements = breadcrumbs.map((breadcrumb, index) => {
-  //   return {
-  //     position: index + 1,
-  //     name: breadcrumb.name,
-  //     item: breadcrumb.url,
-  //   };
-  // });
 
   return (
     <>
@@ -189,7 +155,7 @@ const page = async ({ params }) => {
           },
           {
             position: 3,
-            name: `${slug.toUpperCase().substring(0, 80)}...`,
+            name: `${slug.toUpperCase().substring(0, 5)}...`,
             item: `${site_url}/${category}/${slug}`,
           },
         ]}
@@ -242,8 +208,8 @@ const page = async ({ params }) => {
         <PostCategoryBox categories={post?.data[0]?.categories} />
         <div className={styles.postDetailListContainer}>
           <PostDisplay
-            title={post?.data[0]?.title}
-            date={post?.data[0]?.date_modified}
+            title={post?.data[0]?.post_title}
+            date={post?.data[0]?.post_modified_gmt}
             author={post?.data[0]?.author_name}
             description={formattedContent}
             tags={post?.data[0]?.tags}

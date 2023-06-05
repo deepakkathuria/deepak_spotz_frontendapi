@@ -8,6 +8,24 @@ import { OrganizationJsonLd } from "next-seo";
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const page = async () => {
+  var categoriesList = await axios
+    .get(`${base_url}/getrecentcategorynameslug`)
+    .catch((err) => console.log(err));
+
+  // Extract distinct category names from the response
+  var distinctCategories = Array.from(
+    new Set(categoriesList.data.map((item) => item.category_name))
+  );
+
+  // var distinctCategoriesVariable = distinctCategories;
+  // Print the distinct category names
+  console.log("@@@@@@@@@@@@@@@@@");
+  console.log(distinctCategories);
+  // console.log(distinctCategoriesVariable)
+  console.log("@@@@@@@@@@@@@@@@@");
+
+  // Store the distinct category names in a variable
+
   try {
     var data = await axios.get(
       `${base_url}/getcategoriesbyname?category1=cricket&category2=football&category3=wwe`
@@ -15,6 +33,10 @@ const page = async () => {
   } catch (e) {
     console.log(e.message);
   }
+
+  // console.log("##############");
+  // console.log(categoriesList.data);
+  // console.log("##############");
 
   return (
     <>

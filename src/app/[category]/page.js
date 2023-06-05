@@ -3,6 +3,7 @@ import styles from "./CategoryPosts.module.css";
 import NewsCard from "@/components/common/NewsCard";
 import axios from "axios";
 import Link from "next/link";
+import Breadcrumb from "@/components/common/Breadcrumb";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
@@ -13,7 +14,7 @@ import { OrganizationJsonLd } from "next-seo";
 export async function generateMetadata({ params }) {
   const category = params.category;
   return {
-    title: `SportzWiki | ${category}`,
+    title: `SportzWiki | ${decodeURIComponent(category)}`,
     description: "this is a comment",
   };
 }
@@ -31,7 +32,7 @@ const CategoryPosts = async ({ params }) => {
     //   url: `/`,
     // },
     {
-      name: `${category.toUpperCase().substring(0, 80)}...`,
+      name: `${decodeURIComponent(category).toUpperCase().substring(0, 80)}...`,
       url: `/${category}`,
     },
   ];
@@ -106,18 +107,10 @@ const CategoryPosts = async ({ params }) => {
 
       <div className={styles.CategoryPosts}>
         <div className={styles.categoryTitleDescription}>
+          <Breadcrumb breadcrumbsObj={breadcrumbs} />
           <h1 className={styles.categoryTitle}>
-            {params.category.toUpperCase()}
+            {decodeURIComponent(params.category).toUpperCase()}
           </h1>
-          {/* <p className={styles.categoryDescription}>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum
-            eligendi possimus molestias dolores fugit qui saepe quos quo dolor.
-            Illum illo aspernatur itaque necessitatibus modi voluptas libero
-            perspiciatis a placeat! Ut, asperiores dolore error laboriosam,
-            possimus, exercitationem quidem velit nostrum iusto quo commodi?
-            Veritatis culpa ea perspiciatis, incidunt nisi vel amet qui ducimus
-            excepturi mollitia sed laboriosam repellat consequuntur? Voluptas.
-          </p> */}
         </div>
 
         <div className={styles.newsCardsDisplay}>

@@ -11,7 +11,15 @@
 }
 
 @media (max-width: 576px) {
-  .breadCrumbContainer {
-    width: 100%;
-  }
+  /* .breadCrumbContainer {
+    overflow: scroll;
+  } */
+
+  /* .breadCrumbUl {
+    overflow: hidden;
+    width: 325px;
+    display: -webkit-box;
+    -webkit-line-clamp: 200;
+    -webkit-box-orient: vertical;
+  } */
 }

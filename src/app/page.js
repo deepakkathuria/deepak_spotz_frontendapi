@@ -12,6 +12,7 @@ const page = async () => {
     .get(`${base_url}/getrecentcategorynameslug`)
     .catch((err) => console.log(err));
 
+    // sj
   // Extract distinct category names from the response
   var distinctCategories = Array.from(
     new Set(categoriesList.data.map((item) => item.category_name))

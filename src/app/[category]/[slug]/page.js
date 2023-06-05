@@ -72,7 +72,7 @@ const page = async ({ params }) => {
       url: `/${category}`,
     },
     {
-      name: `${decodeURIComponent(slug).toUpperCase().substring(0, 80)}...`,
+      name: `${decodeURIComponent(slug).toUpperCase().substring(0, 40)}...`,
       url: `/${category}/${slug}`,
     },
   ];

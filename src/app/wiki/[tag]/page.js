@@ -34,7 +34,7 @@ const CategoryPosts = async ({ params }) => {
       url: `/`,
     },
     {
-      name: `${decodeURIComponent(tag).toUpperCase().substring(0, 80)}...`,
+      name: `${decodeURIComponent(tag).toUpperCase().substring(0, 40)}...`,
       url: `/${tag}`,
     },
   ];

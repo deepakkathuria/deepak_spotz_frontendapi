@@ -14,16 +14,16 @@ const page = async () => {
 
     // sj
   // Extract distinct category names from the response
-  var distinctCategories = Array.from(
-    new Set(categoriesList.data.map((item) => item.category_name))
-  );
+  // var distinctCategories = Array.from(
+  //   new Set(categoriesList.data.map((item) => item.category_name))
+  // );
 
   // var distinctCategoriesVariable = distinctCategories;
   // Print the distinct category names
-  console.log("@@@@@@@@@@@@@@@@@");
-  console.log(distinctCategories);
+  // console.log("@@@@@@@@@@@@@@@@@");
+  // console.log(distinctCategories);
   // console.log(distinctCategoriesVariable)
-  console.log("@@@@@@@@@@@@@@@@@");
+  // console.log("@@@@@@@@@@@@@@@@@");
 
   // Store the distinct category names in a variable
 

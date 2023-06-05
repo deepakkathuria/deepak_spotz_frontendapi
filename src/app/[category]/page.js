@@ -32,7 +32,7 @@ const CategoryPosts = async ({ params }) => {
     //   url: `/`,
     // },
     {
-      name: `${decodeURIComponent(category).toUpperCase().substring(0, 80)}...`,
+      name: `${decodeURIComponent(category).toUpperCase().substring(0, 40)}...`,
       url: `/${category}`,
     },
   ];

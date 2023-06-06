@@ -18,6 +18,24 @@
   gap: 1rem;
 }
 
+.paginationContainer {
+  margin-top: 4rem;
+  margin-bottom: 3rem;
+  display: flex;
+  gap: 2rem;
+  font-size: 2rem;
+  justify-content: center;
+}
+
+.activeLink {
+  background-color: #092d55;
+  color: #fff;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
 @media (max-width: 576px) {
   .CategoryPosts {
     margin: 0;

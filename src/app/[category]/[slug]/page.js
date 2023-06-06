@@ -97,6 +97,8 @@ const page = async ({ params }) => {
     console.log("Error at tags selection of posts" + slug);
   }
 
+  console.log(`${randomTag} = Random Tag`);
+
   try {
     var relatedPosts = await axios.get(
       `${base_url}/getPostsByTagName?tag=${randomTag}`
@@ -109,7 +111,6 @@ const page = async ({ params }) => {
     /\r?\n/g,
     "<br>"
   );
-
 
   return (
     <>

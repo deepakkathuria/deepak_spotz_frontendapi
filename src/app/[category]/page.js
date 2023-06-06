@@ -19,8 +19,9 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const CategoryPosts = async ({ params }) => {
+const CategoryPosts = async ({ params, searchParams }) => {
   const category = params.category;
+  // const { Currentpage = 1 } = params;
 
   const breadcrumbs = [
     {
@@ -37,9 +38,53 @@ const CategoryPosts = async ({ params }) => {
     },
   ];
 
-  const data = await axios.get(
-    `${base_url}/getpostsbycategoryname?name=${category}&page=1&limit=100`
+  const totalData = await axios.get(
+    `${base_url}/gettotalpostbycategorytag?slug=${category}`
   );
+
+  const dataPerPage = 48;
+
+  const totalPages = Math.ceil(totalData?.data?.count / dataPerPage);
+
+  let currentPage = 1;
+
+  // console.log(searchParams, "currentPage");
+
+  if (Number(searchParams.page) >= 1) {
+    currentPage = Number(searchParams.page);
+  }
+
+  // let offset = (currentPage - 1) * dataPerPage;
+
+  const data = await axios.get(
+    `${base_url}/getpostsbycategoryname?name=${category}&page=${currentPage}&limit=${dataPerPage}`
+  );
+
+  // totalData();
+
+  // const dataPerPage = totalData?.data.count;
+  let pageNumbers = [];
+  const start = Math.max(currentPage - 4, 1);
+  const end = Math.min(currentPage + 4, totalPages);
+
+  for (let i = start; i <= end; i++) {
+    pageNumbers.push(i);
+  }
+
+  // Adjust the range if currentPage is close to the start or end
+  if (start === 1 && end < 9) {
+    const diff = 9 - end;
+    const additionalNumbers = Math.min(diff, totalPages - end);
+    for (let i = end + 1; i <= end + additionalNumbers; i++) {
+      pageNumbers.push(i);
+    }
+  } else if (end === totalPages && start > totalPages - 8) {
+    const diff = start - (totalPages - 8);
+    const additionalNumbers = Math.min(diff, start - 1);
+    for (let i = start - 1; i >= start - additionalNumbers; i--) {
+      pageNumbers.unshift(i);
+    }
+  }
 
   return (
     <>
@@ -120,12 +165,37 @@ const CategoryPosts = async ({ params }) => {
                 <NewsCard
                   title={post.post_title}
                   content={post.post_content}
-                  date={new Date(post.post_modified).toLocaleString()}
+                  date={new Date(post.post_modified_gmt).toLocaleString()}
                 />
               </Link>
             </div>
           ))}
         </div>
+      </div>
+
+      <div className={styles.paginationContainer}>
+        {currentPage > 1 && (
+          <>
+            <Link href={`/${category}`}>{"<<"}</Link>
+          </>
+        )}
+
+        {pageNumbers &&
+          pageNumbers.map((page) => (
+            <Link
+              key={page}
+              href={`/${category}?page=${page}`}
+              className={page === currentPage ? styles.activeLink : ""}
+            >
+              {page}
+            </Link>
+          ))}
+
+        {currentPage < totalPages && (
+          <>
+            <Link href={`/${category}?page=${currentPage + 1}`}>{">>"}</Link>
+          </>
+        )}
       </div>
     </>
   );

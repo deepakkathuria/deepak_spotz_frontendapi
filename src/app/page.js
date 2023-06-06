@@ -12,32 +12,24 @@ const page = async () => {
     .get(`${base_url}/getrecentcategorynameslug`)
     .catch((err) => console.log(err));
 
-    // sj
-  // Extract distinct category names from the response
-  // var distinctCategories = Array.from(
-  //   new Set(categoriesList.data.map((item) => item.category_name))
-  // );
-
-  // var distinctCategoriesVariable = distinctCategories;
-  // Print the distinct category names
-  // console.log("@@@@@@@@@@@@@@@@@");
-  // console.log(distinctCategories);
-  // console.log(distinctCategoriesVariable)
-  // console.log("@@@@@@@@@@@@@@@@@");
-
-  // Store the distinct category names in a variable
+  var distinctCategories = Array.from(
+    new Set(categoriesList?.data.map((item) => item.category_slug))
+  );
 
   try {
+    // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    // console.log(distinctCategories[0]);
+    // console.log(distinctCategories[1]);
+    // console.log(distinctCategories[2]);
+    // console.log(distinctCategories[3]);
+    // console.log(distinctCategories[4]);
+    // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!");
     var data = await axios.get(
-      `${base_url}/getcategoriesbyname?category1=cricket&category2=football&category3=wwe`
+      `${base_url}/getcategoriesbyname?category1=${distinctCategories[0]}&category2=${distinctCategories[1]}&category3=${distinctCategories[2]}`
     );
   } catch (e) {
     console.log(e.message);
   }
-
-  // console.log("##############");
-  // console.log(categoriesList.data);
-  // console.log("##############");
 
   return (
     <>
@@ -47,17 +39,17 @@ const page = async () => {
         id={site_url}
         logo="https://www.example.com/photos/logo.jpg"
         legalName="Sportzwiki Media Pvt ltd"
-        name="Purple Fox"
+        name="SportzWiki"
         address={{
-          streetAddress: "1600 Saratoga Ave",
-          addressLocality: "San Jose",
-          addressRegion: "CA",
+          streetAddress: "91 Springboard",
+          addressLocality: "Haryana",
+          addressRegion: "HR",
           postalCode: "95129",
-          addressCountry: "US",
+          addressCountry: "IN",
         }}
         contactPoint={[
           {
-            telephone: "+1-401-555-1212",
+            telephone: "+91-999-999-9999",
             contactType: "customer service",
             email: "customerservice@email.com",
             areaServed: "US",
@@ -86,7 +78,7 @@ const page = async () => {
         <div className={styles.newsSectionDiv}>
           {data?.data?.map((item) => {
             return (
-              <div key={item.slug}>
+              <div key={item.ID}>
                 <NewsSection name={item.name} slug={item.slug} />
               </div>
             );

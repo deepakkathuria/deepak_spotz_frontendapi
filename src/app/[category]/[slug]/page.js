@@ -21,8 +21,10 @@ export async function generateMetadata({ params }) {
   const postMeta = await axios.get(
     `${base_url}/getpostmetabypostslug?slug=${slug}`
   );
+
+  // console.log("thismeta", postMeta);
   return {
-    title: post?.data[0]?.title,
+    title: post?.data[0]?.post_title,
     description: postMeta?.data[0]?.meta_description,
 
     openGraph: {

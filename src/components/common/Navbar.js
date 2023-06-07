@@ -3,17 +3,6 @@ import React, { useState } from "react";
 import styles from "../styles/Navbar.module.css";
 import Image from "next/image";
 import { navBarLinks } from "@/utils/navLinks";
-// import HamburgerIcon from "../../../public/images/menu_ic.png";
-// import { FcHome } from "react-icons/fc";
-// import {
-//   GiCricketBat,
-//   GiSoccerBall,
-//   GiConsoleController,
-// } from "react-icons/gi";
-// import { SiWwe } from "react-icons/si";
-// import { IoIosArrowDown } from "react-icons/io";
-// import { BiSearchAlt } from "react-icons/bi";
-// import { CgProfile, CgMenuMotion } from "react-icons/cg";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -28,7 +17,7 @@ const Navbar = () => {
       <div className={styles.navbarDiv}>
         <div className={styles.navContainer}>
           <div className={styles.NavLogo}>
-            <Link href={"#"}>
+            <Link href={"/"}>
               <Image
                 src="/gaurav/sportzwiki_logo.svg"
                 width={130}
@@ -39,7 +28,7 @@ const Navbar = () => {
           </div>
           <div className={styles.NavbarOption}>
             <ul>
-              <Link href={"#"}>
+              <Link href={"/"}>
                 <li className={styles.navLi}>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -53,7 +42,7 @@ const Navbar = () => {
                 </li>
               </Link>
 
-              <Link href={"#"}>
+              <Link href={"/cricket"}>
                 <li className={styles.navLi}>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -67,7 +56,7 @@ const Navbar = () => {
                 </li>
               </Link>
 
-              <Link href={"#"}>
+              <Link href={"/football"}>
                 <li className={styles.navLi}>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -82,7 +71,7 @@ const Navbar = () => {
                 </li>
               </Link>
 
-              <Link href={"#"}>
+              <Link href={"/wwe"}>
                 <li className={styles.navLi}>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -97,7 +86,7 @@ const Navbar = () => {
                 </li>
               </Link>
 
-              <Link href={"#"}>
+              <Link href={"e-sports"}>
                 <li className={styles.navLi}>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -113,7 +102,7 @@ const Navbar = () => {
               </Link>
 
               <Link href={"#"}>
-                <li className={styles.navLi}>
+                <li className={`${styles.navLi} ${styles.moreItem}`}>
                   <div className="navItemName">More</div>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -167,7 +156,11 @@ const Navbar = () => {
                   height={25}
                   // 20 /20 size
                   // className={styles.plainIc}
-                  style={{ color: "#98CCFF", fill: "#98CCFF", stroke:"#98CCFF" }}
+                  style={{
+                    color: "#98CCFF",
+                    fill: "#98CCFF",
+                    stroke: "#98CCFF",
+                  }}
                   onClick={showSidebar}
                   // priority
                 />

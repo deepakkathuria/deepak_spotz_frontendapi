@@ -26,7 +26,7 @@ const NewscardNoBorder = (props) => {
           </div>
 
           <div className={styles.cardDescription}>
-            <p>{props.content}...</p>
+            <p>{props.content.replace(/(<([^>]+)>)/gi, "")}...</p>
           </div>
 
           <div className={styles.cardDate}>

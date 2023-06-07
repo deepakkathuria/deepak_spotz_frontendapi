@@ -18,7 +18,7 @@ const NewsCard = (props) => {
         </div>
         <div className={styles.newsDetails}>
           <p className={styles.newsTitle}>{props.title}</p>
-          <p className={styles.newsDescription}>
+          <p className={styles.newsDescription.replace(/(<([^>]+)>)/gi, "")}>
             {props.content?.substring(0, 35)}...
           </p>
           <p className={styles.newsDate}>{props.date}</p>

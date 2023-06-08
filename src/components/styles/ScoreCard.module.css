@@ -1,0 +1,86 @@
+.scoreCardContainer {
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  /* padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem; */
+  padding: 0.5rem;
+  width: 31rem;
+  height: 12rem;
+}
+
+.scoreCardInner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  overflow: hidden;
+}
+
+.matchScoreDetails {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+}
+
+.matchCardsButtons {
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+}
+
+.matchCardButton {
+  width: 100%;
+  background-color: #98ccff;
+  border: none;
+  padding: 0.2rem 0.3rem;
+  border-radius: 3px;
+}
+
+.countryNameIC {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.matchTitleDiv {
+  display: flex;
+  gap: 1rem;
+}
+.countryNameScore {
+  display: flex;
+  justify-content: space-between;
+  /* padding-right: 0.5rem; */
+}
+
+.liveIC {
+  background-color: #d03f38;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.1rem 0.3rem;
+  border-radius: 2px;
+}
+
+.countryScore {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.countryScoreOver {
+  font-size: 0.9rem;
+}
+
+.countryScoreRuns {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.matchTitle {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.countryName {
+  font-size: 1.5rem;
+  font-weight: bold;
+}

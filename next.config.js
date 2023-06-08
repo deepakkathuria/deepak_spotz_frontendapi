@@ -8,6 +8,7 @@ const nextConfig = {
       "res.cloudinary.com",
       "images.unsplash.com",
       "feetfirst.org",
+      "thumbs.dreamstime.com",
     ],
   },
 

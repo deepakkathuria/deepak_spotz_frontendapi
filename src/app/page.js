@@ -5,6 +5,7 @@ import axios from "axios";
 import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 import { OrganizationJsonLd } from "next-seo";
+import ScoreCardPanel from "@/components/common/ScoreCardPanel";
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const page = async () => {
@@ -17,13 +18,6 @@ const page = async () => {
   );
 
   try {
-    // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    // console.log(distinctCategories[0]);
-    // console.log(distinctCategories[1]);
-    // console.log(distinctCategories[2]);
-    // console.log(distinctCategories[3]);
-    // console.log(distinctCategories[4]);
-    // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!");
     var data = await axios.get(
       `${base_url}/getcategoriesbyname?category1=${distinctCategories[0]}&category2=${distinctCategories[1]}&category3=${distinctCategories[2]}`
     );
@@ -75,6 +69,18 @@ const page = async () => {
       />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
+        {/* <ScoreCardPanel /> */}
+
+        {/* <div className={styles.newsSectionDiv}>
+          {data?.data?.map((item) => {
+            return (
+              <div key={item.ID}>
+                <NewsSection name={item.name} slug={item.slug} />
+              </div>
+            );
+          })}
+        </div> */}
+
         <div className={styles.newsSectionDiv}>
           {data?.data?.map((item) => {
             return (
@@ -88,5 +94,7 @@ const page = async () => {
     </>
   );
 };
+
+export const revalidate = 60; // revalidate this page every 60 seconds
 
 export default page;

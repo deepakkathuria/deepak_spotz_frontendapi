@@ -1,0 +1,4 @@
+.scoreCardPanelContainer {
+  display: flex;
+  gap: 1.2rem;
+}

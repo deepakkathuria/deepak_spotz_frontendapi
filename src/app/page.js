@@ -93,9 +93,10 @@ const page = async () => {
       />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
-        <ScoreCardPanel />
 
         <NewsSectionLatest />
+
+        
 
         <div className={styles.newsSectionDiv}>
           {data?.map((item) => {

@@ -79,10 +79,29 @@ const page = async ({ params }) => {
     },
   ];
 
+  const getData = async () => {
+    try {
+      const postResponse = await fetch(
+        `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
+      );
+      if (!postResponse.ok) {
+        throw new Error("Failed to fetch post data");
+      }
+      const postData = await postResponse.json();
+      // Use the postData here
+      return postData;
+    } catch (err) {
+      console.log(err);
+      return null; // or any other value indicating the error condition
+    }
+  };
+
+  const post = await getData();
+
   try {
-    var post = await axios.get(
-      `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
-    );
+    // var post = await axios.get(
+    //   `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
+    // );
     var postMeta = await axios.get(
       `${base_url}/getpostmetabypostslug?slug=${slug}`
     );
@@ -90,7 +109,7 @@ const page = async ({ params }) => {
     console.log(err);
   }
 
-  var tags = post?.data[0]?.tags;
+  var tags = post[0]?.tags;
   if (tags) {
     var tagsArray = tags.split(",");
     var randomIndex = Math.floor(Math.random() * tagsArray.length);
@@ -109,10 +128,12 @@ const page = async ({ params }) => {
     console.log(err);
   }
 
-  const formattedContent = post?.data[0]?.post_content.replace(
+  const formattedContent = post[0]?.post_content.replace(
     /\r?\n/g,
     "<br>"
   );
+
+
 
   return (
     <>
@@ -208,16 +229,16 @@ const page = async ({ params }) => {
 
       <div className={styles.postPageContainer}>
         <Breadcrumb breadcrumbsObj={breadcrumbs} />
-        <PostCategoryBox categories={post?.data[0]?.categories} />
+        <PostCategoryBox categories={post[0]?.categories} />
         <div className={styles.postDetailListContainer}>
           <PostDisplay
-            title={post?.data[0]?.post_title}
-            date={post?.data[0]?.post_modified_gmt}
-            author={post?.data[0]?.author_name}
+            title={post[0]?.post_title}
+            date={post[0]?.post_modified_gmt}
+            author={post[0]?.author_name}
             description={formattedContent}
-            tags={post?.data[0]?.tags}
-            categories={post?.data[0]?.categories}
-            summary={postMeta?.data[0]?.meta_description}
+            tags={post[0]?.tags}
+            categories={post[0]?.categories}
+            summary={postMeta[0]?.meta_description}
           />
           <PostListBar category={decodeURIComponent(category)} />
         </div>

@@ -93,7 +93,8 @@ const page = async () => {
       />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
-        <ScoreCardPanel />
+        {/* <ScoreCardPanel /> */}
+        
 
         <NewsSectionLatest />
 

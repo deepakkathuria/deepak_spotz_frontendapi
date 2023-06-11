@@ -11,7 +11,6 @@ import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 
-import { ArticleJsonLd, OrganizationJsonLd, BreadcrumbJsonLd } from "next-seo";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -80,6 +79,25 @@ const page = async ({ params }) => {
     },
   ];
 
+  const getPostBody = async () => {
+    try {
+      const response = await fetch(
+        `${base_url}/getSinglePostByPostSlug?slug=${slug}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch post data");
+      }
+      const postBodyData = await response.json();
+      return postBodyData;
+    } catch (err) {
+      console.log(err);
+      return null; // or any other value indicating the error condition
+    }
+  };
+
+  const postBody = await getPostBody();
+  // console.log(postBody, "postBody");
+
   const getData = async () => {
     try {
       const postResponse = await fetch(
@@ -116,7 +134,7 @@ const page = async ({ params }) => {
     console.log("Error at tags selection of posts" + slug);
   }
 
-  console.log(`${randomTag} = Random Tag`);
+  // console.log(`${randomTag} = Random Tag`);
 
   try {
     var relatedPosts = await axios.get(
@@ -126,11 +144,29 @@ const page = async ({ params }) => {
     console.log(err);
   }
 
-  const formattedContent = post[0]?.post_content.replace(/\r?\n/g, "<br>");
+  const formattedContent = postBody[0]?.post_content.replace(/\r?\n/g, "<br>");
+
+  const getPostThumbById = async () => {
+    try {
+      const response = await fetch(
+        `${base_url}/getPostThumbnailByPostID?id=${postBody[0].ID}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch post data");
+      }
+      const postThumb = await response.json();
+      return postThumb[0].cover_image_guid;
+    } catch (err) {
+      console.log(err);
+      return null; // or any other value indicating the error condition
+    }
+  };
+
+  const thumbnail = await getPostThumbById();
+  // console.log(thumbnail, "thumbnail");
 
   return (
     <>
-      {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
       <ArticleLd
         title={post[0]?.post_title}
         date={post[0]?.post_modified_gmt}
@@ -139,111 +175,17 @@ const page = async ({ params }) => {
         tags={post[0]?.tags}
       />
 
-      {/* title={post[0]?.post_title}
-            date={post[0]?.post_modified_gmt}
-            author={post[0]?.author_name}
-            description={formattedContent}
-            tags={post[0]?.tags}
-          categories={post[0]?.categories} */}
-      {/* <ArticleJsonLd
-        useAppDir={true}
-        url="https://example.com/article"
-        title="Article headline"
-        images={[
-          "https://example.com/photos/1x1/photo.jpg",
-          "https://example.com/photos/4x3/photo.jpg",
-          "https://example.com/photos/16x9/photo.jpg",
-        ]}
-        datePublished="2015-02-05T08:00:00+08:00"
-        dateModified="2015-02-05T09:00:00+08:00"
-        authorName={[
-          {
-            name: "Jane Blogs",
-            url: "https://example.com",
-          },
-          {
-            name: "Mary Stone",
-            url: "https://example.com",
-          },
-        ]}
-        publisherName="Gary Meehan"
-        publisherLogo="https://www.example.com/photos/logo.jpg"
-        description="This is a mighty good description of this article."
-      /> */}
-
       <BreadCrumbLd category={category} slug={slug} />
-      {/* <BreadcrumbJsonLd
-        useAppDir={true}
-        itemListElements={[
-          {
-            position: 1,
-            name: "HOME",
-            item: `site_url`,
-          },
-          {
-            position: 2,
-            name: `${category.toUpperCase()}`,
-            item: `${site_url}/${category}`,
-          },
-          {
-            position: 3,
-            name: `${slug.toUpperCase().substring(0, 5)}...`,
-            item: `${site_url}/${category}/${slug}`,
-          },
-        ]}
-      /> */}
 
       <OrganisationLd />
-
-      {/* <OrganizationJsonLd
-        useAppDir={true}
-        type="Corporation"
-        id={site_url}
-        logo="https://www.example.com/photos/logo.jpg"
-        legalName="Sportzwiki Media Pvt ltd"
-        name="Purple Fox"
-        address={{
-          streetAddress: "1600 Saratoga Ave",
-          addressLocality: "San Jose",
-          addressRegion: "CA",
-          postalCode: "95129",
-          addressCountry: "US",
-        }}
-        contactPoint={[
-          {
-            telephone: "+1-401-555-1212",
-            contactType: "customer service",
-            email: "customerservice@email.com",
-            areaServed: "US",
-            availableLanguage: ["English", "Spanish", "French"],
-          },
-          {
-            telephone: "+1-877-746-0909",
-            contactType: "customer service",
-            email: "servicecustomer@email.com",
-            contactOption: "TollFree",
-            availableLanguage: "English",
-          },
-          {
-            telephone: "+1-877-453-1304",
-            contactType: "technical support",
-            contactOption: "TollFree",
-            areaServed: ["US", "CA"],
-            availableLanguage: ["English", "French"],
-          },
-        ]}
-        sameAs={["https://www.orange-fox.com"]}
-        url="https://www.purpule-fox.io/"
-      /> */}
-      {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
 
       <div className={styles.postPageContainer}>
         <Breadcrumb breadcrumbsObj={breadcrumbs} />
         <PostCategoryBox categories={post[0]?.categories} />
         <div className={styles.postDetailListContainer}>
           <PostDisplay
-            title={post[0]?.post_title}
-            date={post[0]?.post_modified_gmt}
+            title={postBody[0]?.post_title}
+            date={postBody[0]?.post_modified_gmt}
             author={post[0]?.author_name}
             description={formattedContent}
             tags={post[0]?.tags}

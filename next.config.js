@@ -9,6 +9,7 @@ const nextConfig = {
       "images.unsplash.com",
       "feetfirst.org",
       "thumbs.dreamstime.com",
+      "bengali.sportzwiki.com",
     ],
   },
 

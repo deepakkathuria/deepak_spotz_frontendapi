@@ -162,8 +162,12 @@ const page = async ({ params }) => {
     }
   };
 
-  const thumbnail = await getPostThumbById();
-  // console.log(thumbnail, "thumbnail");
+  const oldPostThumbnail = await getPostThumbById();
+
+  if (oldPostThumbnail && oldPostThumbnail[0]) {
+    var thumbnail = oldPostThumbnail;
+    console.log(thumbnail, "Thumbnail");
+  }
 
   return (
     <>
@@ -190,6 +194,7 @@ const page = async ({ params }) => {
             description={formattedContent}
             tags={post[0]?.tags}
             categories={post[0]?.categories}
+            thumbnail={thumbnail}
             // summary={postMeta[0]?.meta_description}
           />
           <PostListBar category={decodeURIComponent(category)} />

@@ -38,7 +38,7 @@ const PostDisplay = (props) => {
           </div>
           <div className={styles.postCover}>
             <Image
-              src="https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+              src={props.thumbnail}
               width={0}
               height={0}
               sizes="100%"

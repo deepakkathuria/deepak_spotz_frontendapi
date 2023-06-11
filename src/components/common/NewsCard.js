@@ -1,14 +1,41 @@
 import React from "react";
 import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
-const NewsCard = (props) => {
+const NewsCard = async (props) => {
+  const getPostThumbById = async () => {
+    try {
+      const response = await fetch(
+        `${base_url}/getPostThumbnailByPostID?id=${props.id}`
+      );
+      if (!response.ok) {
+        throw new Error("Failed to fetch post data");
+      }
+      const postThumb = await response.json();
+      return postThumb[0].cover_image_guid;
+    } catch (err) {
+      console.log(err);
+      return null; // or any other value indicating the error condition
+    }
+  };
+
+  const oldPostThumbnail = await getPostThumbById();
+
+  if (oldPostThumbnail && oldPostThumbnail[0]) {
+    var thumbnail = oldPostThumbnail;
+    console.log(thumbnail, "Thumbnail");
+  }
   return (
     <>
       <div className={styles.newsCardContainer}>
         <div className={styles.newsCover}>
           <Image
-            src="https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            src={
+              thumbnail
+                ? thumbnail
+                : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            }
             width={0}
             height={0}
             alt="SportzWiki Logo"

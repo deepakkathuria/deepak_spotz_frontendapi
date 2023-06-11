@@ -7,6 +7,7 @@ import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 import { OrganizationJsonLd } from "next-seo";
 import ScoreCardPanel from "@/components/common/ScoreCardPanel";
+import OrganisationLd from "@/json-ld/OrganisationLd";
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const page = async () => {
@@ -51,52 +52,10 @@ const page = async () => {
 
   return (
     <>
-      <OrganizationJsonLd
-        useAppDir={true}
-        type="Corporation"
-        id={site_url}
-        logo="https://www.example.com/photos/logo.jpg"
-        legalName="Sportzwiki Media Pvt ltd"
-        name="SportzWiki"
-        address={{
-          streetAddress: "91 Springboard",
-          addressLocality: "Haryana",
-          addressRegion: "HR",
-          postalCode: "95129",
-          addressCountry: "IN",
-        }}
-        contactPoint={[
-          {
-            telephone: "+91-999-999-9999",
-            contactType: "customer service",
-            email: "customerservice@email.com",
-            areaServed: "US",
-            availableLanguage: ["English", "Spanish", "French"],
-          },
-          {
-            telephone: "+1-877-746-0909",
-            contactType: "customer service",
-            email: "servicecustomer@email.com",
-            contactOption: "TollFree",
-            availableLanguage: "English",
-          },
-          {
-            telephone: "+1-877-453-1304",
-            contactType: "technical support",
-            contactOption: "TollFree",
-            areaServed: ["US", "CA"],
-            availableLanguage: ["English", "French"],
-          },
-        ]}
-        sameAs={["https://www.orange-fox.com"]}
-        url="https://www.purpule-fox.io/"
-      />
+      <OrganisationLd />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
-
-        <NewsSectionLatest />
-
-        
+        {/* <NewsSectionLatest /> */}
 
         <div className={styles.newsSectionDiv}>
           {data?.map((item) => {

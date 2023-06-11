@@ -37,6 +37,7 @@ const NewsSection = async (props) => {
                     date={new Date(item.post_modified).toLocaleString()}
                     content={item.post_content}
                     // slug={item.name}
+                    id={item.ID}
                   />
                 </Link>
               </div>

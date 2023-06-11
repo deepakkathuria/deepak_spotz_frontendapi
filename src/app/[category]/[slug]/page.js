@@ -7,6 +7,9 @@ import PostListBar from "../../../components/common/PostListBar";
 import NewsCard from "../../../components/common/NewsCard";
 import Link from "next/link";
 import axios from "axios";
+import ArticleLd from "@/json-ld/ArticleLd";
+import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
+import OrganisationLd from "@/json-ld/OrganisationLd";
 
 import { ArticleJsonLd, OrganizationJsonLd, BreadcrumbJsonLd } from "next-seo";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -21,8 +24,6 @@ export async function generateMetadata({ params }) {
   const postMeta = await axios.get(
     `${base_url}/getpostmetabypostslug?slug=${slug}`
   );
-
-  // console.log("thismeta", postMeta);
   return {
     title: post?.data[0]?.post_title,
     description: postMeta?.data[0]?.meta_description,
@@ -99,9 +100,6 @@ const page = async ({ params }) => {
   const post = await getData();
 
   try {
-    // var post = await axios.get(
-    //   `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
-    // );
     var postMeta = await axios.get(
       `${base_url}/getpostmetabypostslug?slug=${slug}`
     );
@@ -128,17 +126,26 @@ const page = async ({ params }) => {
     console.log(err);
   }
 
-  const formattedContent = post[0]?.post_content.replace(
-    /\r?\n/g,
-    "<br>"
-  );
-
-
+  const formattedContent = post[0]?.post_content.replace(/\r?\n/g, "<br>");
 
   return (
     <>
       {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
-      <ArticleJsonLd
+      <ArticleLd
+        title={post[0]?.post_title}
+        date={post[0]?.post_modified_gmt}
+        author={post[0]?.author_name}
+        description={formattedContent}
+        tags={post[0]?.tags}
+      />
+
+      {/* title={post[0]?.post_title}
+            date={post[0]?.post_modified_gmt}
+            author={post[0]?.author_name}
+            description={formattedContent}
+            tags={post[0]?.tags}
+          categories={post[0]?.categories} */}
+      {/* <ArticleJsonLd
         useAppDir={true}
         url="https://example.com/article"
         title="Article headline"
@@ -162,9 +169,10 @@ const page = async ({ params }) => {
         publisherName="Gary Meehan"
         publisherLogo="https://www.example.com/photos/logo.jpg"
         description="This is a mighty good description of this article."
-      />
+      /> */}
 
-      <BreadcrumbJsonLd
+      <BreadCrumbLd category={category} slug={slug} />
+      {/* <BreadcrumbJsonLd
         useAppDir={true}
         itemListElements={[
           {
@@ -183,9 +191,11 @@ const page = async ({ params }) => {
             item: `${site_url}/${category}/${slug}`,
           },
         ]}
-      />
+      /> */}
 
-      <OrganizationJsonLd
+      <OrganisationLd />
+
+      {/* <OrganizationJsonLd
         useAppDir={true}
         type="Corporation"
         id={site_url}
@@ -224,7 +234,7 @@ const page = async ({ params }) => {
         ]}
         sameAs={["https://www.orange-fox.com"]}
         url="https://www.purpule-fox.io/"
-      />
+      /> */}
       {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
 
       <div className={styles.postPageContainer}>
@@ -238,7 +248,7 @@ const page = async ({ params }) => {
             description={formattedContent}
             tags={post[0]?.tags}
             categories={post[0]?.categories}
-            summary={postMeta[0]?.meta_description}
+            // summary={postMeta[0]?.meta_description}
           />
           <PostListBar category={decodeURIComponent(category)} />
         </div>

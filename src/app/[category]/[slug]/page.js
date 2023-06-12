@@ -51,12 +51,16 @@ export async function generateMetadata({ params }) {
       siteName: "SportzWiki",
       images: [
         {
-          url: thumbnail,
+          url: thumbnail
+            ? thumbnail
+            : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
           width: 800,
           height: 600,
         },
         {
-          url: thumbnail,
+          url: thumbnail
+            ? thumbnail
+            : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
           width: 1800,
           height: 1600,
           alt: post[0]?.title,
@@ -73,7 +77,11 @@ export async function generateMetadata({ params }) {
       // siteId: "1467726470533754880",
       creator: "@gaurav",
       // creatorId: "1467726470533754880",
-      images: [thumbnail],
+      images: [
+        thumbnail
+          ? thumbnail
+          : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
+      ],
     },
   };
 }
@@ -150,7 +158,11 @@ const page = async ({ params }) => {
             description={formattedContent}
             tags={post[0]?.tags}
             categories={post[0]?.categories}
-            thumbnail={thumbnail}
+            thumbnail={
+              thumbnail
+                ? thumbnail
+                : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            }
             summary={postMeta[0]?.meta_description}
           />
           <PostListBar category={decodeURIComponent(category)} />

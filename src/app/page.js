@@ -71,6 +71,4 @@ const page = async () => {
   );
 };
 
-export const revalidate = 5; // revalidate this page every 60 seconds
-
 export default page;

@@ -10,7 +10,8 @@ const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const NewsSection = async (props) => {
   try {
     var data = await axios.get(
-      `${base_url}/getPostByCategorySlug?slug=${props.slug}&page=1&limit=9`
+      `${base_url}/getPostByCategorySlug?slug=${props.slug}&page=1&limit=9`,
+      { next: { revalidate: 5 } }
     );
   } catch (e) {
     console.log(e.message);
@@ -28,7 +29,7 @@ const NewsSection = async (props) => {
           <ButtonTab title="Fantasy Tips" selected="true" />
         </div> */}
         <div className={styles.newsCardsDiv}>
-          {data.data?.map((item) => {
+          {data?.data?.map((item) => {
             return (
               <div key={item.id}>
                 <Link href={`${props.slug}/${item.post_name}`}>
@@ -38,6 +39,7 @@ const NewsSection = async (props) => {
                     content={item.post_content}
                     // slug={item.name}
                     id={item.ID}
+                    guid={item.guid}
                   />
                 </Link>
               </div>

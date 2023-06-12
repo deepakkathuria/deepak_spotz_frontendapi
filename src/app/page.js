@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
 import NewsSectionLatest from "../components/common/NewsSectionLatest";
-import axios from "axios";
+// import axios from "axios";
 import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 import { OrganizationJsonLd } from "next-seo";
@@ -31,7 +31,7 @@ const page = async () => {
   try {
     const response = await fetch(
       `${base_url}/getcategoriesbyname?category1=${distinctCategories[0]}&category2=${distinctCategories[1]}&category3=${distinctCategories[2]}`,
-      { next: { revalidate: 60 } }
+      { next: { revalidate: 5 } }
     );
     if (!response.ok) {
       throw new Error(response.statusText);

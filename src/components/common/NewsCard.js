@@ -13,7 +13,7 @@ const NewsCard = async (props) => {
         throw new Error("Failed to fetch post data");
       }
       const postThumb = await response.json();
-      return postThumb[0].cover_image_guid;
+      return postThumb[0]?.cover_image_guid; // Add null check using the optional chaining operator (?.)
     } catch (err) {
       console.log(err);
       return null; // or any other value indicating the error condition
@@ -24,8 +24,18 @@ const NewsCard = async (props) => {
 
   if (oldPostThumbnail && oldPostThumbnail[0]) {
     var thumbnail = oldPostThumbnail;
-    console.log(thumbnail, "Thumbnail");
+    // console.log(thumbnail, "Thumbnail");
+  } else {
+    var thumbnail = props.guid;
+    // console.log("Thumbnail guid");
   }
+
+  // if (oldPostThumbnail && oldPostThumbnail[0]) {
+  //   var thumbnail = oldPostThumbnail;
+  // } else {
+  //   var thumbnail = postBody[0]?.guid;
+  // }
+
   return (
     <>
       <div className={styles.newsCardContainer}>

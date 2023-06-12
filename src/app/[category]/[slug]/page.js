@@ -20,16 +20,32 @@ export async function generateMetadata({ params }) {
     `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
   );
 
-  const postMeta = await axios.get(
-    `${base_url}/getpostmetabypostslug?slug=${slug}`
-  );
+  const getPostMeta = async () => {
+    try {
+      const response = await fetch(
+        `${base_url}/getpostmetabypostslug?slug=${slug}`
+      );
+      const postMetaData = await response.json();
+      // console.log(postMetaData);
+      return postMetaData;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const postMeta = await getPostMeta();
+
+  // const postMeta = await axios.get(
+  //   `${base_url}/getpostmetabypostslug?slug=${slug}`
+  // );
+
   return {
     title: post?.data[0]?.post_title,
-    description: postMeta?.data[0]?.meta_description,
+    description: postMeta[0]?.meta_description,
 
     openGraph: {
       title: post?.data[0]?.title,
-      description: postMeta?.data[0]?.meta_description,
+      description: postMeta[0]?.meta_description,
       url: site_url,
       siteName: "SportzWiki",
       images: [
@@ -52,7 +68,7 @@ export async function generateMetadata({ params }) {
     twitter: {
       card: "summary_large_image",
       title: post?.data[0]?.title,
-      description: postMeta?.data[0]?.meta_description,
+      description: postMeta[0]?.meta_description,
       // siteId: "1467726470533754880",
       creator: "@gaurav",
       // creatorId: "1467726470533754880",
@@ -82,7 +98,8 @@ const page = async ({ params }) => {
   const getPostBody = async () => {
     try {
       const response = await fetch(
-        `${base_url}/getSinglePostByPostSlug?slug=${slug}`
+        `${base_url}/getSinglePostByPostSlug?slug=${slug}`,
+        { next: { revalidate: 5 } }
       );
       if (!response.ok) {
         throw new Error("Failed to fetch post data");
@@ -101,7 +118,8 @@ const page = async ({ params }) => {
   const getData = async () => {
     try {
       const postResponse = await fetch(
-        `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
+        `${base_url}/getsinglepostbycategoryslug?slug=${slug}`,
+        { next: { revalidate: 5 } }
       );
       if (!postResponse.ok) {
         throw new Error("Failed to fetch post data");
@@ -118,9 +136,10 @@ const page = async ({ params }) => {
   const post = await getData();
 
   try {
-    var postMeta = await axios.get(
+    const response = await fetch(
       `${base_url}/getpostmetabypostslug?slug=${slug}`
     );
+    var postMeta = await response.json();
   } catch (err) {
     console.log(err);
   }
@@ -155,10 +174,9 @@ const page = async ({ params }) => {
         throw new Error("Failed to fetch post data");
       }
       const postThumb = await response.json();
-      return postThumb[0].cover_image_guid;
+      return postThumb[0]?.cover_image_guid;
     } catch (err) {
-      console.log(err);
-      return null; // or any other value indicating the error condition
+      throw new Error(err);
     }
   };
 
@@ -166,7 +184,8 @@ const page = async ({ params }) => {
 
   if (oldPostThumbnail && oldPostThumbnail[0]) {
     var thumbnail = oldPostThumbnail;
-    console.log(thumbnail, "Thumbnail");
+  } else {
+    var thumbnail = postBody[0]?.guid;
   }
 
   return (
@@ -195,7 +214,7 @@ const page = async ({ params }) => {
             tags={post[0]?.tags}
             categories={post[0]?.categories}
             thumbnail={thumbnail}
-            // summary={postMeta[0]?.meta_description}
+            summary={postMeta[0]?.meta_description}
           />
           <PostListBar category={decodeURIComponent(category)} />
         </div>

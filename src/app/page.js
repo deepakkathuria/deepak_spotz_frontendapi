@@ -13,7 +13,7 @@ const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 const page = async () => {
   try {
     const response = await fetch(`${base_url}/getrecentcategorynameslug`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 5 },
     });
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -71,6 +71,6 @@ const page = async () => {
   );
 };
 
-export const revalidate = 60; // revalidate this page every 60 seconds
+export const revalidate = 5; // revalidate this page every 60 seconds
 
 export default page;

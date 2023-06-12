@@ -10,55 +10,56 @@ import axios from "axios";
 import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
 import OrganisationLd from "@/json-ld/OrganisationLd";
+import {
+  getPostMeta,
+  getSinglePostByPostSlug,
+  getPostBody,
+  getPostData,
+  getRelatedPostsByTag,
+  getPostThumbById,
+} from "../../../lib/PostDataFetch";
 
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 export async function generateMetadata({ params }) {
-  const { category, slug } = params;
-  const post = await axios.get(
-    `${base_url}/getsinglepostbycategoryslug?slug=${slug}`
-  );
+  const { slug } = params;
 
-  const getPostMeta = async () => {
-    try {
-      const response = await fetch(
-        `${base_url}/getpostmetabypostslug?slug=${slug}`
-      );
-      const postMetaData = await response.json();
-      // console.log(postMetaData);
-      return postMetaData;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const post = await getSinglePostByPostSlug(slug);
 
-  const postMeta = await getPostMeta();
+  const postMeta = await getPostMeta(slug);
 
-  // const postMeta = await axios.get(
-  //   `${base_url}/getpostmetabypostslug?slug=${slug}`
-  // );
+  const oldPostThumbnail = await getPostThumbById(post[0]?.ID);
+  // console.log(post,"posty")
+  // console.log(post[0]?.ID,oldPostThumbnail, "postThumbnail");
+
+  if (oldPostThumbnail && oldPostThumbnail[0]) {
+    var thumbnail = oldPostThumbnail;
+  } else {
+    var thumbnail = post[0]?.guid;
+  }
+
+  // console.log(thumbnail, "metaPostThumbnail")
 
   return {
-    title: post?.data[0]?.post_title,
+    title: post[0]?.post_title,
     description: postMeta[0]?.meta_description,
 
     openGraph: {
-      title: post?.data[0]?.title,
+      title: post[0]?.title,
       description: postMeta[0]?.meta_description,
-      url: site_url,
+      url: "https://www.sportzwiki.com",
       siteName: "SportzWiki",
       images: [
         {
-          url: "https://nextjs.org/og.png",
+          url: thumbnail,
           width: 800,
           height: 600,
         },
         {
-          url: "https://nextjs.org/og-alt.png",
+          url: thumbnail,
           width: 1800,
           height: 1600,
-          alt: "My custom alt",
+          alt: post[0]?.title,
         },
       ],
       locale: "en_US",
@@ -67,12 +68,12 @@ export async function generateMetadata({ params }) {
 
     twitter: {
       card: "summary_large_image",
-      title: post?.data[0]?.title,
+      title: post[0]?.title,
       description: postMeta[0]?.meta_description,
       // siteId: "1467726470533754880",
       creator: "@gaurav",
       // creatorId: "1467726470533754880",
-      images: ["https://nextjs.org/og.png"],
+      images: [thumbnail],
     },
   };
 }
@@ -95,92 +96,28 @@ const page = async ({ params }) => {
     },
   ];
 
-  const getPostBody = async () => {
-    try {
-      const response = await fetch(
-        `${base_url}/getSinglePostByPostSlug?slug=${slug}`,
-        { next: { revalidate: 5 } }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch post data");
-      }
-      const postBodyData = await response.json();
-      return postBodyData;
-    } catch (err) {
-      console.log(err);
-      return null; // or any other value indicating the error condition
-    }
-  };
+  const postBody = await getPostBody(slug);
 
-  const postBody = await getPostBody();
-  // console.log(postBody, "postBody");
+  const post = await getPostData(slug);
 
-  const getData = async () => {
-    try {
-      const postResponse = await fetch(
-        `${base_url}/getsinglepostbycategoryslug?slug=${slug}`,
-        { next: { revalidate: 5 } }
-      );
-      if (!postResponse.ok) {
-        throw new Error("Failed to fetch post data");
-      }
-      const postData = await postResponse.json();
-      // Use the postData here
-      return postData;
-    } catch (err) {
-      console.log(err);
-      return null; // or any other value indicating the error condition
-    }
-  };
-
-  const post = await getData();
-
-  try {
-    const response = await fetch(
-      `${base_url}/getpostmetabypostslug?slug=${slug}`
-    );
-    var postMeta = await response.json();
-  } catch (err) {
-    console.log(err);
-  }
+  const postMeta = await getPostMeta(slug);
 
   var tags = post[0]?.tags;
   if (tags) {
     var tagsArray = tags.split(",");
     var randomIndex = Math.floor(Math.random() * tagsArray.length);
     var randomTag = tagsArray[randomIndex];
+    console.log(randomTag, "randomIndex");
   } else {
     console.log("Error at tags selection of posts" + slug);
   }
 
-  // console.log(`${randomTag} = Random Tag`);
-
-  try {
-    var relatedPosts = await axios.get(
-      `${base_url}/getPostsByTagName?tag=${randomTag}`
-    );
-  } catch (err) {
-    console.log(err);
-  }
+  const relatedPosts = await getRelatedPostsByTag(randomTag);
 
   const formattedContent = postBody[0]?.post_content.replace(/\r?\n/g, "<br>");
 
-  const getPostThumbById = async () => {
-    try {
-      const response = await fetch(
-        `${base_url}/getPostThumbnailByPostID?id=${postBody[0].ID}`
-      );
-      if (!response.ok) {
-        throw new Error("Failed to fetch post data");
-      }
-      const postThumb = await response.json();
-      return postThumb[0]?.cover_image_guid;
-    } catch (err) {
-      throw new Error(err);
-    }
-  };
-
-  const oldPostThumbnail = await getPostThumbById();
+  const oldPostThumbnail = await getPostThumbById(postBody[0].ID);
+  console.log(oldPostThumbnail, "postThumbnail");
 
   if (oldPostThumbnail && oldPostThumbnail[0]) {
     var thumbnail = oldPostThumbnail;
@@ -223,7 +160,7 @@ const page = async ({ params }) => {
             Related <span>Article</span>
           </div>
           <div className={styles.relatedArticlePosts}>
-            {relatedPosts?.data?.map((card) => {
+            {relatedPosts?.map((card) => {
               return (
                 <div key={card.ID}>
                   <Link href={`/${category}/${card.post_name}`}>

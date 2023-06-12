@@ -38,7 +38,7 @@ export async function generateMetadata({ params }) {
     var thumbnail = post[0]?.guid;
   }
 
-  // console.log(thumbnail, "metaPostThumbnail")
+  console.log(thumbnail, "metaPostThumbnail");
 
   return {
     title: post[0]?.post_title,
@@ -51,14 +51,14 @@ export async function generateMetadata({ params }) {
       siteName: "SportzWiki",
       images: [
         {
-          url: thumbnail
+          url: thumbnail.length
             ? thumbnail
             : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
           width: 800,
           height: 600,
         },
         {
-          url: thumbnail
+          url: thumbnail.length
             ? thumbnail
             : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
           width: 1800,
@@ -78,7 +78,7 @@ export async function generateMetadata({ params }) {
       creator: "@gaurav",
       // creatorId: "1467726470533754880",
       images: [
-        thumbnail
+        thumbnail.length
           ? thumbnail
           : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
       ],
@@ -125,7 +125,7 @@ const page = async ({ params }) => {
   const formattedContent = postBody[0]?.post_content.replace(/\r?\n/g, "<br>");
 
   const oldPostThumbnail = await getPostThumbById(postBody[0].ID);
-  console.log(oldPostThumbnail, "postThumbnail");
+  // console.log(oldPostThumbnail, "postThumbnail");
 
   if (oldPostThumbnail && oldPostThumbnail[0]) {
     var thumbnail = oldPostThumbnail;
@@ -159,7 +159,7 @@ const page = async ({ params }) => {
             tags={post[0]?.tags}
             categories={post[0]?.categories}
             thumbnail={
-              thumbnail
+              thumbnail.length
                 ? thumbnail
                 : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
             }

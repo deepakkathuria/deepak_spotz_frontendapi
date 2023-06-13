@@ -166,7 +166,11 @@ const page = async ({ params }) => {
                 ? thumbnail
                 : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
             }
-            summary={postMeta?.[0]?.meta_description ?? ""}
+            summary={
+              postMeta && postMeta.length > 0
+                ? postMeta[0].meta_description
+                : ""
+            }
           />
           <PostListBar category={decodeURIComponent(category)} />
         </div>

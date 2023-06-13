@@ -6,7 +6,6 @@ import PostDisplay from "../../../components/common/PostDisplay";
 import PostListBar from "../../../components/common/PostListBar";
 import NewsCard from "../../../components/common/NewsCard";
 import Link from "next/link";
-import axios from "axios";
 import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
 import OrganisationLd from "@/json-ld/OrganisationLd";
@@ -50,11 +49,11 @@ export async function generateMetadata({ params }) {
   const thumbUrl = thumbnail ?? "https://nextjs.org";
 
   return {
-    title: title,
+    title: "title",
     description: "postMeta[0]?.meta_description",
 
     openGraph: {
-      title: title,
+      title: "title",
       description: "The React Framework for the Web",
       url: "https://nextjs.org",
       siteName: "Next.js",
@@ -77,7 +76,7 @@ export async function generateMetadata({ params }) {
 
     twitter: {
       card: "summary_large_image",
-      title: title,
+      title: "title",
       description: "The React Framework for the Web",
       siteId: "1467726470533754880",
       creator: "@nextjs",

@@ -11,6 +11,7 @@ export default function Error({ error, reset }) {
   return (
     <div style={{ marginTop: "5rem" }}>
       <h2>Something went wrong!</h2>
+      <p>Error: {error.message}</p> {/* Displaying the error message */}
       <button
         onClick={
           // Attempt to recover by trying to re-render the segment

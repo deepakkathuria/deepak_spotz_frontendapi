@@ -6,7 +6,6 @@ import PostDisplay from "../../../components/common/PostDisplay";
 import PostListBar from "../../../components/common/PostListBar";
 import NewsCard from "../../../components/common/NewsCard";
 import Link from "next/link";
-import axios from "axios";
 import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
 import OrganisationLd from "@/json-ld/OrganisationLd";
@@ -28,14 +27,14 @@ export async function generateMetadata({ params }) {
 
   const postMeta = await getPostMeta(slug);
 
-  const oldPostThumbnail = await getPostThumbById(post[0]?.ID);
+  const oldPostThumbnail = (await getPostThumbById(post?.[0]?.ID)) ?? "";
   // console.log(post,"posty")
   // console.log(post[0]?.ID,oldPostThumbnail, "postThumbnail");
 
   if (oldPostThumbnail && oldPostThumbnail[0]) {
     var thumbnail = oldPostThumbnail;
   } else {
-    var thumbnail = post[0]?.post_guid;
+    var thumbnail = post?.[0]?.post_guid;
   }
 
   // console.log(thumbnail, "metaPostThumbnail");
@@ -111,7 +110,7 @@ const page = async ({ params }) => {
 
   const postMeta = await getPostMeta(slug);
 
-  var tags = post[0]?.tags;
+  var tags = post?.[0]?.tags;
   if (tags) {
     var tagsArray = tags.split(",");
     var randomIndex = Math.floor(Math.random() * tagsArray.length);
@@ -123,10 +122,13 @@ const page = async ({ params }) => {
 
   const relatedPosts = await getRelatedPostsByTag(randomTag);
 
-  const formattedContent = postBody[0]?.post_content.replace(/\r?\n/g, "<br>");
+  const formattedContent = postBody?.[0]?.post_content?.replace(
+    /\r?\n/g,
+    "<br>"
+  );
 
   if (postBody[0] && postBody[0].ID) {
-    const oldPostThumbnail = await getPostThumbById(postBody[0].ID);
+    const oldPostThumbnail = await getPostThumbById(postBody?.[0].ID);
     // rest of the code here
     if (oldPostThumbnail && oldPostThumbnail[0]) {
       var thumbnail = oldPostThumbnail;
@@ -141,20 +143,20 @@ const page = async ({ params }) => {
   return (
     <>
       <ArticleLd
-        title={post[0]?.post_title}
-        date={post[0]?.post_modified_gmt}
-        author={post[0]?.author_name}
-        description={formattedContent}
-        tags={post[0]?.tags}
+        title={post?.[0]?.post_title ?? ""}
+        date={post?.[0]?.post_modified_gmt ?? ""}
+        author={post?.[0]?.author_name ?? ""}
+        description={formattedContent ?? ""}
+        tags={post?.[0]?.tags ?? []}
       />
 
-      <BreadCrumbLd category={category} slug={slug} />
+      <BreadCrumbLd category={category ?? ""} slug={slug ?? ""} />
 
       <OrganisationLd />
 
       <div className={styles.postPageContainer}>
         <Breadcrumb breadcrumbsObj={breadcrumbs} />
-        <PostCategoryBox categories={post[0]?.categories} />
+        <PostCategoryBox categories={post?.[0]?.categories} />
         <div className={styles.postDetailListContainer}>
           <PostDisplay
             title={postBody?.[0]?.post_title ?? ""}
@@ -182,9 +184,9 @@ const page = async ({ params }) => {
                 <div key={card.ID}>
                   <Link href={`/${category}/${card.post_name}`}>
                     <NewsCard
-                      title={card.post_title}
-                      content={`${card.post_content.substring(0, 40)}...`}
-                      date={new Date(card.post_modified).toLocaleString()}
+                      title={card?.post_title}
+                      content={`${card?.post_content.substring(0, 40)}...`}
+                      date={new Date(card?.post_modified).toLocaleString()}
                     />
                   </Link>
                 </div>

@@ -26,6 +26,11 @@ export async function generateMetadata({ params }) {
 
   const post = await getSinglePostByPostSlug(slug);
 
+  if (!post || post.length === 0) {
+    // Handle the case when post is null or empty
+    return null; // or any other appropriate value
+  }
+
   const postMeta = await getPostMeta(slug);
 
   const oldPostThumbnail = await getPostThumbById(post[0]?.ID);
@@ -35,8 +40,10 @@ export async function generateMetadata({ params }) {
   if (oldPostThumbnail && oldPostThumbnail[0]) {
     var thumbnail = oldPostThumbnail;
   } else {
-    var thumbnail = post[0]?.guid;
+    var thumbnail = post[0]?.post_guid;
   }
+
+  console.log(post, "postii");
 
   console.log(thumbnail, "metaPostThumbnail");
 

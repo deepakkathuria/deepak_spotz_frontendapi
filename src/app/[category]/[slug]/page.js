@@ -26,10 +26,10 @@ export async function generateMetadata({ params }) {
 
   const post = await getSinglePostByPostSlug(slug);
 
-  if (!post || post.length === 0) {
-    // Handle the case when post is null or empty
-    return null; // or any other appropriate value
-  }
+  // if (!post || post.length === 0) {
+  //   // Handle the case when post is null or empty
+  //   return null; // or any other appropriate value
+  // }
 
   const postMeta = await getPostMeta(slug);
 
@@ -42,8 +42,13 @@ export async function generateMetadata({ params }) {
   }
 
   console.log(post, "postii");
+  console.log(postMeta, "postMeta");
+  console.log(oldPostThumbnail, "oldPostThumbnail");
+  console.log(post, "postii");
 
-  console.log(thumbnail, "metaPostThumbnail");
+  console.log(thumbnail, "thumbnail");
+
+  console.log(post[0]?.post_guid, " post[0]?.post_guid");
 
   return {
     title: post[0]?.post_title,
@@ -56,18 +61,12 @@ export async function generateMetadata({ params }) {
       siteName: "SportzWiki",
       images: [
         {
-          url:
-            typeof thumbnail === "string" && thumbnail.length
-              ? thumbnail
-              : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
+          url: "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
           width: 800,
           height: 600,
         },
         {
-          url:
-            typeof thumbnail === "string" && thumbnail.length
-              ? thumbnail
-              : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
+          url: "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
           width: 1800,
           height: 1600,
           alt: post[0]?.title ?? "",
@@ -83,9 +82,7 @@ export async function generateMetadata({ params }) {
       description: postMeta[0]?.meta_description ?? "",
       creator: "@gaurav",
       images: [
-        typeof thumbnail === "string" && thumbnail.length
-          ? thumbnail
-          : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
+        "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
       ],
     },
   };

@@ -41,31 +41,25 @@ export async function generateMetadata({ params }) {
   console.log(thumbnail, "metaPostThumbnail");
 
   return {
-    title: post[0]?.post_title,
-    description: postMeta[0]?.meta_description,
+    title: "post[0]?.post_title",
+    description: "postMeta[0]?.meta_description",
 
     openGraph: {
-      title: post[0]?.title,
-      description: postMeta[0]?.meta_description,
+      title: "post[0]?.title",
+      description: "postMeta[0]?.meta_description",
       url: "https://www.sportzwiki.com",
       siteName: "SportzWiki",
       images: [
         {
-          url:
-            typeof thumbnail === "string" && thumbnail.length
-              ? thumbnail
-              : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
+          url: "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
           width: 800,
           height: 600,
         },
         {
-          url:
-            typeof thumbnail === "string" && thumbnail.length
-              ? thumbnail
-              : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
+          url: "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
           width: 1800,
           height: 1600,
-          alt: post[0]?.title,
+          alt: "post[0]?.title",
         },
       ],
       locale: "en_US",
@@ -74,15 +68,13 @@ export async function generateMetadata({ params }) {
 
     twitter: {
       card: "summary_large_image",
-      title: post[0]?.title,
-      description: postMeta[0]?.meta_description,
+      title: "post[0]?.title",
+      description: "postMeta[0]?.meta_description",
       // siteId: "1467726470533754880",
       creator: "@gaurav",
       // creatorId: "1467726470533754880",
       images: [
-        typeof thumbnail === "string" && thumbnail.length
-          ? thumbnail
-          : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
+        "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
       ],
     },
   };

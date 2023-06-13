@@ -6,6 +6,7 @@ import PostDisplay from "../../../components/common/PostDisplay";
 import PostListBar from "../../../components/common/PostListBar";
 import NewsCard from "../../../components/common/NewsCard";
 import Link from "next/link";
+import axios from "axios";
 import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
 import OrganisationLd from "@/json-ld/OrganisationLd";
@@ -37,26 +38,23 @@ export async function generateMetadata({ params }) {
     var thumbnail = post[0]?.post_guid;
   }
 
-  console.log(thumbnail, "metaPostThumbnail");
-  title,
-    description,
-    url,
-    thumbnailUrl,
-    console.log(post[0]?.post_title, "title");
+  // console.log(thumbnail, "metaPostThumbnail");
+  // title, description, url, thumbnailUrl,
+  console.log(post[0]?.post_title, "title");
   console.log(postMeta[0]?.meta_description, "description");
   console.log("url", "url");
   console.log(thumbnail, "thumbnailUrl");
 
-  const title = post?.[0]?.post_title ?? "NA";
-  const description = postMeta?.[0]?.meta_description ?? "NA";
+  const title = post?.[0]?.post_title ?? "AN";
+  const description = postMeta?.[0]?.meta_description ?? "";
   const thumbUrl = thumbnail ?? "https://nextjs.org";
 
   return {
-    title: "title",
+    title: title,
     description: "postMeta[0]?.meta_description",
 
     openGraph: {
-      title: "title",
+      title: title,
       description: "The React Framework for the Web",
       url: "https://nextjs.org",
       siteName: "Next.js",
@@ -79,7 +77,7 @@ export async function generateMetadata({ params }) {
 
     twitter: {
       card: "summary_large_image",
-      title: "title",
+      title: title,
       description: "The React Framework for the Web",
       siteId: "1467726470533754880",
       creator: "@nextjs",
@@ -126,27 +124,19 @@ const page = async ({ params }) => {
   const relatedPosts = await getRelatedPostsByTag(randomTag);
 
   const formattedContent = postBody[0]?.post_content.replace(/\r?\n/g, "<br>");
+
   if (postBody[0] && postBody[0].ID) {
     const oldPostThumbnail = await getPostThumbById(postBody[0].ID);
-    // console.log(oldPostThumbnail, "postThumbnail");
+    // rest of the code here
     if (oldPostThumbnail && oldPostThumbnail[0]) {
-      // ... rest of the code
       var thumbnail = oldPostThumbnail;
     } else {
       var thumbnail = postBody[0]?.guid;
     }
   }
 
-  // const formattedContent = postBody[0]?.post_content.replace(/\r?\n/g, "<br>");
-
   // const oldPostThumbnail = await getPostThumbById(postBody[0].ID);
-  // // console.log(oldPostThumbnail, "postThumbnail");
-
-  // if (oldPostThumbnail && oldPostThumbnail[0]) {
-  //   var thumbnail = oldPostThumbnail;
-  // } else {
-  //   var thumbnail = postBody[0]?.guid;
-  // }
+  // console.log(oldPostThumbnail, "postThumbnail");
 
   return (
     <>
@@ -168,21 +158,17 @@ const page = async ({ params }) => {
         <div className={styles.postDetailListContainer}>
           <PostDisplay
             title={postBody?.[0]?.post_title ?? ""}
-            date={postBody?.[0]?.post_modified_gmt ?? ""}
+            date={postBody?.[0]?.post_modified_gmt}
             author={post?.[0]?.author_name ?? ""}
             description={formattedContent ?? ""}
-            tags={post?.[0]?.tags ?? []}
-            categories={post?.[0]?.categories ?? []}
+            tags={post?.[0]?.tags}
+            categories={post?.[0]?.categories}
             thumbnail={
               typeof thumbnail === "string" && thumbnail.length
                 ? thumbnail
                 : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
             }
-            summary={
-              postMeta && postMeta.length > 0
-                ? postMeta[0].meta_description
-                : ""
-            }
+            summary={postMeta?.[0]?.meta_description}
           />
           <PostListBar category={decodeURIComponent(category)} />
         </div>

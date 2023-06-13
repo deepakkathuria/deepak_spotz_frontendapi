@@ -35,31 +35,40 @@ export async function generateMetadata({ params }) {
   if (oldPostThumbnail && oldPostThumbnail[0]) {
     var thumbnail = oldPostThumbnail;
   } else {
-    var thumbnail = post[0]?.guid;
+    var thumbnail = post[0]?.post_guid;
   }
 
-  console.log(thumbnail, "metaPostThumbnail");
+  // console.log(thumbnail, "metaPostThumbnail");
+  // title, description, url, thumbnailUrl,
+  console.log(post[0]?.post_title, "title");
+  console.log(postMeta[0]?.meta_description, "description");
+  console.log("url", "url");
+  console.log(thumbnail, "thumbnailUrl");
+
+  const title = post?.[0]?.post_title ?? "NA";
+  const description = postMeta?.[0]?.meta_description ?? "NA";
+  const thumbUrl = thumbnail ?? "https://nextjs.org";
 
   return {
-    title: "post[0]?.post_title",
+    title: title,
     description: "postMeta[0]?.meta_description",
 
     openGraph: {
-      title: "post[0]?.title",
-      description: "postMeta[0]?.meta_description",
-      url: "https://www.sportzwiki.com",
-      siteName: "SportzWiki",
+      title: title,
+      description: "The React Framework for the Web",
+      url: "https://nextjs.org",
+      siteName: "Next.js",
       images: [
         {
-          url: "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
+          url: "https://nextjs.org/og.png",
           width: 800,
           height: 600,
         },
         {
-          url: "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
+          url: "https://nextjs.org/og-alt.png",
           width: 1800,
           height: 1600,
-          alt: "post[0]?.title",
+          alt: "My custom alt",
         },
       ],
       locale: "en_US",
@@ -68,14 +77,12 @@ export async function generateMetadata({ params }) {
 
     twitter: {
       card: "summary_large_image",
-      title: "post[0]?.title",
-      description: "postMeta[0]?.meta_description",
-      // siteId: "1467726470533754880",
-      creator: "@gaurav",
-      // creatorId: "1467726470533754880",
-      images: [
-        "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
-      ],
+      title: title,
+      description: "The React Framework for the Web",
+      siteId: "1467726470533754880",
+      creator: "@nextjs",
+      creatorId: "1467726470533754880",
+      images: ["https://nextjs.org/og.png"],
     },
   };
 }

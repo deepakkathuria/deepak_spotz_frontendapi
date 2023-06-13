@@ -23,30 +23,30 @@ const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 export async function generateMetadata({ params }) {
   const { slug } = params;
 
-  const post = await getSinglePostByPostSlug(slug);
+  // const post = await getSinglePostByPostSlug(slug);
 
-  const postMeta = await getPostMeta(slug);
+  // const postMeta = await getPostMeta(slug);
 
-  const oldPostThumbnail = await getPostThumbById(post[0]?.ID);
-  // console.log(post,"posty")
-  // console.log(post[0]?.ID,oldPostThumbnail, "postThumbnail");
+  // const oldPostThumbnail = await getPostThumbById(post[0]?.ID);
+  // // console.log(post,"posty")
+  // // console.log(post[0]?.ID,oldPostThumbnail, "postThumbnail");
 
-  if (oldPostThumbnail && oldPostThumbnail[0]) {
-    var thumbnail = oldPostThumbnail;
-  } else {
-    var thumbnail = post[0]?.post_guid;
-  }
+  // if (oldPostThumbnail && oldPostThumbnail[0]) {
+  //   var thumbnail = oldPostThumbnail;
+  // } else {
+  //   var thumbnail = post[0]?.post_guid;
+  // }
 
   // console.log(thumbnail, "metaPostThumbnail");
   // title, description, url, thumbnailUrl,
-  console.log(post[0]?.post_title, "title");
-  console.log(postMeta[0]?.meta_description, "description");
-  console.log("url", "url");
-  console.log(thumbnail, "thumbnailUrl");
+  // console.log(post[0]?.post_title, "title");
+  // console.log(postMeta[0]?.meta_description, "description");
+  // console.log("url", "url");
+  // console.log(thumbnail, "thumbnailUrl");
 
-  const title = post?.[0]?.post_title ?? "NA";
-  const description = postMeta?.[0]?.meta_description ?? "NA";
-  const thumbUrl = thumbnail ?? "https://nextjs.org";
+  // const title = post?.[0]?.post_title ?? "NA";
+  // const description = postMeta?.[0]?.meta_description ?? "NA";
+  // const thumbUrl = thumbnail ?? "https://nextjs.org";
 
   return {
     title: "title",

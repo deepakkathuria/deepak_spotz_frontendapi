@@ -34,8 +34,6 @@ export async function generateMetadata({ params }) {
   const postMeta = await getPostMeta(slug);
 
   const oldPostThumbnail = await getPostThumbById(post[0]?.ID);
-  // console.log(post,"posty")
-  // console.log(post[0]?.ID,oldPostThumbnail, "postThumbnail");
 
   if (oldPostThumbnail && oldPostThumbnail[0]) {
     var thumbnail = oldPostThumbnail;
@@ -52,8 +50,8 @@ export async function generateMetadata({ params }) {
     description: postMeta[0]?.meta_description,
 
     openGraph: {
-      title: post[0]?.title,
-      description: postMeta[0]?.meta_description,
+      title: post[0]?.title ?? "",
+      description: postMeta[0]?.meta_description ?? "",
       url: "https://www.sportzwiki.com",
       siteName: "SportzWiki",
       images: [
@@ -72,7 +70,7 @@ export async function generateMetadata({ params }) {
               : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg",
           width: 1800,
           height: 1600,
-          alt: post[0]?.title,
+          alt: post[0]?.title ?? "",
         },
       ],
       locale: "en_US",
@@ -81,11 +79,9 @@ export async function generateMetadata({ params }) {
 
     twitter: {
       card: "summary_large_image",
-      title: post[0]?.title,
-      description: postMeta[0]?.meta_description,
-      // siteId: "1467726470533754880",
+      title: post[0]?.title ?? "",
+      description: postMeta[0]?.meta_description ?? "",
       creator: "@gaurav",
-      // creatorId: "1467726470533754880",
       images: [
         typeof thumbnail === "string" && thumbnail.length
           ? thumbnail

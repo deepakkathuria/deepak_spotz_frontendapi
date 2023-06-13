@@ -155,18 +155,18 @@ const page = async ({ params }) => {
         <PostCategoryBox categories={post[0]?.categories} />
         <div className={styles.postDetailListContainer}>
           <PostDisplay
-            title={postBody[0]?.post_title}
-            date={postBody[0]?.post_modified_gmt}
-            author={post[0]?.author_name}
-            description={formattedContent}
-            tags={post[0]?.tags}
-            categories={post[0]?.categories}
+            title={postBody?.[0]?.post_title ?? ""}
+            date={postBody?.[0]?.post_modified_gmt ?? ""}
+            author={post?.[0]?.author_name ?? ""}
+            description={formattedContent ?? ""}
+            tags={post?.[0]?.tags ?? []}
+            categories={post?.[0]?.categories ?? []}
             thumbnail={
               typeof thumbnail === "string" && thumbnail.length
                 ? thumbnail
                 : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
             }
-            summary={postMeta[0]?.meta_description}
+            summary={postMeta?.[0]?.meta_description ?? ""}
           />
           <PostListBar category={decodeURIComponent(category)} />
         </div>

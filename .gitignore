@@ -47,3 +47,5 @@ src/app/server-sitemap.xml/
 env
 /env
 /.env
+# Sentry Auth Token
+.sentryclirc

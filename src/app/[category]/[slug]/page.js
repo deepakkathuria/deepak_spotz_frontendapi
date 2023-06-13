@@ -126,15 +126,27 @@ const page = async ({ params }) => {
   const relatedPosts = await getRelatedPostsByTag(randomTag);
 
   const formattedContent = postBody[0]?.post_content.replace(/\r?\n/g, "<br>");
-
-  const oldPostThumbnail = await getPostThumbById(postBody[0].ID);
-  // console.log(oldPostThumbnail, "postThumbnail");
-
-  if (oldPostThumbnail && oldPostThumbnail[0]) {
-    var thumbnail = oldPostThumbnail;
-  } else {
-    var thumbnail = postBody[0]?.guid;
+  if (postBody[0] && postBody[0].ID) {
+    const oldPostThumbnail = await getPostThumbById(postBody[0].ID);
+    // console.log(oldPostThumbnail, "postThumbnail");
+    if (oldPostThumbnail && oldPostThumbnail[0]) {
+      // ... rest of the code
+      var thumbnail = oldPostThumbnail;
+    } else {
+      var thumbnail = postBody[0]?.guid;
+    }
   }
+
+  // const formattedContent = postBody[0]?.post_content.replace(/\r?\n/g, "<br>");
+
+  // const oldPostThumbnail = await getPostThumbById(postBody[0].ID);
+  // // console.log(oldPostThumbnail, "postThumbnail");
+
+  // if (oldPostThumbnail && oldPostThumbnail[0]) {
+  //   var thumbnail = oldPostThumbnail;
+  // } else {
+  //   var thumbnail = postBody[0]?.guid;
+  // }
 
   return (
     <>

@@ -11,15 +11,14 @@ const PostTags = (props) => {
           <h3>Tagged:</h3>
         </div>
         <div className={styles.tags}>
-          {props?.tags?.split(",")?.map((tag) => {
-            return (
-              <div key={tag} className="tag">
-                <Link href={`/wiki/${slugify(tag)}`}>
-                  <h3 key={tag}>{tag}</h3>
-                </Link>
-              </div>
-            );
-          })}
+          {typeof props?.tags === "string" &&
+            props?.tags.split(",").map((tag) => {
+              return (
+                <div key={tag} className="tag">
+                  <Link href={`/wiki/${slugify(tag)}`}>{tag}</Link>
+                </div>
+              );
+            })}
         </div>
       </div>
     </>

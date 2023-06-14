@@ -110,14 +110,18 @@ const page = async ({ params }) => {
 
   const postMeta = await getPostMeta(slug);
 
-  var tags = post?.[0]?.tags;
-  if (tags) {
-    var tagsArray = tags.split(",");
+  var tagsArray = [];
+
+  if (post[0]?.tags) {
+    tagsArray = post[0].tags.split(",");
+  }
+
+  if (tagsArray.length > 0) {
     var randomIndex = Math.floor(Math.random() * tagsArray.length);
     var randomTag = tagsArray[randomIndex];
     console.log(randomTag, "randomIndex");
   } else {
-    console.log("Error at tags selection of posts" + slug);
+    console.log("Error at tags selection of post " + slug);
   }
 
   const relatedPosts = await getRelatedPostsByTag(randomTag);
@@ -128,7 +132,8 @@ const page = async ({ params }) => {
   );
 
   if (postBody[0] && postBody[0].ID) {
-    const oldPostThumbnail = await getPostThumbById(postBody?.[0].ID);
+    // const oldPostThumbnail = await getPostThumbById(postBody?.[0].ID);
+    const oldPostThumbnail = postBody[0] ? await getPostThumbById(postBody[0].ID) : "";
     // rest of the code here
     if (oldPostThumbnail && oldPostThumbnail[0]) {
       var thumbnail = oldPostThumbnail;
@@ -170,7 +175,7 @@ const page = async ({ params }) => {
             //     ? thumbnail
             //     : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
             // }
-            summary={postMeta?.[0]?.meta_description}
+            summary={postMeta?.[0]?.meta_description ?? ""}
           />
           <PostListBar category={decodeURIComponent(category)} />
         </div>

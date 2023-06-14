@@ -133,7 +133,9 @@ const page = async ({ params }) => {
 
   if (postBody[0] && postBody[0].ID) {
     // const oldPostThumbnail = await getPostThumbById(postBody?.[0].ID);
-    const oldPostThumbnail = postBody[0] ? await getPostThumbById(postBody[0].ID) : "";
+    const oldPostThumbnail = postBody[0]
+      ? await getPostThumbById(postBody[0].ID)
+      : "";
     // rest of the code here
     if (oldPostThumbnail && oldPostThumbnail[0]) {
       var thumbnail = oldPostThumbnail;
@@ -170,11 +172,11 @@ const page = async ({ params }) => {
             description={formattedContent ?? ""}
             tags={post?.[0]?.tags}
             categories={post?.[0]?.categories}
-            // thumbnail={
-            //   typeof thumbnail === "string" && thumbnail.length
-            //     ? thumbnail
-            //     : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
-            // }
+            thumbnail={
+              typeof thumbnail === "string" && thumbnail.length
+                ? thumbnail
+                : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            }
             summary={postMeta?.[0]?.meta_description ?? ""}
           />
           <PostListBar category={decodeURIComponent(category)} />

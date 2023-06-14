@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Breadcrumb from "../../../components/common/Breadcrumb";
 import styles from "./post.module.css";
 import PostCategoryBox from "../../../components/common/PostCategoryBox";
@@ -179,7 +179,9 @@ const page = async ({ params }) => {
             }
             summary={postMeta?.[0]?.meta_description ?? ""}
           />
-          <PostListBar category={decodeURIComponent(category)} />
+          <Suspense fallback={<p>Loading Post list bar...</p>}>
+            <PostListBar category={decodeURIComponent(category)} />
+          </Suspense>
         </div>
         <div className={styles.relatedArticleSection}>
           <div className={styles.relatedArticleTitle}>
@@ -199,22 +201,23 @@ const page = async ({ params }) => {
                 </div>
               );
             })} */}
-
-            {Array.isArray(relatedPosts) &&
-              relatedPosts.map((card) => {
-                return (
-                  <div key={card.ID}>
-                    <Link href={`/${category}/${card.post_name}`}>
-                      <NewsCard
-                        title={card?.post_title}
-                        content={`${card?.post_content.substring(0, 40)}...`}
-                        date={new Date(card?.post_modified).toLocaleString()}
-                        /* other props */
-                      />
-                    </Link>
-                  </div>
-                );
-              })}
+            <Suspense fallback={<p>Loading related posts...</p>}>
+              {Array.isArray(relatedPosts) &&
+                relatedPosts.map((card) => {
+                  return (
+                    <div key={card.ID}>
+                      <Link href={`/${category}/${card.post_name}`}>
+                        <NewsCard
+                          title={card?.post_title}
+                          content={`${card?.post_content.substring(0, 40)}...`}
+                          date={new Date(card?.post_modified).toLocaleString()}
+                          /* other props */
+                        />
+                      </Link>
+                    </div>
+                  );
+                })}
+            </Suspense>
           </div>
         </div>
       </div>

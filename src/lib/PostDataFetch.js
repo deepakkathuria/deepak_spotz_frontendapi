@@ -12,7 +12,7 @@ export const getPostMeta = async (slug) => {
     );
 
     if (!response.ok) {
-      throw new Error("Error retrieving post metadata");
+      throw new Error("Error retrieving post slug");
     }
 
     const postMetaData = await response.json();

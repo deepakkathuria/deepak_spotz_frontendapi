@@ -24,9 +24,16 @@ const page = async () => {
     console.log(err);
   }
 
-  var distinctCategories = Array.from(
-    new Set(categoriesList?.map((item) => item.category_slug))
-  );
+  if (categoriesList && Array.isArray(categoriesList)) {
+    var distinctCategories = Array.from(
+      new Set(categoriesList.map((item) => item.category_slug))
+    );
+    // rest of the code
+  }
+
+  // var distinctCategories = Array.from(
+  //   new Set(categoriesList?.map((item) => item.category_slug))
+  // );
 
   try {
     const response = await fetch(

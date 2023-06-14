@@ -119,7 +119,7 @@ const page = async ({ params }) => {
   if (tagsArray.length > 0) {
     var randomIndex = Math.floor(Math.random() * tagsArray.length);
     var randomTag = tagsArray[randomIndex];
-    console.log(randomTag, "randomIndex");
+    console.log(randomTag, "randomTag");
   } else {
     console.log("Error at tags selection of post " + slug);
   }
@@ -186,7 +186,7 @@ const page = async ({ params }) => {
             Related <span>Article</span>
           </div>
           <div className={styles.relatedArticlePosts}>
-            {relatedPosts?.map((card) => {
+            {/* {relatedPosts?.map((card) => {
               return (
                 <div key={card.ID}>
                   <Link href={`/${category}/${card.post_name}`}>
@@ -198,7 +198,23 @@ const page = async ({ params }) => {
                   </Link>
                 </div>
               );
-            })}
+            })} */}
+
+            {Array.isArray(relatedPosts) &&
+              relatedPosts.map((card) => {
+                return (
+                  <div key={card.ID}>
+                    <Link href={`/${category}/${card.post_name}`}>
+                      <NewsCard
+                        title={card?.post_title}
+                        content={`${card?.post_content.substring(0, 40)}...`}
+                        date={new Date(card?.post_modified).toLocaleString()}
+                        /* other props */
+                      />
+                    </Link>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>

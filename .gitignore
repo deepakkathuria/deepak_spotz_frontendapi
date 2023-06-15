@@ -49,3 +49,4 @@ env
 /.env
 # Sentry Auth Token
 .sentryclirc
+.vscode

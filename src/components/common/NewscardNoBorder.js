@@ -38,15 +38,17 @@ const NewscardNoBorder = async (props) => {
         </div>
         <div className={styles.postDetails}>
           <div className={styles.cardTitle}>
-            <p>{props.title}</p>
+            <p>{props?.title}</p>
           </div>
 
           <div className={styles.cardDescription}>
-            <p>{props.content.replace(/(<([^>]+)>)/gi, "")}...</p>
+            <p>{props?.content?.replace(/(<([^>]+)>)/gi, "")}...</p>
           </div>
 
           <div className={styles.cardDate}>
-            {new Date(props.date).toLocaleString()}
+            {/* {new Date(props?.date).toLocaleString()} */}
+            {/* {props.date ? new Date(props?.date).toLocaleString() : ""} */}
+            {props.date ? new Date(props.date).toLocaleString() : ""}
           </div>
         </div>
       </div>

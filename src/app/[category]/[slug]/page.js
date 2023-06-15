@@ -28,8 +28,6 @@ export async function generateMetadata({ params }) {
   const postMeta = await getPostMeta(slug);
 
   const oldPostThumbnail = (await getPostThumbById(post?.[0]?.ID)) ?? "";
-  // console.log(post,"posty")
-  // console.log(post[0]?.ID,oldPostThumbnail, "postThumbnail");
 
   if (oldPostThumbnail && oldPostThumbnail[0]) {
     var thumbnail = oldPostThumbnail;

@@ -48,7 +48,7 @@ const PostListBar = async (props) => {
                   <Link href={`${props.category}/${item.post_name}`}>
                     <NewscardNoBorder
                       title={item?.post_title}
-                      date={item?.post_modified_gmt}
+                      // date={item?.post_modified_gmt}
                       content={item?.post_content?.substring(0, 40)}
                       id={item?.ID}
                       guid={item?.guid}

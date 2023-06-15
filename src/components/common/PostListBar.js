@@ -41,21 +41,22 @@ const PostListBar = async (props) => {
           <h3>{props?.category?.toUpperCase()}</h3>
         </div>
         <div className={styles.postList}>
-          {postsList?.map((item) => {
-            return (
-              <div key={item.ID}>
-                <Link href={`${props.category}/${item.post_name}`}>
-                  <NewscardNoBorder
-                    title={item.post_title}
-                    date={item.post_modified_gmt}
-                    content={item.post_content.substring(0, 40)}
-                    id={item.ID}
-                    guid={item.guid}
-                  />
-                </Link>
-              </div>
-            );
-          })}
+          {postsList &&
+            postsList?.map((item) => {
+              return (
+                <div key={item?.ID}>
+                  <Link href={`${props.category}/${item.post_name}`}>
+                    <NewscardNoBorder
+                      title={item?.post_title}
+                      date={item?.post_modified_gmt}
+                      content={item?.post_content?.substring(0, 40)}
+                      id={item?.ID}
+                      guid={item?.guid}
+                    />
+                  </Link>
+                </div>
+              );
+            })}
         </div>
       </div>
     </>

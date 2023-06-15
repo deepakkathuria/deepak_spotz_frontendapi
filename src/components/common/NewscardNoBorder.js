@@ -4,15 +4,25 @@ import Image from "next/image";
 import { getPostThumbById } from "@/lib/PostDataFetch";
 
 const NewscardNoBorder = async (props) => {
+  // if (props && props.id) {
+  //   const oldPostThumbnail = props ? await getPostThumbById(props.id) : "";
+  //   // rest of the code here
+  //   if (oldPostThumbnail && oldPostThumbnail[0]) {
+  //     var thumbnail = oldPostThumbnail;
+  //   } else {
+  //     var thumbnail = props?.guid;
+  //   }
+  // }
+
   if (props && props.id) {
     const oldPostThumbnail = props ? await getPostThumbById(props.id) : "";
     // rest of the code here
     if (oldPostThumbnail && oldPostThumbnail[0]) {
       var thumbnail = oldPostThumbnail;
-    } else {
-      var thumbnail = props?.guid;
     }
   }
+
+  var thumbnail = thumbnail || props?.guid;
 
   return (
     <>

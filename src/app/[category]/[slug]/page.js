@@ -39,10 +39,10 @@ export async function generateMetadata({ params }) {
 
   // console.log(thumbnail, "metaPostThumbnail");
   // title, description, url, thumbnailUrl,
-  console.log(post[0]?.post_title, "title");
-  console.log(postMeta[0]?.meta_description, "description");
-  console.log("url", "url");
-  console.log(thumbnail, "thumbnailUrl");
+  // console.log(post[0]?.post_title, "title");
+  // console.log(postMeta[0]?.meta_description, "description");
+  // console.log("url", "url");
+  // console.log(thumbnail, "thumbnailUrl");
 
   const title = post?.[0]?.post_title ?? "AN";
   const description = postMeta?.[0]?.meta_description ?? "";

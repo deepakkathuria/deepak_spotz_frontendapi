@@ -1,14 +1,30 @@
 import React from "react";
 import styles from "../styles/NewscardNoBorder.module.css";
 import Image from "next/image";
+import { getPostThumbById } from "@/lib/PostDataFetch";
 
-const NewscardNoBorder = (props) => {
+const NewscardNoBorder = async (props) => {
+  if (props && props.id) {
+    const oldPostThumbnail = props ? await getPostThumbById(props.id) : "";
+    // rest of the code here
+    if (oldPostThumbnail && oldPostThumbnail[0]) {
+      var thumbnail = oldPostThumbnail;
+    } else {
+      var thumbnail = props?.guid;
+    }
+  }
+
   return (
     <>
       <div className={styles.newsCardContainer}>
         <div className={styles.cardImage}>
           <Image
-            src="https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            // src="https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            src={
+              thumbnail && thumbnail.length
+                ? thumbnail
+                : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            }
             width={0}
             height={0}
             sizes="100vw"

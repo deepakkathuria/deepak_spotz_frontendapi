@@ -177,9 +177,9 @@ const page = async ({ params }) => {
             }
             summary={postMeta?.[0]?.meta_description ?? ""}
           />
-          <Suspense fallback={<p>Loading Post list bar...</p>}>
+          {/* <Suspense fallback={<p>Loading Post list bar...</p>}>
             <PostListBar category={decodeURIComponent(category)} />
-          </Suspense>
+          </Suspense> */}
         </div>
         <div className={styles.relatedArticleSection}>
           <div className={styles.relatedArticleTitle}>

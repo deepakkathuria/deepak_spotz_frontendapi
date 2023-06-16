@@ -2,8 +2,8 @@ import React from "react";
 import styles from "../styles/PostListBar.module.css";
 import NewscardNoBorder from "./NewscardNoBorder";
 // import axios from "axios";
-import Link from "next/link";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+// import Link from "next/link";
+// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 const PostListBar = async (props) => {
   // try {
@@ -14,23 +14,23 @@ const PostListBar = async (props) => {
   //   console.log(err);
   // }
 
-  async function getPostList(category) {
-    try {
-      const response = await fetch(
-        `${base_url}/getpostsbycategoryname?name=${category}`
-      );
-      if (response.ok) {
-        const postsList = await response.json();
-        return postsList;
-      } else {
-        throw new Error("Network response was not ok.");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function getPostList(category) {
+  //   try {
+  //     const response = await fetch(
+  //       `${base_url}/getpostsbycategoryname?name=${category}`
+  //     );
+  //     if (response.ok) {
+  //       const postsList = await response.json();
+  //       return postsList;
+  //     } else {
+  //       throw new Error("Network response was not ok.");
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
-  const postsList = await getPostList(props.category);
+  // const postsList = await getPostList(props.category);
 
   //  const thumbnail = await getPostThumbById()
 

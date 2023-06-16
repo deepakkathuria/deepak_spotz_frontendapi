@@ -204,14 +204,14 @@ const page = async ({ params }) => {
                 relatedPosts.map((card,index) => {
                   return (
                     <div key={index}>
-                      <Link href={`/${category}/${card.post_name}`}>
+                      <a href={`/${category}/${card.post_name}`}>
                         <NewsCard
                           title={card?.post_title}
                           content={`${card?.post_content.substring(0, 40)}...`}
                           date={new Date(card?.post_modified).toLocaleString()}
                           /* other props */
                         />
-                      </Link>
+                      </a>
                     </div>
                   );
                 })}

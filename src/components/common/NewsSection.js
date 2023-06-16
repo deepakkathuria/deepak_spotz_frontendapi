@@ -32,7 +32,7 @@ const NewsSection = async (props) => {
           {data?.data?.map((item) => {
             return (
               <div key={item.id}>
-                <Link href={`${props.slug}/${item.post_name}`}>
+                <a href={`${props.slug}/${item.post_name}`}>
                   <NewsCard
                     title={item.post_title}
                     date={new Date(item.post_modified).toLocaleString()}
@@ -41,7 +41,7 @@ const NewsSection = async (props) => {
                     id={item.ID}
                     guid={item.guid}
                   />
-                </Link>
+                </a>
               </div>
             );
           })}

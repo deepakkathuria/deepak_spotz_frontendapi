@@ -51,7 +51,7 @@ const PostListBar = async (props) => {
                       date={item?.post_modified_gmt}
                       content={item?.post_content?.substring(0, 40)}
                       id={item?.ID}
-                      // guid={item?.guid}
+                      guid={item?.guid}
                     />
                   </Link>
                 </div>

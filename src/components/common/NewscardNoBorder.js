@@ -22,7 +22,14 @@ const NewscardNoBorder = async (props) => {
     }
   }
 
-  var thumbnail = thumbnail || props?.guid;
+  thumbnail =
+    thumbnail ||
+    props?.guid ||
+    "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg";
+
+  // console.log("thumbUrl:", typeof thumbnail, "thumbUrl:", thumbnail);
+
+  console.log(" thumbUrl: ", typeof thumbnail, " thumbUrl: ", thumbnail);
 
   return (
     <>

@@ -12,6 +12,11 @@ const nextConfig = {
       "bengali.sportzwiki.com",
     ],
   },
+  // ...
+  compiler: {
+    removeConsole: false,
+  },
+  // ...
 
   rewrites: async () => [
     {
@@ -32,7 +37,6 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
 
 // Injected content via Sentry wizard below
 

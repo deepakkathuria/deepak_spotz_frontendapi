@@ -17,7 +17,6 @@ const PostListBar = async (props) => {
   async function getPostList(category) {
     try {
       const response = await fetch(
-        
         `${base_url}/getpostsbycategoryname?name=${category}`
       );
       if (response.ok) {
@@ -36,7 +35,6 @@ const PostListBar = async (props) => {
   console.log(postsList, "PostList");
 
   // const thumbnail = await getPostThumbById();
-
 
   return (
     <>

@@ -30,6 +30,9 @@ const NewsCard = async (props) => {
     // console.log("Thumbnail guid");
   }
 
+  console.log(thumbnail, "Thumbnail");
+  console.log("Here")
+
   // if (oldPostThumbnail && oldPostThumbnail[0]) {
   //   var thumbnail = oldPostThumbnail;
   // } else {

@@ -41,6 +41,7 @@ export async function generateMetadata({ params }) {
   // console.log(postMeta[0]?.meta_description, "description");
   // console.log("url", "url");
   // console.log(thumbnail, "thumbnailUrl");
+  console.log("hereeee")
 
   const title = post?.[0]?.post_title ?? "AN";
   const description = postMeta?.[0]?.meta_description ?? "";
@@ -207,9 +208,11 @@ const page = async ({ params }) => {
                     <div key={index}>
                       <a href={`/${category}/${card.post_name}`}>
                         <NewsCard
+                          id={card?.ID}
                           title={card?.post_title}
                           content={`${card?.post_content.substring(0, 40)}...`}
                           date={new Date(card?.post_modified).toLocaleString()}
+                          guid={card?.guid}
                           /* other props */
                         />
                       </a>

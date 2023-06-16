@@ -17,18 +17,18 @@ const Navbar = () => {
       <div className={styles.navbarDiv}>
         <div className={styles.navContainer}>
           <div className={styles.NavLogo}>
-            <Link href={"/"}>
+            <a href={"/"}>
               <Image
                 src="/gaurav/sportzwiki_logo.svg"
                 width={130}
                 height={30}
                 alt="SportzWiki Logo"
               />
-            </Link>
+            </a>
           </div>
           <div className={styles.NavbarOption}>
             <ul>
-              <Link href={"/"}>
+              <a href={"/"}>
                 <li className={styles.navLi}>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -40,9 +40,9 @@ const Navbar = () => {
                   </div>
                   <div className="navItemName">Home</div>
                 </li>
-              </Link>
+              </a>
 
-              <Link href={"/cricket"}>
+              <a href={"/cricket"}>
                 <li className={styles.navLi}>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -54,9 +54,9 @@ const Navbar = () => {
                   </div>
                   <div className="navItemName">Cricket</div>
                 </li>
-              </Link>
+              </a>
 
-              <Link href={"/football"}>
+              <a href={"/football"}>
                 <li className={styles.navLi}>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -69,9 +69,9 @@ const Navbar = () => {
                   </div>
                   <div className="navItemName">Football</div>
                 </li>
-              </Link>
+              </a>
 
-              <Link href={"/wwe"}>
+              <a href={"/wwe"}>
                 <li className={styles.navLi}>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -84,9 +84,9 @@ const Navbar = () => {
                   </div>
                   <div className="navItemName">WWE</div>
                 </li>
-              </Link>
+              </a>
 
-              <Link href={"e-sports"}>
+              <a href={"e-sports"}>
                 <li className={styles.navLi}>
                   <div className={styles.navItemIcon}>
                     <Image
@@ -99,9 +99,9 @@ const Navbar = () => {
                   </div>
                   <div className="navItemName">Esports</div>
                 </li>
-              </Link>
+              </a>
 
-              <Link href={"#"}>
+              <a href={"#"}>
                 <li className={`${styles.navLi} ${styles.moreItem}`}>
                   <div className="navItemName">More</div>
                   <div className={styles.navItemIcon}>
@@ -114,11 +114,11 @@ const Navbar = () => {
                     />
                   </div>
                 </li>
-              </Link>
+              </a>
             </ul>
           </div>
           <div className={styles.navOptions}>
-            <Link href={"#"}>
+            <a href={"#"}>
               <div className="navSearch">
                 <Image
                   src="/gaurav/search_ic.svg"
@@ -128,8 +128,8 @@ const Navbar = () => {
                   // className={styles.plainIc}
                 />
               </div>
-            </Link>
-            <Link href={"#"}>
+            </a>
+            <a href={"#"}>
               <div className={styles.navLogin}>
                 {/* <CgProfile color="#fff" size={"20"} /> */}
                 <Image
@@ -141,12 +141,12 @@ const Navbar = () => {
                 />
                 <div className={styles.navLoginText}>Login/SignUp</div>
               </div>
-            </Link>
-            <Link href={"#"}>
+            </a>
+            <a href={"#"}>
               <div className="navHamburger">
                 {/* <CgMenuMotion color="#fff" size={20} /> */}
               </div>
-            </Link>
+            </a>
             <div className={styles.navOptionsMobile}>
               <div className="hamburger-ic">
                 <Image

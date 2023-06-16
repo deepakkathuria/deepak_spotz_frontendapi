@@ -161,13 +161,13 @@ const CategoryPosts = async ({ params, searchParams }) => {
         <div className={styles.newsCardsDisplay}>
           {data.data?.map((post) => (
             <div className="card" key={post.ID}>
-              <Link href={`/${post.category}/${post.post_name}`}>
+              <a href={`/${post.category}/${post.post_name}`}>
                 <NewsCard
                   title={post.post_title}
                   content={post.post_content}
                   date={new Date(post?.post_modified).toLocaleString()}
                 />
-              </Link>
+              </a>
             </div>
           ))}
         </div>
@@ -176,7 +176,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
       <div className={styles.paginationContainer}>
         {currentPage > 1 && (
           <>
-            <Link href={`/${category}`}>{"<<"}</Link>
+            <a href={`/${category}`}>{"<<"}</a>
           </>
         )}
 
@@ -193,7 +193,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
         {currentPage < totalPages && (
           <>
-            <Link href={`/${tag}?page=${currentPage + 1}`}>{">>"}</Link>
+            <a href={`/${tag}?page=${currentPage + 1}`}>{">>"}</a>
           </>
         )}
       </div>

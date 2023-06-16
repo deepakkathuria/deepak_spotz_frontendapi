@@ -9,7 +9,7 @@ const Breadcrumb = (props) => {
         <ul className={styles.breadCrumbUl}>
           {props.breadcrumbsObj?.map((breadCrumb, index) => (
             <li key={breadCrumb.name}>
-              <Link href={breadCrumb.url}>{breadCrumb.name}</Link>
+              <a href={breadCrumb.url}>{breadCrumb.name}</a>
               {props.breadcrumbsObj?.length - 1 !== index && <i> /</i>}
             </li>
           ))}

@@ -30,20 +30,20 @@ const NewsSection = async (props) => {
           {data?.map((item) => {
             return (
               <div key={item.id}>
-                <Link href={`${props.slug}/${item.post_name}`}>
+                <a href={`${props.slug}/${item.post_name}`}>
                   <NewsCard
                     title={item.post_title}
                     date={new Date(item.post_modified_gmt).toLocaleString()}
                     content={item.post_content}
                     // slug={item.name}
                   />
-                </Link>
+                </a>
               </div>
             );
           })}
         </div>
         <div className={styles.readMoreLabel}>
-          <Link href={`/${props.slug}`}>Read More</Link>
+          <a href={`/${props.slug}`}>Read More</a>
         </div>
       </div>
     </>

@@ -49,7 +49,7 @@ const PostListBar = async (props) => {
             postsList?.map((item, index) => {
               return (
                 <div key={index}>
-                  <a href={`${props.category}/${item.post_name}`}>
+                  <a href={`/${props.category}/${item.post_name}`}>
                     <NewscardNoBorder
                       title={item?.post_title}
                       date={item?.post_modified_gmt}

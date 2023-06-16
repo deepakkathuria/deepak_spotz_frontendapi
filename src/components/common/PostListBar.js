@@ -17,6 +17,7 @@ const PostListBar = async (props) => {
   async function getPostList(category) {
     try {
       const response = await fetch(
+        
         `${base_url}/getpostsbycategoryname?name=${category}`
       );
       if (response.ok) {
@@ -36,7 +37,6 @@ const PostListBar = async (props) => {
 
   // const thumbnail = await getPostThumbById();
 
-  con;
 
   return (
     <>
@@ -45,11 +45,11 @@ const PostListBar = async (props) => {
           <h3>{props?.category?.toUpperCase()}</h3>
         </div>
         <div className={styles.postList}>
-          {/* {postsList &&
-            postsList?.map((item) => {
+          {postsList &&
+            postsList?.map((item, index) => {
               return (
-                <div key={item?.ID}>
-                  <Link href={`${props.category}/${item.post_name}`}>
+                <div key={index}>
+                  <a href={`${props.category}/${item.post_name}`}>
                     <NewscardNoBorder
                       title={item?.post_title}
                       date={item?.post_modified_gmt}
@@ -57,10 +57,10 @@ const PostListBar = async (props) => {
                       id={item?.ID}
                       guid={item?.guid}
                     />
-                  </Link>
+                  </a>
                 </div>
               );
-            })} */}
+            })}
         </div>
       </div>
     </>

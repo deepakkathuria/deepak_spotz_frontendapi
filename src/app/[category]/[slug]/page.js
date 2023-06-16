@@ -177,9 +177,10 @@ const page = async ({ params }) => {
             }
             summary={postMeta?.[0]?.meta_description ?? ""}
           />
-          {/* <Suspense fallback={<p>Loading Post list bar...</p>}>
+          <Suspense fallback={<p>Loading Post list bar...</p>}>
             <PostListBar category={decodeURIComponent(category)} />
-          </Suspense> */}
+            {/* <PostListBar category={category} /> */}
+          </Suspense>
         </div>
         <div className={styles.relatedArticleSection}>
           <div className={styles.relatedArticleTitle}>
@@ -201,7 +202,7 @@ const page = async ({ params }) => {
             })} */}
             <Suspense fallback={<p>Loading related posts...</p>}>
               {Array.isArray(relatedPosts) &&
-                relatedPosts.map((card,index) => {
+                relatedPosts.map((card, index) => {
                   return (
                     <div key={index}>
                       <a href={`/${category}/${card.post_name}`}>

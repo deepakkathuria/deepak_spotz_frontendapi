@@ -41,7 +41,7 @@ const PostListBar = async (props) => {
           <h3>{props?.category?.toUpperCase()}</h3>
         </div>
         <div className={styles.postList}>
-          {postsList &&
+          {/* {postsList &&
             postsList?.map((item) => {
               return (
                 <div key={item?.ID}>
@@ -56,7 +56,7 @@ const PostListBar = async (props) => {
                   </Link>
                 </div>
               );
-            })}
+            })} */}
         </div>
       </div>
     </>

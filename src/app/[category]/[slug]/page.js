@@ -201,9 +201,9 @@ const page = async ({ params }) => {
             })} */}
             <Suspense fallback={<p>Loading related posts...</p>}>
               {Array.isArray(relatedPosts) &&
-                relatedPosts.map((card) => {
+                relatedPosts.map((card,index) => {
                   return (
-                    <div key={card.ID}>
+                    <div key={index}>
                       <Link href={`/${category}/${card.post_name}`}>
                         <NewsCard
                           title={card?.post_title}

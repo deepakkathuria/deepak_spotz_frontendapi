@@ -1,10 +1,17 @@
-// "use client";
-import React from "react";
+"use client";
+import React, { useEffect } from "react";
 import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 const NewsCard = async (props) => {
+//   useEffect(() => {
+//     const localeDate = props?.date;
+//   }, []);
+  //   const formattedDate = Intl.DateTimeFormat("en-US", {
+  //     format: "short",
+  //   }).format(props?.date);
+
   const getPostThumbById = async () => {
     try {
       const response = await fetch(
@@ -62,7 +69,9 @@ const NewsCard = async (props) => {
           <p className={styles.newsDescription}>
             {props?.content?.substring(0, 45).replace(/(<([^>]+)>)/gi, "")}...
           </p>
-          <p className={styles.newsDate}>{props?.date}</p>
+          {/* <p className={styles.newsDate}>{props?.date}</p> */}
+          <p>{new Date(props?.date).toLocaleString("en-US")}</p>
+          {/* <p>localeDate</p> */}
         </div>
       </div>
     </>

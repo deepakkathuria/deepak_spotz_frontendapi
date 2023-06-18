@@ -1,14 +1,12 @@
-// "use client";
+"use client";
 import React from "react";
 import styles from "../styles/NewsSection.module.css";
-import NewsCard from "./NewsCard";
+import NewsCardLatest from "./NewsCardLatest";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 const NewsSection = async (props) => {
   try {
-    var response = await fetch(`${base_url}/getlatestposts?limit=9&page=1`, {
-      next: { revalidate: 1 },
-    });
+    var response = await fetch(`${base_url}/getlatestposts?limit=9&page=1`);
     if (response.ok) {
       var data = await response.json();
     } else {
@@ -29,14 +27,10 @@ const NewsSection = async (props) => {
             return (
               <div key={index}>
                 <a href={`${item?.parent_category_slugs}/${item?.post_name}`}>
-                  <NewsCard
+                  <NewsCardLatest
                     title={item?.post_title}
                     // date={new Date(item?.post_modified_gmt)?.toLocaleString()}
-                    date={
-                      item?.post_modified_gmt
-                        ? new Date(item.post_modified_gmt).toLocaleString()
-                        : ""
-                    }
+                    date={item?.post_modified_gmt ? item.post_modified_gmt : ""}
                     content={item?.post_content}
                     // slug={item.name}
                   />

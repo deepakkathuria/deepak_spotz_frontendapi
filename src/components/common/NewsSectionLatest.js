@@ -29,6 +29,7 @@ const NewsSection = async (props) => {
                 <a href={`${item?.parent_category_slugs}/${item?.post_name}`}>
                   <NewsCardLatest
                     title={item?.post_title}
+                    id = {item?.ID}
                     // date={new Date(item?.post_modified_gmt)?.toLocaleString()}
                     date={item?.post_modified_gmt ? item.post_modified_gmt : ""}
                     content={item?.post_content}

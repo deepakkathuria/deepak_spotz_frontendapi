@@ -2,11 +2,11 @@ import React from "react";
 import styles from "./CategoryPosts.module.css";
 import NewsCard from "@/components/common/NewsCard";
 import axios from "axios";
-import Link from "next/link";
 import Breadcrumb from "@/components/common/Breadcrumb";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+import OrganisationLd from "@/json-ld/OrganisationLd";
 
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
@@ -60,6 +60,8 @@ const CategoryPosts = async ({ params, searchParams }) => {
     `${base_url}/getpostsbycategoryname?name=${category}&page=${currentPage}&limit=${dataPerPage}`
   );
 
+  console.log(data.data, "category data.data");
+
   // totalData();
 
   // const dataPerPage = totalData?.data.count;
@@ -109,6 +111,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
         ]}
       />
 
+      {/* <OrganisationLd /> */}
       <OrganizationJsonLd
         useAppDir={true}
         type="Corporation"
@@ -171,8 +174,8 @@ const CategoryPosts = async ({ params, searchParams }) => {
             </div>
           ))} */}
 
-          {Array.isArray(data) &&
-            data.map((post) => (
+          {Array.isArray(data.data) &&
+            data?.data?.map((post) => (
               <div className="card" key={post.ID}>
                 <a href={`/${category}/${post.post_name}`}>
                   <NewsCard
@@ -196,13 +199,13 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
         {pageNumbers &&
           pageNumbers.map((page) => (
-            <Link
+            <a
               key={page}
               href={`/${category}?page=${page}`}
               className={page === currentPage ? styles.activeLink : ""}
             >
               {page}
-            </Link>
+            </a>
           ))}
 
         {currentPage < totalPages && (

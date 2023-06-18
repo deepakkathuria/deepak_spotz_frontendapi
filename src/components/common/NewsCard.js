@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
@@ -26,12 +27,12 @@ const NewsCard = async (props) => {
     var thumbnail = oldPostThumbnail;
     // console.log(thumbnail, "Thumbnail");
   } else {
-    var thumbnail = props.guid;
+    var thumbnail = props?.guid;
     // console.log("Thumbnail guid");
   }
 
   console.log(thumbnail, "Thumbnail");
-  console.log("Here")
+  console.log("Here");
 
   // if (oldPostThumbnail && oldPostThumbnail[0]) {
   //   var thumbnail = oldPostThumbnail;
@@ -57,11 +58,11 @@ const NewsCard = async (props) => {
           />
         </div>
         <div className={styles.newsDetails}>
-          <p className={styles.newsTitle}>{props.title}</p>
+          <p className={styles.newsTitle}>{props?.title}</p>
           <p className={styles.newsDescription}>
-            {props.content?.substring(0, 45).replace(/(<([^>]+)>)/gi, "")}...
+            {props?.content?.substring(0, 45).replace(/(<([^>]+)>)/gi, "")}...
           </p>
-          <p className={styles.newsDate}>{props.date}</p>
+          <p className={styles.newsDate}>{props?.date}</p>
         </div>
       </div>
     </>

@@ -1,9 +1,7 @@
+// "use client";
 import React from "react";
 import styles from "../styles/NewsSection.module.css";
-// import { GiCricketBat } from "react-icons/gi";
-import ButtonTab from "./ButtonTab";
 import NewsCard from "./NewsCard";
-import Link from "next/link";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 const NewsSection = async (props) => {
@@ -27,14 +25,19 @@ const NewsSection = async (props) => {
           <h3>LATEST</h3>
         </div>
         <div className={styles.newsCardsDiv}>
-          {data?.map((item) => {
+          {data?.map((item, index) => {
             return (
-              <div key={item.id}>
-                <a href={`${props.slug}/${item.post_name}`}>
+              <div key={index}>
+                <a href={`${item?.parent_category_slugs}/${item?.post_name}`}>
                   <NewsCard
-                    title={item.post_title}
-                    date={new Date(item.post_modified_gmt).toLocaleString()}
-                    content={item.post_content}
+                    title={item?.post_title}
+                    // date={new Date(item?.post_modified_gmt)?.toLocaleString()}
+                    date={
+                      item?.post_modified_gmt
+                        ? new Date(item.post_modified_gmt).toLocaleString()
+                        : ""
+                    }
+                    content={item?.post_content}
                     // slug={item.name}
                   />
                 </a>
@@ -43,7 +46,7 @@ const NewsSection = async (props) => {
           })}
         </div>
         <div className={styles.readMoreLabel}>
-          <a href={`/${props.slug}`}>Read More</a>
+          <a href="/cricket">Read More</a>
         </div>
       </div>
     </>

@@ -62,7 +62,7 @@ const page = async () => {
       <OrganisationLd />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
-        {/* <NewsSectionLatest /> */}
+        <NewsSectionLatest />
 
         <div className={styles.newsSectionDiv}>
           {data?.map((item) => {

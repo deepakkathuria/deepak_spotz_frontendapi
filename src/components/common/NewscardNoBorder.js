@@ -14,6 +14,32 @@ const NewscardNoBorder = async (props) => {
   //   }
   // }
 
+  // if (props?.id <= 323919) {
+  //   // var thumbnail = (await getPostThumbById(post?.[0]?.ID)) ?? "";
+  //   var thumbnail = props ? await getPostThumbById(props?.id) : "";
+  //   console.log("old", props?.id);
+  // }
+  // if (props?.id >= 323920) {
+  //   // const newPostThumbnail = (await getPostThumbnailById(post
+  //   var thumbnail = props?.guid;
+  // } else {
+  //   thumbnail =
+  //     "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg";
+  // }
+
+  // if (props?.id <= 323919) {
+  //   var thumbnail = props ? await getPostThumbById(props?.id) : "";
+  //   console.log("old", props?.id);
+  // } else if (props?.id >= 323920) {
+  //   var thumbnail = props?.guid;
+  // } else {
+  //   var thumbnail =
+  //     "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg";
+  // }
+
+  // console.log(props.guid, "guid");
+  // console.log(props.id, "iddd");
+
   if (props && props.id) {
     const oldPostThumbnail = props ? await getPostThumbById(props.id) : "";
     // rest of the code here
@@ -29,7 +55,14 @@ const NewscardNoBorder = async (props) => {
 
   // console.log("thumbUrl:", typeof thumbnail, "thumbUrl:", thumbnail);
 
-  console.log(" thumbUrl: ", typeof thumbnail, " thumbUrl: ", thumbnail);
+  // console.log(
+  //   " thumbUrl: ",
+  //   thumbnail,
+  //   " thumbType: ",
+  //   typeof thumbnail,
+  //   " thumbUrl: ",
+  //   thumbnail
+  // );
 
   return (
     <>
@@ -37,8 +70,13 @@ const NewscardNoBorder = async (props) => {
         <div className={styles.cardImage}>
           <Image
             // src="https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            // src={
+            //   thumbnail && thumbnail.length
+            //     ? thumbnail
+            //     : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            // }
             src={
-              thumbnail && thumbnail.length
+              typeof thumbnail !== "undefined" && thumbnail.length
                 ? thumbnail
                 : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
             }

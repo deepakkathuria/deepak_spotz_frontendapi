@@ -14,8 +14,8 @@ const PostTags = (props) => {
           {typeof props?.tags === "string" &&
             props?.tags.split(",").map((tag) => {
               return (
-                <div key={tag} className="tag">
-                  <a href={`/wiki/${slugify(tag)}`}>{tag}</a>
+                <div key={tag} className={styles.tags}>
+                  <a href={`/wiki/${slugify(tag)}`}><h3>{tag}</h3></a>
                 </div>
               );
             })}

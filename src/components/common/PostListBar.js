@@ -32,7 +32,7 @@ const PostListBar = async (props) => {
 
   const postsList = await getPostList(props.category);
 
-  console.log(postsList, "PostList");
+  // console.log(postsList, "PostList");
 
   // const thumbnail = await getPostThumbById();
 

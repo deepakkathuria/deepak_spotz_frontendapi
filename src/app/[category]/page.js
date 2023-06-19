@@ -179,6 +179,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
               <div className="card" key={post.ID}>
                 <a href={`/${category}/${post.post_name}`}>
                   <NewsCard
+                    id={post.ID}
                     title={post.post_title}
                     content={post.post_content}
                     date={new Date(post.post_modified_gmt).toLocaleString()}

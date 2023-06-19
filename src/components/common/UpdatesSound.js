@@ -19,7 +19,7 @@ const UpdatesSound = () => {
           </div>
         </div>
         <div className={styles.UpdateHeadLines}>
-          <p>Hardik Pandya - India's T20I captain? </p>
+          <p>Hardik Pandya - Indias T20I captain? </p>
           <div className={styles.arrowIc}>
             <Image
               src="/gaurav/arrow-left.svg"

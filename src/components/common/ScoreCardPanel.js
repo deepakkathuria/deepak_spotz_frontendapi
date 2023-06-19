@@ -89,6 +89,7 @@ const ScoreCardPanel = () => {
         </div>
 
         <div className={styles.matchTypeSelector}>
+          {/* <div className={styles.bracket}>&#123;</div> */}
           <div className={styles.bracket}>&#123;</div>
           <button
             className={`${styles.matchTypeSelectorButton} ${styles.selected}`}
@@ -100,7 +101,6 @@ const ScoreCardPanel = () => {
           </button>
           <button className={styles.matchTypeSelectorButton}>League</button>
           <button className={styles.matchTypeSelectorButton}>Domestic</button>
-          {/* &#125; */}
           <div className={styles.bracket}>&#125;</div>
         </div>
       </div>

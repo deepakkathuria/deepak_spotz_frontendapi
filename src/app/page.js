@@ -27,16 +27,18 @@ const page = async () => {
       <OrganisationLd />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
-        <Suspense fallback={"Loading Live Scores..."}>
-          <div className="scores">
-            <LiveScoreSection />
-          </div>
-        </Suspense>
+        {/* <Suspense fallback={"Loading Live Scores..."}> */}
+        <div className="scores">
+          <LiveScoreSection />
+        </div>
+        {/* </Suspense> */}
 
-        <Suspense fallback={"Loading"}>
-          <div className="newsSection">
+        {/* <div className="newsSection"> */}
+          <Suspense fallback={"Loading latest news..."}>
             <NewsSectionLatest />
+          </Suspense>
 
+          <Suspense fallback={"Loading"}>
             <div className={styles.newsSectionDiv}>
               {data?.map((item) => {
                 return (
@@ -46,9 +48,9 @@ const page = async () => {
                 );
               })}
             </div>
-          </div>
-        </Suspense>
-      </div>
+          </Suspense>
+        </div>
+      {/* </div> */}
     </>
   );
 };

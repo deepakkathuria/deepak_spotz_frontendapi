@@ -1,44 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
 import NewsSectionLatest from "../components/common/NewsSectionLatest";
-// import axios from "axios";
 import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-import { OrganizationJsonLd } from "next-seo";
-import ScoreCardPanel from "@/components/common/ScoreCardPanel";
 import OrganisationLd from "@/json-ld/OrganisationLd";
-import UpdatesSound from "@/components/common/UpdatesSound";
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+import LiveScoreSection from "@/components/common/LiveScoreSection";
 
 const page = async () => {
-  // try {
-  //   const response = await fetch(`${base_url}/getrecentcategorynameslug`, {
-  //     next: { revalidate: 5 },
-  //   });
-  //   if (!response.ok) {
-  //     throw new Error(response.statusText);
-  //   }
-  //   var categoriesList = await response.json();
-  //   // Use the categoriesList data here
-  // } catch (err) {
-  //   console.log(err);
-  // }
-
-  // if (categoriesList && Array.isArray(categoriesList)) {
-  //   var distinctCategories = Array.from(
-  //     new Set(categoriesList.map((item) => item.category_slug))
-  //   );
-  //   // rest of the code
-  // }
-
-  // var distinctCategories = Array.from(
-  //   new Set(categoriesList?.map((item) => item.category_slug))
-  // );
-
   try {
     const response = await fetch(
-      // `${base_url}/getcategoriesbyname?category1=${distinctCategories[0]}&category2=${distinctCategories[1]}&category3=${distinctCategories[2]}`,
       `${base_url}/getcategoriesbyname?category1=cricket&category2=news&category3=football`,
       { next: { revalidate: 5 } }
     );
@@ -51,36 +22,32 @@ const page = async () => {
     console.log(e.message);
   }
 
-  // try {
-  //   var latestData = await axios.get(
-  //     `${base_url}/getlatestposts?limit=9&page=1`
-  //   );
-  // } catch (e) {
-  //   console.log(e.message);
-  // }
-
   return (
     <>
       <OrganisationLd />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
-        <div className={styles.updateSoundDiv} style={{ marginBottom: "2rem" }}>
-          <UpdatesSound />
-        </div>
-        <div className="scoresDiv" style={{ marginBottom: "4rem" }}>
-          <ScoreCardPanel />
-        </div>
-        <NewsSectionLatest />
+        <Suspense fallback={"Loading Live Scores..."}>
+          <div className="scores">
+            <LiveScoreSection />
+          </div>
+        </Suspense>
 
-        <div className={styles.newsSectionDiv}>
-          {data?.map((item) => {
-            return (
-              <div key={item.ID}>
-                <NewsSection name={item.name} slug={item.slug} />
-              </div>
-            );
-          })}
-        </div>
+        <Suspense fallback={"Loading"}>
+          <div className="newsSection">
+            <NewsSectionLatest />
+
+            <div className={styles.newsSectionDiv}>
+              {data?.map((item) => {
+                return (
+                  <div key={item.ID}>
+                    <NewsSection name={item.name} slug={item.slug} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </Suspense>
       </div>
     </>
   );

@@ -8,6 +8,7 @@ const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 import { OrganizationJsonLd } from "next-seo";
 import ScoreCardPanel from "@/components/common/ScoreCardPanel";
 import OrganisationLd from "@/json-ld/OrganisationLd";
+import UpdatesSound from "@/components/common/UpdatesSound";
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const page = async () => {
@@ -63,6 +64,9 @@ const page = async () => {
       <OrganisationLd />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
+        <div className={styles.updateSoundDiv} style={{ marginBottom: "2rem" }}>
+          <UpdatesSound />
+        </div>
         <div className="scoresDiv" style={{ marginBottom: "4rem" }}>
           <ScoreCardPanel />
         </div>

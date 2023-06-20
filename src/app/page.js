@@ -8,6 +8,25 @@ import OrganisationLd from "@/json-ld/OrganisationLd";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
 
 const page = async () => {
+  // const categories = [
+  //   {
+  //     id: 1,
+  //     name: "Cricket",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Football",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "WWE",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Kabaddi",
+  //   },
+  // ];
+
   try {
     const response = await fetch(
       `${base_url}/getcategoriesbyname?category1=cricket&category2=news&category3=football`,
@@ -29,7 +48,8 @@ const page = async () => {
         <div className="scores">
           <LiveScoreSection />
         </div>
-        {/* <NewsSectionLatest />
+        <NewsSectionLatest />
+        
         <div className={styles.newsSectionDiv}>
           {data?.map((item) => {
             return (
@@ -38,7 +58,7 @@ const page = async () => {
               </div>
             );
           })}
-        </div> */}
+        </div>
       </div>
     </>
   );

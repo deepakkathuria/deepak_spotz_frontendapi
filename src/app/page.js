@@ -1,4 +1,3 @@
-
 import React, { Suspense } from "react";
 import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
@@ -35,9 +34,9 @@ const page = async () => {
         {/* </Suspense> */}
 
         {/* <div className="newsSection"> */}
-          {/* <Suspense fallback={"Loading latest news..."}> */}
+          <Suspense fallback={"Loading latest news..."}>
             <NewsSectionLatest />
-          {/* </Suspense> */}
+          </Suspense>
 
           <Suspense fallback={"Loading"}>
             <div className={styles.newsSectionDiv}>

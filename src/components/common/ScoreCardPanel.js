@@ -69,8 +69,8 @@ const ScoreCardPanel = () => {
         },
       },
     ],
-    prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />,
+    // prevArrow: <PrevArrow />,
+    // nextArrow: <NextArrow />,
   };
   return (
     <>

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import styles from "../styles/NewsSection.module.css";
 import NewsCardLatest from "./NewsCardLatest";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -23,22 +23,26 @@ const NewsSection = async (props) => {
           <h3>LATEST</h3>
         </div>
         <div className={styles.newsCardsDiv}>
-          {data?.map((item, index) => {
-            return (
-              <div key={index}>
-                <a href={`${item?.parent_category_slugs}/${item?.post_name}`}>
-                  <NewsCardLatest
-                    title={item?.post_title}
-                    id = {item?.ID}
-                    // date={new Date(item?.post_modified_gmt)?.toLocaleString()}
-                    date={item?.post_modified_gmt ? item.post_modified_gmt : ""}
-                    content={item?.post_content}
-                    // slug={item.name}
-                  />
-                </a>
-              </div>
-            );
-          })}
+          <Suspense fallback={"Loading latest news"}>
+            {data?.map((item, index) => {
+              return (
+                <div key={index}>
+                  <a href={`${item?.parent_category_slugs}/${item?.post_name}`}>
+                    <NewsCardLatest
+                      title={item?.post_title}
+                      id={item?.ID}
+                      // date={new Date(item?.post_modified_gmt)?.toLocaleString()}
+                      date={
+                        item?.post_modified_gmt ? item.post_modified_gmt : ""
+                      }
+                      content={item?.post_content}
+                      // slug={item.name}
+                    />
+                  </a>
+                </div>
+              );
+            })}
+          </Suspense>
         </div>
         <div className={styles.readMoreLabel}>
           <a href="/cricket">Read More</a>

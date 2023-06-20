@@ -23,7 +23,7 @@ const NewsSection = async (props) => {
           <h3>LATEST</h3>
         </div>
         <div className={styles.newsCardsDiv}>
-          <Suspense fallback={"Loading latest news"}>
+          {/* <Suspense fallback={"Loading latest news"}> */}
             {data?.map((item, index) => {
               return (
                 <div key={index}>
@@ -42,7 +42,7 @@ const NewsSection = async (props) => {
                 </div>
               );
             })}
-          </Suspense>
+          {/* </Suspense> */}
         </div>
         <div className={styles.readMoreLabel}>
           <a href="/cricket">Read More</a>

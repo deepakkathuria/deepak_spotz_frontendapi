@@ -31,9 +31,9 @@ const page = async () => {
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
         {/* <Suspense fallback={"Loading Live Scores..."}> */}
-        <div className="scores">
+        {/* <div className="scores">
           <LiveScoreSection />
-        </div>
+        </div> */}
         {/* </Suspense> */}
 
         {/* <div className="newsSection"> */}
@@ -42,7 +42,7 @@ const page = async () => {
         {/* </Suspense> */}
 
         <div className={styles.newsSectionDiv}>
-          <Suspense fallback={"Loading news"}>
+          {/* <Suspense fallback={"Loading news"}> */}
             {data?.map((item) => {
               return (
                 <div key={item.ID}>
@@ -50,7 +50,7 @@ const page = async () => {
                 </div>
               );
             })}
-          </Suspense>
+          {/* </Suspense> */}
         </div>
       </div>
       {/* </div> */}

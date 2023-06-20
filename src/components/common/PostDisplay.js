@@ -26,19 +26,19 @@ const PostDisplay = (props) => {
           <div className={styles.authorDetail}>
             <div className={styles.authorName}>
               <FaUserTag size={12} />
-              <h3>{props.author}</h3>
+              <h3>{props?.author}</h3>
             </div>
             <div className={styles.publishDate}>
               <FaRegCalendarAlt size={12} />
-              <h3>{new Date(props.date).toLocaleString("en-us")}</h3>
+              <h3>{new Date(props?.date).toLocaleString("en-us")}</h3>
             </div>
           </div>
           <div className={styles.postSummary}>
-            <p>{props.summary}</p>
+            <p>{props?.summary}</p>
           </div>
           <div className={styles.postCover}>
             <Image
-              src={props.thumbnail}
+              src={props?.thumbnail}
               width={0}
               height={0}
               sizes="100%"

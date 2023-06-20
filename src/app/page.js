@@ -37,21 +37,21 @@ const page = async () => {
         {/* </Suspense> */}
 
         {/* <div className="newsSection"> */}
-        <Suspense fallback={"Loading latest news..."}>
-          <NewsSectionLatest />
-        </Suspense>
+        {/* <Suspense fallback={"Loading latest news..."}> */}
+        <NewsSectionLatest />
+        {/* </Suspense> */}
 
-        <Suspense fallback={"Loading"}>
-          <div className={styles.newsSectionDiv}>
-            {data?.map((item) => {
-              return (
-                <div key={item.ID}>
-                  <NewsSection name={item.name} slug={item.slug} />
-                </div>
-              );
-            })}
-          </div>
-        </Suspense>
+        {/* <Suspense fallback={"Loading"}> */}
+        <div className={styles.newsSectionDiv}>
+          {data?.map((item) => {
+            return (
+              <div key={item.ID}>
+                <NewsSection name={item.name} slug={item.slug} />
+              </div>
+            );
+          })}
+        </div>
+        {/* </Suspense> */}
       </div>
       {/* </div> */}
     </>

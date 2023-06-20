@@ -30,7 +30,7 @@ const PostDisplay = (props) => {
             </div>
             <div className={styles.publishDate}>
               <FaRegCalendarAlt size={12} />
-              <h3>{new Date(props.date).toLocaleString()}</h3>
+              <h3>{new Date(props.date).toLocaleString("en-us")}</h3>
             </div>
           </div>
           <div className={styles.postSummary}>

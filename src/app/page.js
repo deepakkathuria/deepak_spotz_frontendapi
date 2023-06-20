@@ -1,3 +1,4 @@
+// "use client";
 import React, { Suspense } from "react";
 import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
@@ -6,6 +7,8 @@ import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const page = async () => {
   try {
@@ -34,22 +37,22 @@ const page = async () => {
         {/* </Suspense> */}
 
         {/* <div className="newsSection"> */}
-          <Suspense fallback={"Loading latest news..."}>
-            <NewsSectionLatest />
-          </Suspense>
+        <Suspense fallback={"Loading latest news..."}>
+          <NewsSectionLatest />
+        </Suspense>
 
-          <Suspense fallback={"Loading"}>
-            <div className={styles.newsSectionDiv}>
-              {data?.map((item) => {
-                return (
-                  <div key={item.ID}>
-                    <NewsSection name={item.name} slug={item.slug} />
-                  </div>
-                );
-              })}
-            </div>
-          </Suspense>
-        </div>
+        <Suspense fallback={"Loading"}>
+          <div className={styles.newsSectionDiv}>
+            {data?.map((item) => {
+              return (
+                <div key={item.ID}>
+                  <NewsSection name={item.name} slug={item.slug} />
+                </div>
+              );
+            })}
+          </div>
+        </Suspense>
+      </div>
       {/* </div> */}
     </>
   );

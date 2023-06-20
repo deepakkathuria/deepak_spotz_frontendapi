@@ -165,7 +165,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
                 <NewsCard
                   title={post.post_title}
                   content={post.post_content}
-                  date={new Date(post?.post_modified).toLocaleString()}
+                  date={new Date(post?.post_modified).toLocaleString("en-us")}
                 />
               </a>
             </div>

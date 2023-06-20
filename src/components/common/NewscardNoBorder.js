@@ -103,7 +103,7 @@ const NewscardNoBorder = async (props) => {
           <div className={styles.cardDate}>
             {/* {new Date(props?.date).toLocaleString()} */}
             {/* {props.date ? new Date(props?.date).toLocaleString() : ""} */}
-            {props.date ? new Date(props.date).toLocaleString() : ""}
+            {props.date ? new Date(props.date).toLocaleString("en-us") : ""}
           </div>
         </div>
       </div>

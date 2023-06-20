@@ -21,7 +21,7 @@ const NewsSection = async (props) => {
     <>
       <div className={styles.newsSectionContainer}>
         <div className={styles.newsSectionHeading}>
-          <h3>{props.name}</h3>
+          <h3>{props?.name}</h3>
           {/* <GiCricketBat color="#000" /> */}
         </div>
         {/* <div className={styles.newsSectionTabs}>
@@ -29,17 +29,17 @@ const NewsSection = async (props) => {
           <ButtonTab title="Fantasy Tips" selected="true" />
         </div> */}
         <div className={styles.newsCardsDiv}>
-          {data?.data?.map((item) => {
+          {data?.data?.map((item, index) => {
             return (
-              <div key={item.id}>
-                <a href={`${props.slug}/${item.post_name}`}>
+              <div key={index}>
+                <a href={`${props?.slug}/${item?.post_name}`}>
                   <NewsCard
-                    title={item.post_title}
-                    date={new Date(item.post_modified).toLocaleString()}
-                    content={item.post_content}
+                    title={item?.post_title}
+                    date={new Date(item?.post_modified).toLocaleString("en-us")}
+                    content={item?.post_content}
                     // slug={item.name}
-                    id={item.ID}
-                    guid={item.guid}
+                    id={item?.ID}
+                    guid={item?.guid}
                   />
                 </a>
               </div>
@@ -47,7 +47,7 @@ const NewsSection = async (props) => {
           })}
         </div>
         <div className={styles.readMoreLabel}>
-          <Link href={`/${props.slug}`}>Read More</Link>
+          <Link href={`/${props?.slug}`}>Read More</Link>
         </div>
       </div>
     </>

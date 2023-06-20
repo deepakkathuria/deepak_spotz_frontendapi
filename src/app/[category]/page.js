@@ -182,7 +182,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
                     id={post.ID}
                     title={post.post_title}
                     content={post.post_content}
-                    date={new Date(post.post_modified_gmt).toLocaleString()}
+                    date={new Date(post.post_modified_gmt).toLocaleString("en-us")}
                     // ...other props
                   />
                 </a>

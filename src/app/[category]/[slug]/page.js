@@ -211,7 +211,7 @@ const page = async ({ params }) => {
                           id={card?.ID}
                           title={card?.post_title}
                           content={`${card?.post_content.substring(0, 40)}...`}
-                          date={new Date(card?.post_modified).toLocaleString()}
+                          date={new Date(card?.post_modified).toLocaleString("en-us")}
                           guid={card?.guid}
                           /* other props */
                         />

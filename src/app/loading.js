@@ -1,4 +1,4 @@
-import LoadingAnimation from "@/components/common/LoadingAnimation";
+// import LoadingAnimation from "@/components/common/LoadingAnimation";
 
 export default function Loading() {
   return (
@@ -11,7 +11,7 @@ export default function Loading() {
         fontSize: "3rem",
       }}
     >
-      <LoadingAnimation />
+      {/* <LoadingAnimation /> */}
     </div>
   );
 }

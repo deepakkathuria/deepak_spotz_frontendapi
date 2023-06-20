@@ -17,7 +17,6 @@ const page = async () => {
       throw new Error(response.statusText);
     }
     var data = await response.json();
-    // Use the data here
   } catch (e) {
     console.log(e.message);
   }
@@ -27,18 +26,10 @@ const page = async () => {
       <OrganisationLd />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
-        {/* <Suspense fallback={"Loading Live Scores..."}> */}
         <div className="scores">
           <LiveScoreSection />
         </div>
-        {/* </Suspense> */}
-
-        {/* <div className="newsSection"> */}
-        {/* <Suspense fallback={"Loading latest news..."}> */}
-        <NewsSectionLatest />
-        {/* </Suspense> */}
-
-        {/* <Suspense fallback={"Loading"}> */}
+        {/* <NewsSectionLatest />
         <div className={styles.newsSectionDiv}>
           {data?.map((item) => {
             return (
@@ -47,10 +38,8 @@ const page = async () => {
               </div>
             );
           })}
-        </div>
-        {/* </Suspense> */}
+        </div> */}
       </div>
-      {/* </div> */}
     </>
   );
 };

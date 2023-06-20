@@ -38,6 +38,7 @@ const ScoreCardPanel = () => {
 
   var settings = {
     // dots: true,
+    arrow: true,
     autoplay: true,
     autoplaySpeed: 4000,
     infinite: true,

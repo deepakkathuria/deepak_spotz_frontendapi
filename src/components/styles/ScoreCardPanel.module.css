@@ -140,4 +140,8 @@
     border-bottom: 1.6px solid #003161;
     /* border: none; */
   }
+
+  .sliderArrow {
+    display: none;
+  }
 }

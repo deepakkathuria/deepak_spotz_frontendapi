@@ -6,6 +6,7 @@
 .scoreCardMatchTypeSelector {
   display: flex;
   gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .matchTimingSelector {
@@ -34,7 +35,7 @@
 .matchTypeSelectorButton {
   background-color: #fff;
   color: #206bb3;
-  border: none;
+  border: none !important;
   font-size: 1.2rem;
   font-weight: bold;
 }
@@ -98,7 +99,12 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    gap: 0;
   }
+  /* .matchTypeSelector {
+    display: flex;
+    gap: 1rem;
+  } */
 
   .matchTypeSelectorButton {
     text-decoration: none;
@@ -108,7 +114,7 @@
     font-size: 1.4rem;
   }
 
-  .matchTypeSelector :nth-child(2) {
+  .matchTypeSelector :nth-child(1) {
     background-color: #003161;
     color: #fff !important;
   }
@@ -121,15 +127,17 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    margin-bottom: 0.2rem;
   }
   .matchTimingSelectorButton {
     width: 100%;
     font-size: 1.4rem;
     text-decoration: none;
     padding-bottom: 0.4rem;
+    margin-bottom: 0;
   }
   .selected {
     border-bottom: 1.6px solid #003161;
+    /* border: none; */
   }
 }

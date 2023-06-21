@@ -79,7 +79,6 @@ const ScoreCardPanel = () => {
     <>
       <div
         className={styles.scoreCardMatchTypeSelector}
-        style={{ marginBottom: "0.7rem" }}
       >
         <div className={styles.matchTimingSelector}>
           <button

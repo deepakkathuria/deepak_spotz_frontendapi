@@ -7,10 +7,10 @@ import styles from "../../app/page.module.css";
 const LiveScoreSection = () => {
   return (
     <>
-      <div className={styles.updateSoundDiv} style={{ marginBottom: "2rem" }}>
+      <div className={styles.updateSoundDiv}>
         <UpdatesSound />
       </div>
-      <div className="scoresDiv" style={{ marginBottom: "4rem" }}>
+      <div className={styles.scoresDiv}>
         <ScoreCardPanel />
       </div>
     </>

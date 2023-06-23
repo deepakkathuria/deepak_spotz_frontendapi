@@ -1,8 +1,9 @@
-"use client"
+"use client";
 import React from "react";
 import UpdatesSound from "./UpdatesSound";
 import ScoreCardPanel from "./ScoreCardPanel";
 import styles from "../../app/page.module.css";
+import dynamic from "next/dynamic";
 
 const LiveScoreSection = () => {
   return (
@@ -17,4 +18,4 @@ const LiveScoreSection = () => {
   );
 };
 
-export default LiveScoreSection;
+export default dynamic(() => Promise.resolve(LiveScoreSection, { ssr: false }));

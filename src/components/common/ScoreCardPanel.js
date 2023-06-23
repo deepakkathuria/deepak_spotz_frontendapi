@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
 const ScoreCardPanel = () => {
   const PrevArrow = ({ onClick }) => (
@@ -77,9 +78,7 @@ const ScoreCardPanel = () => {
   };
   return (
     <>
-      <div
-        className={styles.scoreCardMatchTypeSelector}
-      >
+      <div className={styles.scoreCardMatchTypeSelector}>
         <div className={styles.matchTimingSelector}>
           <button
             className={`${styles.matchTimingSelectorButton} ${styles.selected}`}
@@ -141,4 +140,4 @@ const ScoreCardPanel = () => {
   );
 };
 
-export default ScoreCardPanel;
+export default dynamic(() => Promise.resolve(ScoreCardPanel, { ssr: false }));

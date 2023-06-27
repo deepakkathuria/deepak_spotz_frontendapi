@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const ScoreCardPanel = () => {
   const PrevArrow = ({ onClick }) => (

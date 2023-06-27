@@ -34,6 +34,20 @@ a {
   text-decoration: none;
 }
 
+.container {
+  /* margin-top: 8rem; */
+  margin-left: 12.5rem;
+  margin-right: 12.5rem;
+}
+
+.marginTop4 {
+  margin-top: 4rem;
+}
+
+.marginTop8 {
+  margin-top: 8rem;
+}
+
 @media (max-width: 576px) {
   /* body::-webkit-scrollbar {
     -webkit-appearance: none;

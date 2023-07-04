@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
@@ -49,7 +50,7 @@ const page = async () => {
           <LiveScoreSection />
         </div>
         <NewsSectionLatest />
-        
+
         <div className={styles.newsSectionDiv}>
           {data?.map((item) => {
             return (

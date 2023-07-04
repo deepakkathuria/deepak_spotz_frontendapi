@@ -1,0 +1,34 @@
+.container {
+  width: 62rem;
+  font-size: 1.3rem;
+}
+
+.otherDetails {
+  display: flex;
+  gap: 3rem;
+  text-align: left;
+}
+
+.tableHead {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  /* font-size: 1.3rem; */
+  background-color: #98ccff66;
+}
+
+.name {
+  color: #0c4c8a;
+  text-decoration: underline;
+}
+
+/* .nameDetails {
+  display: flex;
+} */
+
+.tableBody {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border-bottom: 1px solid #0000001a;
+}

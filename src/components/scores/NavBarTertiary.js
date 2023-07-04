@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./NavBarTertiary.module.css";
 import InfoTable from "./InfoTable";
 import Commentary from "../scorePage/Commentary";
+import LiveBlog from "./LiveBlog";
+import ScoreCardLive from "./ScoreCardLive";
 
 const NavBarTertiary = (props) => {
   return (
@@ -22,6 +24,8 @@ const NavBarTertiary = (props) => {
       <div className={styles.containerDetails}>
         {props.activeTab === "commentary" ? <Commentary /> : null}
         {props.activeTab === "live" ? <InfoTable /> : null}
+        {props.activeTab === "live-blog" ? <LiveBlog /> : null}
+        {props.activeTab === "score-card-live" ? <ScoreCardLive /> : null}
       </div>
     </>
   );

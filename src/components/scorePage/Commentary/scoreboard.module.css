@@ -1,0 +1,51 @@
+.container {
+  width: 62rem;
+  /* background-color: aqua; */
+}
+
+.header {
+  display: flex;
+  background-color: #98ccff66;
+  padding: 0.5rem 1rem;
+  /* justify-content: space-between; */
+}
+
+.score,
+.over {
+  width: 100%;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.score span,
+.over span {
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #003161;
+}
+
+.details {
+  display: flex;
+}
+
+.battingTeam {
+  border-right: 1px solid #98ccff66;
+}
+
+.bowlingTeam,
+.battingTeam {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #98ccff33;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.battingPlayer1,
+.battingPlayer2,
+.bowlingPlayer1,
+.bowlingPlayer2 {
+  display: flex;
+  justify-content: space-between;
+}

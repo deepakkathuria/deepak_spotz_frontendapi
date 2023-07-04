@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  width: 62rem;
+  height: 8rem;
+  /* background-color: aqua; */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.scoreOver {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 14rem;
+}
+
+.over {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.run {
+  color: #003161;
+  font-weight: 600;
+}
+
+.text {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.commentaryText {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+.balls {
+  display: flex;
+  gap: 1rem;
+}
+
+.balls h4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  color: #003161;
+  height: 2rem;
+  text-align: center;
+  background-color: #98ccff;
+  border-radius: 50px;
+}

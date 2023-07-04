@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 1.1rem;
+}
+
+.container p {
+  padding: 0.2rem 0;
+  color: #206bb3;
+  font-weight: 600;
+}
+
+.active {
+  border-bottom: 2px solid #003161 !important;
+  color: #003161 !important;
+}

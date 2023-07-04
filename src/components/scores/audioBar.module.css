@@ -1,0 +1,17 @@
+.audioBetButtons {
+  display: flex;
+  gap: 4.8rem;
+  margin-top: 1rem;
+}
+
+.fantasyButtons button {
+  width: 11rem;
+  background-color: #98ccff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.fantasyButtons {
+  display: flex;
+  gap: 1rem;
+}

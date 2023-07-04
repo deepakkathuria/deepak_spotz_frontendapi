@@ -1,7 +1,7 @@
 .scorePanelContainer {
   margin-top: 2rem;
   width: 60%;
-  background-color: aqua;
+  /* background-color: aqua; */
   /* padding: 1rem; */
 }
 
@@ -37,6 +37,59 @@
 }
 
 .nameLogo {
+  display: flex;
+  gap: 0.5rem;
   font-size: 1.4rem;
   font-weight: 600;
+}
+
+.matchPrediction {
+  font-weight: 600;
+}
+
+.liveScoreTable {
+  width: 100%;
+  /* text-align: left; */
+}
+
+.StatsTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.StatsTableHead {
+  background-color: #98ccff;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.tableHead {
+  padding: 0.5rem 1rem;
+  text-align: left;
+  border-spacing: 0;
+}
+
+.tablePlay {
+  width: 40rem;
+}
+
+.tableMetric {
+  padding: 0 1.1rem;
+}
+
+.tableDataBody {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.playerName {
+  font-weight: 600;
+  color: #003161;
+}
+
+.tossResult {
+  padding: 0.5rem 1rem;
+  background-color: #98ccff;
+  font-size: 1.1rem;
 }

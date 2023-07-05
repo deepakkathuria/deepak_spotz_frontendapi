@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React from "react";
 import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
@@ -7,6 +7,7 @@ import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
+import dynamic from "next/dynamic";
 
 const page = async () => {
   // const categories = [
@@ -65,4 +66,5 @@ const page = async () => {
   );
 };
 
-export default page;
+// export default page;
+export default dynamic(() => Promise.resolve(page, { ssr: false }));

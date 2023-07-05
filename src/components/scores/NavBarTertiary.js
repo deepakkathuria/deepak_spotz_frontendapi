@@ -4,6 +4,7 @@ import InfoTable from "./InfoTable";
 import Commentary from "../scorePage/Commentary";
 import LiveBlog from "./LiveBlog";
 import ScoreCardLive from "./ScoreCardLive";
+import Teams from "./Teams";
 
 const NavBarTertiary = (props) => {
   return (
@@ -26,6 +27,7 @@ const NavBarTertiary = (props) => {
         {props.activeTab === "live" ? <InfoTable /> : null}
         {props.activeTab === "live-blog" ? <LiveBlog /> : null}
         {props.activeTab === "score-card-live" ? <ScoreCardLive /> : null}
+        {props.activeTab === "teams" ? <Teams /> : null}
       </div>
     </>
   );

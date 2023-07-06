@@ -2,8 +2,10 @@
 import React from "react";
 import styles from "../styles/ScoreCard.module.css";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 
-const ScoreCard = () => {
+const ScoreCard = (props) => {
+  // console.log(props.live, "propeeee");
   return (
     <>
       <div className={styles.scoreCardContainer}>
@@ -13,7 +15,7 @@ const ScoreCard = () => {
               <div className={styles.matchTitleDiv}>
                 <div className={styles.liveIC}>Live</div>
                 <div className={styles.matchTitle}>
-                  India vs Australia Test match 2023
+                  {props?.title ? props.title : "NA"}
                 </div>
               </div>
 
@@ -28,11 +30,17 @@ const ScoreCard = () => {
                       priority
                     />
                   </div>
-                  <div className={styles.countryName}>India</div>
+                  <div className={styles.countryName}>
+                    {props?.teamAName ? props.teamAName : "NA"}
+                  </div>
                 </div>
                 <div className={styles.countryScore}>
-                  <div className={styles.countryScoreOver}>(18.8)</div>
-                  <div className={styles.countryScoreRuns}>220</div>
+                  <div className={styles.countryScoreOver}>
+                    ({props?.teamAOvers ? props.teamAOvers : "NA"})
+                  </div>
+                  <div className={styles.countryScoreRuns}>
+                    {props?.teamAScores ? props.teamAScores : "NA"}
+                  </div>
                 </div>
               </div>
 
@@ -47,16 +55,27 @@ const ScoreCard = () => {
                       priority
                     />
                   </div>
-                  <div className={styles.countryName}>Sri Lanka</div>
+                  <div className={styles.countryName}>
+                    {props?.teamBName ? props.teamBName : "NA"}
+                  </div>
                 </div>
                 <div className={styles.countryScore}>
-                  <div className={styles.countryScoreOver}>(18.8)</div>
-                  <div className={styles.countryScoreRuns}>220</div>
+                  <div className={styles.countryScoreOver}>
+                    ({props?.teamBOvers ? props.teamBOvers : "NA"})
+                  </div>
+                  <div className={styles.countryScoreRuns}>
+                    {props?.teamBScores ? props.teamBScores : "NA"}
+                  </div>
                 </div>
               </div>
 
               <div className={styles.matchScoreDetails}>
-                <p>India needs 12 runs to win</p>
+                {/* <p>India needs 12 runs to win</p> */}
+                {props?.matchScoreDetails ? (
+                  <p>{props.matchScoreDetails.substring(0, 60)}</p>
+                ) : (
+                  "info not available"
+                )}
               </div>
             </div>
           </a>
@@ -113,4 +132,5 @@ const ScoreCard = () => {
   );
 };
 
-export default ScoreCard;
+// export default ScoreCard;
+export default dynamic(() => Promise.resolve(ScoreCard, { ssr: false }));

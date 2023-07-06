@@ -7,9 +7,13 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-import Link from "next/link";
+import { getLiveScoreData } from "@/lib/PostDataFetch";
 
-const ScoreCardPanel = () => {
+const ScoreCardPanel = async () => {
+  const data = await getLiveScoreData();
+
+  // console.log(data[0].data[0], "liveeeee");
+
   const PrevArrow = ({ onClick }) => (
     <div
       className={`${styles.sliderArrow} ${styles.prevArrow}`}
@@ -106,7 +110,24 @@ const ScoreCardPanel = () => {
       <div className={styles.carouselContainer}>
         {/* <h2> Responsive </h2> */}
         <Slider {...settings}>
-          <div>
+          {data[0].data.map((match, index) => {
+            return (
+              <ScoreCard
+                key={index}
+                title={match.title ? match.title : "no title"}
+                teamAName={match.teama.name}
+                teamBName={match.teamb.name}
+                teamAScores={match.teama.scores}
+                teamBScores={match.teamb.scores}
+                teamAOvers={match.teama.overs}
+                teamBOvers={match.teamb.overs}
+                matchScoreDetails={match.live ? match.live : "nothing here"}
+              />
+            );
+          })}
+          {/* <div>
+          </div> */}
+          {/* <div>
             <ScoreCard />
           </div>
           <div>
@@ -126,10 +147,7 @@ const ScoreCardPanel = () => {
           </div>
           <div>
             <ScoreCard />
-          </div>
-          <div>
-            <ScoreCard />
-          </div>
+          </div> */}
         </Slider>
       </div>
       {/* <div className={styles.scoreCardPanelContainer}>

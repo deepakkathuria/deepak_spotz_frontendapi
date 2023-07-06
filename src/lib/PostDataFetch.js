@@ -135,3 +135,21 @@ export const getPostThumbById = async (ID) => {
     return null; // Or any other appropriate value to indicate an error
   }
 };
+
+export const getLiveScoreData = async () => {
+  try {
+    const response = await fetch(`${base_url}/livescore`, {
+      next: { revalidate: 5 },
+    });
+
+    if (!response.ok) {
+      throw new Error("Error retrieving LiveScore data");
+    }
+
+    const liveScoreData = await response.json();
+    return liveScoreData;
+  } catch (err) {
+    console.error(err);
+    return null; // Or any other appropriate value to indicate an error
+  }
+};

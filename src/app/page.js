@@ -1,5 +1,5 @@
 // "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
 import NewsSectionLatest from "../components/common/NewsSectionLatest";
@@ -48,7 +48,9 @@ const page = async () => {
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
         <div className="scores">
-          <LiveScoreSection />
+          <Suspense fallback="Loading Live Scores">
+            <LiveScoreSection />
+          </Suspense>
         </div>
         <NewsSectionLatest />
 

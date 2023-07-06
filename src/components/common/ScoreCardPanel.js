@@ -121,6 +121,8 @@ const ScoreCardPanel = async () => {
                 teamBScores={match.teamb.scores}
                 teamAOvers={match.teama.overs}
                 teamBOvers={match.teamb.overs}
+                teamALogo={match.teama.logo_url}
+                teamBLogo={match.teamb.logo_url}
                 matchScoreDetails={match.live ? match.live : "nothing here"}
               />
             );

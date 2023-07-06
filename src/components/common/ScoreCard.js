@@ -23,7 +23,11 @@ const ScoreCard = (props) => {
                 <div className={styles.countryNameIC}>
                   <div className="countryIC">
                     <Image
-                      src="https://thumbs.dreamstime.com/b/india-paper-flag-patriotic-background-national-138241478.jpg"
+                      src={
+                        props?.teamALogo
+                          ? props.teamALogo
+                          : "/gaurav/flag.svg"
+                      }
                       alt="country name"
                       width={18}
                       height={12}
@@ -48,7 +52,11 @@ const ScoreCard = (props) => {
                 <div className={styles.countryNameIC}>
                   <div className="countryIC">
                     <Image
-                      src="https://thumbs.dreamstime.com/b/india-paper-flag-patriotic-background-national-138241478.jpg"
+                      src={
+                        props?.teamBLogo
+                          ? props.teamBLogo
+                          : "/gaurav/flag.svg"
+                      }
                       alt="country name"
                       width={18}
                       height={12}

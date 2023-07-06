@@ -10,6 +10,7 @@ const nextConfig = {
       "feetfirst.org",
       "thumbs.dreamstime.com",
       "bengali.sportzwiki.com",
+      "images.entitysport.com",
     ],
   },
   // ...

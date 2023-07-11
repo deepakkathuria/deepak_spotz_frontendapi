@@ -15,6 +15,9 @@
 }
 
 .countryDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   margin-top: 0.5rem;
 }
 
@@ -45,6 +48,8 @@
 
 .matchPrediction {
   font-weight: 600;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .liveScoreTable {
@@ -58,7 +63,7 @@
 }
 
 .StatsTableHead {
-  background-color: #98ccff;
+  background-color: #d6ebff;
   font-weight: 600;
   font-size: 1.3rem;
 }
@@ -90,6 +95,36 @@
 
 .tossResult {
   padding: 0.5rem 1rem;
-  background-color: #98ccff;
+  background-color: #d6ebff;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
   font-size: 1.1rem;
+}
+
+@media (max-width: 576px) {
+  .scorePanelContainer {
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+  .liveIC {
+    margin-left: 1rem;
+  }
+
+  .countryDetails {
+    display: flex;
+    flex-direction: column;
+    /* gap: 0.5rem; */
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .matchPrediction {
+    margin-left: 1rem;
+  }
+
+  /* .matchPrediction {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  } */
 }

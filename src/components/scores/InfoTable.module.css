@@ -11,3 +11,19 @@
   width: 20rem;
   opacity: 70%;
 }
+
+@media (max-width: 576px) {
+
+  .container{
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  .row {
+    display: flex;
+    box-shadow: 0px 2px 2px 0px #0000000d;
+    padding: 0.5rem 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    width: 100%;
+  }
+}

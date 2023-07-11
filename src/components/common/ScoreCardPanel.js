@@ -12,8 +12,6 @@ import { getLiveScoreData } from "@/lib/PostDataFetch";
 const ScoreCardPanel = async () => {
   const data = await getLiveScoreData();
 
-  // console.log(data[0].data[0], "liveeeee");
-
   const PrevArrow = ({ onClick }) => (
     <div
       className={`${styles.sliderArrow} ${styles.prevArrow}`}
@@ -108,7 +106,6 @@ const ScoreCardPanel = async () => {
         </div>
       </div>
       <div className={styles.carouselContainer}>
-        {/* <h2> Responsive </h2> */}
         <Slider {...settings}>
           {data[0].data.map((match, index) => {
             return (
@@ -127,36 +124,8 @@ const ScoreCardPanel = async () => {
               />
             );
           })}
-          {/* <div>
-          </div> */}
-          {/* <div>
-            <ScoreCard />
-          </div>
-          <div>
-            <ScoreCard />
-          </div>
-          <div>
-            <ScoreCard />
-          </div>
-          <div>
-            <ScoreCard />
-          </div>
-          <div>
-            <ScoreCard />
-          </div>
-          <div>
-            <ScoreCard />
-          </div>
-          <div>
-            <ScoreCard />
-          </div> */}
         </Slider>
       </div>
-      {/* <div className={styles.scoreCardPanelContainer}>
-        <ScoreCard />
-        <ScoreCard />
-        <ScoreCard />
-      </div> */}
     </>
   );
 };

@@ -60,7 +60,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
     `${base_url}/getpostsbycategoryname?name=${category}&page=${currentPage}&limit=${dataPerPage}`
   );
 
-  console.log(data.data, "category data.data");
+  // console.log(data.data, "category data.data");
 
   // totalData();
 
@@ -182,7 +182,9 @@ const CategoryPosts = async ({ params, searchParams }) => {
                     id={post.ID}
                     title={post.post_title}
                     content={post.post_content}
-                    date={new Date(post.post_modified_gmt).toLocaleString("en-us")}
+                    date={new Date(post.post_modified_gmt).toLocaleString(
+                      "en-us"
+                    )}
                     // ...other props
                   />
                 </a>

@@ -5,12 +5,11 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 
 const ScoreCard = (props) => {
-  // console.log(props.live, "propeeee");
   return (
     <>
       <div className={styles.scoreCardContainer}>
         <div className={styles.scoreCardInner}>
-          <a href="/matchcenter/cricket/scores/live">
+          <a href="/cricket-series/53350/eng-vs-aus-1st-test-the-ashes-2023/">
             <div className={styles.scoreMain}>
               <div className={styles.matchTitleDiv}>
                 <div className={styles.liveIC}>Live</div>
@@ -24,9 +23,7 @@ const ScoreCard = (props) => {
                   <div className="countryIC">
                     <Image
                       src={
-                        props?.teamALogo
-                          ? props.teamALogo
-                          : "/gaurav/flag.svg"
+                        props?.teamALogo ? props.teamALogo : "/gaurav/flag.svg"
                       }
                       alt="country name"
                       width={18}
@@ -53,9 +50,7 @@ const ScoreCard = (props) => {
                   <div className="countryIC">
                     <Image
                       src={
-                        props?.teamBLogo
-                          ? props.teamBLogo
-                          : "/gaurav/flag.svg"
+                        props?.teamBLogo ? props.teamBLogo : "/gaurav/flag.svg"
                       }
                       alt="country name"
                       width={18}

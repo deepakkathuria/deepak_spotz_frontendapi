@@ -23,3 +23,22 @@
 .selected {
   border-bottom: 1.5px solid #003161;
 }
+
+@media (max-width: 576px) {
+  .secondaryNavBar {
+    padding: 0;
+  }
+  .secondaryNavBar ul {
+    gap: 0.6rem;
+    white-space: nowrap;
+    overflow: scroll;
+    padding: 0 !important;
+    padding-bottom: 0; /* Add this line */
+  }
+  .secondaryNavBar {
+    margin-top: 5rem;
+  }
+  .secondaryNavBar ul li {
+    padding: 0.6rem 0.5rem;
+  }
+}

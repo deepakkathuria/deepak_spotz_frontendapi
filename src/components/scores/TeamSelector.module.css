@@ -3,6 +3,7 @@
   border: 1px solid #0000001a;
   font-size: 1.4rem;
   font-weight: 600;
+  margin-bottom: 1rem;
 }
 
 .selected {
@@ -13,4 +14,10 @@
 .teamA,
 .teamB {
   padding: 0.5rem;
+}
+
+@media (max-width: 576px) {
+  .container {
+    width: 100%;
+  }
 }

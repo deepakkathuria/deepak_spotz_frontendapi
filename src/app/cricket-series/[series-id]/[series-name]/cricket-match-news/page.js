@@ -6,6 +6,7 @@ import NavBarTertiary from "../../../../../components/scores/NavBarTertiary";
 import Link from "next/link";
 import styles from "../../../../../components/scores/NavBarTertiary.module.css";
 import ScoreCardLive from "@/components/scores/ScoreCardLive";
+import UpdatesSound from "@/components/common/UpdatesSound";
 
 const page = ({ params }) => {
   const { "series-id": seriesId } = params;
@@ -16,6 +17,9 @@ const page = ({ params }) => {
     <>
       <div className="container marginTop4">
         <NavBarSec />
+        <div style={{ marginTop: "2rem" }} className="soundUpdateDiv">
+          <UpdatesSound />
+        </div>
         <ScorePanel />
         <AudioBar />
         {/* <NavBarTertiary activeTab="score-card-live" /> */}

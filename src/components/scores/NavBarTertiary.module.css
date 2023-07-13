@@ -16,6 +16,77 @@
   color: #003161 !important;
 }
 
+.commentaryStatBox {
+  width: 62rem;
+}
+
+.overScore {
+  display: flex;
+  background-color: #d6ebff;
+  padding: 0.5rem 0.5rem;
+}
+
+.overRuns,
+.score {
+  display: flex;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.over,
+.outOfRuns {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.runs,
+.runRate {
+  /* font-weight: 600; */
+  font-size: 1.2rem;
+  color: #206bb3;
+}
+
+.playerBox {
+  display: flex;
+  background-color: #eaf5ff;
+  padding: 0.5rem 0.5rem;
+}
+
+.playerBatting,
+.playerBowling {
+  /* display: flex; */
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #0f1010;
+}
+
+.playerBatting1,
+.playerBatting2 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.playerBowling2,
+.playerBowling1 {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .playerScore,
+.playerName {
+  width: 100%;
+} */
+
+.playerBatting {
+  padding-right: 0.5rem;
+}
+
+.playerBowling {
+  padding-left: 0.5rem;
+}
+
 @media (max-width: 576px) {
   .container {
     white-space: nowrap;

@@ -6,6 +6,7 @@ import NavBarTertiary from "../../../../components/scores/NavBarTertiary";
 import InfoTable from "@/components/scores/InfoTable";
 import Link from "next/link";
 import styles from "../../../../components/scores/NavBarTertiary.module.css";
+import UpdatesSound from "@/components/common/UpdatesSound";
 
 const page = ({ params }) => {
   // const {`series-id`} = params
@@ -20,6 +21,9 @@ const page = ({ params }) => {
     <>
       <div className="container marginTop4">
         <NavBarSec />
+        <div style={{ marginTop: "2rem" }} className="soundUpdateDiv">
+          <UpdatesSound />
+        </div>
         <ScorePanel />
         <AudioBar />
         <div className="nav">

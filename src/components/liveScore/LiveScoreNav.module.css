@@ -16,3 +16,12 @@
   color: #003161;
   text-decoration: underline;
 }
+
+/* @media (max-width: 576) {
+  .liveScoreNavUl,
+  .liveScoreNavContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+} */

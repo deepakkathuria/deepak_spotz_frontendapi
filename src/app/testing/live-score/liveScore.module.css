@@ -14,3 +14,10 @@
   flex-wrap: wrap;
   gap: 1.5rem;
 }
+
+@media (max-width: 576px) {
+  .liveScorePage {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}

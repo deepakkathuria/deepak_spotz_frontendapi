@@ -9,3 +9,10 @@
   gap: 1rem;
   margin-bottom: 4rem;
 }
+
+@media (max-width: 576px) {
+  .newsPage {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}

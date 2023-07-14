@@ -9,13 +9,17 @@ const page = () => {
     <>
       <div className="container marginTop4">
         <NavBarSec />
-        <div style={{ marginTop: "2rem" }} className="audio">
+        <div
+          style={{ marginTop: "2rem", marginLeft: "1rem", marginRight: "1rem" }}
+          className="audio"
+        >
           <UpdatesSound />
         </div>
         <div style={{ marginTop: "2rem" }} className="nav">
           <TeamsPageNav />
         </div>
         <div style={{ marginTop: "2rem" }} className="table">
+          <TeamsTable />
           <TeamsTable />
         </div>
       </div>

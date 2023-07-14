@@ -11,3 +11,10 @@
   color: #003161;
   text-decoration: underline;
 }
+
+@media (max-width: 576px) {
+  .navSeriesUL {
+    display: flex;
+    justify-content: space-around;
+  }
+}

@@ -11,3 +11,13 @@
   color: #003161;
   text-decoration: underline;
 }
+
+@media (max-width: 576px) {
+  .TeamsPageNavUl li {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-self: center;
+    justify-content: center;
+  }
+}

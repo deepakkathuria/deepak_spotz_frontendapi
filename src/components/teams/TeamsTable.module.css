@@ -39,3 +39,9 @@
   font-weight: 600;
   line-height: normal;
 }
+
+@media (max-width: 576px) {
+  .TeamsTableMain {
+    width: 100%;
+  }
+}

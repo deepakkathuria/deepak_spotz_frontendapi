@@ -24,28 +24,31 @@ const page = async () => {
     <>
       <div className="container marginTop4">
         <NavBarSec />
-        <div style={{ marginTop: "2rem" }} className="updates">
-          <UpdatesSound />
-        </div>
-        <div className={styles.news}>
-          <h1>CRICKET NEWS</h1>
-          <div className={styles.newsContainer}>
-            {data?.map((item, index) => {
-              return (
-                <div key={index}>
-                  {/* <a href={`${props?.slug}/${item?.post_name}`}> */}
-                  <NewsCard
-                    title={item?.post_title}
-                    date={new Date(item?.post_modified).toLocaleString("en-us")}
-                    content={item?.post_content}
-                    // slug={item.name}
-                    id={item?.ID}
-                    guid={item?.guid}
-                  />
-                  {/* </a> */}
-                </div>
-              );
-            })}
+        <div className={styles.newsPage}>
+          <div style={{ marginTop: "2rem" }} className="updates">
+            <UpdatesSound />
+          </div>
+          <div className={styles.news}>
+            <h1>CRICKET NEWS</h1>
+            <div className={styles.newsContainer}>
+              {data?.map((item, index) => {
+                return (
+                  <div key={index}>
+                    {/* <a href={`${props?.slug}/${item?.post_name}`}> */}
+                    <NewsCard
+                      title={item?.post_title}
+                      date={new Date(item?.post_modified).toLocaleString(
+                        "en-us"
+                      )}
+                      content={item?.post_content}
+                      // slug={item.name}
+                      id={item?.ID}
+                      guid={item?.guid}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import React from "react";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import UpdatesSound from "@/components/common/UpdatesSound";
+import NavSeries from "@/components/series/NavSeries";
+import SeriesList from "@/components/series/SeriesList";
 
 const page = () => {
   return (
@@ -9,6 +11,20 @@ const page = () => {
         <NavBarSec />
         <div style={{ marginTop: "2rem" }} className="soundUpdateDiv">
           <UpdatesSound />
+          <div style={{ marginTop: "1.5rem" }} className="navBarSeriesInside">
+            <NavSeries />
+          </div>
+          <div style={{ marginTop: "1rem" }} className="seriesListDiv">
+            <SeriesList />
+          </div>
+
+          <div style={{ marginTop: "1rem" }} className="seriesListDiv">
+            <SeriesList />
+          </div>
+
+          <div style={{ marginTop: "1rem" }} className="seriesListDiv">
+            <SeriesList />
+          </div>
         </div>
       </div>
     </>

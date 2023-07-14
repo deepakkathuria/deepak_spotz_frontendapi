@@ -1,0 +1,11 @@
+.news {
+  margin-top: 2rem;
+  /* display: flex; */
+}
+
+.newsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}

@@ -1,0 +1,16 @@
+.liveScoreSectionDiv {
+  margin-top: 2rem;
+}
+
+.liveScoreSectionDivHeading {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #003161;
+}
+
+.scoresPanel {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}

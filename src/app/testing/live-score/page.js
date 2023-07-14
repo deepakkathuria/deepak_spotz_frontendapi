@@ -1,9 +1,49 @@
-import React from 'react'
+import React from "react";
+import UpdatesSound from "@/components/common/UpdatesSound";
+import NavBarSec from "@/components/scorePage/NavBarSec";
+import LiveScoreNav from "@/components/liveScore/LiveScoreNav";
+import styles from "./liveScore.module.css";
+import ScoreCard from "@/components/common/ScoreCard";
 
-const page = () => {
+import { getLiveScoreData } from "@/lib/PostDataFetch";
+
+const page = async () => {
+  const data = await getLiveScoreData();
   return (
-    <div>page</div>
-  )
-}
+    <>
+      <div className="container marginTop4">
+        <NavBarSec />
+        <div style={{ marginTop: "2rem" }} className="updateSoundDiv">
+          <UpdatesSound />
+        </div>
+        <LiveScoreNav />
 
-export default page
+        <div className={styles.liveScoreSectionDiv}>
+          <p className={styles.liveScoreSectionDivHeading}>Sri Lanka Tour of india 2022</p>
+
+          <div className={styles.scoresPanel}>
+            {data[0].data.map((match, index) => {
+              return (
+                <ScoreCard
+                  key={index}
+                  title={match.title ? match.title : "no title"}
+                  teamAName={match.teama.name}
+                  teamBName={match.teamb.name}
+                  teamAScores={match.teama.scores}
+                  teamBScores={match.teamb.scores}
+                  teamAOvers={match.teama.overs}
+                  teamBOvers={match.teamb.overs}
+                  teamALogo={match.teama.logo_url}
+                  teamBLogo={match.teamb.logo_url}
+                  matchScoreDetails={match.live ? match.live : "nothing here"}
+                />
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default page;

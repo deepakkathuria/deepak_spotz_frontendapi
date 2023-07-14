@@ -13,6 +13,7 @@ const page = async () => {
   try {
     const response = await fetch(
       `${base_url}/getcategoriesbyname?category1=cricket&category2=news&category3=football`,
+      // `https://demo.sportzwiki.com/api/v1/getcategoriesbyname?category1=cricket&category2=news&category3=football`,
       { next: { revalidate: 5 } }
     );
     if (!response.ok) {
@@ -30,7 +31,7 @@ const page = async () => {
       <div className={styles.homeContainer}>
         <div className="scores">
           {/* <Suspense fallback="Loading Live Scores"> */}
-            <LiveScoreSection />
+          <LiveScoreSection />
           {/* </Suspense> */}
         </div>
         <NewsSectionLatest />

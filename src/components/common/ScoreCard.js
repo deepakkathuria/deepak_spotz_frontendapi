@@ -14,7 +14,7 @@ const ScoreCard = (props) => {
               <div className={styles.matchTitleDiv}>
                 <div className={styles.liveIC}>Live</div>
                 <div className={styles.matchTitle}>
-                  {props?.title ? props.title : "NA"}
+                  {props?.title ? props.title.substring(0, 60) : "NA"}
                 </div>
               </div>
 
@@ -32,7 +32,7 @@ const ScoreCard = (props) => {
                     />
                   </div>
                   <div className={styles.countryName}>
-                    {props?.teamAName ? props.teamAName : "NA"}
+                    {props?.teamAName ? props.teamAName.substring(0, 60) : "NA"}
                   </div>
                 </div>
                 <div className={styles.countryScore}>
@@ -40,7 +40,9 @@ const ScoreCard = (props) => {
                     ({props?.teamAOvers ? props.teamAOvers : "NA"})
                   </div>
                   <div className={styles.countryScoreRuns}>
-                    {props?.teamAScores ? props.teamAScores : "NA"}
+                    {props?.teamAScores
+                      ? props.teamAScores.substring(0, 13)
+                      : "NA"}
                   </div>
                 </div>
               </div>
@@ -59,23 +61,28 @@ const ScoreCard = (props) => {
                     />
                   </div>
                   <div className={styles.countryName}>
-                    {props?.teamBName ? props.teamBName : "NA"}
+                    {props?.teamBName ? props.teamBName.substring(0, 60) : "NA"}
                   </div>
                 </div>
                 <div className={styles.countryScore}>
                   <div className={styles.countryScoreOver}>
-                    ({props?.teamBOvers ? props.teamBOvers : "NA"})
+                    (
+                    {props?.teamBOvers
+                      ? props.teamBOvers.substring(0, 13)
+                      : "NA"}
+                    )
                   </div>
                   <div className={styles.countryScoreRuns}>
-                    {props?.teamBScores ? props.teamBScores : "NA"}
+                    {props?.teamBScores
+                      ? props.teamBScores.substring(0, 12)
+                      : "NA"}
                   </div>
                 </div>
               </div>
 
               <div className={styles.matchScoreDetails}>
-                {/* <p>India needs 12 runs to win</p> */}
                 {props?.matchScoreDetails ? (
-                  <p>{props.matchScoreDetails.substring(0, 60)}</p>
+                  <p>{props.matchScoreDetails.substring(0, 40)}</p>
                 ) : (
                   "info not available"
                 )}

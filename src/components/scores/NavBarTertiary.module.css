@@ -94,4 +94,14 @@
     margin-left: 1rem;
     margin-right: 1rem;
   }
+
+  .soundUpdateDiv {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .commentaryStatBox {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 }

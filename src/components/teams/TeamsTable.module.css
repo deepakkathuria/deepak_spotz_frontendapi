@@ -1,0 +1,41 @@
+.TeamsTableMain {
+  width: 62rem;
+  border-collapse: collapse;
+}
+
+.TeamsTableHead {
+  display: flex;
+  padding: 0.5rem;
+  background-color: #d6ebff;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.TeamsTableBodyTr {
+  display: flex;
+  padding: 0.5rem;
+  font-size: 1.3rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.TeamsTableBodyTd {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  background-color: black;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 60px;
+}
+
+.name {
+  color: #003161;
+  /* font-size: 1rem; */
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}

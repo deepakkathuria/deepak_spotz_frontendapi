@@ -18,7 +18,7 @@ const page = ({ params }) => {
     <>
       <div className="container marginTop4">
         <NavBarSec />
-        <div style={{ marginTop: "2rem" }} className="soundUpdateDiv">
+        <div style={{ marginTop: "2rem" }} className={styles.soundUpdateDiv}>
           <UpdatesSound />
         </div>
         <ScorePanel />

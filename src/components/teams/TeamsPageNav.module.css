@@ -1,0 +1,13 @@
+.TeamsPageNavUl {
+  display: flex;
+  gap: 0.6rem;
+  list-style-type: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #206bb3;
+}
+
+.active {
+  color: #003161;
+  text-decoration: underline;
+}

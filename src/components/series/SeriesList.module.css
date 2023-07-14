@@ -1,0 +1,24 @@
+.seriesListTable {
+  width: 62rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.seriesListHead {
+  background-color: #d6ebff;
+  padding: 0.5rem;
+}
+
+.seriesListBodyRow {
+  display: flex;
+  padding: 0.5rem;
+  box-shadow: -1.5px 1.5px 2px 0px #0000000d;
+  width: 100%;
+  color: #0c4c8a;
+}
+
+.seriesListBodyData {
+  width: 100%;
+}

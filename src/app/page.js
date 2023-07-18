@@ -29,9 +29,9 @@ const page = async () => {
       <OrganisationLd />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
-        <div className="scores">
+        {/* <div className="scores">
           <LiveScoreSection />
-        </div>
+        </div> */}
         <NewsSectionLatest />
 
         <div className={styles.newsSectionDiv}>

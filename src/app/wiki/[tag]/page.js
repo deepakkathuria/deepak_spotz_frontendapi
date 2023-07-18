@@ -59,6 +59,8 @@ const CategoryPosts = async ({ params, searchParams }) => {
     `${base_url}getpostbytagslug?slug=cricket&page=1&limit=100`
   );
 
+  console.log(data,'posteeeee');
+
   let pageNumbers = [];
   const start = Math.max(currentPage - 4, 1);
   const end = Math.min(currentPage + 4, totalPages);

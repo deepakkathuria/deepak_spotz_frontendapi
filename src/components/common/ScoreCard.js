@@ -1,15 +1,18 @@
-"use client";
+// "use client";
 import React from "react";
 import styles from "../styles/ScoreCard.module.css";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import slugify from "slugify";
 
 const ScoreCard = (props) => {
+  const matchNameUrl = slugify(props.title, { remove: /[*+~.()'"!:@]/g });
+  // console.log(matchNameUrl,'shdvhmfvkhgvskgvkgv');
   return (
     <>
       <div className={styles.scoreCardContainer}>
         <div className={styles.scoreCardInner}>
-          <a href="/cricket-series/53350/eng-vs-aus-1st-test-the-ashes-2023/">
+          <a href={`/cricket-series/${props.matchID}/${matchNameUrl}/`}>
             <div className={styles.scoreMain}>
               <div className={styles.matchTitleDiv}>
                 <div className={styles.liveIC}>Live</div>
@@ -142,5 +145,5 @@ const ScoreCard = (props) => {
   );
 };
 
-// export default ScoreCard;
-export default dynamic(() => Promise.resolve(ScoreCard, { ssr: false }));
+export default ScoreCard;
+// export default dynamic(() => Promise.resolve(ScoreCard, { ssr: false }));

@@ -1,5 +1,5 @@
-"use client";
-import React, { useEffect } from "react";
+// "use client";
+import React from "react";
 import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;

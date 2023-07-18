@@ -1,5 +1,5 @@
-"use client";
-import React, { useState, useEffect } from "react";
+// "use client";
+import React from "react";
 import styles from "../styles/NewsSection.module.css";
 import NewsCardLatest from "./NewsCardLatest";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;

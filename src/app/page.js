@@ -30,9 +30,7 @@ const page = async () => {
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
         <div className="scores">
-          {/* <Suspense fallback="Loading Live Scores"> */}
           <LiveScoreSection />
-          {/* </Suspense> */}
         </div>
         <NewsSectionLatest />
 

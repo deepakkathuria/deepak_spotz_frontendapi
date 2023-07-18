@@ -138,9 +138,7 @@ export const getPostThumbById = async (ID) => {
 
 export const getLiveScoreData = async () => {
   try {
-    const response = await fetch(`${base_url}/livescore`, {
-      next: { revalidate: 5 },
-    });
+    const response = await fetch(`${base_url}/livescore`);
 
     if (!response.ok) {
       throw new Error("Error retrieving LiveScore data");
@@ -150,6 +148,6 @@ export const getLiveScoreData = async () => {
     return liveScoreData;
   } catch (err) {
     console.error(err);
-    return null; // Or any other appropriate value to indicate an error
+    return null;
   }
 };

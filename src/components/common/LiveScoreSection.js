@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import React from "react";
 import UpdatesSound from "./UpdatesSound";
 import ScoreCardPanel from "./ScoreCardPanel";
@@ -18,4 +18,5 @@ const LiveScoreSection = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(LiveScoreSection, { ssr: false }));
+export default LiveScoreSection;
+// export default dynamic(() => Promise.resolve(LiveScoreSection, { ssr: false }));

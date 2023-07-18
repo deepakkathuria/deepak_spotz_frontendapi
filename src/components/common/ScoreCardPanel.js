@@ -8,9 +8,18 @@ import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getLiveScoreData } from "@/lib/PostDataFetch";
+import Link from "next/link";
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+// import ScorePanel from "../scorePage/ScorePanel";
+
+const getData = async () => {
+  const res = await fetch(`${base_url}/livescore`, { cache: "no-store" });
+  return await res.json();
+};
 
 const ScoreCardPanel = async () => {
-  const data = await getLiveScoreData();
+  // console.log(data, "dataaaaaa");
+  const data = await getData();
 
   const PrevArrow = ({ onClick }) => (
     <div
@@ -107,20 +116,27 @@ const ScoreCardPanel = async () => {
       </div>
       <div className={styles.carouselContainer}>
         <Slider {...settings}>
-          {data[0].data.map((match, index) => {
+          {data?.map((match, index) => {
+            // console.log("Match title", match.title);
             return (
+              // <h1>djnkdf</h1>
               <ScoreCard
                 key={index}
-                title={match.title ? match.title : "no title"}
-                teamAName={match.teama.name}
-                teamBName={match.teamb.name}
-                teamAScores={match.teama.scores}
-                teamBScores={match.teamb.scores}
-                teamAOvers={match.teama.overs}
-                teamBOvers={match.teamb.overs}
-                teamALogo={match.teama.logo_url}
-                teamBLogo={match.teamb.logo_url}
-                matchScoreDetails={match.live ? match.live : "nothing here"}
+                matchID={match?.match_id}
+                title={match?.title ? match.title : "no title"}
+                teamAName={match?.team_a_name ? team_a_name : "NA"}
+                teamBName={match?.team_b_name}
+                teamAScores={match?.team_a_scores}
+                teamBScores={match?.team_b_scores}
+                teamAOvers={match?.team_a_overs}
+                teamBOvers={match?.team_b_overs}
+                teamALogo={match?.team_a_logo_url}
+                teamBLogo={match?.team_b_logo_url}
+                matchScoreDetails={
+                  match?.status_note
+                    ? match.status_note
+                    : "no status information"
+                }
               />
             );
           })}
@@ -130,4 +146,5 @@ const ScoreCardPanel = async () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(ScoreCardPanel, { ssr: false }));
+export default ScoreCardPanel;
+// export default dynamic(() => Promise.resolve(ScoreCardPanel, { ssr: false }));

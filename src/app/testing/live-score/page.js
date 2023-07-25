@@ -1,63 +1,108 @@
-// import React from "react";
-// import UpdatesSound from "@/components/common/UpdatesSound";
-// import NavBarSec from "@/components/scorePage/NavBarSec";
-// import LiveScoreNav from "@/components/liveScore/LiveScoreNav";
-// import styles from "./liveScore.module.css";
-// import ScoreCard from "@/components/common/ScoreCard";
+"use client";
+import React from "react";
+import UpdatesSound from "@/components/common/UpdatesSound";
+import NavBarSec from "@/components/scorePage/NavBarSec";
+import LiveScoreNav from "@/components/liveScore/LiveScoreNav";
+import styles from "./liveScore.module.css";
+import ScoreCard from "@/components/common/ScoreCard";
+import useSWR from "swr";
+import { mutate } from "swr";
 
-// import { getLiveScoreData } from "@/lib/PostDataFetch";
+const fetcher = async (url) => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("An error occurred while fetching the data.");
+  }
+  return response.json();
+};
 
-// const page = async () => {
-//   const data = await getLiveScoreData();
-//   return (
-//     <>
-//       <div className="container marginTop4">
-//         <NavBarSec />
-//         <div className={styles.liveScorePage}>
-//           <div style={{ marginTop: "2rem" }} className={styles.updateSoundDiv}>
-//             <UpdatesSound />
-//           </div>
-//           <LiveScoreNav />
+const Page = async () => {
+  const {
+    data: product,
+    error,
+    isLoading,
+  } = useSWR(
+    `https://sea-turtle-app-xmphx.ondigitalocean.app/api/v1/livescore`,
+    fetcher,
+    {
+      refreshInterval: 10000,
+    }
+  );
 
-//           <div className={styles.liveScoreSectionDiv}>
-//             <p className={styles.liveScoreSectionDivHeading}>
-//               Sri Lanka Tour of india 2022
-//             </p>
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-//             <div className={styles.scoresPanel}>
-//               {data[0].data.map((match, index) => {
-//                 return (
-//                   <ScoreCard
-//                     key={index}
-//                     title={match.title ? match.title : "no title"}
-//                     teamAName={match.teama.name}
-//                     teamBName={match.teamb.name}
-//                     teamAScores={match.teama.scores}
-//                     teamBScores={match.teamb.scores}
-//                     teamAOvers={match.teama.overs}
-//                     teamBOvers={match.teamb.overs}
-//                     teamALogo={match.teama.logo_url}
-//                     teamBLogo={match.teamb.logo_url}
-//                     matchScoreDetails={match.live ? match.live : "nothing here"}
-//                   />
-//                 );
-//               })}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
-// export default page;
+  const optimisticData = product.map((match, index) => {
+    match.teamAScores += 1;
+    return match;
+  });
 
-import React from 'react'
+  // Update the UI with the optimistic data
+  const updateUI = () => {
+    const newProduct = optimisticData;
+    // Update the state with the new data
+    mutate(
+      `https://sea-turtle-app-xmphx.ondigitalocean.app/api/v1/livescore`,
+      newProduct,
+      {
+        // shouldFetch: true,
+        // revalidate:1
+        // refreshInterval: 1000,
+      }
+    );
+  };
 
-const page = () => {
+  // setTimeout(updateUI, 100);
+
   return (
-    <div>page</div>
-  )
-}
+    <>
+      <div className="container marginTop4">
+        <NavBarSec />
+        <div className={styles.liveScorePage}>
+          <div style={{ marginTop: "2rem" }} className={styles.updateSoundDiv}>
+            <UpdatesSound />
+          </div>
+          <LiveScoreNav />
 
-export default page
+          <div className={styles.liveScoreSectionDiv}>
+            <p className={styles.liveScoreSectionDivHeading}>
+              Sri Lanka Tour of india 2022
+            </p>
+
+            <div className={styles.scoresPanel}>
+              {product?.map((match, index) => {
+                return (
+                  <ScoreCard
+                    key={index}
+                    matchID={match?.match_id}
+                    title={match?.short_title ? match.short_title : "no title"}
+                    teamAName={match?.teama_name ? match.teama_name : "NA"}
+                    teamBName={match?.teamb_name}
+                    teamAScores={match?.teama_scores}
+                    teamBScores={match?.teamb_scores}
+                    teamAOvers={match?.teama_overs}
+                    teamBOvers={match?.teamb_overs}
+                    teamALogo={match?.teama_logo_url}
+                    teamBLogo={match?.teamb_logo_url}
+                    matchScoreDetails={
+                      match?.status_note
+                        ? match.status_note
+                        : "no status information"
+                    }
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Page;

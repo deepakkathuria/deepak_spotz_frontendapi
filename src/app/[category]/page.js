@@ -3,13 +3,29 @@ import styles from "./CategoryPosts.module.css";
 import NewsCard from "@/components/common/NewsCard";
 import axios from "axios";
 import Breadcrumb from "@/components/common/Breadcrumb";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 import OrganisationLd from "@/json-ld/OrganisationLd";
 
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
+
+const fetchPostsByCategoryId = async (categoryId) => {
+  const res = await fetch(
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?categories=${categoryId}`
+  );
+  const posts = await res.json();
+  return posts;
+};
+
+const fetchCategoryDataBySlug = async (categorySlug) => {
+  const res = await fetch(
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/categories?slug=${categorySlug}`
+  );
+  const categoryData = await res.json();
+  return categoryData;
+};
 
 export async function generateMetadata({ params }) {
   const category = params.category;
@@ -22,6 +38,10 @@ export async function generateMetadata({ params }) {
 const CategoryPosts = async ({ params, searchParams }) => {
   const category = params.category;
   // const { Currentpage = 1 } = params;
+  const categoryData = await fetchCategoryDataBySlug(category);
+  const categoryPosts = await fetchPostsByCategoryId(categoryData[0]?.id);
+  // console.log(categoryData, "categoryDatabsdjbhvsjdkbhjh");
+  // console.log(categoryPosts, "categoryPosts");
 
   const breadcrumbs = [
     {
@@ -38,55 +58,60 @@ const CategoryPosts = async ({ params, searchParams }) => {
     },
   ];
 
-  const totalData = await axios.get(
-    `${base_url}/gettotalpostbycategorytag?slug=${category}`
-  );
+  // const totalData = await axios.get(
+  //   `${base_url}/gettotalpostbycategorytag?slug=${category}`
+  // );
 
-  const dataPerPage = 48;
+  // const dataPerPage = 48;
 
-  const totalPages = Math.ceil(totalData?.data?.count / dataPerPage);
+  // const totalPages = Math.ceil(totalData?.data?.count / dataPerPage);
 
-  let currentPage = 1;
+  // let currentPage = 1;
 
   // console.log(searchParams, "currentPage");
 
-  if (Number(searchParams.page) >= 1) {
-    currentPage = Number(searchParams.page);
-  }
+  // if (Number(searchParams.page) >= 1) {
+  //   currentPage = Number(searchParams.page);
+  // }
 
   // let offset = (currentPage - 1) * dataPerPage;
 
-  const data = await axios.get(
-    `${base_url}/getpostsbycategoryname?name=${category}&page=${currentPage}&limit=${dataPerPage}`
-  );
+  // const data = await axios.get(
+  //   `${base_url}/getpostsbycategoryname?name=${category}&page=${currentPage}&limit=${dataPerPage}`
+  // );
 
   // console.log(data.data, "category data.data");
 
   // totalData();
 
   // const dataPerPage = totalData?.data.count;
-  let pageNumbers = [];
-  const start = Math.max(currentPage - 4, 1);
-  const end = Math.min(currentPage + 4, totalPages);
 
-  for (let i = start; i <= end; i++) {
-    pageNumbers.push(i);
-  }
+  // Pagination Logic old
+
+  // let pageNumbers = [];
+  // const start = Math.max(currentPage - 4, 1);
+  // const end = Math.min(currentPage + 4, totalPages);
+
+  // for (let i = start; i <= end; i++) {
+  //   pageNumbers.push(i);
+  // }
 
   // Adjust the range if currentPage is close to the start or end
-  if (start === 1 && end < 9) {
-    const diff = 9 - end;
-    const additionalNumbers = Math.min(diff, totalPages - end);
-    for (let i = end + 1; i <= end + additionalNumbers; i++) {
-      pageNumbers.push(i);
-    }
-  } else if (end === totalPages && start > totalPages - 8) {
-    const diff = start - (totalPages - 8);
-    const additionalNumbers = Math.min(diff, start - 1);
-    for (let i = start - 1; i >= start - additionalNumbers; i--) {
-      pageNumbers.unshift(i);
-    }
-  }
+
+  // pagination logic OLD
+  // if (start === 1 && end < 9) {
+  //   const diff = 9 - end;
+  //   const additionalNumbers = Math.min(diff, totalPages - end);
+  //   for (let i = end + 1; i <= end + additionalNumbers; i++) {
+  //     pageNumbers.push(i);
+  //   }
+  // } else if (end === totalPages && start > totalPages - 8) {
+  //   const diff = start - (totalPages - 8);
+  //   const additionalNumbers = Math.min(diff, start - 1);
+  //   for (let i = start - 1; i >= start - additionalNumbers; i--) {
+  //     pageNumbers.unshift(i);
+  //   }
+  // }
 
   return (
     <>
@@ -174,17 +199,21 @@ const CategoryPosts = async ({ params, searchParams }) => {
             </div>
           ))} */}
 
-          {Array.isArray(data.data) &&
-            data?.data?.map((post) => (
+          {!categoryPosts?.length && (
+            <div className="not">
+              <h1 style={{color:'red'}}> No Content in this category</h1>
+            </div>
+          )}
+
+          {Array.isArray(categoryPosts) &&
+            categoryPosts?.map((post) => (
               <div className="card" key={post.ID}>
                 <a href={`/${category}/${post.post_name}`}>
                   <NewsCard
-                    id={post.ID}
-                    title={post.post_title}
-                    content={post.post_content}
-                    date={new Date(post.post_modified_gmt).toLocaleString(
-                      "en-us"
-                    )}
+                    id={post.id}
+                    title={post.title.rendered}
+                    content={post.content.rendered}
+                    date={new Date(post.date).toLocaleString("en-us")}
                     // ...other props
                   />
                 </a>
@@ -194,13 +223,16 @@ const CategoryPosts = async ({ params, searchParams }) => {
       </div>
 
       <div className={styles.paginationContainer}>
-        {currentPage > 1 && (
+        {/* {currentPage > 1 && (
           <>
             <a href={`/${category}`}>{"<<"}</a>
           </>
-        )}
+        )} */}
 
-        {pageNumbers &&
+
+
+{/* Pagination code */}
+        {/* {pageNumbers &&
           pageNumbers.map((page) => (
             <a
               key={page}
@@ -215,7 +247,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
           <>
             <a href={`/${category}?page=${currentPage + 1}`}>{">>"}</a>
           </>
-        )}
+        )} */}
       </div>
     </>
   );

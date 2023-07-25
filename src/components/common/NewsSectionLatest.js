@@ -2,22 +2,31 @@
 import React from "react";
 import styles from "../styles/NewsSection.module.css";
 import NewsCardLatest from "./NewsCardLatest";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+
+const fetchLatestNews = async (postRequired) => {
+  const res = await fetch(
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?per_page=${postRequired}`
+  );
+
+  return res.json();
+};
 
 const NewsSection = async (props) => {
-  try {
-    const response = await fetch(`${base_url}/getlatestposts?limit=9&page=1`);
-    // console.log(response, "response");
-    if (response.ok) {
-      var data = await response.json();
-    } else {
-      console.log("Error: " + response.status);
-    }
-  } catch (e) {
-    console.log(e.message);
-  }
+  // try {
+  //   const response = await fetch(`${base_url}/getlatestposts?limit=9&page=1`);\
+  //   if (response.ok) {
+  //     var data = await response.json();
+  //   } else {
+  //     console.log("Error: " + response.status);
+  //   }
+  // } catch (e) {
+  //   console.log(e.message);
+  // }
 
   // console.log(data, "dataaalatestttt");
+  const data = await fetchLatestNews(9);
+  // console.log(data, "data123");
 
   return (
     <>
@@ -30,16 +39,18 @@ const NewsSection = async (props) => {
             return (
               <div key={index}>
                 <a
-                  href={`${item?.parent_category_slugs ?? "news"}/${
-                    item?.post_name
+                  href={`${item?.news ?? "news"}/${
+                    item?.slug
                   }`}
                 >
                   <NewsCardLatest
-                    title={item?.post_title}
-                    id={item?.ID}
+                    title={item?.title?.rendered}
+                    id={item?.id}
                     // date={new Date(item?.post_modified_gmt)?.toLocaleString()}
-                    date={item?.post_modified_gmt ? item.post_modified_gmt : ""}
-                    content={item?.post_content}
+                    date={item?.date_gmt ? item.date_gmt : ""}
+                    content={item?.content?.rendered}
+                    featuredMedia={item?.featured_media}
+
                     // slug={item.name}
                   />
                 </a>
@@ -48,7 +59,7 @@ const NewsSection = async (props) => {
           })}
         </div>
         <div className={styles.readMoreLabel}>
-          <a href="/cricket">Read More</a>
+          <a href="/news">Read More</a>
         </div>
       </div>
     </>

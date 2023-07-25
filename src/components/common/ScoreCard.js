@@ -6,7 +6,11 @@ import dynamic from "next/dynamic";
 import slugify from "slugify";
 
 const ScoreCard = (props) => {
-  const matchNameUrl = slugify(props.title, { remove: /[*+~.()'"!:@]/g });
+  const matchNameUrl = slugify(props.title, {
+    remove: /[*+~.()'"!:@]/g,
+    lower: true,
+  });
+
   // console.log(matchNameUrl,'shdvhmfvkhgvskgvkgv');
   return (
     <>

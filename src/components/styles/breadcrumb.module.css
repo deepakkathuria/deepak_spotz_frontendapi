@@ -1,5 +1,6 @@
 .breadCrumbContainer {
-  margin-top: 5.4rem;
+  /* margin-top: 5.4rem; */
+  /* margin-top: 5rem; */
   color: #98ccff;
   font-size: 1rem;
 }
@@ -22,4 +23,7 @@
     -webkit-line-clamp: 200;
     -webkit-box-orient: vertical;
   } */
+  .breadCrumbContainer {
+    margin-left: 0.5rem;
+  }
 }

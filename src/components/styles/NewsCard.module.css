@@ -13,6 +13,7 @@
   margin-top: 2rem;
   box-shadow: -1.34px -1.34px 1.34px rgba(0, 0, 0, 0.15),
     1.34px 1.34132px 1.34132px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
 }
 
 .newsDetails {
@@ -54,5 +55,96 @@
     border: none;
     border-bottom: solid rgba(0, 0, 0, 0.2);
     box-shadow: none;
+  }
+}
+
+@media (min-width: 1330px) {
+  .newsCardContainer {
+    border-radius: 2.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    gap: 0.3rem;
+    width: 35rem;
+    height: 11rem;
+  }
+}
+
+@media (min-width: 1350px) {
+  .newsCardContainer {
+    border-radius: 2.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    gap: 0.3rem;
+    width: 36rem;
+    height: 11rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .newsCardContainer {
+    border-radius: 2.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    gap: 0.3rem;
+    width: 36rem;
+    height: 11rem;
+  }
+}
+
+@media (min-width: 1450px) {
+  .newsCardContainer {
+    border-radius: 2.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    gap: 0.3rem;
+    width: 38rem;
+    height: 11rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  .newsCardContainer {
+    border-radius: 2.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    gap: 0.3rem;
+    width: 40rem;
+    height: 11rem;
+  }
+}
+
+@media (min-width: 1550px) {
+  .newsCardContainer {
+    border-radius: 2.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    gap: 0.3rem;
+    width: 42rem;
+    height: 11rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .newsCardContainer {
+    border-radius: 2.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    gap: 0.3rem;
+    width: 44rem;
+    height: 11rem;
   }
 }

@@ -123,15 +123,15 @@ const ScoreCardPanel = async () => {
               <ScoreCard
                 key={index}
                 matchID={match?.match_id}
-                title={match?.title ? match.title : "no title"}
-                teamAName={match?.team_a_name ? team_a_name : "NA"}
-                teamBName={match?.team_b_name}
-                teamAScores={match?.team_a_scores}
-                teamBScores={match?.team_b_scores}
-                teamAOvers={match?.team_a_overs}
-                teamBOvers={match?.team_b_overs}
-                teamALogo={match?.team_a_logo_url}
-                teamBLogo={match?.team_b_logo_url}
+                title={match?.short_title ? match.short_title : "no title"}
+                teamAName={match?.teama_name ? match?.teama_name : "NA"}
+                teamBName={match?.teamb_name}
+                teamAScores={match?.teama_scores}
+                teamBScores={match?.teamb_scores}
+                teamAOvers={match?.teama_overs}
+                teamBOvers={match?.teamb_overs}
+                teamALogo={match?.teama_logo_url}
+                teamBLogo={match?.teamb_logo_url}
                 matchScoreDetails={
                   match?.status_note
                     ? match.status_note

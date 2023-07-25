@@ -15,6 +15,7 @@ const PostDisplay = (props) => {
       })
     : [];
   const sections = props.description?.split(tweetRegex);
+  // console.log(props.tags,'tagsarrayyyyyyyy')
 
   return (
     <>

@@ -7,15 +7,27 @@ import axios from "axios";
 import Link from "next/link";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
+const fetchPostByCategoryId = async (id, perPage) => {
+  const res = await fetch(
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?categories=${id}&per_page=${perPage}`,
+    // { next: { revalidate: 10 } }
+    { cache: "no-store" }
+  );
+  return await res.json();
+};
+
 const NewsSection = async (props) => {
-  try {
-    var data = await axios.get(
-      `${base_url}/getPostByCategorySlug?slug=${props.slug}&page=1&limit=9`,
-      { next: { revalidate: 5 } }
-    );
-  } catch (e) {
-    console.log(e.message);
-  }
+  // try {
+  //   var data = await axios.get(
+  //     `${base_url}/getPostByCategorySlug?slug=${props.slug}&page=1&limit=9`,
+  //     { next: { revalidate: 5 } }
+  //   );
+  // } catch (e) {
+  //   console.log(e.message);
+  // }
+  // console.log(props.id, "propeeeidjhvbdkjhvdbfjh");
+  const data = await fetchPostByCategoryId(props.id, 9);
+  // console.log(data, "data2");
 
   return (
     <>
@@ -29,17 +41,17 @@ const NewsSection = async (props) => {
           <ButtonTab title="Fantasy Tips" selected="true" />
         </div> */}
         <div className={styles.newsCardsDiv}>
-          {data?.data?.map((item, index) => {
+          {data?.map((item, index) => {
             return (
               <div key={index}>
-                <a href={`${props?.slug}/${item?.post_name}`}>
+                <a href={`${props?.name?.toLowerCase()}/${item?.slug}`}>
                   <NewsCard
-                    title={item?.post_title}
-                    date={new Date(item?.post_modified).toLocaleString("en-us")}
-                    content={item?.post_content}
-                    // slug={item.name}
-                    id={item?.ID}
-                    guid={item?.guid}
+                    title={item?.title?.rendered}
+                    date={item?.date_gmt ? item.date_gmt : ""}
+                    content={item?.content?.rendered}
+                    id={item?.id}
+                    featuredMedia={item?.featured_media}
+                    slug={item?.slug}
                   />
                 </a>
               </div>
@@ -47,7 +59,7 @@ const NewsSection = async (props) => {
           })}
         </div>
         <div className={styles.readMoreLabel}>
-          <Link href={`/${props?.slug}`}>Read More</Link>
+          <a href={`/${props?.slug}`}>Read More</a>
         </div>
       </div>
     </>

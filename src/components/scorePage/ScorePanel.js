@@ -2,7 +2,11 @@ import React from "react";
 import styles from "./ScorePanel.module.css";
 import Image from "next/image";
 
-const ScorePanel = () => {
+const ScorePanel = (props) => {
+  console.log('ScoreA:', props.scoreTeamA)
+  console.log('ScoreB:', props.scoreTeamB)
+  console.log('overA:', props.overTeamA)
+  console.log('overB:', props.overTeamB)
   return (
     <>
       <div className={styles.scorePanelContainer}>
@@ -12,17 +16,18 @@ const ScorePanel = () => {
             <div className={styles.nameLogo}>
               <div className={styles.logo}>
                 <Image
-                  src="https://thumbs.dreamstime.com/b/india-paper-flag-patriotic-background-national-138241478.jpg"
-                  alt="country name"
+                  src={props?.logoTeamA}
+                  alt={props?.nameTeamA}
                   width={18}
                   height={12}
                   priority
                 />
               </div>
-              <div className={styles.name}>India</div>
+              <div className={styles.name}>{props?.nameTeamA}</div>
             </div>
             <div className={styles.scoreOver}>
-              <span>(18.3 over)</span>156
+              <span>({props?.overTeamA} over)</span>
+              {props?.scoreTeamA}
             </div>
           </div>
 
@@ -30,20 +35,23 @@ const ScorePanel = () => {
             <div className={styles.nameLogo}>
               <div className={styles.logo}>
                 <Image
-                  src="https://thumbs.dreamstime.com/b/india-paper-flag-patriotic-background-national-138241478.jpg"
-                  alt="country name"
+                  src={props?.logoTeamB}
+                  alt={props?.nameTeamB}
                   width={18}
                   height={12}
                   priority
                 />
               </div>
-              <div className={styles.name}>SriLanka</div>
+              <div className={styles.name}>{props?.nameTeamB}</div>
             </div>
-            <div className={styles.scoreOver}>yet to bat</div>
+            <div className={styles.scoreOver}>
+              <span>({props?.overTeamB} over)</span>
+              {props?.scoreTeamB}
+            </div>
           </div>
         </div>
         <div className={styles.matchPrediction}>
-          <p>SL Women need 157 runs in 120 balls to win</p>
+          <p>{props?.currentStatus}</p>
         </div>
         <div className={styles.battingStats}>
           <table className={styles.StatsTable}>

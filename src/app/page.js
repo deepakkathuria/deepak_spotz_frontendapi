@@ -4,44 +4,46 @@ import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
 import NewsSectionLatest from "../components/common/NewsSectionLatest";
 import MobSecondaryNav from "@/components/common/MobSecondaryNav";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
 import dynamic from "next/dynamic";
 
 const page = async () => {
-  try {
-    const response = await fetch(
-      `${base_url}/getcategoriesbyname?category1=cricket&category2=news&category3=football`,
-      // `https://demo.sportzwiki.com/api/v1/getcategoriesbyname?category1=cricket&category2=news&category3=football`,
-      { next: { revalidate: 5 } }
-    );
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-    var data = await response.json();
-  } catch (e) {
-    console.log(e.message);
-  }
+  // try {
+  //   const response = await fetch(
+  //     `${base_url}/getcategoriesbyname?category1=cricket&category2=news&category3=football`,
+  //     // `https://demo.sportzwiki.com/api/v1/getcategoriesbyname?category1=cricket&category2=news&category3=football`,
+  //     { next: { revalidate: 5 } }
+  //   );
+  //   if (!response.ok) {
+  //     throw new Error(response.statusText);
+  //   }
+  //   var data = await response.json();
+  // } catch (e) {
+  //   console.log(e.message);
+  // }
 
   return (
     <>
       <OrganisationLd />
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
-        {/* <div className="scores">
+        <div className="scores">
           <LiveScoreSection />
-        </div> */}
+        </div>
         <NewsSectionLatest />
 
         <div className={styles.newsSectionDiv}>
-          {data?.map((item) => {
+          <NewsSection name="CRICKET" id="3" slug="cricket" />
+          <NewsSection name="WWE" id="10" slug="wwe" />
+          {/* {data?.map((item) => {
             return (
               <div key={item.ID}>
                 <NewsSection name={item.name} slug={item.slug} />
               </div>
             );
-          })}
+          })} */}
         </div>
       </div>
     </>

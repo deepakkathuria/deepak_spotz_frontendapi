@@ -21,7 +21,7 @@ const ArticleLd = (props) => {
         authorName={props.author}
         publisherName="SportzWiki Media Pvt Ltd"
         publisherLogo="https://www.example.com/photos/logo.jpg"
-        description="This is a mighty good description of this article."
+        description={props.shortDescription}
         body={props.description}
         //   isAccessibleForFree={true}
       />

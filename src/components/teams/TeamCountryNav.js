@@ -1,19 +1,21 @@
 import React from "react";
-import styles from "./TeamCountry.moduleNav.css";
+import styles from "./TeamCountryNav.module.css";
 
 const TeamCountryNav = () => {
   return (
     <>
-      <div>
-        <ul>
-          <li>About</li>
-          <li>Overview</li>
-          <li>Schedule & Results</li>
-          <li>News</li>
-          <li>Stats</li>
-          <li>Squads</li>
-          <li>Videos</li>
-          <li>Photos</li>
+      <div className={styles.TeamCountryNav}>
+        <ul className={styles.TeamCountryNavUl}>
+          <li className={`${styles.TeamCountryNavLi} ${styles.active}`}>
+            About
+          </li>
+          <li className={styles.TeamCountryNavLi}>Overview</li>
+          <li className={styles.TeamCountryNavLi}>Schedule & Results</li>
+          <li className={styles.TeamCountryNavLi}>News</li>
+          <li className={styles.TeamCountryNavLi}>Stats</li>
+          <li className={styles.TeamCountryNavLi}>Squads</li>
+          <li className={styles.TeamCountryNavLi}>Videos</li>
+          <li className={styles.TeamCountryNavLi}>Photos</li>
         </ul>
       </div>
     </>

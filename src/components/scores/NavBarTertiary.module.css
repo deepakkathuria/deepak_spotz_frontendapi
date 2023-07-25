@@ -87,6 +87,11 @@
   padding-left: 0.5rem;
 }
 
+.scoreNews {
+  display: flex;
+  gap: 2rem;
+}
+
 @media (max-width: 576px) {
   .container {
     white-space: nowrap;
@@ -103,5 +108,12 @@
   .commentaryStatBox {
     width: 100%;
     margin-bottom: 1rem;
+  }
+  .scoreNews {
+    display: block;
+    gap: 0;
+  }
+  .containerRight {
+    display: none;
   }
 }

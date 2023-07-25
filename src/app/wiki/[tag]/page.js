@@ -1,17 +1,48 @@
 // "use client"
-
 import React from "react";
 import styles from "../../[category]/CategoryPosts.module.css";
 import NewsCard from "../../../components/common/NewsCard";
 import axios from "axios";
 import Link from "next/link";
-// import CategoryDescriptionDisplay from "@/components/common/categoryDescriptionDisplay";
 import Breadcrumb from "@/components/common/Breadcrumb";
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
+
+const fetchTagIdByTagSlug = async (tagSlug) => {
+  const res = await fetch(
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/tags?slug=${tagSlug}`
+  );
+  const tagID = await res.json();
+  return tagID;
+};
+
+const fetchPostsByTagId = async (tagId) => {
+  const res = await fetch(
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?tags=${tagId}`
+  );
+  const posts = await res.json();
+  // console.log(tagId,'tagidjhabjhbsj')
+  // console.log(posts, "reshjvkhdvkhfvkjhd");
+  return posts;
+};
+
+// Fetch Data tag page
+const fetchPosts = async (tag, dataPerPage) => {
+  const res = await fetch(
+    `${base_url}/getpostbytagslug?slug=${tag}&page=1&limit=${dataPerPage}`
+  );
+  return await res.json();
+};
+
+const fetchTotalNoOfPosts = async (tag) => {
+  const res = await fetch(`${base_url}/gettotalpostbytagslug?slug=${tag}`);
+  const res2 = await res.json();
+  return parseInt(res2.count);
+};
+// Fetch Data tag page
 
 export async function generateMetadata({ params }) {
   const { tag } = params;
@@ -23,6 +54,12 @@ export async function generateMetadata({ params }) {
 
 const CategoryPosts = async ({ params, searchParams }) => {
   const { tag } = params;
+
+  const tagId = await fetchTagIdByTagSlug("wwe-raw");
+  // console.log(`tagId: ${tagId} avskhvsjfghv`);
+
+  const PostsOfTag = await fetchPostsByTagId(tagId[0].id);
+  // console.log(PostsOfTag, "postsOfTaghjhavsdjhvjhvsj");
 
   const breadcrumbs = [
     {
@@ -39,9 +76,12 @@ const CategoryPosts = async ({ params, searchParams }) => {
     },
   ];
 
-  const totalData = await axios.get(
-    `${base_url}/gettotalpostbytagslug?slug=${tag}`
-  );
+  // const totalData = await axios.get(
+  //   `${base_url}/gettotalpostbytagslug?slug=${tag}`
+  // );
+  const totalData = await fetchTotalNoOfPosts(tag);
+
+  // console.log(totalData, " : total data, ", "type is : ", typeof totalData);
 
   const dataPerPage = 48;
 
@@ -55,11 +95,12 @@ const CategoryPosts = async ({ params, searchParams }) => {
     currentPage = Number(searchParams.page);
   }
 
-  const data = await axios.get(
-    `${base_url}getpostbytagslug?slug=cricket&page=1&limit=100`
-  );
+  // const data = await axios.get(
+  //   `${base_url}getpostbytagslug?slug=cricket&page=1&limit=100`
+  // );
 
-  console.log(data,'posteeeee');
+  const data = await fetchPosts(tag, dataPerPage);
+  // console.log(data, "cricket");
 
   let pageNumbers = [];
   const start = Math.max(currentPage - 4, 1);
@@ -161,13 +202,13 @@ const CategoryPosts = async ({ params, searchParams }) => {
         </div>
 
         <div className={styles.newsCardsDisplay}>
-          {data.data?.map((post) => (
+          {PostsOfTag?.map((post) => (
             <div className="card" key={post.ID}>
-              <a href={`/${post.category}/${post.post_name}`}>
+              <a href={`/${post.category}/${post.slug}`}>
                 <NewsCard
-                  title={post.post_title}
-                  content={post.post_content}
-                  date={new Date(post?.post_modified).toLocaleString("en-us")}
+                  title={post?.title?.rendered}
+                  content={post?.content?.rendered}
+                  date={new Date(post?.date).toLocaleString("en-us")}
                 />
               </a>
             </div>

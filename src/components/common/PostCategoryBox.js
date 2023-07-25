@@ -6,8 +6,8 @@ const PostCategoryBox = (props) => {
     <>
       <div className={styles.postCategoryBoxContainer}>
         <h4 className={styles.selected}>All</h4>
-        {props.categories?.split(",").map((category) => {
-          return <h4 key={category}>{category}</h4>;
+        {props.categories?.map((category) => {
+          return <h4 key={category.id}>{category.name}</h4>;
         })}
       </div>
     </>

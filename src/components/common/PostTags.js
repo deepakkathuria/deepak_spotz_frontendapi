@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "../styles/PostTags.module.css";
-import Link from "next/link";
-import slugify from "slugify";
+// import Link from "next/link";
 
 const PostTags = (props) => {
+  // console.log(props.tags, "tags objjjjjjjjjj");
   return (
     <>
       <div className={styles.postTagsContainer}>
@@ -11,14 +11,15 @@ const PostTags = (props) => {
           <h3>Tagged:</h3>
         </div>
         <div className={styles.tags}>
-          {typeof props?.tags === "string" &&
-            props?.tags.split(",").map((tag) => {
-              return (
-                <div key={tag} className={styles.tags}>
-                  <a href={`/wiki/${slugify(tag)}`}><h3>{tag}</h3></a>
-                </div>
-              );
-            })}
+          {props?.tags.map((tag) => {
+            return (
+              <div key={tag.id} className={styles.tags}>
+                <a href={`/wiki/${tag.slug}`}>
+                  <h3>{tag.name}</h3>
+                </a>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

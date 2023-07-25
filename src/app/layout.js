@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/common/Navbar";
-import { NextSeo } from "next-seo";
+// import { NextSeo } from "next-seo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +18,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head></head>
       <body className={inter.className}>
-        <Navbar />
+        {/* <div className="nav"> */}
+          <Navbar />
+        {/* </div> */}
+        {/* <div className="bodyItems"></div> */}
         {children}
         {/* <GlobalContextProvider>{children}</GlobalContextProvider> */}
         <Analytics />

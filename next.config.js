@@ -11,6 +11,7 @@ const nextConfig = {
       "thumbs.dreamstime.com",
       "bengali.sportzwiki.com",
       "images.entitysport.com",
+      "demo2.sportzwiki.com",
     ],
   },
   // ...

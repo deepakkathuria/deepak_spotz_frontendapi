@@ -1,0 +1,19 @@
+.TeamCountryNavUl {
+  display: flex;
+  gap: 1rem;
+  list-style-type: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.TeamCountryNavLi {
+  padding-bottom: 0.2rem;
+}
+
+.TeamCountryNav{
+  margin-top: 2rem;
+}
+
+.active {
+  border-bottom: 1px solid #000;
+}

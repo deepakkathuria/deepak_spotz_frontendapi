@@ -6,7 +6,9 @@ import NewsCardLatest from "./NewsCardLatest";
 
 const fetchLatestNews = async (postRequired) => {
   const res = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?per_page=${postRequired}`
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?per_page=${postRequired}`,
+    // { next: { revalidate: 10 } }
+    { cache: "no-store" }
   );
 
   return res.json();
@@ -38,18 +40,14 @@ const NewsSection = async (props) => {
           {data?.map((item, index) => {
             return (
               <div key={index}>
-                <a
-                  href={`${item?.news ?? "news"}/${
-                    item?.slug
-                  }`}
-                >
+                <a href={`${item?.news ?? "news"}/${item?.slug}`}>
                   <NewsCardLatest
                     title={item?.title?.rendered}
                     id={item?.id}
                     // date={new Date(item?.post_modified_gmt)?.toLocaleString()}
                     date={item?.date_gmt ? item.date_gmt : ""}
                     content={item?.content?.rendered}
-                    featuredMedia={item?.featured_media}
+                    featuredMedia={item?.featured_image_url}
 
                     // slug={item.name}
                   />

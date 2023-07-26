@@ -13,7 +13,8 @@ import { OrganizationJsonLd } from "next-seo";
 
 const fetchTagIdByTagSlug = async (tagSlug) => {
   const res = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/tags?slug=${tagSlug}`
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/tags?slug=${tagSlug}`,
+    { cache: "no-store" }
   );
   const tagID = await res.json();
   return tagID;
@@ -21,7 +22,8 @@ const fetchTagIdByTagSlug = async (tagSlug) => {
 
 const fetchPostsByTagId = async (tagId) => {
   const res = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?tags=${tagId}`
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?tags=${tagId}`,
+    { cache: "no-store" }
   );
   const posts = await res.json();
   // console.log(tagId,'tagidjhabjhbsj')
@@ -30,18 +32,21 @@ const fetchPostsByTagId = async (tagId) => {
 };
 
 // Fetch Data tag page
-const fetchPosts = async (tag, dataPerPage) => {
-  const res = await fetch(
-    `${base_url}/getpostbytagslug?slug=${tag}&page=1&limit=${dataPerPage}`
-  );
-  return await res.json();
-};
+// const fetchPosts = async (tag, dataPerPage) => {
+//   const res = await fetch(
+//     `${base_url}/getpostbytagslug?slug=${tag}&page=1&limit=${dataPerPage}`,
+//     { cache: "no-store" }
+//   );
+//   return await res.json();
+// };
 
-const fetchTotalNoOfPosts = async (tag) => {
-  const res = await fetch(`${base_url}/gettotalpostbytagslug?slug=${tag}`);
-  const res2 = await res.json();
-  return parseInt(res2.count);
-};
+// const fetchTotalNoOfPosts = async (tag) => {
+//   const res = await fetch(`${base_url}/gettotalpostbytagslug?slug=${tag}`, {
+//     cache: "no-store",
+//   });
+//   const res2 = await res.json();
+//   return parseInt(res2.count);
+// };
 // Fetch Data tag page
 
 export async function generateMetadata({ params }) {
@@ -79,51 +84,51 @@ const CategoryPosts = async ({ params, searchParams }) => {
   // const totalData = await axios.get(
   //   `${base_url}/gettotalpostbytagslug?slug=${tag}`
   // );
-  const totalData = await fetchTotalNoOfPosts(tag);
+  // const totalData = await fetchTotalNoOfPosts(tag);
 
   // console.log(totalData, " : total data, ", "type is : ", typeof totalData);
 
-  const dataPerPage = 48;
+  // const dataPerPage = 48;
 
-  const totalPages = Math.ceil(totalData?.data?.count / dataPerPage);
+  // const totalPages = Math.ceil(totalData?.data?.count / dataPerPage);
 
-  console.log(totalPages, "totalData");
+  // console.log(totalPages, "totalData");
 
-  let currentPage = 1;
+  // let currentPage = 1;
 
-  if (Number(searchParams.page) >= 1) {
-    currentPage = Number(searchParams.page);
-  }
+  // if (Number(searchParams.page) >= 1) {
+  //   currentPage = Number(searchParams.page);
+  // }
 
   // const data = await axios.get(
   //   `${base_url}getpostbytagslug?slug=cricket&page=1&limit=100`
   // );
 
-  const data = await fetchPosts(tag, dataPerPage);
+  // const data = await fetchPosts(tag, dataPerPage);
   // console.log(data, "cricket");
 
-  let pageNumbers = [];
-  const start = Math.max(currentPage - 4, 1);
-  const end = Math.min(currentPage + 4, totalPages);
+  // let pageNumbers = [];
+  // const start = Math.max(currentPage - 4, 1);
+  // const end = Math.min(currentPage + 4, totalPages);
 
-  for (let i = start; i <= end; i++) {
-    pageNumbers.push(i);
-  }
+  // for (let i = start; i <= end; i++) {
+  //   pageNumbers.push(i);
+  // }
 
   // Adjust the range if currentPage is close to the start or end
-  if (start === 1 && end < 9) {
-    const diff = 9 - end;
-    const additionalNumbers = Math.min(diff, totalPages - end);
-    for (let i = end + 1; i <= end + additionalNumbers; i++) {
-      pageNumbers.push(i);
-    }
-  } else if (end === totalPages && start > totalPages - 8) {
-    const diff = start - (totalPages - 8);
-    const additionalNumbers = Math.min(diff, start - 1);
-    for (let i = start - 1; i >= start - additionalNumbers; i--) {
-      pageNumbers.unshift(i);
-    }
-  }
+  // if (start === 1 && end < 9) {
+  //   const diff = 9 - end;
+  //   const additionalNumbers = Math.min(diff, totalPages - end);
+  //   for (let i = end + 1; i <= end + additionalNumbers; i++) {
+  //     pageNumbers.push(i);
+  //   }
+  // } else if (end === totalPages && start > totalPages - 8) {
+  //   const diff = start - (totalPages - 8);
+  //   const additionalNumbers = Math.min(diff, start - 1);
+  //   for (let i = start - 1; i >= start - additionalNumbers; i--) {
+  //     pageNumbers.unshift(i);
+  //   }
+  // }
 
   return (
     <>
@@ -204,11 +209,13 @@ const CategoryPosts = async ({ params, searchParams }) => {
         <div className={styles.newsCardsDisplay}>
           {PostsOfTag?.map((post) => (
             <div className="card" key={post.ID}>
+              {/* {console.log(post.featured_image_url, "featuresdddddd")} */}
               <a href={`/${post.category}/${post.slug}`}>
                 <NewsCard
                   title={post?.title?.rendered}
                   content={post?.content?.rendered}
                   date={new Date(post?.date).toLocaleString("en-us")}
+                  featuredMedia={post?.featured_image_url}
                 />
               </a>
             </div>
@@ -216,14 +223,14 @@ const CategoryPosts = async ({ params, searchParams }) => {
         </div>
       </div>
 
-      <div className={styles.paginationContainer}>
+      {/* <div className={styles.paginationContainer}>
         {currentPage > 1 && (
           <>
             <a href={`/${category}`}>{"<<"}</a>
           </>
-        )}
+        )} */}
 
-        {pageNumbers &&
+      {/* {pageNumbers &&
           pageNumbers.map((page) => (
             <Link
               key={page}
@@ -232,14 +239,14 @@ const CategoryPosts = async ({ params, searchParams }) => {
             >
               {page}
             </Link>
-          ))}
+          ))} */}
 
-        {currentPage < totalPages && (
+      {/* {currentPage < totalPages && (
           <>
             <a href={`/${tag}?page=${currentPage + 1}`}>{">>"}</a>
           </>
-        )}
-      </div>
+        )} */}
+      {/* </div> */}
     </>
   );
 };

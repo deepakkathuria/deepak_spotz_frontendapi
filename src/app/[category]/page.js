@@ -13,7 +13,8 @@ import { OrganizationJsonLd } from "next-seo";
 
 const fetchPostsByCategoryId = async (categoryId) => {
   const res = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?categories=${categoryId}`
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?categories=${categoryId}`,
+    { cache: "no-store" }
   );
   const posts = await res.json();
   return posts;
@@ -21,7 +22,8 @@ const fetchPostsByCategoryId = async (categoryId) => {
 
 const fetchCategoryDataBySlug = async (categorySlug) => {
   const res = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/categories?slug=${categorySlug}`
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/categories?slug=${categorySlug}`,
+    { cache: "no-store" }
   );
   const categoryData = await res.json();
   return categoryData;
@@ -201,19 +203,20 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
           {!categoryPosts?.length && (
             <div className="not">
-              <h1 style={{color:'red'}}> No Content in this category</h1>
+              <h1 style={{ color: "red" }}> No Content in this category</h1>
             </div>
           )}
 
           {Array.isArray(categoryPosts) &&
             categoryPosts?.map((post) => (
               <div className="card" key={post.ID}>
-                <a href={`/${category}/${post.post_name}`}>
+                <a href={`/${category}/${post?.slug}`}>
                   <NewsCard
-                    id={post.id}
-                    title={post.title.rendered}
-                    content={post.content.rendered}
-                    date={new Date(post.date).toLocaleString("en-us")}
+                    id={post?.id}
+                    title={post?.title.rendered}
+                    content={post?.content.rendered}
+                    date={new Date(post?.date).toLocaleString("en-us")}
+                    featuredMedia={post?.featured_image_url}
                     // ...other props
                   />
                 </a>
@@ -229,9 +232,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
           </>
         )} */}
 
-
-
-{/* Pagination code */}
+        {/* Pagination code */}
         {/* {pageNumbers &&
           pageNumbers.map((page) => (
             <a

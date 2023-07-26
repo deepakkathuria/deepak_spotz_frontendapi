@@ -126,12 +126,13 @@ export async function generateMetadata({ params }) {
       siteName: "Sportzwiki",
       images: [
         {
-          url: "https://nextjs.org/og.png",
+          url: post?.featured_image_url,
           width: 800,
           height: 600,
+          alt: title,
         },
         {
-          url: "https://nextjs.org/og-alt.png",
+          url: post?.featured_image_url,
           width: 1800,
           height: 1600,
           alt: title,
@@ -148,7 +149,7 @@ export async function generateMetadata({ params }) {
       siteId: "1467726470533754880",
       creator: "@gaurav",
       creatorId: "1467726470533754880",
-      images: ["https://nextjs.org/og.png"],
+      images: [post?.featured_image_url],
     },
   };
 }
@@ -263,11 +264,7 @@ const page = async ({ params }) => {
             description={articleBody?.content.rendered ?? ""}
             tags={articleBody?.tags ?? []}
             categories={articleBody?.categories ?? []}
-            thumbnail={
-              typeof thumbnail === "string" && thumbnail.length
-                ? thumbnail
-                : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
-            }
+            thumbnail={articleBody?.featured_image_url}
             summary={articleBody?.excerpt.rendered ?? ""}
           />
           <Suspense fallback={<p>Loading Post list bar...</p>}>
@@ -311,6 +308,7 @@ const page = async ({ params }) => {
                           )}...`}
                           date={new Date(card?.date).toLocaleString("en-us")}
                           guid={card?.guid}
+                          featuredMedia={card?.featured_image_url}
                           /* other props */
                         />
                       </a>

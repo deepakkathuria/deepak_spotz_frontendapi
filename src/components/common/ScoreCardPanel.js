@@ -17,7 +17,7 @@ const getData = async () => {
   return await res.json();
 };
 
-const ScoreCardPanel = async () => {
+const ScoreCardPanel = async (props) => {
   // console.log(data, "dataaaaaa");
   const data = await getData();
 
@@ -90,30 +90,34 @@ const ScoreCardPanel = async () => {
   };
   return (
     <>
-      <div className={styles.scoreCardMatchTypeSelector}>
-        <div className={styles.matchTimingSelector}>
-          <button
-            className={`${styles.matchTimingSelectorButton} ${styles.selected}`}
-          >
-            Live (10)
-          </button>
-          <button className={styles.matchTimingSelectorButton}>Recent</button>
-          <button className={styles.matchTimingSelectorButton}>Upcoming</button>
-        </div>
+      {props?.display === true && (
+        <div className={styles.scoreCardMatchTypeSelector}>
+          <div className={styles.matchTimingSelector}>
+            <button
+              className={`${styles.matchTimingSelectorButton} ${styles.selected}`}
+            >
+              Live (10)
+            </button>
+            <button className={styles.matchTimingSelectorButton}>Recent</button>
+            <button className={styles.matchTimingSelectorButton}>
+              Upcoming
+            </button>
+          </div>
 
-        <div className={styles.matchTypeSelector}>
-          <button
-            className={`${styles.matchTypeSelectorButton} ${styles.selected}`}
-          >
-            All
-          </button>
-          <button className={styles.matchTypeSelectorButton}>
-            International
-          </button>
-          <button className={styles.matchTypeSelectorButton}>League</button>
-          <button className={styles.matchTypeSelectorButton}>Domestic</button>
+          <div className={styles.matchTypeSelector}>
+            <button
+              className={`${styles.matchTypeSelectorButton} ${styles.selected}`}
+            >
+              All
+            </button>
+            <button className={styles.matchTypeSelectorButton}>
+              International
+            </button>
+            <button className={styles.matchTypeSelectorButton}>League</button>
+            <button className={styles.matchTypeSelectorButton}>Domestic</button>
+          </div>
         </div>
-      </div>
+      )}
       <div className={styles.carouselContainer}>
         <Slider {...settings}>
           {data?.map((match, index) => {

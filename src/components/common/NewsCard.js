@@ -8,12 +8,12 @@ const fetchPostThumb = async (thumbId) => {
   const res = await fetch(
     `https://demo2.sportzwiki.com/wp-json/wp/v2/media/${thumbId}`
   );
-  // console.log(`https://demo2.sportzwiki.com/wp-json/wp/v2/media/${thumbId}`);
   const data = await res.json();
   return data.guid.rendered;
 };
 
 const NewsCard = async (props) => {
+  // console.log(props?.featuredMedia, 'featureddddddddddddd');
   // const getPostThumbById = async () => {
   //   try {
   //     const response = await fetch(
@@ -38,7 +38,7 @@ const NewsCard = async (props) => {
   //   var thumbnail = props?.guid;
   // }
 
-  const thumbnail2 = await fetchPostThumb(544014);
+  // const thumbnail2 = await fetchPostThumb(544014);
   // console.log(
   //   props.featuredMedia,
   //   "fjdsfjysdkvksdv",
@@ -46,18 +46,20 @@ const NewsCard = async (props) => {
   //   typeof props.featuredMedia
   // );
   // console.log(thumbnail2, "thumbeeeee");
+  // console.log(props.)
 
   return (
     <>
       <div className={styles.newsCardContainer}>
         <div className={styles.newsCover}>
           <Image
-            src={thumbnail2}
-            // src={
-            //   thumbnail
-            //     ? thumbnail
-            //     : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
-            // }
+            // src={props?.featured_image_url}
+            // featuredMedia
+            src={
+              props?.featuredMedia
+                ? props?.featuredMedia
+                : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            }
             width={0}
             height={0}
             alt="SportzWiki Logo"

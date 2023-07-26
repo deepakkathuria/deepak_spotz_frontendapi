@@ -50,7 +50,7 @@ const NewsSection = async (props) => {
                     date={item?.date_gmt ? item.date_gmt : ""}
                     content={item?.content?.rendered}
                     id={item?.id}
-                    featuredMedia={item?.featured_media}
+                    featuredMedia={item?.featured_image_url}
                     slug={item?.slug}
                   />
                 </a>

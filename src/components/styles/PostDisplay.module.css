@@ -37,6 +37,14 @@
   margin-top: 0.6rem;
 }
 
+.postDescription img {
+  max-width: 62rem;
+}
+
+.postDetailListContainer {
+  width: 62rem;
+}
+
 .postDescription {
   /* white-space: pre-wrap; */
   /* overflow: hidden; */
@@ -46,7 +54,8 @@
   word-break: break-word; */
   /* white-space: normal; */
   /* word-wrap: break-word; */
-  max-width: 100%;
+  /* max-width: 100%; */
+  width: 62rem;
   margin-top: 2rem;
   font-size: 1.2rem;
   line-height: 2rem;

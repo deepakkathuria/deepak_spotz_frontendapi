@@ -55,6 +55,22 @@ a {
   margin-top: 8rem;
 }
 
+/* .video-container {
+  position: relative; 
+  padding-bottom: 56.25%; 
+  height: 0; 
+  overflow: hidden; 
+  max-width: 100%;
+} */
+
+iframe {
+  /* position: absolute; */
+  /* top: 0; */
+  /* left: 0; */
+  width: 95%;
+  height: 36rem;
+}
+
 @media (max-width: 576px) {
   /* body::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -83,7 +99,7 @@ a {
   }
 }
 
-@media(min-width: 1300px) {
+@media (min-width: 1300px) {
   .container {
     margin-left: 25.5rem;
     margin-right: 12.5rem;
@@ -91,7 +107,7 @@ a {
   }
 }
 
-@media(min-width: 1333px) {
+@media (min-width: 1333px) {
   .container {
     margin-left: 19rem;
     margin-right: 12.5rem;
@@ -99,7 +115,7 @@ a {
   }
 }
 
-@media(min-width: 1375px) {
+@media (min-width: 1375px) {
   .container {
     margin-left: 19.5rem;
     margin-right: 12.5rem;
@@ -107,7 +123,7 @@ a {
   }
 }
 
-@media(min-width: 1400px) {
+@media (min-width: 1400px) {
   .container {
     margin-left: 25.5rem;
     margin-right: 12.5rem;
@@ -115,7 +131,7 @@ a {
   }
 }
 
-@media(min-width: 1540px) {
+@media (min-width: 1540px) {
   .container {
     margin-left: 27.5rem;
     margin-right: 12.5rem;
@@ -123,7 +139,7 @@ a {
   }
 }
 
-@media(min-width: 1650px) {
+@media (min-width: 1650px) {
   .container {
     margin-left: 33.5rem;
     margin-right: 12.5rem;

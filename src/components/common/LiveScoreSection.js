@@ -12,7 +12,7 @@ const LiveScoreSection = () => {
         <UpdatesSound />
       </div>
       <div className={styles.scoresDiv}>
-        <ScoreCardPanel />
+        <ScoreCardPanel display ={true} />
       </div>
     </>
   );

@@ -5,9 +5,10 @@ import NewscardNoBorder from "./NewscardNoBorder";
 // import Link from "next/link";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
-const getPostByCategoryId = async() => {
+const getPostByCategoryId = async () => {
   const res = await fetch(
-    "https://demo2.sportzwiki.com/wp-json/wp/v2/posts?categories=10&per_page=9"
+    "https://demo2.sportzwiki.com/wp-json/wp/v2/posts?categories=10&per_page=9",
+    { cache: "no-store" }
   );
   return await res.json();
 };
@@ -63,6 +64,7 @@ const PostListBar = async (props) => {
                       content={item?.content.rendered?.substring(0, 40)}
                       id={item?.id}
                       guid={item?.id}
+                      thumbnail={item?.featured_image_url}
                     />
                   </a>
                 </div>

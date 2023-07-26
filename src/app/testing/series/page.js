@@ -4,6 +4,7 @@ import UpdatesSound from "@/components/common/UpdatesSound";
 import NavSeries from "@/components/series/NavSeries";
 import SeriesList from "@/components/series/SeriesList";
 import styles from "./series.module.css";
+import PostListBar from "@/components/common/PostListBar";
 
 const page = () => {
   return (
@@ -14,19 +15,29 @@ const page = () => {
           <div style={{ marginTop: "2rem" }} className={styles.soundUpdateDiv}>
             <UpdatesSound />
           </div>
-          <div style={{ marginTop: "1.5rem" }} className="navBarSeriesInside">
-            <NavSeries />
-          </div>
-          <div style={{ marginTop: "1rem" }} className="seriesListDiv">
-            <SeriesList />
-          </div>
+          <div className={styles.containerSeriesMain}>
+            <div className="left">
+              <div
+                style={{ marginTop: "1.5rem" }}
+                className="navBarSeriesInside"
+              >
+                <NavSeries />
+              </div>
+              <div style={{ marginTop: "1rem" }} className="seriesListDiv">
+                <SeriesList />
+              </div>
 
-          <div style={{ marginTop: "1rem" }} className="seriesListDiv">
-            <SeriesList />
-          </div>
+              <div style={{ marginTop: "1rem" }} className="seriesListDiv">
+                <SeriesList />
+              </div>
 
-          <div style={{ marginTop: "1rem" }} className="seriesListDiv">
-            <SeriesList />
+              <div style={{ marginTop: "1rem" }} className="seriesListDiv">
+                <SeriesList />
+              </div>
+            </div>
+            <div className={styles.right}>
+              <PostListBar category="cricket" />
+            </div>
           </div>
         </div>
       </div>

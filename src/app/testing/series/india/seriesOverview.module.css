@@ -1,0 +1,36 @@
+.seriesOverview {
+  margin-top: 5rem;
+}
+
+.tertiaryNav {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.seriesOverviewTitle {
+  color: #003161;
+}
+
+.tertiaryNavUl {
+  display: flex;
+  gap: 0.6rem;
+  list-style-type: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #206bb3;
+}
+
+.active {
+  color: #003161;
+  text-decoration: underline;
+}
+
+.seriesOverviewTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+}
+
+.matchesList {
+  margin-bottom: 4rem;
+}

@@ -4,14 +4,14 @@ import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
-const fetchPostThumb = async (thumbId) => {
-  const res = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/media/${thumbId}`
-  );
-  // console.log(`https://demo2.sportzwiki.com/wp-json/wp/v2/media/${thumbId}`);
-  const data = await res.json();
-  return data.guid.rendered;
-};
+// const fetchPostThumb = async (thumbId) => {
+//   const res = await fetch(
+//     `https://demo2.sportzwiki.com/wp-json/wp/v2/media/${thumbId}`
+//   );
+//   // console.log(`https://demo2.sportzwiki.com/wp-json/wp/v2/media/${thumbId}`);
+//   const data = await res.json();
+//   return data.guid.rendered;
+// };
 
 const NewsCard = async (props) => {
   //   useEffect(() => {
@@ -56,19 +56,19 @@ const NewsCard = async (props) => {
   //   var thumbnail = postBody[0]?.guid;
   // }
 
-  const thumbnail = await fetchPostThumb(544014);
+  // const thumbnail = await fetchPostThumb(544014);
 
   return (
     <>
       <div className={styles.newsCardContainer}>
         <div className={styles.newsCover}>
           <Image
-            src={thumbnail}
-            // src={
-            //   thumbnail
-            //     ? thumbnail
-            //     : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
-            // }
+            // src={thumbnail}
+            src={
+              props?.featuredMedia
+                ? props?.featuredMedia
+                : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+            }
             width={0}
             height={0}
             alt="SportzWiki Logo"
@@ -78,6 +78,10 @@ const NewsCard = async (props) => {
         </div>
         <div className={styles.newsDetails}>
           <p className={styles.newsTitle}>{props?.title}</p>
+          {/* <div
+            className={styles.newsTitle}
+            dangerouslySetInnerHTML={{ __html: props?.title }}
+          /> */}
           <p className={styles.newsDescription}>
             {props?.content?.substring(0, 45).replace(/(<([^>]+)>)/gi, "")}...
           </p>

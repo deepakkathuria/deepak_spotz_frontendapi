@@ -28,3 +28,18 @@
 .infoName {
   opacity: 0.699999988079071;
 }
+
+.detailsContainer {
+  display: flex;
+  gap: 2rem;
+  /* flex-direction: row; */
+  /* margin-top: 1rem; */
+}
+
+.teamInfo {
+  margin-top: 1rem;
+}
+
+.leftSection {
+  width: 62rem;
+}

@@ -6,16 +6,17 @@ import PostTags from "./PostTags";
 import TweetClientSideRender from "./TweetClientSideRender";
 
 const PostDisplay = (props) => {
-  const tweetRegex = /https:\/\/twitter\.com\/\w+\/status\/(\d+)\?s=20/g;
-  const tweetLinks = props.description?.match(tweetRegex);
-  const tweetIDs = tweetLinks
-    ? tweetLinks.map((tweetLink) => {
-        const match = tweetRegex.exec(tweetLink);
-        return match ? match[1] : null;
-      })
-    : [];
-  const sections = props.description?.split(tweetRegex);
+  // const tweetRegex = /https:\/\/twitter\.com\/\w+\/status\/(\d+)\?s=20/g;
+  // const tweetLinks = props.description?.match(tweetRegex);
+  // const tweetIDs = tweetLinks
+  //   ? tweetLinks.map((tweetLink) => {
+  //       const match = tweetRegex.exec(tweetLink);
+  //       return match ? match[1] : null;
+  //     })
+  //   : [];
+  // const sections = props.description?.split(tweetRegex);
   // console.log(props.tags,'tagsarrayyyyyyyy')
+  // console.log(props.thumbnail, 'thumbnaileeeeeeeeeeeeee')
 
   return (
     <>
@@ -35,11 +36,18 @@ const PostDisplay = (props) => {
             </div>
           </div>
           <div className={styles.postSummary}>
-            <p>{props?.summary}</p>
+            {/* <p> */}
+            {/* {props?.summary} */}
+            <div dangerouslySetInnerHTML={{ __html: props?.summary }} />
+            {/* </p> */}
           </div>
           <div className={styles.postCover}>
             <Image
-              src={props?.thumbnail}
+              src={
+                props?.thumbnail
+                  ? props?.thumbnail
+                  : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+              }
               width={0}
               height={0}
               sizes="100%"
@@ -69,14 +77,14 @@ const PostDisplay = (props) => {
             ))}
           </div> */}
           <div className={styles.postDescription}>
-            {sections?.map((section, index) => (
-              <div key={index}>
-                <div dangerouslySetInnerHTML={{ __html: section }} />
-                {index < tweetIDs.length && (
+            {/* {sections?.map((section, index) => (
+              <div key={index}> */}
+            <div dangerouslySetInnerHTML={{ __html: props?.description }} />
+            {/* {index < tweetIDs.length && (
                   <TweetClientSideRender tweetId={tweetIDs[index]} />
-                )}
-              </div>
-            ))}
+                )} */}
+            {/* </div> */}
+            {/* ))} */}
           </div>
 
           {/* <div className={styles.postDescription}>

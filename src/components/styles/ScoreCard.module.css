@@ -6,7 +6,7 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem; */
   padding: 0.5rem;
-  width: 32rem;
+  width: 33rem;
   /* height: 14rem; */
 }
 
@@ -96,6 +96,54 @@
 .countryName {
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+@media (min-width: 1450px) {
+  .scoreCardContainer {
+    width: 40rem;
+  }
+}
+
+@media (min-width: 1330px) {
+  .scoreCardContainer {
+    width: 35rem;
+  }
+}
+
+@media (min-width: 1350px) {
+  .scoreCardContainer {
+    width: 36rem;
+  }
+}
+
+@media (min-width: 1400px) {
+  .scoreCardContainer {
+    width: 36rem;
+  }
+}
+
+@media (min-width: 1450px) {
+  .scoreCardContainer {
+    width: 38rem;
+  }
+}
+
+@media (min-width: 1500px) {
+  .scoreCardContainer {
+    width: 40rem;
+  }
+}
+
+@media (min-width: 1550px) {
+  .scoreCardContainer {
+    width: 42rem;
+  }
+}
+
+@media (min-width: 1600px) {
+  .scoreCardContainer {
+    width: 44rem;
+  }
 }
 
 @media (max-width: 576px) {

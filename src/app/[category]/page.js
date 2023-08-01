@@ -11,9 +11,9 @@ import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
 
-const fetchPostsByCategoryId = async (categoryId) => {
+const fetchPostsByCategoryId = async (categoryId, currentPage) => {
   const res = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?categories=${categoryId}`,
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?categories=${categoryId}&page=${currentPage}&per_page=48`,
     { cache: "no-store" }
   );
   const posts = await res.json();
@@ -41,7 +41,6 @@ const CategoryPosts = async ({ params, searchParams }) => {
   const category = params.category;
   // const { Currentpage = 1 } = params;
   const categoryData = await fetchCategoryDataBySlug(category);
-  const categoryPosts = await fetchPostsByCategoryId(categoryData[0]?.id);
   // console.log(categoryData, "categoryDatabsdjbhvsjdkbhjh");
   // console.log(categoryPosts, "categoryPosts");
 
@@ -50,70 +49,53 @@ const CategoryPosts = async ({ params, searchParams }) => {
       name: "HOME",
       url: { site_url },
     },
-    // {
-    //   name: `WIKI`,
-    //   url: `/`,
-    // },
     {
       name: `${decodeURIComponent(category).toUpperCase().substring(0, 40)}...`,
       url: `/${category}`,
     },
   ];
 
-  // const totalData = await axios.get(
-  //   `${base_url}/gettotalpostbycategorytag?slug=${category}`
-  // );
+  const dataPerPage = 48;
 
-  // const dataPerPage = 48;
+  const totalPages = Math.ceil(categoryData[0].count / dataPerPage);
 
-  // const totalPages = Math.ceil(totalData?.data?.count / dataPerPage);
+  let currentPage = 1;
 
-  // let currentPage = 1;
+  if (Number(searchParams.page) >= 1) {
+    currentPage = Number(searchParams.page);
+  }
+  console.log(currentPage, "countjbkbdfb");
 
-  // console.log(searchParams, "currentPage");
+  let offset = (currentPage - 1) * dataPerPage;
 
-  // if (Number(searchParams.page) >= 1) {
-  //   currentPage = Number(searchParams.page);
-  // }
+  let pageNumbers = [];
+  const start = Math.max(currentPage - 4, 1);
+  const end = Math.min(currentPage + 4, totalPages);
 
-  // let offset = (currentPage - 1) * dataPerPage;
-
-  // const data = await axios.get(
-  //   `${base_url}/getpostsbycategoryname?name=${category}&page=${currentPage}&limit=${dataPerPage}`
-  // );
-
-  // console.log(data.data, "category data.data");
-
-  // totalData();
-
-  // const dataPerPage = totalData?.data.count;
-
-  // Pagination Logic old
-
-  // let pageNumbers = [];
-  // const start = Math.max(currentPage - 4, 1);
-  // const end = Math.min(currentPage + 4, totalPages);
-
-  // for (let i = start; i <= end; i++) {
-  //   pageNumbers.push(i);
-  // }
+  for (let i = start; i <= end; i++) {
+    pageNumbers.push(i);
+  }
 
   // Adjust the range if currentPage is close to the start or end
 
   // pagination logic OLD
-  // if (start === 1 && end < 9) {
-  //   const diff = 9 - end;
-  //   const additionalNumbers = Math.min(diff, totalPages - end);
-  //   for (let i = end + 1; i <= end + additionalNumbers; i++) {
-  //     pageNumbers.push(i);
-  //   }
-  // } else if (end === totalPages && start > totalPages - 8) {
-  //   const diff = start - (totalPages - 8);
-  //   const additionalNumbers = Math.min(diff, start - 1);
-  //   for (let i = start - 1; i >= start - additionalNumbers; i--) {
-  //     pageNumbers.unshift(i);
-  //   }
-  // }
+  if (start === 1 && end < 9) {
+    const diff = 9 - end;
+    const additionalNumbers = Math.min(diff, totalPages - end);
+    for (let i = end + 1; i <= end + additionalNumbers; i++) {
+      pageNumbers.push(i);
+    }
+  } else if (end === totalPages && start > totalPages - 8) {
+    const diff = start - (totalPages - 8);
+    const additionalNumbers = Math.min(diff, start - 1);
+    for (let i = start - 1; i >= start - additionalNumbers; i--) {
+      pageNumbers.unshift(i);
+    }
+  }
+  const categoryPosts = await fetchPostsByCategoryId(
+    categoryData[0]?.id,
+    currentPage
+  );
 
   return (
     <>
@@ -125,11 +107,6 @@ const CategoryPosts = async ({ params, searchParams }) => {
             name: "HOME",
             item: `${site_url}/`,
           },
-          // {
-          //   position: 2,
-          //   name: "WIKI",
-          //   item: `${site_url}/`,
-          // },
           {
             position: 2,
             name: `${category}`,
@@ -138,7 +115,6 @@ const CategoryPosts = async ({ params, searchParams }) => {
         ]}
       />
 
-      {/* <OrganisationLd /> */}
       <OrganizationJsonLd
         useAppDir={true}
         type="Corporation"
@@ -186,21 +162,10 @@ const CategoryPosts = async ({ params, searchParams }) => {
           <h1 className={styles.categoryTitle}>
             {decodeURIComponent(params.category).toUpperCase()}
           </h1>
+          <p className={styles.catDescription}>{categoryData[0].description}</p>
         </div>
 
         <div className={styles.newsCardsDisplay}>
-          {/* {data?.data?.map((post) => (
-            <div className="card" key={post.ID}>
-              <Link href={`/${category}/${post.post_name}`}>
-                <NewsCard
-                  title={post.post_title}
-                  content={post.post_content}
-                  date={new Date(post.post_modified_gmt).toLocaleString()}
-                />
-              </Link>
-            </div>
-          ))} */}
-
           {!categoryPosts?.length && (
             <div className="not">
               <h1 style={{ color: "red" }}> No Content in this category</h1>
@@ -217,7 +182,6 @@ const CategoryPosts = async ({ params, searchParams }) => {
                     content={post?.content.rendered}
                     date={new Date(post?.date).toLocaleString("en-us")}
                     featuredMedia={post?.featured_image_url}
-                    // ...other props
                   />
                 </a>
               </div>
@@ -226,14 +190,13 @@ const CategoryPosts = async ({ params, searchParams }) => {
       </div>
 
       <div className={styles.paginationContainer}>
-        {/* {currentPage > 1 && (
+        {currentPage > 1 && (
           <>
             <a href={`/${category}`}>{"<<"}</a>
           </>
-        )} */}
+        )}
 
-        {/* Pagination code */}
-        {/* {pageNumbers &&
+        {pageNumbers &&
           pageNumbers.map((page) => (
             <a
               key={page}
@@ -248,7 +211,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
           <>
             <a href={`/${category}?page=${currentPage + 1}`}>{">>"}</a>
           </>
-        )} */}
+        )}
       </div>
     </>
   );

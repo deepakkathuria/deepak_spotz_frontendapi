@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 14rem;
+  min-width: 7rem;
 }
 
 .over {
@@ -62,6 +62,6 @@
   }
 
   .scoreOver {
-    width: 18rem;
+    min-width: 7rem;
   }
 }

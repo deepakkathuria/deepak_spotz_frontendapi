@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "./Teams.module.css";
 
-const Teams = () => {
+const Teams = (props) => {
+  console.log(props.data.response.teama.squads, "fsjdbhfhsbd");
   return (
     <>
       <div className={styles.container}>
@@ -11,54 +12,32 @@ const Teams = () => {
         </div>
         <div className={styles.contentMain}>
           <div className={styles.playerTeamA}>
-            <div className={styles.player}>
-              <div className={styles.photo}>.</div>
-              <div className={styles.nameRole}>
-                <div className={styles.name}>Mithali Raj</div>
-                <div className={styles.role}>Right Handed Bat</div>
-              </div>
-            </div>
-
-            <div className={styles.player}>
-              <div className={styles.photo}>.</div>
-              <div className={styles.nameRole}>
-                <div className={styles.name}>Mithali Raj</div>
-                <div className={styles.role}>Right Handed Bat</div>
-              </div>
-            </div>
-
-            <div className={styles.player}>
-              <div className={styles.photo}>.</div>
-              <div className={styles.nameRole}>
-                <div className={styles.name}>Mithali Raj</div>
-                <div className={styles.role}>Right Handed Bat</div>
-              </div>
-            </div>
+            {props?.data?.response?.teama?.squads?.map((entry, index) => {
+              return (
+                <div key={index} className={styles.player}>
+                  <div className={styles.photo}></div>
+                  <div className={styles.nameRole}>
+                    <div className={styles.name}>{entry?.name ?? "-"}</div>
+                    <div className={styles.role}>{entry?.role ?? "-"}</div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
+
+          {/* teamB */}
           <div className={styles.playerTeamB}>
-            <div className={styles.player}>
-              <div className={styles.photo}>.</div>
-              <div className={styles.nameRole}>
-                <div className={styles.name}>Mithali Raj</div>
-                <div className={styles.role}>Right Handed Bat</div>
-              </div>
-            </div>
-
-            <div className={styles.player}>
-              <div className={styles.photo}>.</div>
-              <div className={styles.nameRole}>
-                <div className={styles.name}>Mithali Raj</div>
-                <div className={styles.role}>Right Handed Bat</div>
-              </div>
-            </div>
-
-            <div className={styles.player}>
-              <div className={styles.photo}>.</div>
-              <div className={styles.nameRole}>
-                <div className={styles.name}>Mithali Raj</div>
-                <div className={styles.role}>Right Handed Bat</div>
-              </div>
-            </div>
+            {props?.data?.response?.teamb?.squads?.map((entry, index) => {
+              return (
+                <div key={index} className={styles.player}>
+                  <div className={styles.photo}></div>
+                  <div className={styles.nameRole}>
+                    <div className={styles.name}>{entry?.name ?? "-"}</div>
+                    <div className={styles.role}>{entry?.role ?? "-"}</div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

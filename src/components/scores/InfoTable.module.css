@@ -26,4 +26,8 @@
     font-weight: 600;
     width: 100%;
   }
+  .title {
+    min-width: 20rem;
+    opacity: 70%;
+  }
 }

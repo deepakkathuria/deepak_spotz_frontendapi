@@ -4,6 +4,19 @@
   margin-right: 12.5rem;
 }
 
+.catDescription {
+  max-height: 5rem;
+  overflow: hidden;
+  font-size: 1.2rem;
+  transition: max-height 0.3s ease; /* Use max-height for smooth animation */
+}
+
+.catDescription:hover {
+  max-height: none; /* Set max-height to 'none' to fully show the content on hover */
+  cursor: pointer;
+  /* color: aqua; */
+}
+
 .categoryTitle {
   margin-bottom: 2rem;
 }

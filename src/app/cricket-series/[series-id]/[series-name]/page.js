@@ -7,16 +7,35 @@ import InfoTable from "@/components/scores/InfoTable";
 import Link from "next/link";
 import styles from "../../../../components/scores/NavBarTertiary.module.css";
 import UpdatesSound from "@/components/common/UpdatesSound";
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "@/components/common/Breadcrumb";
 import PostListBar from "@/components/common/PostListBar";
 
+// const fetchMatchInfo = async (matchId) => {
+//   const res = await fetch(`${baseUrl}matches/${matchId}`, {
+//     next: { revalidate: 2 },
+//   });
+//   const matchInfo = await res.json();
+//   return matchInfo;
+// };
+
 const fetchMatchInfo = async (matchId) => {
-  const res = await fetch(`${baseUrl}matches/${matchId}`, {
+  // console.log(matchId, "matchID");
+  const res = await fetch(`${baseUrl}/matches/${matchId}/info?token=${key}`, {
     next: { revalidate: 2 },
   });
   const matchInfo = await res.json();
+  // console.log(matchInfo, "matchInfo");
   return matchInfo;
+};
+
+const fetchMatchScoreCard = async (matchId) => {
+  const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
+    next: { revalidate: 2 },
+  });
+  const scoreCard = await res.json();
+  return scoreCard;
 };
 
 const page = async ({ params }) => {
@@ -28,6 +47,9 @@ const page = async ({ params }) => {
   // const { 'series-id': seriesId } = params;
 
   const matchInfo = await fetchMatchInfo(seriesIdInt);
+  const data = matchInfo.response;
+  const scoreCard = await fetchMatchScoreCard(seriesIdInt);
+  // console.log(scoreCard, "matchInfo");
 
   const breadcrumbs = [
     {
@@ -66,16 +88,197 @@ const page = async ({ params }) => {
               <UpdatesSound />
             </div>
             <ScorePanel
-              logoTeamA={matchInfo?.teama_logo_url ?? ""}
-              logoTeamB={matchInfo?.teamb_logo_url ?? ""}
-              nameTeamA={matchInfo?.teama_name ?? ""}
-              nameTeamB={matchInfo?.teamb_name ?? ""}
-              overTeamA={matchInfo?.teama_overs ?? ""}
-              overTeamB={matchInfo?.teamb_overs ?? ""}
-              scoreTeamA={matchInfo?.teama_scores ?? ""}
-              scoreTeamB={matchInfo?.teamb_scores ?? ""}
-              currentStatus={matchInfo?.status_note ?? ""}
+              logoTeamA={data?.teama?.logo_url ?? ""}
+              logoTeamB={data?.teamb?.logo_url ?? ""}
+              nameTeamA={data?.teama?.name ?? ""}
+              nameTeamB={data?.teamb?.name ?? ""}
+              overTeamA={data?.teama?.overs ?? ""}
+              overTeamB={data?.teamb?.overs ?? ""}
+              scoreTeamA={data?.teama?.scores ?? ""}
+              scoreTeamB={data?.teamb?.scores ?? ""}
+              currentStatus={data?.status_note ?? ""}
+              // ************************************
+              batsA={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 0
+                  ? scoreCard.response.batsmen[0].name ?? ""
+                  : ""
+              }
+              batsB={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 1
+                  ? scoreCard.response.batsmen[1].name ?? ""
+                  : ""
+              }
+              batsman_idA={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 0
+                  ? scoreCard.response.batsmen[0].batsman_id ?? ""
+                  : ""
+              }
+              batsman_idB={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 1
+                  ? scoreCard.response.batsmen[1].batsman_id ?? ""
+                  : ""
+              }
+              runsA={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 0
+                  ? scoreCard.response.batsmen[0].runs ?? ""
+                  : ""
+              }
+              runsB={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 1
+                  ? scoreCard.response.batsmen[1].runs ?? ""
+                  : ""
+              }
+              balls_facedA={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 0
+                  ? scoreCard.response.batsmen[0].balls_faced ?? ""
+                  : ""
+              }
+              balls_facedB={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 1
+                  ? scoreCard.response.batsmen[1].balls_faced ?? ""
+                  : ""
+              }
+              foursA={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 0
+                  ? scoreCard.response.batsmen[0].fours ?? ""
+                  : ""
+              }
+              foursB={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 1
+                  ? scoreCard.response.batsmen[1].fours ?? ""
+                  : ""
+              }
+              sixesA={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 0
+                  ? scoreCard.response.batsmen[0].sixes ?? ""
+                  : ""
+              }
+              sixesB={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 1
+                  ? scoreCard.response.batsmen[1].sixes ?? ""
+                  : ""
+              }
+              strike_rateA={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 0
+                  ? scoreCard.response.batsmen[0].strike_rate ?? ""
+                  : ""
+              }
+              strike_rateB={
+                scoreCard?.response?.batsmen &&
+                scoreCard.response.batsmen.length > 1
+                  ? scoreCard.response.batsmen[1].strike_rate ?? ""
+                  : ""
+              }
+              // bowlers data
+              bowlerNameA={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 0
+                  ? scoreCard.response.bowlers[0].name ?? ""
+                  : ""
+              }
+              bowlerNameB={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 1
+                  ? scoreCard.response.bowlers[1].name ?? ""
+                  : ""
+              }
+              bowlerIdA={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 0
+                  ? scoreCard.response.bowlers[0].bowler_id ?? ""
+                  : ""
+              }
+              bowlerIdB={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 1
+                  ? scoreCard.response.bowlers[1].bowler_id ?? ""
+                  : ""
+              }
+              bowlerOversA={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 0
+                  ? scoreCard.response.bowlers[0].overs ?? ""
+                  : ""
+              }
+              bowlerOversB={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 1
+                  ? scoreCard.response.bowlers[1].overs ?? ""
+                  : ""
+              }
+              bowlerRunsConcededA={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 0
+                  ? scoreCard.response.bowlers[0].runs_conceded ?? ""
+                  : ""
+              }
+              bowlerRunsConcededB={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 1
+                  ? scoreCard.response.bowlers[1].runs_conceded ?? ""
+                  : ""
+              }
+              bowlerWicketsA={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 0
+                  ? scoreCard.response.bowlers[0].wickets ?? ""
+                  : ""
+              }
+              bowlerWicketsB={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 1
+                  ? scoreCard.response.bowlers[1].wickets ?? ""
+                  : ""
+              }
+              bowlerMaidensA={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 0
+                  ? scoreCard.response.bowlers[0].maidens ?? ""
+                  : ""
+              }
+              bowlerMaidensB={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 1
+                  ? scoreCard.response.bowlers[1].maidens ?? ""
+                  : ""
+              }
+              bowlerEconA={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 0
+                  ? scoreCard.response.bowlers[0].econ ?? ""
+                  : ""
+              }
+              bowlerEconB={
+                scoreCard?.response?.bowlers &&
+                scoreCard.response.bowlers.length > 1
+                  ? scoreCard.response.bowlers[1].econ ?? ""
+                  : ""
+              }
             />
+
+            {/* bowlers": [
+            {
+                "name": "Akif Javed",
+                "bowler_id": 59510,
+                "overs": 3.3,
+                "runs_conceded": 28,
+                "wickets": 4,
+                "maidens": 0,
+                "econ": "8.00"
+            }, */}
 
             <AudioBar />
             <div className="nav">
@@ -134,25 +337,22 @@ const page = async ({ params }) => {
             </div>
 
             <InfoTable
-              matchFormat={`${matchInfo?.competition_title ?? ""} ${
-                matchInfo?.format_str ?? ""
+              matchFormat={`${data?.competition.title ?? ""} ${
+                data?.format_str ?? ""
               }`}
-              series={matchInfo?.competition_title ?? ""}
-              date={new Date(matchInfo?.start_date).toLocaleDateString() ?? ""}
-              time={
-                new Date(matchInfo?.start_timestamp).toLocaleTimeString() ?? ""
-              }
-              venueName={matchInfo?.venue_name ?? ""}
-              venueCountry={matchInfo?.venue_country ?? ""}
-              stadium={matchInfo?.venue_name ?? ""}
-              venueLocation={matchInfo?.venue_location ?? ""}
-              umpires={matchInfo?.umpires ?? ""}
-              referee={matchInfo?.referee ?? ""}
+              series={data?.competition.title ?? ""}
+              date={new Date(data?.date_start_ist).toLocaleDateString() ?? ""}
+              time={new Date(data?.date_end_ist).toLocaleTimeString() ?? ""}
+              venueName={data?.venue.name ?? ""}
+              venueCountry={data?.venue.country ?? ""}
+              stadium={data?.venue.name ?? ""}
+              venueLocation={data?.venue.location ?? ""}
+              umpires={data?.umpires ?? ""}
+              referee={data?.referee ?? ""}
             />
           </div>
           <div className={styles.containerRight}>
-            <PostListBar
-            category='cricket'/>
+            <PostListBar category="cricket" />
           </div>
         </div>
       </div>

@@ -112,6 +112,7 @@ export async function generateMetadata({ params }) {
 
   const title = post?.title?.rendered ?? "SportzWiki";
   const description = post?.excerpt?.rendered ?? "SportzWiki";
+  const imageUrl = post?.featured_image_url ?? "";
   const parsedDescription = parse(description);
   // const thumbUrl = thumbnail ?? "https://nextjs.org";
 
@@ -126,13 +127,13 @@ export async function generateMetadata({ params }) {
       siteName: "Sportzwiki",
       images: [
         {
-          url: post?.featured_image_url,
+          url: imageUrl,
           width: 800,
           height: 600,
           alt: title,
         },
         {
-          url: post?.featured_image_url,
+          url: imageUrl,
           width: 1800,
           height: 1600,
           alt: title,
@@ -149,7 +150,7 @@ export async function generateMetadata({ params }) {
       siteId: "1467726470533754880",
       creator: "@gaurav",
       creatorId: "1467726470533754880",
-      images: [post?.featured_image_url],
+      images: [imageUrl],
     },
   };
 }

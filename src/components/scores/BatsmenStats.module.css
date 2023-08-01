@@ -22,6 +22,24 @@
   text-decoration: underline;
 }
 
+.didNotBat,
+.fallOfWickets {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.5rem;
+  border-bottom: 1px solid #0000001a;
+  white-space: nowrap;
+  /* line-break: anywhere; */
+  /* overflow: scroll; */
+}
+
+.didNotBat p,
+.fallOfWickets p {
+  font-weight: 600;
+  opacity: 0.699999988079071;
+  margin-right: 0.5rem;
+}
+
 /* .nameDetails {
   display: flex;
 } */
@@ -36,5 +54,10 @@
 @media (max-width: 576px) {
   .container {
     width: 100%;
+  }
+  .didNotBat,
+  .fallOfWickets {
+    white-space: nowrap;
+    overflow: scroll;
   }
 }

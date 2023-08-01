@@ -3,10 +3,11 @@ import styles from "./ScorePanel.module.css";
 import Image from "next/image";
 
 const ScorePanel = (props) => {
-  console.log('ScoreA:', props.scoreTeamA)
-  console.log('ScoreB:', props.scoreTeamB)
-  console.log('overA:', props.overTeamA)
-  console.log('overB:', props.overTeamB)
+  // console.log('ScoreA:', props.scoreTeamA)
+  // console.log('ScoreB:', props.scoreTeamB)
+  // console.log('overA:', props.overTeamA)
+  // console.log('overB:', props.overTeamB)
+  // console.log(props.batsman_idA, "batssssssssss");
   return (
     <>
       <div className={styles.scorePanelContainer}>
@@ -80,24 +81,24 @@ const ScorePanel = (props) => {
             <tbody className={styles.tableBody}>
               <tr className={styles.tableRow}>
                 <td className={`${styles.tableDataBody} ${styles.playerName}`}>
-                  Gaurav Tanwar
+                  {props?.batsA ? props.batsA : "-"}
                 </td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
+                <td className={styles.tableDataBody}>{props?.runsA}</td>
+                <td className={styles.tableDataBody}>{props.balls_facedA}</td>
+                <td className={styles.tableDataBody}>{props.foursA}</td>
+                <td className={styles.tableDataBody}>{props.sixesA}</td>
+                <td className={styles.tableDataBody}>{props.strike_rateA}</td>
               </tr>
 
               <tr className={styles.tableRow}>
                 <td className={`${styles.tableDataBody} ${styles.playerName}`}>
-                  Gaurav Tanwar
+                  {props?.batsB ? props.batsB : "-"}
                 </td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
+                <td className={styles.tableDataBody}>{props?.runsB}</td>
+                <td className={styles.tableDataBody}>{props.balls_facedB}</td>
+                <td className={styles.tableDataBody}>{props.foursB}</td>
+                <td className={styles.tableDataBody}>{props.sixesB}</td>
+                <td className={styles.tableDataBody}>{props.strike_rateB}</td>
               </tr>
             </tbody>
           </table>
@@ -130,24 +131,26 @@ const ScorePanel = (props) => {
             <tbody className={styles.tableBody}>
               <tr className={styles.tableRow}>
                 <td className={`${styles.tableDataBody} ${styles.playerName}`}>
-                  Gaurav Tanwar
+                  {props.bowlerNameA}
                 </td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
+                {/* <td className={styles.tableDataBody}>{props.bowlerIdA}</td> */}
+                <td className={styles.tableDataBody}>{props.bowlerOversA}</td>
+                <td className={styles.tableDataBody}>{props.bowlerMaidensA}</td>
+                <td className={styles.tableDataBody}>{props.bowlerRunsConcededA}</td>
+                <td className={styles.tableDataBody}>{props.bowlerWicketsA}</td>
+                <td className={styles.tableDataBody}>{props.bowlerEconA}</td>
               </tr>
 
               <tr className={styles.tableRow}>
                 <td className={`${styles.tableDataBody} ${styles.playerName}`}>
-                  Gaurav Tanwar
+                  {props.bowlerNameB}
                 </td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
-                <td className={styles.tableDataBody}>1</td>
+                {/* <td className={styles.tableDataBody}>{props.bowlerIdB}</td> */}
+                <td className={styles.tableDataBody}>{props.bowlerOversB}</td>
+                <td className={styles.tableDataBody}>{props.bowlerMaidensB}</td>
+                <td className={styles.tableDataBody}>{props.bowlerRunsConcededB}</td>
+                <td className={styles.tableDataBody}>{props.bowlerWicketsB}</td>
+                <td className={styles.tableDataBody}>{props.bowlerEconB}</td>
               </tr>
             </tbody>
           </table>

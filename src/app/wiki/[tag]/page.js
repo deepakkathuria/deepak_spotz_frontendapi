@@ -20,9 +20,9 @@ const fetchTagIdByTagSlug = async (tagSlug) => {
   return tagID;
 };
 
-const fetchPostsByTagId = async (tagId) => {
+const fetchPostsByTagId = async (tagId, currentPage) => {
   const res = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?tags=${tagId}`,
+    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?tags=${tagId}&page=${currentPage}`,
     { cache: "no-store" }
   );
   const posts = await res.json();
@@ -60,10 +60,12 @@ export async function generateMetadata({ params }) {
 const CategoryPosts = async ({ params, searchParams }) => {
   const { tag } = params;
 
-  const tagId = await fetchTagIdByTagSlug("wwe-raw");
+  const tagId = await fetchTagIdByTagSlug(tag);
+  const tagData = await fetchTagIdByTagSlug(tag);
+  const totalTags = tagData[0].count;
+  // console.log(totalTags, "taggggghjvdvhjkjvhks");
   // console.log(`tagId: ${tagId} avskhvsjfghv`);
 
-  const PostsOfTag = await fetchPostsByTagId(tagId[0].id);
   // console.log(PostsOfTag, "postsOfTaghjhavsdjhvjhvsj");
 
   const breadcrumbs = [
@@ -84,21 +86,23 @@ const CategoryPosts = async ({ params, searchParams }) => {
   // const totalData = await axios.get(
   //   `${base_url}/gettotalpostbytagslug?slug=${tag}`
   // );
-  // const totalData = await fetchTotalNoOfPosts(tag);
+  const totalData = totalTags;
 
   // console.log(totalData, " : total data, ", "type is : ", typeof totalData);
 
-  // const dataPerPage = 48;
+  const dataPerPage = 48;
 
-  // const totalPages = Math.ceil(totalData?.data?.count / dataPerPage);
+  const totalPages = Math.ceil(totalData?.data?.count / dataPerPage);
 
   // console.log(totalPages, "totalData");
 
-  // let currentPage = 1;
+  let currentPage = 1;
 
-  // if (Number(searchParams.page) >= 1) {
-  //   currentPage = Number(searchParams.page);
-  // }
+  if (Number(searchParams.page) >= 1) {
+    currentPage = Number(searchParams.page);
+  }
+
+  const PostsOfTag = await fetchPostsByTagId(tagId[0].id, currentPage);
 
   // const data = await axios.get(
   //   `${base_url}getpostbytagslug?slug=cricket&page=1&limit=100`
@@ -107,28 +111,28 @@ const CategoryPosts = async ({ params, searchParams }) => {
   // const data = await fetchPosts(tag, dataPerPage);
   // console.log(data, "cricket");
 
-  // let pageNumbers = [];
-  // const start = Math.max(currentPage - 4, 1);
-  // const end = Math.min(currentPage + 4, totalPages);
+  let pageNumbers = [];
+  const start = Math.max(currentPage - 4, 1);
+  const end = Math.min(currentPage + 4, totalPages);
 
-  // for (let i = start; i <= end; i++) {
-  //   pageNumbers.push(i);
-  // }
+  for (let i = start; i <= end; i++) {
+    pageNumbers.push(i);
+  }
 
   // Adjust the range if currentPage is close to the start or end
-  // if (start === 1 && end < 9) {
-  //   const diff = 9 - end;
-  //   const additionalNumbers = Math.min(diff, totalPages - end);
-  //   for (let i = end + 1; i <= end + additionalNumbers; i++) {
-  //     pageNumbers.push(i);
-  //   }
-  // } else if (end === totalPages && start > totalPages - 8) {
-  //   const diff = start - (totalPages - 8);
-  //   const additionalNumbers = Math.min(diff, start - 1);
-  //   for (let i = start - 1; i >= start - additionalNumbers; i--) {
-  //     pageNumbers.unshift(i);
-  //   }
-  // }
+  if (start === 1 && end < 9) {
+    const diff = 9 - end;
+    const additionalNumbers = Math.min(diff, totalPages - end);
+    for (let i = end + 1; i <= end + additionalNumbers; i++) {
+      pageNumbers.push(i);
+    }
+  } else if (end === totalPages && start > totalPages - 8) {
+    const diff = start - (totalPages - 8);
+    const additionalNumbers = Math.min(diff, start - 1);
+    for (let i = start - 1; i >= start - additionalNumbers; i--) {
+      pageNumbers.unshift(i);
+    }
+  }
 
   return (
     <>
@@ -223,14 +227,14 @@ const CategoryPosts = async ({ params, searchParams }) => {
         </div>
       </div>
 
-      {/* <div className={styles.paginationContainer}>
+      <div className={styles.paginationContainer}>
         {currentPage > 1 && (
           <>
             <a href={`/${category}`}>{"<<"}</a>
           </>
-        )} */}
+        )}
 
-      {/* {pageNumbers &&
+        {pageNumbers &&
           pageNumbers.map((page) => (
             <Link
               key={page}
@@ -239,14 +243,14 @@ const CategoryPosts = async ({ params, searchParams }) => {
             >
               {page}
             </Link>
-          ))} */}
+          ))}
 
-      {/* {currentPage < totalPages && (
+        {currentPage < totalPages && (
           <>
             <a href={`/${tag}?page=${currentPage + 1}`}>{">>"}</a>
           </>
-        )} */}
-      {/* </div> */}
+        )}
+      </div>
     </>
   );
 };

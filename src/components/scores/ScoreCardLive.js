@@ -3,11 +3,11 @@ import styles from "./ScoreCardLive.module.css";
 import TeamSelector from "./TeamSelector";
 import PlayerScoreStats from "./PlayerScoreStats";
 
-const ScoreCardLive = () => {
+const ScoreCardLive = (props) => {
   return (
     <>
-      <TeamSelector />
-      <PlayerScoreStats />
+      {/* <TeamSelector /> */}
+      <PlayerScoreStats data={props?.data} />
     </>
   );
 };

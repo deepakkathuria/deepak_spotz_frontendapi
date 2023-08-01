@@ -73,7 +73,7 @@ const NewsCard = async (props) => {
             height={0}
             alt="SportzWiki Logo"
             sizes="100vh"
-            style={{ width: "10.5rem", height: "10rem", borderRadius: "3px" }}
+            style={{ width: "13.5rem", height: "10rem", borderRadius: "3px" }}
           />
         </div>
         <div className={styles.newsDetails}>
@@ -82,9 +82,9 @@ const NewsCard = async (props) => {
             className={styles.newsTitle}
             dangerouslySetInnerHTML={{ __html: props?.title }}
           /> */}
-          <p className={styles.newsDescription}>
+          {/* <p className={styles.newsDescription}>
             {props?.content?.substring(0, 45).replace(/(<([^>]+)>)/gi, "")}...
-          </p>
+          </p> */}
           {/* <p className={styles.newsDate}>{props?.date}</p> */}
           <p>{new Date(props?.date).toLocaleString("en-US")}</p>
           {/* <p>localeDate</p> */}

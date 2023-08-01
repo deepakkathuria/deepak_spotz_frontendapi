@@ -9,17 +9,27 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getLiveScoreData } from "@/lib/PostDataFetch";
 import Link from "next/link";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 // import ScorePanel from "../scorePage/ScorePanel";
 
+// const getData = async () => {
+//   const res = await fetch(`${base_url}/matches?token=${key}&status=3`, { cache: "no-store" });
+//   return await res.json();
+// };
+
 const getData = async () => {
-  const res = await fetch(`${base_url}/livescore`, { cache: "no-store" });
-  return await res.json();
+  const res = await fetch(`${base_url}/matches?token=${key}&status=3`, {
+    cache: "no-store",
+  });
+  const data = await res.json();
+  return data.response.items;
 };
 
 const ScoreCardPanel = async (props) => {
   // console.log(data, "dataaaaaa");
   const data = await getData();
+  // console.log(data, "dataaaaaa");
 
   const PrevArrow = ({ onClick }) => (
     <div
@@ -54,34 +64,50 @@ const ScoreCardPanel = async (props) => {
     arrow: true,
     autoplay: true,
     autoplaySpeed: 4000,
-    infinite: true,
+    // infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1600,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
           infinite: true,
-          dots: true,
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 1200,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
-          initialSlide: 1,
+          infinite: true,
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 576,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          infinite: true,
         },
       },
     ],
@@ -128,14 +154,14 @@ const ScoreCardPanel = async (props) => {
                 key={index}
                 matchID={match?.match_id}
                 title={match?.short_title ? match.short_title : "no title"}
-                teamAName={match?.teama_name ? match?.teama_name : "NA"}
-                teamBName={match?.teamb_name}
-                teamAScores={match?.teama_scores}
-                teamBScores={match?.teamb_scores}
-                teamAOvers={match?.teama_overs}
-                teamBOvers={match?.teamb_overs}
-                teamALogo={match?.teama_logo_url}
-                teamBLogo={match?.teamb_logo_url}
+                teamAName={match?.teama.name ? match?.teama.name : "NA"}
+                teamBName={match?.teamb.name}
+                teamAScores={match?.teama.scores}
+                teamBScores={match?.teamb.scores}
+                teamAOvers={match?.teama.overs}
+                teamBOvers={match?.teamb.overs}
+                teamALogo={match?.teama.logo_url}
+                teamBLogo={match?.teamb.logo_url}
                 matchScoreDetails={
                   match?.status_note
                     ? match.status_note

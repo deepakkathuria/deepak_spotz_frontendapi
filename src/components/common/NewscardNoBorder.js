@@ -83,7 +83,7 @@ const NewscardNoBorder = async (props) => {
             height={0}
             sizes="100vw"
             style={{
-              width: "10rem",
+              width: "13rem",
               height: "10rem",
               objectFit: "cover",
               borderRadius: "3px",
@@ -95,9 +95,9 @@ const NewscardNoBorder = async (props) => {
             <p>{props?.title}</p>
           </div>
 
-          <div className={styles.cardDescription}>
+          {/* <div className={styles.cardDescription}>
             <p>{props?.content?.replace(/(<([^>]+)>)/gi, "")}...</p>
-          </div>
+          </div> */}
 
           <div className={styles.cardDate}>
             {/* {new Date(props?.date).toLocaleString()} */}

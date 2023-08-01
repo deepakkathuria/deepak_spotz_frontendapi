@@ -1,60 +1,60 @@
 import React from "react";
 import styles from "./BatsmenStats.module.css";
 
-const BatsmenStats = (props) => {
+const BowlerStats = (props) => {
   // console.log(props.data.response.innings[0].batsmen, "propeeeestatssssssssssss");
   return (
     <>
       <div className={styles.container}>
         <div className={styles.tableHead}>
-          <div className={styles.batter}>Batter</div>
+          <div className={styles.batter}>Bowler</div>
           <div className={styles.otherDetails}>
+            <div>O</div>
             <div>R</div>
-            <div>B</div>
-            <div>4s</div>
-            <div>6s</div>
-            <div>SR</div>
+            <div>W</div>
+            <div>Econ</div>
+            <div>Dots</div>
           </div>
         </div>
-        {props?.data?.response?.innings[0]?.batsmen?.map((stat, index) => {
+        {props?.data?.response?.innings[0]?.bowlers?.map((stat, index) => {
           return (
             <div key={index} className={styles.tableBody}>
               <div className={styles.nameDetails}>
                 <div className={styles.name}>{stat?.name ?? "-"}</div>
-                <div className={styles.misc}>{stat.how_out ?? "-"}</div>
+                {/* <div className={styles.misc}>{stat.how_out ?? "-"}</div> */}
               </div>
               <div className={styles.otherDetails}>
-                <div>{stat.runs ?? "-"}</div>
-                <div>{stat.balls_faced ?? "-"}</div>
-                <div>{stat.fours ?? "-"}</div>
-                <div>{stat.sixes ?? "-"}</div>
-                <div>{stat.strike_rate ?? "-"}</div>
+                <div>{stat.overs ?? "-"}</div>
+                <div>{stat.runs_conceded ?? "-"}</div>
+                <div>{stat.wickets ?? "-"}</div>
+                <div>{stat.econ ?? "-"}</div>
+                <div>{stat.maidens ?? "-"}</div>
               </div>
             </div>
           );
         })}
-        <div style={{ display: "flex" }} className={styles.didNotBat}>
+        {/* <div style={{ display: "flex" }} className={styles.didNotBat}>
           <p>Did not bat:</p>
           {props?.data?.response?.innings[0]?.did_not_bat?.map(
             (item, index) => {
               return (
                 <>
-                  <div key={index}>{`  ${item?.name ?? "-"}, `}</div>
+                  <div key={index}>{`  ${item.name}, `}</div>
                 </>
               );
             }
           )}
-        </div>
-        <div style={{ display: "flex" }} className={styles.fallOfWickets}>
+        </div> */}
+        {/* <div style={{ display: "flex" }} className={styles.fallOfWickets}>
           <p>Fall of wickets:</p>
           {props?.data?.response?.innings[0]?.fows?.map((item, index) => {
             return (
               <>
-                <div key={index}>{`${item.name ?? "-"}, `}</div>
+                <div key={index}>{`${item.name}, `}</div>
               </>
             );
           })}
-        </div>
+        </div> */}
         {/* <div className={styles.tableBody}>
           <div className={styles.nameDetails}>
             <div className={styles.name}>Mithali Raj</div>
@@ -101,4 +101,4 @@ const BatsmenStats = (props) => {
   );
 };
 
-export default BatsmenStats;
+export default BowlerStats;

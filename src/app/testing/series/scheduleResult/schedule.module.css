@@ -1,0 +1,44 @@
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  margin-top: 6rem;
+}
+
+.tertiaryNavUl {
+  display: flex;
+  gap: 0.6rem;
+  list-style-type: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #206bb3;
+  margin-top: 2rem;
+}
+
+.active {
+  color: #003161;
+  text-decoration: underline;
+}
+
+.seriesOverviewTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  color: #003161;
+}
+
+.cardsWithDate {
+  margin-top: 2rem;
+}
+
+.date {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #003161;
+}
+
+.schedule {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

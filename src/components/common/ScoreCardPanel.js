@@ -19,7 +19,7 @@ const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 // };
 
 const getData = async () => {
-  const res = await fetch(`${base_url}/matches?token=${key}&status=3`, {
+  const res = await fetch(`${base_url}/matches?token=${key}`, {
     cache: "no-store",
   });
   const data = await res.json();
@@ -150,24 +150,26 @@ const ScoreCardPanel = async (props) => {
             // console.log("Match title", match.title);
             return (
               // <h1>djnkdf</h1>
-              <ScoreCard
-                key={index}
-                matchID={match?.match_id}
-                title={match?.short_title ? match.short_title : "no title"}
-                teamAName={match?.teama.name ? match?.teama.name : "NA"}
-                teamBName={match?.teamb.name}
-                teamAScores={match?.teama.scores}
-                teamBScores={match?.teamb.scores}
-                teamAOvers={match?.teama.overs}
-                teamBOvers={match?.teamb.overs}
-                teamALogo={match?.teama.logo_url}
-                teamBLogo={match?.teamb.logo_url}
-                matchScoreDetails={
-                  match?.status_note
-                    ? match.status_note
-                    : "no status information"
-                }
-              />
+              <div key={index} className={styles.customCarouselSlide}>
+                <ScoreCard
+                  key={index}
+                  matchID={match?.match_id}
+                  title={match?.short_title ? match.short_title : "no title"}
+                  teamAName={match?.teama.name ? match?.teama.name : "NA"}
+                  teamBName={match?.teamb.name}
+                  teamAScores={match?.teama.scores}
+                  teamBScores={match?.teamb.scores}
+                  teamAOvers={match?.teama.overs}
+                  teamBOvers={match?.teamb.overs}
+                  teamALogo={match?.teama.logo_url}
+                  teamBLogo={match?.teamb.logo_url}
+                  matchScoreDetails={
+                    match?.status_note
+                      ? match.status_note
+                      : "no status information"
+                  }
+                />
+              </div>
             );
           })}
         </Slider>

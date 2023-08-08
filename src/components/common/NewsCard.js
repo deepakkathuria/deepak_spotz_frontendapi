@@ -13,48 +13,11 @@ const fetchPostThumb = async (thumbId) => {
 };
 
 const NewsCard = async (props) => {
-  // console.log(props?.featuredMedia, 'featureddddddddddddd');
-  // const getPostThumbById = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       `${base_url}/getPostThumbnailByPostID?id=${props.id}`
-  //     );
-  //     if (!response.ok) {
-  //       throw new Error("Failed to fetch post data");
-  //     }
-  //     const postThumb = await response.json();
-  //     return postThumb[0]?.cover_image_guid; // Add null check using the optional chaining operator (?.)
-  //   } catch (err) {
-  //     console.log(err);
-  //     return null; // or any other value indicating the error condition
-  //   }
-  // };
-
-  // const oldPostThumbnail = await getPostThumbById();
-
-  // if (oldPostThumbnail && oldPostThumbnail[0]) {
-  //   var thumbnail = oldPostThumbnail;
-  // } else {
-  //   var thumbnail = props?.guid;
-  // }
-
-  // const thumbnail2 = await fetchPostThumb(544014);
-  // console.log(
-  //   props.featuredMedia,
-  //   "fjdsfjysdkvksdv",
-  //   "type is",
-  //   typeof props.featuredMedia
-  // );
-  // console.log(thumbnail2, "thumbeeeee");
-  // console.log(props.)
-
   return (
     <>
       <div className={styles.newsCardContainer}>
         <div className={styles.newsCover}>
           <Image
-            // src={props?.featured_image_url}
-            // featuredMedia
             src={
               props?.featuredMedia
                 ? props?.featuredMedia
@@ -62,7 +25,8 @@ const NewsCard = async (props) => {
             }
             width={0}
             height={0}
-            alt="SportzWiki Logo"
+            
+            alt={props?.title || "SportzWiki"}
             sizes="100vh"
             style={{ width: "13.5rem", height: "10rem", borderRadius: "3px" }}
           />

@@ -1,0 +1,28 @@
+.outerDiv {
+  display: flex;
+  background: #fff;
+  box-shadow: -1.8414634466171265px 1.8414634466171265px 3.682926893234253px 0px
+    rgba(0, 0, 0, 0.05);
+  width: fit-content;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.name {
+  color: #003161;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.location {
+  /* font-weight: 600; */
+  font-size: 1.3rem;
+}

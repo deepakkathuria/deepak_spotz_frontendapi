@@ -10,6 +10,7 @@ import Link from "next/link";
 import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
 import OrganisationLd from "@/json-ld/OrganisationLd";
+import UpdatesSound from "@/components/common/UpdatesSound";
 // import {
 //   getPostMeta,
 //   getSinglePostByPostSlug,
@@ -251,7 +252,10 @@ const page = async ({ params }) => {
       <OrganisationLd />
 
       <div className={styles.postPageContainer}>
-        <div className="breadcrumb" style={{ marginTop: "6rem" }}>
+        <div style={{ marginTop: "6rem" }} className="updateBox">
+          <UpdatesSound />
+        </div>
+        <div style={{ marginTop: "1.5rem" }} className={styles.breadcrumb}>
           <Breadcrumb breadcrumbsObj={breadcrumbs} />
         </div>
         {/* <PostCategoryBox categories={post?.[0]?.categories} /> */}

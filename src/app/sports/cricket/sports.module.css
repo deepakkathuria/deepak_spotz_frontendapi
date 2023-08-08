@@ -1,0 +1,16 @@
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+
+.scores {
+  margin-top: 2rem;
+}
+
+@media (max-width: 576px) {
+  .scores {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+  }
+}

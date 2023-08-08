@@ -74,7 +74,7 @@ const page = async ({ params }) => {
   // console.log(seriesName, "iddddd", typeof seriesName);
   return (
     <>
-      <div className="container marginTop4" style={{ marginBottom: "4rem" }}>
+      <div className={styles.containerMainLiveScore} style={{ marginBottom: "4rem" }}>
         <NavBarSec />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">
           <Breadcrumb breadcrumbsObj={breadcrumbs} />

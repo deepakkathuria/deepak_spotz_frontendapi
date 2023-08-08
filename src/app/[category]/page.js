@@ -10,6 +10,7 @@ import OrganisationLd from "@/json-ld/OrganisationLd";
 
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
+import { redirect } from "next/dist/server/api-utils";
 
 const fetchPostsByCategoryId = async (categoryId, currentPage) => {
   const res = await fetch(
@@ -17,7 +18,7 @@ const fetchPostsByCategoryId = async (categoryId, currentPage) => {
     { cache: "no-store" }
   );
   const posts = await res.json();
-  return posts;
+  return posts ?? [];
 };
 
 const fetchCategoryDataBySlug = async (categorySlug) => {
@@ -41,13 +42,18 @@ const CategoryPosts = async ({ params, searchParams }) => {
   const category = params.category;
   // const { Currentpage = 1 } = params;
   const categoryData = await fetchCategoryDataBySlug(category);
+
+  // console.log(categoryData, "categorydatatatatta");
+  // if (categoryData.length < 1) {
+  //   redirect(404, "/");
+  // }
   // console.log(categoryData, "categoryDatabsdjbhvsjdkbhjh");
   // console.log(categoryPosts, "categoryPosts");
 
   const breadcrumbs = [
     {
       name: "HOME",
-      url: { site_url },
+      url: `/`,
     },
     {
       name: `${decodeURIComponent(category).toUpperCase().substring(0, 40)}...`,
@@ -57,7 +63,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
   const dataPerPage = 48;
 
-  const totalPages = Math.ceil(categoryData[0].count / dataPerPage);
+  const totalPages = Math.ceil(categoryData[0]?.count / dataPerPage);
 
   let currentPage = 1;
 
@@ -162,7 +168,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
           <h1 className={styles.categoryTitle}>
             {decodeURIComponent(params.category).toUpperCase()}
           </h1>
-          <p className={styles.catDescription}>{categoryData[0].description}</p>
+          <p className={styles.catDescription}>{categoryData[0]?.description}</p>
         </div>
 
         <div className={styles.newsCardsDisplay}>

@@ -1,0 +1,83 @@
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+
+/* .soundUpdatesDiv {
+    margin-top: 6rem;
+  } */
+
+.soundUpdatesDiv {
+  margin-top: 2rem;
+}
+
+.teamTable {
+  width: 62rem;
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  font-size: 1.4rem;
+}
+
+.infoTable {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+  /* font-size: 1.2rem; */
+  font-weight: 600;
+}
+
+.column {
+  display: flex;
+  gap: 10rem;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.05);
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+.infoName {
+  opacity: 0.699999988079071;
+}
+
+.detailsContainer {
+  display: flex;
+  gap: 2rem;
+  /* flex-direction: row; */
+  /* margin-top: 1rem; */
+}
+
+.teamInfo {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.leftSection {
+  width: 62rem;
+}
+
+@media (max-width: 576px) {
+  .rightSection {
+    display: none;
+  }
+  .leftSection {
+    width: 100%;
+  }
+
+  .teamTable {
+    flex-direction: column;
+    width: 100%;
+    /* justify-content: center; */
+    align-items: center;
+  }
+
+  .teamInfo {
+    margin-top: 2rem;
+  }
+
+  .soundUpdatesDiv,
+  .detailsContainer {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}

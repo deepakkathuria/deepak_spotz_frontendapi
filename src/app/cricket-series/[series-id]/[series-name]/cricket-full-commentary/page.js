@@ -60,7 +60,7 @@ const page = async ({ params }) => {
   const commentaryInfo = await fetchMatchCommentary(seriesId);
   const commentaryList = commentaryInfo?.response?.commentaries.reverse();
 
-  console.log(scoreCard.response.batsmen, "score cards");
+  // console.log(scoreCard.response.batsmen, "score cards");
 
   // console.log(seriesId, "seriesId");
   // console.log(seriesIdInt, "seriesIdInt");
@@ -101,7 +101,7 @@ const page = async ({ params }) => {
   ];
   return (
     <>
-      <div className="container marginTop4">
+      <div className={styles.containerMainLiveScore}>
         <NavBarSec />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">
           <Breadcrumb breadcrumbsObj={breadcrumbs} />
@@ -129,170 +129,170 @@ const page = async ({ params }) => {
               batsA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0].name ?? ""
+                  ? scoreCard.response.batsmen[0]?.name ?? ""
                   : ""
               }
               batsB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1].name ?? ""
+                  ? scoreCard.response.batsmen[1]?.name ?? ""
                   : ""
               }
               batsman_idA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0].batsman_id ?? ""
+                  ? scoreCard.response.batsmen[0]?.batsman_id ?? ""
                   : ""
               }
               batsman_idB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1].batsman_id ?? ""
+                  ? scoreCard.response.batsmen[1]?.batsman_id ?? ""
                   : ""
               }
               runsA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0].runs ?? ""
+                  ? scoreCard.response.batsmen[0]?.runs ?? ""
                   : ""
               }
               runsB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1].runs ?? ""
+                  ? scoreCard.response.batsmen[1]?.runs ?? ""
                   : ""
               }
               balls_facedA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0].balls_faced ?? ""
+                  ? scoreCard.response.batsmen[0]?.balls_faced ?? ""
                   : ""
               }
               balls_facedB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1].balls_faced ?? ""
+                  ? scoreCard.response.batsmen[1]?.balls_faced ?? ""
                   : ""
               }
               foursA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0].fours ?? ""
+                  ? scoreCard.response.batsmen[0]?.fours ?? ""
                   : ""
               }
               foursB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1].fours ?? ""
+                  ? scoreCard.response.batsmen[1]?.fours ?? ""
                   : ""
               }
               sixesA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0].sixes ?? ""
+                  ? scoreCard.response.batsmen[0]?.sixes ?? ""
                   : ""
               }
               sixesB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1].sixes ?? ""
+                  ? scoreCard.response.batsmen[1]?.sixes ?? ""
                   : ""
               }
               strike_rateA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0].strike_rate ?? ""
+                  ? scoreCard.response.batsmen[0]?.strike_rate ?? ""
                   : ""
               }
               strike_rateB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1].strike_rate ?? ""
+                  ? scoreCard.response.batsmen[1]?.strike_rate ?? ""
                   : ""
               }
               // bowlers data
               bowlerNameA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0].name ?? ""
+                  ? scoreCard.response.bowlers[0]?.name ?? ""
                   : ""
               }
               bowlerNameB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1].name ?? ""
+                  ? scoreCard.response.bowlers[1]?.name ?? ""
                   : ""
               }
               bowlerIdA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0].bowler_id ?? ""
+                  ? scoreCard.response.bowlers[0]?.bowler_id ?? ""
                   : ""
               }
               bowlerIdB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1].bowler_id ?? ""
+                  ? scoreCard.response.bowlers[1]?.bowler_id ?? ""
                   : ""
               }
               bowlerOversA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0].overs ?? ""
+                  ? scoreCard.response.bowlers[0]?.overs ?? ""
                   : ""
               }
               bowlerOversB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1].overs ?? ""
+                  ? scoreCard.response.bowlers[1]?.overs ?? ""
                   : ""
               }
               bowlerRunsConcededA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0].runs_conceded ?? ""
+                  ? scoreCard.response.bowlers[0]?.runs_conceded ?? ""
                   : ""
               }
               bowlerRunsConcededB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1].runs_conceded ?? ""
+                  ? scoreCard.response.bowlers[1]?.runs_conceded ?? ""
                   : ""
               }
               bowlerWicketsA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0].wickets ?? ""
+                  ? scoreCard.response.bowlers[0]?.wickets ?? ""
                   : ""
               }
               bowlerWicketsB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1].wickets ?? ""
+                  ? scoreCard.response.bowlers[1]?.wickets ?? ""
                   : ""
               }
               bowlerMaidensA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0].maidens ?? ""
+                  ? scoreCard.response.bowlers[0]?.maidens ?? ""
                   : ""
               }
               bowlerMaidensB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1].maidens ?? ""
+                  ? scoreCard.response.bowlers[1]?.maidens ?? ""
                   : ""
               }
               bowlerEconA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0].econ ?? ""
+                  ? scoreCard.response.bowlers[0]?.econ ?? ""
                   : ""
               }
               bowlerEconB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1].econ ?? ""
+                  ? scoreCard.response.bowlers[1]?.econ ?? ""
                   : ""
               }
             />
@@ -378,13 +378,13 @@ const page = async ({ params }) => {
                         <div className="playerName">
                           {scoreCard?.response?.batsmen &&
                           scoreCard.response.batsmen.length > 0
-                            ? scoreCard.response.batsmen[0].name ?? ""
+                            ? scoreCard.response.batsmen[0]?.name ?? ""
                             : ""}
                         </div>
                         <div className="playerScore">
                           {scoreCard?.response?.batsmen &&
                           scoreCard.response.batsmen.length > 0
-                            ? scoreCard.response.batsmen[0].runs ?? ""
+                            ? scoreCard.response.batsmen[0]?.runs ?? ""
                             : ""}
                           (12)
                         </div>
@@ -395,13 +395,13 @@ const page = async ({ params }) => {
                         <div className={styles.playerName}>
                           {scoreCard?.response?.batsmen &&
                           scoreCard.response.batsmen.length > 0
-                            ? scoreCard.response.batsmen[1].name ?? ""
+                            ? scoreCard.response.batsmen[1]?.name ?? ""
                             : ""}
                         </div>
                         <div className={styles.playerScore}>
                           {scoreCard?.response?.batsmen &&
                           scoreCard.response.batsmen.length > 0
-                            ? scoreCard.response.batsmen[1].runs ?? ""
+                            ? scoreCard.response.batsmen[1]?.runs ?? ""
                             : ""}
                           (12)
                         </div>
@@ -413,13 +413,13 @@ const page = async ({ params }) => {
                       <div className={styles.playerName}>
                         {scoreCard?.response?.bowlers &&
                         scoreCard.response.bowlers.length > 0
-                          ? scoreCard.response.bowlers[0].name ?? ""
+                          ? scoreCard.response.bowlers[0]?.name ?? ""
                           : ""}
                       </div>
                       <div className={styles.playerScore}>
                         {scoreCard?.response?.bowlers &&
                         scoreCard.response.bowlers.length > 0
-                          ? scoreCard.response.bowlers[0].runs_conceded ?? ""
+                          ? scoreCard.response.bowlers[0]?.runs_conceded ?? ""
                           : ""}
                       </div>
                     </div>
@@ -428,13 +428,13 @@ const page = async ({ params }) => {
                       <div className={styles.playerName}>
                         {scoreCard?.response?.bowlers &&
                         scoreCard.response.bowlers.length > 0
-                          ? scoreCard.response.bowlers[1].name ?? ""
+                          ? scoreCard.response.bowlers[1]?.name ?? ""
                           : ""}
                       </div>
                       <div className={styles.playerScore}>
                         {scoreCard?.response?.bowlers &&
                         scoreCard.response.bowlers.length > 0
-                          ? scoreCard.response.bowlers[1].runs_conceded ?? ""
+                          ? scoreCard.response.bowlers[1]?.runs_conceded ?? ""
                           : ""}
                       </div>
                       {/* </div> */}
@@ -443,24 +443,11 @@ const page = async ({ params }) => {
                 </div>
               </div>
 
-              {/* <div className="commentaryList">
-                {commentaryList?.map((commentary, index) => {
-                  return (
-                    <CommentaryBox
-                      key={index}
-                      text={commentary.commentary}
-                      over={commentary.over}
-                      ball={commentary.ball}
-                      run={commentary.run}
-                    />
-                  );
-                })}
-              </div> */}
               <div className="commentaryList">
                 {commentaryList?.map((commentary, index) => {
-                  const last5Runs = commentaryList
-                    .slice(Math.max(index - 4, 0), index + 1)
-                    .map((c) => c.run ?? 0);
+                  // const last5Runs = commentaryList
+                  //   .slice(Math.max(index - 4, 0), index + 1)
+                  //   .map((c) => c.run ?? 0);
 
                   return (
                     <CommentaryBox
@@ -471,7 +458,24 @@ const page = async ({ params }) => {
                       over={commentary?.over ? commentary.over : "-"}
                       ball={commentary?.ball ? commentary.ball : "-"}
                       run={commentary?.run ? commentary.run : "0"}
-                      last5Runs={last5Runs}
+                      // last5Runs={last5Runs}
+                      eventType={commentary?.event || ""}
+                      runsInOver={
+                        commentary?.event === "overend"
+                          ? (commentary?.bats[0]?.runs || 0) +
+                            (commentary?.bats[1]?.runs || 0)
+                          : ""
+                      }
+                      // runsInOver={
+                      //   commentary?.event === "overend"
+                      //     ? commentary?.bats[0]?.runs || ""
+                      //     : ""
+                      // }
+                      howOut={
+                        commentary?.event === "wicket"
+                          ? commentary?.how_out || ""
+                          : ""
+                      }
                     />
                   );
                 })}

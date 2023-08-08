@@ -44,7 +44,7 @@ const NewsSection = async (props) => {
           {data?.map((item, index) => {
             return (
               <div key={index}>
-                <a href={`${props?.name?.toLowerCase()}/${item?.slug}`}>
+                <a href={`/${props?.slug?.toLowerCase()}/${item?.slug}`}>
                   <NewsCard
                     title={item?.title?.rendered}
                     date={item?.date_gmt ? item.date_gmt : ""}

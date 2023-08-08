@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "../styles/MobSecondaryNav.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const MobSecondaryNav = () => {
   const [moreItems, setMoreItem] = useState(false);
@@ -26,30 +27,34 @@ const MobSecondaryNav = () => {
             </div>
             <p>HOME</p>
           </li>
-          <li>
-            <div className={styles.icon}>
-              <Image
-                src="/gaurav/cricket_ic.svg"
-                alt="home menu icon"
-                width={12}
-                height={12}
-                // className={styles.plainIc}
-              />
-            </div>
-            <p>CRICKET</p>
-          </li>
-          <li>
-            <div className={styles.icon}>
-              <Image
-                src="/gaurav/football_ic.svg"
-                alt="home menu icon"
-                width={12}
-                height={12}
-                // className={styles.plainIc}
-              />
-            </div>
-            <p>FOOTBALL</p>
-          </li>
+          <Link href={"/sports/cricket"}>
+            <li>
+              <div className={styles.icon}>
+                <Image
+                  src="/gaurav/cricket_ic.svg"
+                  alt="home menu icon"
+                  width={12}
+                  height={12}
+                  // className={styles.plainIc}
+                />
+              </div>
+              <p>CRICKET</p>
+            </li>
+          </Link>
+          <Link href={"/football"}>
+            <li>
+              <div className={styles.icon}>
+                <Image
+                  src="/gaurav/football_ic.svg"
+                  alt="home menu icon"
+                  width={12}
+                  height={12}
+                  // className={styles.plainIc}
+                />
+              </div>
+              <p>FOOTBALL</p>
+            </li>
+          </Link>
           <li>
             <div className={styles.icon}>
               <Image

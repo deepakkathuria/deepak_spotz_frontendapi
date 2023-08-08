@@ -1,12 +1,22 @@
 .postPageContainer {
-  margin-left: 12.5rem;
-  margin-right: 12.5rem;
+  /* margin-left: 12.5rem;
+  margin-right: 12.5rem; */
+  max-width: 1040px;
+  margin: 0 auto;
   margin-top: 4rem;
 }
 .postDetailListContainer {
   display: flex;
-  margin-top: 1.4rem;
+  /* margin-top: 1rem; */
   gap: 2rem;
+}
+
+.breadcrumb {
+  padding: 0;
+}
+
+.relatedArticleSection {
+  margin-bottom: 4rem;
 }
 
 .relatedArticleTitle {

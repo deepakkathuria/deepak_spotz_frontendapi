@@ -1,0 +1,30 @@
+import UpdatesSound from "../../../../components/common/UpdatesSound";
+import TeamCountryNav from "../../../../components/teams/TeamCountryNav";
+import React from "react";
+import styles from "./teamNews.module.css";
+import NewsSection from "../../../../components/common/NewsSection";
+import NavBarSec from "@/components/scorePage/NavBarSec";
+
+const page = () => {
+  const currentCountry = "india";
+  return (
+    <>
+      <div className={styles.container}>
+        {/* soundUpdatesDiv */}
+        <NavBarSec />
+        <div className={styles.soundBox}>
+          <UpdatesSound />
+        </div>
+        <div className="nav">
+          <TeamCountryNav active="news" currentCountry={currentCountry} />
+        </div>
+        <div className="news">
+          <NewsSection name="" id="3" slug="cricket" />
+          <NewsSection name="" id="3" slug="cricket" />
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default page;

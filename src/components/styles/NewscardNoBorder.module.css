@@ -27,6 +27,6 @@
 .cardDate {
   font-size: 1.1rem;
   color: #0c4c8a;
-  opacity: 0.7;
+  /* opacity: 0.7; */
   font-weight: 600;
 }

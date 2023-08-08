@@ -1,0 +1,48 @@
+.tableHead {
+  display: flex;
+  gap: 1rem;
+}
+
+.tableHead :nth-child(1) {
+  width: 14rem;
+}
+
+.tableDataHead {
+  width: 8rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.tableRowData {
+  width: 8rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  font-size: 1.4rem;
+  /* font-weight: bold; */
+  white-space: nowrap;
+}
+
+.tableRow {
+  display: flex;
+  gap: 1rem;
+}
+
+.tableRow :nth-child(1) {
+  width: 12rem;
+}
+
+@media (max-width: 576px) {
+  .table {
+    overflow: scroll;
+    background-color: aqua;
+  }
+
+  .tableHead :nth-child(1) {
+    width: 12rem;
+  }
+}

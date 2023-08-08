@@ -6,6 +6,7 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem; */
   padding: 0.5rem;
+  /* width: 34.2rem; */
   width: 33rem;
   /* height: 14rem; */
 }
@@ -98,13 +99,13 @@
   font-weight: bold;
 }
 
-@media (min-width: 1450px) {
+/* @media (min-width: 1450px) {
   .scoreCardContainer {
     width: 40rem;
   }
-}
+} */
 
-@media (min-width: 1330px) {
+/* @media (min-width: 1330px) {
   .scoreCardContainer {
     width: 35rem;
   }
@@ -120,9 +121,9 @@
   .scoreCardContainer {
     width: 36rem;
   }
-}
+} */
 
-@media (min-width: 1450px) {
+/* @media (min-width: 1450px) {
   .scoreCardContainer {
     width: 38rem;
   }
@@ -138,13 +139,13 @@
   .scoreCardContainer {
     width: 42rem;
   }
-}
+} */
 
-@media (min-width: 1600px) {
+/* @media (min-width: 1600px) {
   .scoreCardContainer {
     width: 44rem;
   }
-}
+} */
 
 @media (max-width: 576px) {
   .scoreCardContainer {

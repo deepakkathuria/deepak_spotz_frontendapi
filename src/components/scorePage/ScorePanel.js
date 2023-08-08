@@ -136,7 +136,9 @@ const ScorePanel = (props) => {
                 {/* <td className={styles.tableDataBody}>{props.bowlerIdA}</td> */}
                 <td className={styles.tableDataBody}>{props.bowlerOversA}</td>
                 <td className={styles.tableDataBody}>{props.bowlerMaidensA}</td>
-                <td className={styles.tableDataBody}>{props.bowlerRunsConcededA}</td>
+                <td className={styles.tableDataBody}>
+                  {props.bowlerRunsConcededA}
+                </td>
                 <td className={styles.tableDataBody}>{props.bowlerWicketsA}</td>
                 <td className={styles.tableDataBody}>{props.bowlerEconA}</td>
               </tr>
@@ -148,7 +150,9 @@ const ScorePanel = (props) => {
                 {/* <td className={styles.tableDataBody}>{props.bowlerIdB}</td> */}
                 <td className={styles.tableDataBody}>{props.bowlerOversB}</td>
                 <td className={styles.tableDataBody}>{props.bowlerMaidensB}</td>
-                <td className={styles.tableDataBody}>{props.bowlerRunsConcededB}</td>
+                <td className={styles.tableDataBody}>
+                  {props.bowlerRunsConcededB}
+                </td>
                 <td className={styles.tableDataBody}>{props.bowlerWicketsB}</td>
                 <td className={styles.tableDataBody}>{props.bowlerEconB}</td>
               </tr>
@@ -156,7 +160,7 @@ const ScorePanel = (props) => {
           </table>
         </div>
         <div className={styles.tossResult}>
-          <p>India won the toss, (bowling first)</p>
+          <p>{props?.currentStatus || ""}</p>
         </div>
       </div>
     </>

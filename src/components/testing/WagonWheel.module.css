@@ -1,0 +1,13 @@
+.wagonWheel {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.shotMarker {
+  cursor: pointer;
+}
+
+.shotMarker:hover {
+  fill: yellow;
+}

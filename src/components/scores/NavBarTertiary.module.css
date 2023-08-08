@@ -1,8 +1,16 @@
 .container {
   display: flex;
-  gap: 0.6rem;
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
+  gap: 0.8rem;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.containerMainLiveScore {
+  max-width: 1040px;
+  margin: 0 auto;
+  margin: 0 auto;
+  margin-top: 4rem;
 }
 
 .container p {
@@ -35,14 +43,14 @@
 
 .over,
 .outOfRuns {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 600;
 }
 
 .runs,
 .runRate {
   /* font-weight: 600; */
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #206bb3;
 }
 
@@ -58,7 +66,7 @@
   justify-content: space-between;
   width: 100%;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #0f1010;
 }
 

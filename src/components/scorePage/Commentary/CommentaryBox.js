@@ -2,7 +2,8 @@ import React from "react";
 import styles from "./CommentaryBox.module.css";
 
 const CommentaryBox = (props) => {
-  console.log(props.last5Runs);
+  console.log(props.runsInOver, " : runsInOver");
+  // console.log(props.eventType, "eventType");
   return (
     <>
       <div className={styles.container}>
@@ -14,12 +15,20 @@ const CommentaryBox = (props) => {
         </div>
         <div className={styles.commentaryText}>
           <div className={styles.text}>{props?.text}</div>
-          <div className={styles.balls}>
+          {/* <div className={styles.balls}>
             <h4>{props.last5Runs[0]}</h4>
             <h4>{props.last5Runs[1]}</h4>
             <h4>{props.last5Runs[2]}</h4>
             <h4>{props.last5Runs[3]}</h4>
             <h4>{props.last5Runs[4]}</h4>
+          </div> */}
+          <div>
+            <div style={{ color: "red" }}>{props?.howOut || ""}</div>
+            {props?.runsInOver && (
+              <div style={{ color: "green" }}>
+                {`Runs scored in over : ${props?.runsInOver}` || ""}
+              </div>
+            )}
           </div>
         </div>
       </div>

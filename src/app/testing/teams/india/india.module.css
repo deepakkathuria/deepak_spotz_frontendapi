@@ -1,6 +1,12 @@
-.soundUpdatesDiv {
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
   margin-top: 6rem;
 }
+
+/* .soundUpdatesDiv {
+  margin-top: 6rem;
+} */
 
 .teamTable {
   width: 62rem;

@@ -1,0 +1,11 @@
+.customSelect select {
+  background: rgba(152, 204, 255, 0.4);
+  border: none;
+  padding: 1rem;
+  /* padding-right: 1rem; */
+  /* font-weight: 600; */
+}
+
+/* .customSelect select :nth-child(1) {
+  font-weight: 600;
+} */

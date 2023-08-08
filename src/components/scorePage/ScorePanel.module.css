@@ -3,6 +3,7 @@
   width: 62rem;
   /* background-color: aqua; */
   /* padding: 1rem; */
+  /* box-sizing: initial !important; */
 }
 
 .liveIC {
@@ -29,7 +30,7 @@
 }
 
 .scoreOver {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -42,7 +43,7 @@
 .nameLogo {
   display: flex;
   gap: 0.5rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -59,37 +60,49 @@
 
 .StatsTable {
   width: 100%;
+  /* width: 62rem; */
   border-collapse: collapse;
 }
 
 .StatsTableHead {
   background-color: #d6ebff;
   font-weight: 600;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
 }
 
 .tableHead {
   padding: 0.5rem 1rem;
+  /* padding: 0.5rem 0; */
   text-align: left;
-  border-spacing: 0;
+  /* border-spacing: 0; */
+  /* background-color: #d03f38 ; */
+  /* background-color: #d03f38; */
+  /* width: 1rem !important; */
 }
 
-.tablePlay {
-  width: 40rem;
-}
+/* .tablePlay {
+  padding: 0;
+  overflow: hidden;
+  background-color: #d03f38;
+} */
 
 .tableMetric {
-  padding: 0 1.1rem;
+  /* padding: 0 1.1rem; */
+  width: 4rem;
+  /* background-color: #d03f38; */
 }
 
 .tableDataBody {
   padding: 0.5rem 1rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 500;
 }
 
 .playerName {
   font-weight: 600;
+  /* max-width: 2rem; */
+  /* overflow: hidden; */
+  /* background-color: aqua; */
   color: #003161;
 }
 
@@ -98,7 +111,7 @@
   background-color: #d6ebff;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.6);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 576px) {

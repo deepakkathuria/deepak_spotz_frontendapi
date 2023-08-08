@@ -4,9 +4,9 @@
   align-items: center;
   height: 3rem;
   width: 31rem;
-  background-color: aqua;
+  /* background-color: aqua; */
   border-radius: 5px 0px 0px 5px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
 .updatesIc {
@@ -41,7 +41,8 @@
   font-weight: bold;
   display: flex;
   align-items: center;
-  background-color: #98ccff;
+  /* background-color: #98ccff; */
+  background-color: rgb(214, 235, 255);
   height: 100%;
   width: 100%;
   padding: 1rem 0.8rem;
@@ -57,5 +58,9 @@
 
   .UpdateHeadLines {
     justify-content: space-between;
+  }
+
+  .updateMainDiv {
+    font-size: 1.4rem;
   }
 }

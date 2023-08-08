@@ -1,0 +1,22 @@
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  margin-top: 6rem;
+}
+
+.cardsWithDate {
+  margin-top: 2rem;
+}
+
+.date {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #003161;
+}
+
+.results {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}

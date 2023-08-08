@@ -8,7 +8,7 @@ import PostListBar from "@/components/common/PostListBar";
 const page = () => {
   return (
     <>
-      <div className="container marginTop4">
+      <div className={styles.container}>
         <div className={styles.soundUpdatesDiv}>
           <UpdatesSound />
         </div>

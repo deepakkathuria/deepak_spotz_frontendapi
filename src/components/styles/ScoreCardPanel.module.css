@@ -2,6 +2,9 @@
   display: flex;
   gap: 1.2rem;
 }
+/* .customCarouselSlide {
+  margin-right: 5rem;
+} */
 
 .scoreCardMatchTypeSelector {
   display: flex;
@@ -44,6 +47,7 @@
 
 .carouselContainer {
   position: relative;
+  width: 100%;
 }
 
 .sliderArrow {

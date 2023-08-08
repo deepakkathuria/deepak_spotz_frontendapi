@@ -1,0 +1,37 @@
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+
+.cardsWithDate {
+  margin-top: 2rem;
+}
+
+.date {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #003161;
+}
+
+.results {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.soundBox {
+  margin-top: 2rem;
+}
+
+@media (max-width: 576px) {
+  .date {
+    margin-bottom: 1rem;
+  }
+  .soundBox,
+  .results {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}

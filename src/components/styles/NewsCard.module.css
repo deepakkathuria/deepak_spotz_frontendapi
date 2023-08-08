@@ -45,7 +45,7 @@
   color: #0c4c8a;
   font-size: 1rem;
   font-weight: 600;
-  opacity: 0.7;
+  /* opacity: 0.7; */
 }
 
 @media (max-width: 576px) {
@@ -58,7 +58,7 @@
   }
 }
 
-@media (min-width: 1330px) {
+/* @media (min-width: 1330px) {
   .newsCardContainer {
     border-radius: 2.5px;
     display: flex;
@@ -69,9 +69,9 @@
     width: 35rem;
     height: 11rem;
   }
-}
+} */
 
-@media (min-width: 1350px) {
+/* @media (min-width: 1350px) {
   .newsCardContainer {
     border-radius: 2.5px;
     display: flex;
@@ -82,9 +82,9 @@
     width: 36rem;
     height: 11rem;
   }
-}
+} */
 
-@media (min-width: 1400px) {
+/* @media (min-width: 1400px) {
   .newsCardContainer {
     border-radius: 2.5px;
     display: flex;
@@ -95,9 +95,9 @@
     width: 36rem;
     height: 11rem;
   }
-}
+} */
 
-@media (min-width: 1450px) {
+/* @media (min-width: 1450px) {
   .newsCardContainer {
     border-radius: 2.5px;
     display: flex;
@@ -108,9 +108,9 @@
     width: 38rem;
     height: 11rem;
   }
-}
+} */
 
-@media (min-width: 1500px) {
+/* @media (min-width: 1500px) {
   .newsCardContainer {
     border-radius: 2.5px;
     display: flex;
@@ -121,9 +121,9 @@
     width: 40rem;
     height: 11rem;
   }
-}
+} */
 
-@media (min-width: 1550px) {
+/* @media (min-width: 1550px) {
   .newsCardContainer {
     border-radius: 2.5px;
     display: flex;
@@ -134,9 +134,9 @@
     width: 42rem;
     height: 11rem;
   }
-}
+} */
 
-@media (min-width: 1600px) {
+/* @media (min-width: 1600px) {
   .newsCardContainer {
     border-radius: 2.5px;
     display: flex;
@@ -147,4 +147,4 @@
     width: 44rem;
     height: 11rem;
   }
-}
+} */

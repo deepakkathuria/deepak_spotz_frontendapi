@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  font-size: 1.3rem;
+  width: 25rem;
+}
+
+.nameAge {
+  display: flex;
+  gap: 1rem;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-left: 0.5rem;
+}
+
+.name {
+  color: #0c4c8a;
+  text-decoration-line: underline;
+}
+
+.img {
+  height: 4rem;
+  width: 4rem;
+  background-color: #0c4c8a;
+  border-radius: 80px;
+}

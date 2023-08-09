@@ -1,0 +1,16 @@
+/* .container {
+  margin-bottom: 2rem;
+} */
+
+.letter {
+  font-size: 1.4rem;
+  color: #0c4c8a;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+}

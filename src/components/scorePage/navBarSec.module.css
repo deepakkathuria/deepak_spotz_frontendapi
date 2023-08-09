@@ -16,7 +16,7 @@
   padding: 0.6rem 0.5rem;
 }
 
-.secondaryNavBar ul :nth-child(1) {
+.highlighted {
   background-color: #98ccff;
 }
 

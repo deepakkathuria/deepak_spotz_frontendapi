@@ -1,99 +1,48 @@
 import React from "react";
 import styles from "./TeamsTable.module.css";
+import Image from "next/image";
+import Link from "next/link";
 
-const TeamsTable = () => {
+const TeamsTable = (props) => {
+  // console.log(props?.data);
   return (
     <>
-      <table className={styles.TeamsTableMain}>
+      <table className={styles.TeamsTableMain} suppressHydrationWarning>
         <thead className={styles.TeamsTableHead}>
           <tr className={styles.TeamsTableHeadTr}>
-            <td className={styles.TeamsTableHeadTd}>Test Teams</td>
+            <td className={styles.TeamsTableHeadTd}>
+              {props?.name || "No Data Available"}
+            </td>
           </tr>
         </thead>
-        <tbody className={styles.TeamsTableBody}>
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>India</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>Australia</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>England</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>South Africa</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>West Indies</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>New Zealand</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>Pakistan</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>Sri lanka</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>Zimbabwe</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>India</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>India</div>
-            </td>
-          </tr>
-
-          <tr className={styles.TeamsTableBodyTr}>
-            <td className={styles.TeamsTableBodyTd}>
-              <div className={styles.logo}></div>
-              <div className={styles.name}>India</div>
-            </td>
-          </tr>
+        <tbody className={styles.TeamsTableBody} suppressHydrationWarning>
+          {props?.data?.map((team, index) => {
+            return (
+              <Link
+                key={index}
+                href={`/cricket-team/${team?.abbr.toLowerCase()}-${team?.tid}`}
+              >
+                <tr
+                  className={styles.TeamsTableBodyTr}
+                  suppressHydrationWarning
+                >
+                  <td className={styles.TeamsTableBodyTd}>
+                    <div className={styles.logo} suppressHydrationWarning>
+                      <Image
+                        src={team?.logo_url}
+                        height={0}
+                        width={0}
+                        style={{ height: "100%", width: "100%" }}
+                      />
+                    </div>
+                    <div suppressHydrationWarning className={styles.name}>
+                      {team?.title}
+                    </div>
+                  </td>
+                </tr>
+              </Link>
+            );
+          })}
         </tbody>
       </table>
     </>

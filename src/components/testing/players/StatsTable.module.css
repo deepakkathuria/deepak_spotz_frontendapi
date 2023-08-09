@@ -1,0 +1,35 @@
+.tableRow {
+  display: flex;
+  font-size: 1.4rem;
+  background: rgba(152, 204, 255, 0.4);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+}
+
+.tableData,
+.tableDataBody {
+  width: 6rem;
+}
+
+.tableRow :nth-child(1),
+.tableRowBody :nth-child(1) {
+  width: 10rem;
+}
+
+.tableRowBody {
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.tableDataAll {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.tableTitle {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #0c4c8a;
+  margin-bottom: 1rem;
+}

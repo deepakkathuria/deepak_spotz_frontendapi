@@ -1,0 +1,18 @@
+.nav {
+  list-style-type: none;
+  display: flex;
+  gap: 0.2rem;
+  font-size: 1.3rem;
+  color: #0c4c8a;
+  font-weight: 600;
+}
+
+.nav li {
+  padding: 0.5rem 1rem;
+}
+
+.active {
+  background-color: #0c4c8a;
+  color: #fff;
+  border-radius: 15px;
+}

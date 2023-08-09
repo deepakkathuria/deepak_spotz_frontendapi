@@ -5,9 +5,22 @@ import TeamCountryNav from "../../../components/teams/TeamCountryNav";
 import Image from "next/image";
 import PostListBar from "../../../components/common/PostListBar";
 import NavBarSec from "@/components/scorePage/NavBarSec";
+const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
+const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
-const page = () => {
+const fetchTeamInfoById = async (teamId) => {
+  const res = await fetch(`${base_url}/teams/${teamId}?token=${token}`);
+  const team = await res.json();
+  return team;
+};
+
+const page = async ({ params }) => {
+  const { teamName } = params;
+  const teamId = teamName?.split("-")[1];
   const currentCountry = "india";
+  const data = await fetchTeamInfoById(teamId);
+  console.log(data);
+
   return (
     <>
       <div className={styles.container}>
@@ -18,39 +31,31 @@ const page = () => {
         <div className={styles.detailsContainer}>
           <div className={styles.leftSection}>
             <div className={styles.TeamCountryNavDiv}>
-              <TeamCountryNav active="main" currentCountry={currentCountry} />
+              <TeamCountryNav active="main" currentCountry={teamName} />
             </div>
 
             <div className={styles.aboutTeam}>
               <div className={styles.teamTable}>
                 <div className={styles.teamLogo}>
                   <Image
-                    src={
-                      "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1689677921/Cricket_India_Crest-768x768_wed7tu.jpg"
-                    }
+                    src={data?.response?.logo_url}
                     alt="Cricket Team Logo"
-                    height={130}
-                    width={130}
+                    height={95}
+                    width={95}
                   />
                 </div>
                 <div className={styles.infoTable}>
                   <div className={styles.column}>
                     <p className={styles.infoName}>Full Name</p>
-                    <p className={styles.infoDetail}>
-                      India National Cricket Team
-                    </p>
+                    <p className={styles.infoDetail}>{data?.response?.title}</p>
                   </div>
                   <div className={styles.column}>
-                    <p className={styles.infoName}>Full Name</p>
-                    <p className={styles.infoDetail}>
-                      India National Cricket Team
-                    </p>
+                    <p className={styles.infoName}>Abbr Name</p>
+                    <p className={styles.infoDetail}>{data?.response?.abbr}</p>
                   </div>
                   <div className={styles.column}>
-                    <p className={styles.infoName}>Full Name</p>
-                    <p className={styles.infoDetail}>
-                      India National Cricket Team
-                    </p>
+                    <p className={styles.infoName}>Type</p>
+                    <p className={styles.infoDetail}>{data?.response?.type}</p>
                   </div>
                   <div className={styles.column}>
                     <p className={styles.infoName}>Full Name</p>

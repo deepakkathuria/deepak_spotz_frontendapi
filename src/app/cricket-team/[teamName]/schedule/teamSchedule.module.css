@@ -26,11 +26,22 @@
 }
 
 @media (max-width: 576px) {
+  .container {
+    max-width: 100%;
+  }
   .date {
     margin-bottom: 1rem;
   }
   .soundBox,
   .results {
+    /* width: 100%; */
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .results,
+  .cardsWithDate {
+    width: 100%;
     margin-left: 0.5rem;
     margin-right: 0.5rem;
   }

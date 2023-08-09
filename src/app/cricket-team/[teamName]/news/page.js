@@ -5,7 +5,9 @@ import styles from "./teamNews.module.css";
 import NewsSection from "../../../../components/common/NewsSection";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 
-const page = () => {
+const page = ({ params }) => {
+  const { teamName } = params;
+  const teamId = teamName?.split("-")[1];
   const currentCountry = "india";
   return (
     <>
@@ -16,7 +18,7 @@ const page = () => {
           <UpdatesSound />
         </div>
         <div className="nav">
-          <TeamCountryNav active="news" currentCountry={currentCountry} />
+          <TeamCountryNav active="news" currentCountry={teamName} />
         </div>
         <div className="news">
           <NewsSection name="" id="3" slug="cricket" />

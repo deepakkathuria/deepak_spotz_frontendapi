@@ -15,7 +15,7 @@ const TeamCountryNav = (props) => {
           >
             <a href={`/cricket-team/${props.currentCountry}`}>About</a>
           </li>
-          <li
+          {/* <li
             className={
               props?.active === "overview"
                 ? `${styles.TeamCountryNavLi} ${styles.active}`
@@ -25,7 +25,7 @@ const TeamCountryNav = (props) => {
             <a href={`/cricket-team/${props.currentCountry}/overview`}>
               Overview
             </a>
-          </li>
+          </li> */}
           <li
             className={
               props?.active === "schedule"
@@ -46,7 +46,7 @@ const TeamCountryNav = (props) => {
           >
             <a href={`/cricket-team/${props.currentCountry}/news`}>News</a>
           </li>
-          <li
+          {/* <li
             className={
               props?.active === "stats"
                 ? `${styles.TeamCountryNavLi} ${styles.active}`
@@ -54,7 +54,7 @@ const TeamCountryNav = (props) => {
             }
           >
             <a href={`/cricket-team/${props.currentCountry}/stats`}>Stats</a>
-          </li>
+          </li> */}
           <li
             className={
               props?.active === "squads"
@@ -64,17 +64,16 @@ const TeamCountryNav = (props) => {
           >
             <a href={`/cricket-team/${props.currentCountry}/squads`}>Squads</a>
           </li>
-          <li
+          {/* <li
             className={
               props?.active === "videos"
                 ? `${styles.TeamCountryNavLi} ${styles.active}`
                 : `${styles.TeamCountryNavLi}`
             }
           >
-            {/* <a href={`/cricket-team/${props.currentCountry}/`}></a> */}
             Videos
-          </li>
-          <li
+          </li> */}
+          {/* <li
             className={
               props?.active === "photos"
                 ? `${styles.TeamCountryNavLi} ${styles.active}`
@@ -82,7 +81,7 @@ const TeamCountryNav = (props) => {
             }
           >
             Photos
-          </li>
+          </li> */}
         </ul>
       </div>
     </>

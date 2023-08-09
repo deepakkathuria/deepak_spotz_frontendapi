@@ -37,14 +37,13 @@
   padding-bottom: 0.2rem;
 }
 .infoName {
+  width: 10rem;
   opacity: 0.699999988079071;
 }
 
 .detailsContainer {
   display: flex;
   gap: 2rem;
-  /* flex-direction: row; */
-  /* margin-top: 1rem; */
 }
 
 .teamInfo {

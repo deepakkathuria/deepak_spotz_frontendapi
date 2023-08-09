@@ -1,0 +1,23 @@
+.item {
+  display: flex;
+  gap: 3rem;
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  /* border-bottom: 1px solid rgba(152, 204, 255, 0.30); */
+}
+
+.left,
+.right {
+  padding: 0.2rem 1rem;
+  width: 50%;
+}
+
+.tableHead {
+  display: flex;
+  width: 62rem;
+}
+
+.title {
+  color: rgb(0, 0, 0, 0.7);
+}

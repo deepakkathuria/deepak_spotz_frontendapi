@@ -22,7 +22,7 @@ const page = async () => {
   return (
     <>
       <div className={styles.container}>
-        <NavBarSec />
+        <NavBarSec active='teams' />
         <div
           style={{ marginTop: "2rem", marginLeft: "1rem", marginRight: "1rem" }}
           className="audio"

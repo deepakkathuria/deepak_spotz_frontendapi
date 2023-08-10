@@ -11,7 +11,7 @@ const page = () => {
   return (
     <>
       <div className={styles.container}>
-        <NavBarSec />
+        <NavBarSec active="teams" />
         <div className={styles.updateBox}>
           <UpdatesSound />
         </div>

@@ -1,14 +1,11 @@
-.seriesOverview {
-  margin-top: 5rem;
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  margin-top: 4rem;
 }
 
-.tertiaryNav {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.seriesOverviewTitle {
-  color: #003161;
+.updateBox {
+  margin-top: 2rem;
 }
 
 .tertiaryNavUl {
@@ -18,6 +15,7 @@
   font-weight: 600;
   font-size: 1.2rem;
   color: #206bb3;
+  margin-top: 2rem;
 }
 
 .active {
@@ -29,8 +27,5 @@
   font-size: 1.2rem;
   font-weight: 600;
   margin-top: 1.5rem;
-}
-
-.matchesList {
-  margin-bottom: 4rem;
+  color: #003161;
 }

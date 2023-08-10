@@ -13,7 +13,7 @@ const page = ({ params }) => {
     <>
       <div className={styles.container}>
         {/* soundUpdatesDiv */}
-        <NavBarSec />
+        <NavBarSec active="teams" />
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>

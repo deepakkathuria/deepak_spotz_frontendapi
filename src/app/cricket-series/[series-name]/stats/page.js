@@ -1,25 +1,29 @@
-import React from "react";
-import styles from "./teamStats.module.css";
 import UpdatesSound from "../../../../components/common/UpdatesSound";
-import TeamCountryNav from "../../../../components/teams/TeamCountryNav";
-import StatsSelectOptions from "../../../../components/testing/StatsSelectOptions";
+import React from "react";
+import styles from "./stats.module.css";
 import StatsSelectionBox from "../../../../components/testing/StatsSelectionBox";
+import StatsSelectOptions from "../../../../components/testing/StatsSelectOptions";
 import StatsTeamTable from "../../../../components/testing/StatsTeamTable";
+import StatsNav from "@/components/series/StatsNav";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 
-const page = () => {
-  const currentCountry = "india";
+const page = ({ params }) => {
+  const { "series-name": seriesName } = params;
   return (
     <>
       <div className={styles.container}>
-        <NavBarSec active="teams" />
+        <NavBarSec active="series" />
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>
-        <div className="nav">
-          <TeamCountryNav active="stats" currentCountry={currentCountry} />
+        <div className={styles.seriesOverviewTitle}>
+          <p>Sri Lanka Tour of india 2022</p>
         </div>
-        <div className={styles.mainContent}>
+        <div className={styles.tertiaryNav}>
+          <StatsNav active="stats" seriesName={seriesName} />
+        </div>
+
+        {/* <div className={styles.mainContent}>
           <div className={styles.selectionBox}>
             <StatsSelectionBox />
             <StatsSelectionBox />
@@ -31,7 +35,7 @@ const page = () => {
             </div>
             <StatsTeamTable />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

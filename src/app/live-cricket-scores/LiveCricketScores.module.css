@@ -1,0 +1,38 @@
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+
+.soundBox {
+  margin-top: 2rem;
+}
+
+.navUl {
+  margin-top: 2rem;
+  display: flex;
+  gap: 0.6rem;
+  font-weight: 600;
+  list-style-type: none;
+  font-size: 1.3rem;
+  color: #206bb3;
+}
+
+.active {
+  color: #003161;
+  text-decoration: underline;
+}
+
+.scoreCardWithSeriesName {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.name {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  color: #003161;
+  font-weight: 600;
+}

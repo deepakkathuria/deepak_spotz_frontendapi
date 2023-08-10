@@ -74,7 +74,7 @@ const page = async ({ params }) => {
         className={styles.containerMainLiveScore}
         style={{ marginBottom: "4rem" }}
       >
-        <NavBarSec />
+        <NavBarSec active="live" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">
           <Breadcrumb breadcrumbsObj={breadcrumbs} />
         </div>

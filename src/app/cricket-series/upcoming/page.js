@@ -1,16 +1,16 @@
 import React from "react";
-import NavBarSec from "../../components/scorePage/NavBarSec";
-import UpdatesSound from "../../components/common/UpdatesSound";
-import NavSeries from "../../components/series/NavSeries";
-import SeriesList from "../../components/series/SeriesList";
-import styles from "./cricketSeries.module.css";
-import PostListBar from "../../components/common/PostListBar";
+import NavBarSec from "../../../components/scorePage/NavBarSec";
+import UpdatesSound from "../../../components/common/UpdatesSound";
+import NavSeries from "../../../components/series/NavSeries";
+import SeriesList from "../../../components/series/SeriesList";
+import styles from "../cricketSeries.module.css";
+import PostListBar from "../../../components/common/PostListBar";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
 const fetchSeriesList = async () => {
   const res = await fetch(
-    `${baseUrl}/competitions?per_page=30&&paged=1&status=live&token=${key}`
+    `${baseUrl}/competitions?per_page=30&&paged=1&status=fixture&token=${key}`
   );
 
   const data = await res.json();
@@ -23,7 +23,7 @@ const page = async () => {
   return (
     <>
       <div className={styles.container}>
-        <NavBarSec active='series' />
+        <NavBarSec active="series" />
         <div className={styles.seriesPage}>
           <div style={{ marginTop: "2rem" }} className={styles.soundUpdateDiv}>
             <UpdatesSound />
@@ -34,7 +34,7 @@ const page = async () => {
                 style={{ marginTop: "1.5rem" }}
                 className="navBarSeriesInside"
               >
-                <NavSeries active="live" />
+                <NavSeries active="upcoming" />
               </div>
               <div style={{ marginTop: "1rem" }} className="seriesListDiv">
                 <SeriesList
@@ -42,6 +42,14 @@ const page = async () => {
                   data={seriesList?.response || []}
                 />
               </div>
+
+              {/* <div style={{ marginTop: "1rem" }} className="seriesListDiv">
+                <SeriesList />
+              </div> */}
+
+              {/* <div style={{ marginTop: "1rem" }} className="seriesListDiv">
+                <SeriesList />
+              </div> */}
             </div>
             <div className={styles.right}>
               <PostListBar category="cricket" />

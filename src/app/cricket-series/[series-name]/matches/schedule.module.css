@@ -1,7 +1,11 @@
 .container {
   max-width: 1040px;
   margin: 0 auto;
-  margin-top: 6rem;
+  margin-top: 4rem;
+}
+
+.soundBox {
+  margin-top: 2rem;
 }
 
 .tertiaryNavUl {
@@ -26,19 +30,19 @@
   color: #003161;
 }
 
-.mainContent {
-  display: flex;
+.cardsWithDate {
   margin-top: 2rem;
-  gap: 2rem;
 }
 
-.options {
-  display: flex;
-  gap: 1rem;
+.date {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #003161;
 }
 
-.selectionBox {
+.schedule {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 1rem;
 }

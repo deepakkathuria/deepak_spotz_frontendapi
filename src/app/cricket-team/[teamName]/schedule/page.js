@@ -21,7 +21,7 @@ const page = async ({ params }) => {
   return (
     <>
       <div className={styles.container}>
-        <NavBarSec />
+        <NavBarSec active="teams" />
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>

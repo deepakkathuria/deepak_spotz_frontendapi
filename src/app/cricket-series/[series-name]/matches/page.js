@@ -1,50 +1,46 @@
 import React from "react";
-import styles from "./LiveCricketScores.module.css";
+import styles from "./schedule.module.css";
+import UpdatesSound from "../../../../components/common/UpdatesSound";
+import ScoreCard from "../../../../components/common/ScoreCard";
+import StatsNav from "@/components/series/StatsNav";
 import NavBarSec from "@/components/scorePage/NavBarSec";
-import UpdatesSound from "@/components/common/UpdatesSound";
-import ScoreCard from "@/components/common/ScoreCard";
-const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
-const fetchLiveMatches = async () => {
-  const res = await fetch(`${baseUrl}/matches/?status=3&token=${token}`);
+const fetchUpcomingMatches = async (matchId) => {
+  const res = await fetch(
+    `${baseUrl}/competitions/${matchId}/matches/?token=${key}&per_page=50&&paged=1`
+  );
   const data = await res.json();
   return data;
 };
 
-const page = async () => {
-  const matches = await fetchLiveMatches();
-  // console.log(matches, "matchesssssssss");
+const page = async ({ params }) => {
+  const { "series-name": seriesName } = params;
+  console.log(seriesName, "seriesNameeeeeeeeeeeeeeeeeeee");
+  const seriesIdInt = parseInt(
+    seriesName.split("-")[seriesName.split("-").length - 1]
+  );
+  const matches = await fetchUpcomingMatches(seriesIdInt);
+  // console.log(matches.response.items,'matchesssssssssssssss');
   return (
     <>
       <div className={styles.container}>
-        <div className="navSev">
-          <NavBarSec active="live" />
-        </div>
+        <NavBarSec active="series" />
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>
-        <div className="nav">
-          <ul className={styles.navUl}>
-            <li className={`${styles.navLi} ${styles.active}`}>
-              <a href="/live-cricket-scores">Live</a>
-            </li>
-            <li className={styles.navLi}>
-              <a href="/live-cricket-scores/completed">Completed</a>
-            </li>
-            <li className={styles.navLi}>
-              <a href="/live-cricket-scores/upcoming">Upcoming</a>
-            </li>
-          </ul>
+        <div className={styles.seriesOverviewTitle}>
+          <p>Sri Lanka Tour of india 2022</p>
         </div>
-
-        <div className={styles.scoreCardWithSeriesName}>
+        <div className={styles.tertiaryNav}>
+          <StatsNav active="schedule" seriesName={seriesName} />
+        </div>
+        <div className={styles.schedule}>
           {matches?.response?.items?.map((match, index) => {
             return (
-              <div key={index} className="seriesCard">
-                <div className={styles.name}>
-                  <p>India Tour of australia</p>
-                </div>
+              <div className={styles.cardsWithDate}>
+                <p className={styles.date}>{match?.competition?.datestart}</p>
                 <ScoreCard
                   key={index}
                   matchID={match?.match_id}

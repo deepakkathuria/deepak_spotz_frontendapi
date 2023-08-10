@@ -36,5 +36,6 @@ const SeriesList = (props) => {
     </>
   );
 };
+// comment out the following line if you do not want to accidentally   include the javascript files inside  the document body when rendering
 
 export default SeriesList;

@@ -6,7 +6,9 @@ const URLS_PER_SITEMAP = 10000;
 
 export async function GET(request) {
   const count = await fetchCountOfDynamicPages();
+  // console.log(count, "counttttttttttttt");
   const amountOfSitemapFiles = Math.ceil(count / URLS_PER_SITEMAP);
+  // console.log(amountOfSitemapFiles, "counttttttttttttt");
 
   const sitemaps = Array(amountOfSitemapFiles)
     .fill("")

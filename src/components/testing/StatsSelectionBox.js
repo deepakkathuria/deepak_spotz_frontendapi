@@ -8,7 +8,7 @@ const StatsSelectionBox = () => {
         <div className={styles.typeHeading}>Batting</div>
         <div className={`${styles.typeOption} ${styles.active}`}>Most Runs</div>
         <div className={styles.typeOption}>Most Wickets</div>
-        <div className={styles.typeOption}>Most four's</div>
+        <div className={styles.typeOption}>Most fours</div>
       </div>
     </>
   );

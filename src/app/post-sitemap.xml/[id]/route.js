@@ -2,6 +2,25 @@ import { getServerSideSitemap } from "next-sitemap";
 import axios from "axios";
 const API_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.siteUrl;
+const base_url = process.env.NEXT_PUBLIC_BASE_URL_WP;
+
+const fetchAllSlugsOfPosts = async () => {
+  try {
+    const slugs = [];
+    let page = 1;
+
+    while (slugs.length < 100000) {
+      const response = await fetch(
+        `${base_url}/wp-json/wp/v2/posts?per_page=100&page=${page}`
+      );
+      if (!response.ok) {
+        throw new Error("network error");
+      }
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 export async function GET(request, { params }) {
   if (!params?.id || Number.isNaN(Number(params.id))) {

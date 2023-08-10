@@ -14,7 +14,7 @@ const fetchTeamPlayers = async () => {
   return data;
 };
 
-const page = async ({params}) => {
+const page = async ({ params }) => {
   const data = await fetchTeamPlayers();
   // console.log(data.response.items.players.t20i, "teamssssssssss");
   const currentCountry = "india";
@@ -32,9 +32,10 @@ const page = async ({params}) => {
         </div>
         <div className={styles.team}>
           {/* <Teams data={playingSquad} /> */}
-          {data?.response?.items?.players?.odi?.map((player) => {
+          {data?.response?.items?.players?.odi?.map((player, index) => {
             return (
               <PlayerCardMini
+                key={index}
                 name={player?.title}
                 birth={player?.birthdate}
                 playing_style={

@@ -16,7 +16,7 @@ const ScoreCard = (props) => {
     <>
       <div className={styles.scoreCardContainer}>
         <div className={styles.scoreCardInner}>
-          <a href={`/cricket-series/${props.matchID}/${matchNameUrl}/`}>
+          <a href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}`}>
             <div className={styles.scoreMain}>
               <div className={styles.matchTitleDiv}>
                 <div className={styles.liveIC}>Live</div>

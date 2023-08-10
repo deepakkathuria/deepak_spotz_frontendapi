@@ -31,12 +31,12 @@ const page = async ({ params }) => {
         <div className={styles.results}>
           {data?.response?.items?.map((match, index) => {
             return (
-              <div className={styles.cardsWithDate}>
+              <div key={index} className={styles.cardsWithDate}>
                 <p className={styles.date}>
                   {new Date(match?.date_start).toLocaleString("en-us")}
                 </p>
                 <ScoreCard
-                  key={index}
+                  // key={index}
                   matchID={match?.match_id}
                   title={match?.short_title ? match.short_title : "no title"}
                   teamAName={match?.teama.name ? match?.teama.name : "NA"}

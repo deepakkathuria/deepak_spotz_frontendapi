@@ -39,10 +39,9 @@ const page = async ({ params }) => {
         <div className={styles.schedule}>
           {matches?.response?.items?.map((match, index) => {
             return (
-              <div className={styles.cardsWithDate}>
+              <div key={index} className={styles.cardsWithDate}>
                 <p className={styles.date}>{match?.competition?.datestart}</p>
                 <ScoreCard
-                  key={index}
                   matchID={match?.match_id}
                   title={match?.short_title ? match.short_title : "no title"}
                   teamAName={match?.teama.name ? match?.teama.name : "NA"}

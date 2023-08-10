@@ -16,9 +16,9 @@ const SeriesList = (props) => {
           </tr>
         </thead>
         <tbody className={styles.seriesListBody}>
-          {props?.data?.items?.map((seriesName) => {
+          {props?.data?.items?.map((seriesName, index) => {
             return (
-              <tr className={styles.seriesListBodyRow}>
+              <tr key={index} className={styles.seriesListBodyRow}>
                 <td className={styles.seriesListBodyData}>
                   <Link
                     href={`/cricket-series/${slugify(seriesName?.title, {

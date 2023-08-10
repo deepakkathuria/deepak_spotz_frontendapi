@@ -33,6 +33,7 @@ const TeamsTable = (props) => {
                         height={0}
                         width={0}
                         style={{ height: "100%", width: "100%" }}
+                        alt=""
                       />
                     </div>
                     <div suppressHydrationWarning className={styles.name}>

@@ -11,6 +11,7 @@ const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
+import NavSec from "@/components/liveScore/NavSec";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -87,6 +88,8 @@ const page = async ({ params }) => {
               <UpdatesSound />
             </div>
             <ScorePanel
+              teamIdA={data?.teama?.team_id ?? ""}
+              teamIdB={data?.teamb?.team_id ?? ""}
               logoTeamA={data?.teama?.logo_url ?? ""}
               logoTeamB={data?.teamb?.logo_url ?? ""}
               nameTeamA={data?.teama?.name ?? ""}
@@ -271,44 +274,13 @@ const page = async ({ params }) => {
             <AudioBar />
             {/* <NavBarTertiary activeTab="teams" /> */}
             <div className="nav">
-              <div className={styles.container}>
-                <Link href={`/live-cricket-scores/${seriesName}`}>
-                  <p>Info</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/commentary`}>
-                  <p>Commentary</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/live-blog`}>
-                  <p>Live Blog</p>
-                </Link>
-                <Link
-                  href={`/live-cricket-scores/${seriesName}/full-scorecard/`}
-                >
-                  <p>Scorecard</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/squads`}>
-                  <p className={styles.active}>Teams</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/videos`}>
-                  <p>Videos</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/news`}>
-                  <p>News</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/photos`}>
-                  <p>Photos</p>
-                </Link>
-
-                <Link href={`/live-cricket-scores/${seriesName}/match-wheel`}>
-                  <p>Wagon Wheel</p>
-                </Link>
-
-                <Link href={`/live-cricket-scores/${seriesName}/manhattan`}>
-                  <p>Manhattan</p>
-                </Link>
-              </div>
+              <NavSec active="teams" seriesName={seriesName} />
             </div>
-            <Teams data={playingSquad} />
+            <Teams
+              data={playingSquad}
+              nameTeamA={data?.teama?.name ?? ""}
+              nameTeamB={data?.teamb?.name ?? ""}
+            />
           </div>
           <div className={styles.containerRight}>
             <PostListBar category="cricket" />

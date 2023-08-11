@@ -6,7 +6,8 @@
   padding: 0 0.5rem;
   align-items: center;
   border-radius: 3px;
-  gap: 0.5rem;
+  /* gap: 5.2rem; */
+  justify-content: space-around;
   overflow: scroll;
 }
 

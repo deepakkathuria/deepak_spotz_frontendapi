@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  gap: 0.8rem;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+.container p {
+  padding: 0.2rem 0;
+  color: #206bb3;
+  font-weight: 600;
+}
+
+.active {
+  border-bottom: 2px solid #003161 !important;
+  color: #003161 !important;
+}
+
+@media (max-width: 576px) {
+  .container {
+    white-space: nowrap;
+    overflow: scroll;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+}

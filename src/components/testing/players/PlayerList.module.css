@@ -3,10 +3,11 @@
 } */
 
 .letter {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #0c4c8a;
   margin-bottom: 2rem;
   margin-top: 1rem;
+  font-weight: 600;
 }
 
 .list {

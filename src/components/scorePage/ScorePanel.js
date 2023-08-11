@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./ScorePanel.module.css";
 import Image from "next/image";
+import Link from "next/link";
+import slugify from "slugify";
 
 const ScorePanel = (props) => {
   // console.log('ScoreA:', props.scoreTeamA)
@@ -24,7 +26,15 @@ const ScorePanel = (props) => {
                   priority
                 />
               </div>
-              <div className={styles.name}>{props?.nameTeamA}</div>
+              <div className={styles.name}>
+                {/* <Link
+                  href={`/cricket-team/${slugify(props?.nameTeamA, {
+                    remove: /[*+~.()'"!:@]/g,
+                  }).toLowerCase()}-${props?.teamIdA}`}
+                > */}
+                  {props?.nameTeamA}
+                {/* </Link> */}
+              </div>
             </div>
             <div className={styles.scoreOver}>
               <span>({props?.overTeamA} over)</span>
@@ -43,7 +53,15 @@ const ScorePanel = (props) => {
                   priority
                 />
               </div>
-              <div className={styles.name}>{props?.nameTeamB}</div>
+              <div className={styles.name}>
+                {/* <Link
+                  href={`/cricket-team/${slugify(props?.nameTeamB, {
+                    remove: /[*+~.()'"!:@]/g,
+                  }).toLowerCase()}-${props?.teamIdB}`}
+                > */}
+                  {props?.nameTeamB}
+                {/* </Link> */}
+              </div>
             </div>
             <div className={styles.scoreOver}>
               <span>({props?.overTeamB} over)</span>

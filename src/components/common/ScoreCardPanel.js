@@ -122,15 +122,18 @@ const ScoreCardPanel = async (props) => {
             <button
               className={`${styles.matchTimingSelectorButton} ${styles.selected}`}
             >
-              Live (10)
+              <Link href={"/live-cricket-scores"}>Live (10)</Link>
             </button>
-            <button className={styles.matchTimingSelectorButton}>Recent</button>
             <button className={styles.matchTimingSelectorButton}>
+              <Link href={"/live-cricket-scores/completed"}>Recent</Link>
+            </button>
+            <button className={styles.matchTimingSelectorButton}>
+              <Link href={"/live-cricket-scores/upcoming"}></Link>
               Upcoming
             </button>
           </div>
 
-          <div className={styles.matchTypeSelector}>
+          {/* <div className={styles.matchTypeSelector}>
             <button
               className={`${styles.matchTypeSelectorButton} ${styles.selected}`}
             >
@@ -141,7 +144,7 @@ const ScoreCardPanel = async (props) => {
             </button>
             <button className={styles.matchTypeSelectorButton}>League</button>
             <button className={styles.matchTypeSelectorButton}>Domestic</button>
-          </div>
+          </div> */}
         </div>
       )}
       <div className={styles.carouselContainer}>

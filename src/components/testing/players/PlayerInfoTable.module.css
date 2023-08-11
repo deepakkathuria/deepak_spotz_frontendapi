@@ -19,5 +19,11 @@
 }
 
 .title {
+  width: 12rem;
   color: rgb(0, 0, 0, 0.7);
+}
+
+.value {
+  width: 15rem;
+  overflow: hidden;
 }

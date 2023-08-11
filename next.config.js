@@ -35,6 +35,11 @@ const nextConfig = {
       source: "/categories-sitemap-:id.xml",
       destination: "/categories-sitemap.xml/:id",
     },
+
+    {
+      source: "/cricketers",
+      destination: "/cricketers/india",
+    },
   ],
 };
 

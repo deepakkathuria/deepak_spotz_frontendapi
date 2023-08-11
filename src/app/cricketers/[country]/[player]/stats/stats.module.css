@@ -1,0 +1,46 @@
+.container {
+  max-width: 1040px;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+
+.updateBox {
+  margin-top: 2rem;
+}
+
+.dataMain {
+  width: 62rem;
+}
+
+.banner {
+  width: 62rem;
+  height: 12rem;
+  /* border-radius: 0.75rem 0.75rem 0rem 0rem; */
+  background: #0c4c8a;
+}
+
+.details {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(152, 204, 255, 0.3);
+  margin-top: 1rem;
+  /* width: 62rem; */
+}
+
+.nav {
+  margin: 1rem;
+}
+
+.bannerNav {
+  margin-top: 2rem;
+  border-radius: 0rem 0rem 0.75rem 0.75rem;
+  border: 1px solid rgba(152, 204, 255, 0.3);
+  background: #fff;
+  /* width: fit-content; */
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+}

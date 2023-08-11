@@ -14,30 +14,40 @@ const NavBarSec = (props) => {
           <li className={props?.active === "live" ? `${styles.selected}` : ""}>
             <Link href={"/live-cricket-scores"}>Live Scores</Link>
           </li>
-          <li className={props?.active === "series" ? `${styles.selected}` : ""}>
+          <li
+            className={props?.active === "series" ? `${styles.selected}` : ""}
+          >
             <Link href={"/cricket-series"}>Series</Link>
           </li>
           <li className={props?.active === "teams" ? `${styles.selected}` : ""}>
             <Link href={"/cricket-team"}>Teams</Link>
           </li>
-          <li className={props?.active === "players" ? `${styles.selected}` : ""}>
-            Players
+          <li
+            className={props?.active === "players" ? `${styles.selected}` : ""}
+          >
+            <Link href={"/cricketers"}>Players</Link>
           </li>
           <li className={props?.active === "news" ? `${styles.selected}` : ""}>
-            News
+            <Link href={"/cricket"}>News</Link>
           </li>
-          <li className={props?.active === "ipl" ? `${styles.selected}` : ""}>
+          {/* <li className={props?.active === "ipl" ? `${styles.selected}` : ""}>
             IPL
-          </li>
-          <li className={props?.active === "videos" ? `${styles.selected}` : ""}>
+          </li> */}
+          {/* <li
+            className={props?.active === "videos" ? `${styles.selected}` : ""}
+          >
             Videos
-          </li>
-          <li className={props?.active === "ranking" ? `${styles.selected}` : ""}>
+          </li> */}
+          {/* <li
+            className={props?.active === "ranking" ? `${styles.selected}` : ""}
+          >
             Ranking
-          </li>
-          <li className={props?.active === "fantasy" ? `${styles.selected}` : ""}>
+          </li> */}
+          {/* <li
+            className={props?.active === "fantasy" ? `${styles.selected}` : ""}
+          >
             Fantasy Tips
-          </li>
+          </li> */}
         </ul>
       </div>
     </>

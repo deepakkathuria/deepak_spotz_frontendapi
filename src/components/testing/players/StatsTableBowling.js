@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./StatsTable.module.css";
 
-const StatsTable = (props) => {
+const StatsTableBowling = (props) => {
   // console.log(props?.data.test.match_id);
   return (
     <>
@@ -13,14 +13,14 @@ const StatsTable = (props) => {
               <div className={styles.tableData}>Format</div>
               <div className={styles.tableData}>MAT</div>
               <div className={styles.tableData}>INNS</div>
-              <div className={styles.tableData}>NO</div>
-              <div className={styles.tableData}>RUNS</div>
-              <div className={styles.tableData}>HS</div>
-              <div className={styles.tableData}>AVG</div>
-              <div className={styles.tableData}>BF</div>
-              <div className={styles.tableData}>SR</div>
-              <div className={styles.tableData}>100s</div>
-              <div className={styles.tableData}>50s</div>
+              <div className={styles.tableData}>BALL</div>
+              <div className={styles.tableData}>OV.</div>
+              <div className={styles.tableData}>RUN</div>
+              <div className={styles.tableData}>WCKT</div>
+              <div className={styles.tableData}>ECON</div>
+              <div className={styles.tableData}>W4</div>
+              <div className={styles.tableData}>W5</div>
+              <div className={styles.tableData}>W10</div>
             </div>
           </div>
           <div className={styles.tableDataAll}>
@@ -33,28 +33,28 @@ const StatsTable = (props) => {
                 {props?.data?.test?.innings || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.test?.notout || "-"}
+                {props?.data?.test?.balls || "-"}
+              </div>
+              <div className={styles.tableDataBody}>
+                {props?.data?.test?.overs || "-"}
               </div>
               <div className={styles.tableDataBody}>
                 {props?.data?.test?.runs || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.test?.highest || "-"}
+                {props?.data?.test?.wickets || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.test?.average || "-"}
+                {props?.data?.test?.econ || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.test?.balls || "-"}
+                {props?.data?.test?.wicket4i || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.test?.strike || "-"}
+                {props?.data?.test?.wicket5i || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.test?.run100 || "-"}
-              </div>
-              <div className={styles.tableDataBody}>
-                {props?.data?.test?.run50 || "-"}
+                {props?.data?.test?.wicket10m || "-"}
               </div>
             </div>
 
@@ -67,28 +67,28 @@ const StatsTable = (props) => {
                 {props?.data?.odi?.innings || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.odi?.notout || "-"}
+                {props?.data?.odi?.balls || "-"}
+              </div>
+              <div className={styles.tableDataBody}>
+                {props?.data?.odi?.overs || "-"}
               </div>
               <div className={styles.tableDataBody}>
                 {props?.data?.odi?.runs || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.odi?.highest || "-"}
+                {props?.data?.odi?.wickets || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.odi?.average || "-"}
+                {props?.data?.odi?.econ || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.odi?.balls || "-"}
+                {props?.data?.odi?.wicket4i || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.odi?.strike || "-"}
+                {props?.data?.odi?.wicket5i || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.odi?.run100 || "-"}
-              </div>
-              <div className={styles.tableDataBody}>
-                {props?.data?.odi?.run50 || "-"}
+                {props?.data?.odi?.wicket10m || "-"}
               </div>
             </div>
 
@@ -101,28 +101,28 @@ const StatsTable = (props) => {
                 {props?.data?.t20i?.innings || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20i?.notout || "-"}
+                {props?.data?.t20i?.balls || "-"}
+              </div>
+              <div className={styles.tableDataBody}>
+                {props?.data?.t20i?.overs || "-"}
               </div>
               <div className={styles.tableDataBody}>
                 {props?.data?.t20i?.runs || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20i?.highest || "-"}
+                {props?.data?.t20i?.wickets || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20i?.average || "-"}
+                {props?.data?.t20i?.econ || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20i?.balls || "-"}
+                {props?.data?.t20i?.wicket4i || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20i?.strike || "-"}
+                {props?.data?.t20i?.wicket5i || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20i?.run100 || "-"}
-              </div>
-              <div className={styles.tableDataBody}>
-                {props?.data?.t20i?.run50 || "-"}
+                {props?.data?.t20i?.wicket10m || "-"}
               </div>
             </div>
 
@@ -135,28 +135,28 @@ const StatsTable = (props) => {
                 {props?.data?.t20?.innings || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20?.notout || "-"}
+                {props?.data?.t20?.balls || "-"}
+              </div>
+              <div className={styles.tableDataBody}>
+                {props?.data?.t20?.overs || "-"}
               </div>
               <div className={styles.tableDataBody}>
                 {props?.data?.t20?.runs || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20?.highest || "-"}
+                {props?.data?.t20?.wickets || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20?.average || "-"}
+                {props?.data?.t20?.econ || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20?.balls || "-"}
+                {props?.data?.t20?.wicket4i || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20?.strike || "-"}
+                {props?.data?.t20?.wicket5i || "-"}
               </div>
               <div className={styles.tableDataBody}>
-                {props?.data?.t20?.run100 || "-"}
-              </div>
-              <div className={styles.tableDataBody}>
-                {props?.data?.t20?.run50 || "-"}
+                {props?.data?.t20?.wicket10m || "-"}
               </div>
             </div>
           </div>
@@ -166,4 +166,4 @@ const StatsTable = (props) => {
   );
 };
 
-export default StatsTable;
+export default StatsTableBowling;

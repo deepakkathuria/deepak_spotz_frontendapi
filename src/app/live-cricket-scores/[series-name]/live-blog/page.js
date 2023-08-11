@@ -11,6 +11,7 @@ const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
+import NavSec from "@/components/liveScore/NavSec";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -260,42 +261,7 @@ const page = async ({ params }) => {
             <AudioBar />
             {/* <NavBarTertiary activeTab="score-card-live" /> */}
             <div className="nav">
-              <div className={styles.container}>
-                <Link href={`/live-cricket-scores/${seriesName}`}>
-                  <p>Info</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/commentary`}>
-                  <p>Commentary</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/live-blog`}>
-                  <p className={styles.active}>Live Blog</p>
-                </Link>
-                <Link
-                  href={`/live-cricket-scores/${seriesName}/full-scorecard/`}
-                >
-                  <p>Scorecard</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/squads`}>
-                  <p>Teams</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/videos`}>
-                  <p>Videos</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/news`}>
-                  <p>News</p>
-                </Link>
-                <Link href={`/live-cricket-scores/${seriesName}/photos`}>
-                  <p>Photos</p>
-                </Link>
-
-                <Link href={`/live-cricket-scores/${seriesName}/match-wheel`}>
-                  <p>Wagon Wheel</p>
-                </Link>
-
-                <Link href={`/live-cricket-scores/${seriesName}/manhattan`}>
-                  <p>Manhattan</p>
-                </Link>
-              </div>
+              <NavSec active="live_blog" seriesName={seriesName} />
             </div>
             {/* <ScoreCardLive /> */}
             <h2>Live Blog coming soon...</h2>

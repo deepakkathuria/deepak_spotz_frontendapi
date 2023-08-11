@@ -9,7 +9,7 @@ import ScoreCardLive from "../../../../components/scores/ScoreCardLive";
 import UpdatesSound from "../../../../components/common/UpdatesSound";
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
-import NavSec from "@/components/liveScore/NavSec";
+import NavSec from "../../../../components/liveScore/NavSec";
 
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;

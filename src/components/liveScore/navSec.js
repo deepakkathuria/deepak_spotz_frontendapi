@@ -39,35 +39,35 @@ const NavSec = (props) => {
             Teams
           </p>
         </Link>
-        {/* <Link href={`/live-cricket-scores/${props?.seriesName}/videos`}>
+        <Link href={`/live-cricket-scores/${props?.seriesName}/videos`}>
           <p className={props?.active === "videos" ? `${styles.active}` : ""}>
             Videos
           </p>
-        </Link> */}
+        </Link>
         <Link href={`/live-cricket-scores/${props?.seriesName}/news`}>
           <p className={props?.active === "news" ? `${styles.active}` : ""}>
             News
           </p>
         </Link>
-        {/* <Link href={`/live-cricket-scores/${props?.seriesName}/photos`}>
+        <Link href={`/live-cricket-scores/${props?.seriesName}/photos`}>
           <p className={props?.active === "photos" ? `${styles.active}` : ""}>
             Photos
           </p>
-        </Link> */}
+        </Link>
 
-        {/* <Link href={`/live-cricket-scores/${props?.seriesName}/wagon-wheel`}>
+        <Link href={`/live-cricket-scores/${props?.seriesName}/wagon-wheel`}>
           <p className={props?.active === "wagon" ? `${styles.active}` : ""}>
             Wagon Wheel
           </p>
-        </Link> */}
+        </Link>
 
-        {/* <Link href={`/live-cricket-scores/${props?.seriesName}/manhattan`}>
+        <Link href={`/live-cricket-scores/${props?.seriesName}/manhattan`}>
           <p
             className={props?.active === "manhattan" ? `${styles.active}` : ""}
           >
             Manhattan
           </p>
-        </Link> */}
+        </Link>
       </div>
     </>
   );

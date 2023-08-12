@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./navSec.module.css";
 import Link from "next/link";
 
-const navSec = (props) => {
+const NavSec = (props) => {
   return (
     <>
       <div className={styles.container}>
@@ -73,4 +73,4 @@ const navSec = (props) => {
   );
 };
 
-export default navSec;
+export default NavSec;

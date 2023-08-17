@@ -9,7 +9,7 @@ import ScoreCardLive from "../../../../components/scores/ScoreCardLive";
 import UpdatesSound from "../../../../components/common/UpdatesSound";
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
-import NavSec from "../../../../components/liveScore/NavSec";
+// import NavSec from "../../../../components/liveScore/NavSec";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
@@ -263,7 +263,7 @@ const page = async ({ params }) => {
             <AudioBar />
             {/* <NavBarTertiary activeTab="score-card-live" /> */}
             <div className="nav">
-              <NavSec active="wagon" seriesName={seriesName} />
+              {/* <NavSec active="wagon" seriesName={seriesName} /> */}
             </div>
             {/* <ScoreCardLive /> */}
             <h2>Wagon wheel coming soon...</h2>

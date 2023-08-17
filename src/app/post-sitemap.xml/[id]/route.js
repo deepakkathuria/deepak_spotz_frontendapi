@@ -22,7 +22,7 @@ export async function GET(request, { params }) {
   try {
     const fetchPostUrls = async (id) => {
       const res = await fetch(
-        `${base_url}/wp-json/wp/v2/posts?per_page=200&page=${id}`,
+        `${base_url}/wp-json/wp/v2/posts?per_page=${URLS_PER_SITEMAP}&page=${id}`,
         {
           method: "GET",
           headers: {

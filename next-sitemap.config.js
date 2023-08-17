@@ -9,7 +9,7 @@ module.exports = {
     policies: [
       {
         userAgent: "*",
-        // disallow: ["/secret", "/gaurav"],
+        disallow: ["/secret", "/gaurav", "/testing"],
         disallow: "/",
         // allow: "/",
       },
@@ -19,6 +19,8 @@ module.exports = {
       `${siteUrl}/images-sitemap.xml`,
       `${siteUrl}/post-sitemap.xml`,
       `${siteUrl}/categories-sitemap.xml`,
+      `${siteUrl}/livescore-sitemap.xml`,
+      `${siteUrl}/series-sitemap.xml`,
     ],
   },
   exclude: [
@@ -28,5 +30,7 @@ module.exports = {
     "/server-sitemap.xml",
     "/post-sitemap.xml",
     "/categories-sitemap.xml",
+    "/livescore-sitemap.xml",
+    "/series-sitemap.xml",
   ],
 };

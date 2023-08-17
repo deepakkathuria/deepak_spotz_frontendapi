@@ -11,7 +11,7 @@ const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
-import NavSec from "../../../../components/liveScore/NavSec";
+// import NavSec from "../../../../components/liveScore/NavSec";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -320,7 +320,7 @@ const page = async ({ params }) => {
             <AudioBar />
             {/* <NavBarTertiary activeTab="score-card-live" /> */}
             <div className="nav">
-              <NavSec active="scorecard" seriesName={seriesName} />
+              {/* <NavSec active="scorecard" seriesName={seriesName} /> */}
             </div>
             <ScoreCardLive data={scoreCardInDetails} />
           </div>

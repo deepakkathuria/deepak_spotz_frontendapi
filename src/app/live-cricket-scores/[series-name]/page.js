@@ -11,7 +11,7 @@ const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../components/common/Breadcrumb";
 import PostListBar from "../../../components/common/PostListBar";
-import NavSec from "@/components/liveScore/NavSec";
+// import NavSec from "@/components/liveScore/NavSec";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import EventLd from "@/json-ld/EventLd";
@@ -314,7 +314,7 @@ const page = async ({ params }) => {
 
             <AudioBar />
             <div className="nav">
-              <NavSec active="info" seriesName={seriesName} />
+              {/* <NavSec active="info" seriesName={seriesName} /> */}
             </div>
 
             <InfoTable

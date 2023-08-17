@@ -14,3 +14,16 @@
   gap: 1rem;
   flex-wrap: wrap;
 }
+
+@media (max-width: 576px) {
+  .team {
+    width: 100%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .soundBox {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}

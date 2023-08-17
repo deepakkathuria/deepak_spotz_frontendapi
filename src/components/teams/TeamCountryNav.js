@@ -55,7 +55,7 @@ const TeamCountryNav = (props) => {
           >
             <a href={`/cricket-team/${props.currentCountry}/stats`}>Stats</a>
           </li> */}
-          <li
+          {/* <li
             className={
               props?.active === "squads"
                 ? `${styles.TeamCountryNavLi} ${styles.active}`
@@ -63,7 +63,7 @@ const TeamCountryNav = (props) => {
             }
           >
             <a href={`/cricket-team/${props.currentCountry}/squads`}>Squads</a>
-          </li>
+          </li> */}
           {/* <li
             className={
               props?.active === "videos"

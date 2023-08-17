@@ -11,18 +11,30 @@ import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import UpdatesSound from "@/components/common/UpdatesSound";
-// import {
-//   getPostMeta,
-//   getSinglePostByPostSlug,
-//   getPostBody,
-//   getPostData,
-//   // getRelatedPostsByTag,
-//   getPostThumbById,
-// } from "../../../lib/PostDataFetch";
+const baseUrlAd = process.env.NEXT_PUBLIC_BASE_URL;
+const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
+const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
+const NEXT_PUBLIC_WP_API_PASSWORD = process.env.NEXT_PUBLIC_WP_API_PASSWORD;
+
+const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWORD}`;
+const buffer = Buffer.from(credentials, "utf-8");
+const base64Credentials = buffer.toString("base64");
+
+const fetchAD = async () => {
+  const res = await fetch(`${baseUrlAd}/getallads`, { cache: "no-store" });
+  const ad = res.json();
+  return ad;
+};
 
 const fetchRelatedPostsByTagId = async (id) => {
   const response = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?tags=${id}&per_page=6`
+    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?tags=${id}&per_page=6`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+    }
   );
   return await response.json();
 };
@@ -30,10 +42,16 @@ const fetchRelatedPostsByTagId = async (id) => {
 const fetchPostBySlug = async (slug) => {
   try {
     // const response = await fetch(
-    //   `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?slug=england-mulling-to-introduce-a-new-t20-league-in-the-country-likely-to-scrap-vitality-blast-and-the-hundred-reports`
+    //   `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?slug=england-mulling-to-introduce-a-new-t20-league-in-the-country-likely-to-scrap-vitality-blast-and-the-hundred-reports`
     // );
     const response = await fetch(
-      `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?slug=${slug}`
+      `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?slug=${slug}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Basic ${base64Credentials}`,
+        },
+      }
     );
     const articleData = await response.json();
 
@@ -69,7 +87,13 @@ const fetchPostBySlug = async (slug) => {
 // Function to fetch tag data by ID
 const fetchTagById = async (tagId) => {
   const response = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/tags/${tagId}`
+    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/tags/${tagId}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+    }
   );
   const tagData = await response.json();
   return tagData;
@@ -78,7 +102,13 @@ const fetchTagById = async (tagId) => {
 // Function to fetch category data by ID
 const fetchCategoryById = async (categoryId) => {
   const response = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/categories/${categoryId}`
+    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/categories/${categoryId}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+    }
   );
   const categoryData = await response.json();
   return categoryData;
@@ -86,10 +116,15 @@ const fetchCategoryById = async (categoryId) => {
 
 const getAuthorName = async (authorId) => {
   const response = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/users/${authorId}`
+    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/users/${authorId}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+    }
   );
   const authorName = await response.json();
-  // console.log(authorName,'authorNamehksdvbkjhsbdkj');
   return authorName;
 };
 
@@ -99,23 +134,11 @@ export async function generateMetadata({ params }) {
   const { slug } = params;
 
   const post = await fetchPostBySlug(slug);
-  // console.log(post, "postebufjebfibeiu");
-
-  // const postMeta = await getPostMeta(slug);
-
-  // const oldPostThumbnail = (await getPostThumbById(post?.[0]?.ID)) ?? "";
-
-  // if (oldPostThumbnail && oldPostThumbnail[0]) {
-  //   var thumbnail = oldPostThumbnail;
-  // } else {
-  //   var thumbnail = post?.[0]?.post_guid;
-  // }
 
   const title = post?.title?.rendered ?? "SportzWiki";
   const description = post?.excerpt?.rendered ?? "SportzWiki";
   const imageUrl = post?.featured_image_url ?? "";
   const parsedDescription = parse(description);
-  // const thumbUrl = thumbnail ?? "https://nextjs.org";
 
   return {
     title: title,
@@ -169,82 +192,91 @@ const page = async ({ params }) => {
       url: `/${category}`,
     },
     {
-      name: `${decodeURIComponent(slug).toUpperCase().substring(0, 40)}...`,
+      name: `${decodeURIComponent(slug).toUpperCase().substring(0, 30)}...`,
       url: `/${category}/${slug}`,
     },
   ];
 
-  // const postBody = await getPostBody(slug);
-  // **************************************************************
   const articleBody = await fetchPostBySlug(slug);
-  // console.log(articleBody, "article bodynsdkfnl");
-
-  // **************************************************************
-
-  // const post = await getPostData(slug);
-
-  // const postMeta = await getPostMeta(slug);
-
-  // var tagsArray = [];
-
-  // if (post[0]?.tags) {
-  //   tagsArray = post[0].tags.split(",");
-  // }
-
-  // if (tagsArray.length > 0) {
-  //   var randomIndex = Math.floor(Math.random() * tagsArray.length);
-  //   var randomTag = tagsArray[randomIndex];
-  //   console.log(randomTag, "randomTag");
-  // } else {
-  //   console.log("Error at tags selection of post " + slug);
-  // }
-
+  console.log(articleBody, "articleBodyarticleBodyarticleBody");
   if (articleBody?.tags.length > 0) {
     var randomIndex = Math.floor(Math.random() * articleBody?.tags.length);
     var randomTag = articleBody?.tags[randomIndex].id;
     console.log(randomTag, "randomTag");
   } else {
+    var randomTag = 83366;
     console.log("Error at tags selection of post " + slug);
   }
 
-  // console.log(articleBody?.categories[0].name,'parent categoriiiiijidsninisn')
-
-  // const relatedPosts = await getRelatedPostsByTag(randomTag);
   const relatedPosts = await fetchRelatedPostsByTagId(randomTag);
-  // console.log(relatedPosts, "relatedddddddd");
+  // console.log(relatedPosts, "relatedPostsrelationships");
 
-  // const formattedContent = postBody?.[0]?.post_content?.replace(
-  //   /\r?\n/g,
-  //   "<br>"
-  // );
+  const ad = await fetchAD();
+  // console.log(ad, "addddddddddddddddddd");
+  const adAfterParaData = [];
+  let adAfterImage = "";
 
-  // if (postBody[0] && postBody[0].ID) {
-  //   // const oldPostThumbnail = await getPostThumbById(postBody?.[0].ID);
-  //   const oldPostThumbnail = postBody[0]
-  //     ? await getPostThumbById(postBody[0].ID)
-  //     : "";
-  //   // rest of the code here
-  //   if (oldPostThumbnail && oldPostThumbnail[0]) {
-  //     var thumbnail = oldPostThumbnail;
-  //   } else {
-  //     var thumbnail = postBody[0]?.guid;
-  //   }
-  // }
+  for (const item of ad) {
+    if (item.selected_types === "After Paragraph") {
+      // console.log("found");
+      adAfterParaData.push({
+        para_no: item.para_no,
+        code: item.code,
+      });
+    }
+    if (item.selected_types === "After Image") {
+      adAfterImage = item.code;
+    }
+  }
 
-  // const oldPostThumbnail = await getPostThumbById(postBody[0].ID);
-  // console.log(oldPostThumbnail, "postThumbnail");
+  const articleJsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "NewsArticle",
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": "www.sportzwiki.com",
+    },
+    headline: articleBody?.title.rendered ?? "",
+    description: articleBody?.content.rendered ?? "",
+    image: {
+      "@type": "ImageObject",
+      url: articleBody?.featured_image_url || "",
+      // width: "1280",
+      // height: "1280",
+    },
+    author: {
+      "@type": "Person",
+      name: articleBody?.author?.name ?? "",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "SportzWiki",
+      logo: {
+        "@type": "ImageObject",
+        url: "SportzWiki.com",
+        // width: "326",
+        // height: "326",
+      },
+    },
+    datePublished: articleBody?.date_gmt ?? "",
+    dateModified: articleBody?.date_gmt ?? "",
+  };
 
-  // console.log(slug, "slugiiiiifi");
+  // console.log(adAfterImage, "jhvfhbshbskbkjsbvhk");
 
   return (
     <>
-      <ArticleLd
+      {/* <ArticleLd
         title={articleBody?.title.rendered ?? ""}
         date={articleBody?.date_gmt ?? ""}
         author={articleBody?.author?.name ?? ""}
         description={articleBody?.content.rendered ?? ""}
-        // tags={articleBody?.tags ?? []}
         shortDescription={articleBody?.excerpt.rendered ?? ""}
+        thumbnail={articleBody?.featured_image_url || ""}
+      /> */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
 
       <BreadCrumbLd category={category ?? ""} slug={slug ?? ""} />
@@ -252,17 +284,15 @@ const page = async ({ params }) => {
       <OrganisationLd />
 
       <div className={styles.postPageContainer}>
-        <div style={{ marginTop: "6rem" }} className="updateBox">
+        <div style={{ marginTop: "6rem" }} className={styles.updateBox}>
           <UpdatesSound />
         </div>
         <div style={{ marginTop: "1.5rem" }} className={styles.breadcrumb}>
           <Breadcrumb breadcrumbsObj={breadcrumbs} />
         </div>
-        {/* <PostCategoryBox categories={post?.[0]?.categories} /> */}
         <PostCategoryBox categories={articleBody?.categories ?? []} />
         <div className={styles.postDetailListContainer}>
           <PostDisplay
-            // title={postBody?.[0]?.post_title ?? ""}
             title={articleBody?.title.rendered ?? ""}
             date={articleBody?.date_gmt ?? ""}
             author={articleBody?.author?.name ?? ""}
@@ -271,10 +301,11 @@ const page = async ({ params }) => {
             categories={articleBody?.categories ?? []}
             thumbnail={articleBody?.featured_image_url}
             summary={articleBody?.excerpt.rendered ?? ""}
+            ad={adAfterParaData || ""}
+            adAfterImage={adAfterImage || ""}
           />
           <Suspense fallback={<p>Loading Post list bar...</p>}>
             <PostListBar category={articleBody?.categories[0].name} />
-            {/* <PostListBar category={category} /> */}
           </Suspense>
         </div>
         <div className={styles.relatedArticleSection}>
@@ -282,19 +313,6 @@ const page = async ({ params }) => {
             Related <span>Article</span>
           </div>
           <div className={styles.relatedArticlePosts}>
-            {/* {relatedPosts?.map((card) => {
-              return (
-                <div key={card.ID}>
-                  <Link href={`/${category}/${card.post_name}`}>
-                    <NewsCard
-                      title={card?.post_title}
-                      content={`${card?.post_content.substring(0, 40)}...`}
-                      date={new Date(card?.post_modified).toLocaleString()}
-                    />
-                  </Link>
-                </div>
-              );
-            })} */}
             <Suspense fallback={<p>Loading related posts...</p>}>
               {!relatedPosts && (
                 <h2 className="div">No Related Posts available</h2>
@@ -314,7 +332,6 @@ const page = async ({ params }) => {
                           date={new Date(card?.date).toLocaleString("en-us")}
                           guid={card?.guid}
                           featuredMedia={card?.featured_image_url}
-                          /* other props */
                         />
                       </a>
                     </div>

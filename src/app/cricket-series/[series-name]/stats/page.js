@@ -6,11 +6,13 @@ import StatsSelectOptions from "../../../../components/testing/StatsSelectOption
 import StatsTeamTable from "../../../../components/testing/StatsTeamTable";
 import StatsNav from "@/components/series/StatsNav";
 import NavBarSec from "@/components/scorePage/NavBarSec";
+import OrganisationLd from "@/json-ld/OrganisationLd";
 
 const page = ({ params }) => {
   const { "series-name": seriesName } = params;
   return (
     <>
+      <OrganisationLd />
       <div className={styles.container}>
         <NavBarSec active="series" />
         <div className={styles.soundBox}>

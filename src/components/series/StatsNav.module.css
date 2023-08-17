@@ -12,3 +12,12 @@
   color: #003161;
   text-decoration: underline;
 }
+
+@media (max-width: 576px) {
+  .tertiaryNavUl {
+    font-size: 1.4rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    gap: 1.2rem;
+  }
+}

@@ -35,7 +35,7 @@ const StatsNav = (props) => {
         >
           <Link href={`/cricket-series/${props?.seriesName}/news`}>News</Link>
         </li>
-        <li
+        {/* <li
           className={
             props?.active === "stats"
               ? `${styles.tertiaryNavLi} ${styles.active}`
@@ -43,8 +43,8 @@ const StatsNav = (props) => {
           }
         >
           <Link href={`/cricket-series/${props?.seriesName}/stats`}>Stats</Link>
-        </li>
-        <li
+        </li> */}
+        {/* <li
           className={
             props?.active === "squads"
               ? `${styles.tertiaryNavLi} ${styles.active}`
@@ -54,7 +54,7 @@ const StatsNav = (props) => {
           <Link href={`/cricket-series/${props?.seriesName}/squads`}>
             Squads
           </Link>
-        </li>
+        </li> */}
         {/* <li
           className={
             props?.active === "venues"

@@ -46,3 +46,22 @@
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+@media (max-width: 576px) {
+  .soundBox {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .seriesOverviewTitle {
+    font-size: 1.6rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .cardsWithDate {
+    width: 100%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}

@@ -12,6 +12,7 @@ const nextConfig = {
       "bengali.sportzwiki.com",
       "images.entitysport.com",
       "demo2.sportzwiki.com",
+      "swdupli.sportzwiki.com",
     ],
   },
   // ...
@@ -34,6 +35,16 @@ const nextConfig = {
     {
       source: "/categories-sitemap-:id.xml",
       destination: "/categories-sitemap.xml/:id",
+    },
+
+    {
+      source: "/livescore-sitemap-:id.xml",
+      destination: "/livescore-sitemap.xml/:id",
+    },
+
+    {
+      source: "/series-sitemap-:id.xml",
+      destination: "/series-sitemap.xml/:id",
     },
 
     {

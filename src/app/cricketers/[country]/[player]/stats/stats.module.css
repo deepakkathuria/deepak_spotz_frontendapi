@@ -44,3 +44,17 @@
   gap: 2rem;
   margin-top: 3rem;
 }
+
+@media (max-width: 576px) {
+  .updateBox {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .nav,
+  .banner,
+  .bannerNav,
+  .dataMain {
+    width: 100%;
+  }
+}

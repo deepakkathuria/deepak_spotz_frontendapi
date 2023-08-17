@@ -25,7 +25,7 @@ const NavBarSec = (props) => {
           <li
             className={props?.active === "players" ? `${styles.selected}` : ""}
           >
-            <Link href={"/cricketers"}>Players</Link>
+            <a href={"/cricketers/"}>Players</a>
           </li>
           <li className={props?.active === "news" ? `${styles.selected}` : ""}>
             <Link href={"/cricket"}>News</Link>

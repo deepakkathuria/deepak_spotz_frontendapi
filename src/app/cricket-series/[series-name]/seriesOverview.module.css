@@ -40,3 +40,21 @@
 .matchesList {
   margin-bottom: 4rem;
 }
+
+@media (max-width: 576px) {
+  .updateBox {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .seriesOverviewTitle {
+    font-size: 1.6rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .matchesList {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}

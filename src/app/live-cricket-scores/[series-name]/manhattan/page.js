@@ -12,6 +12,7 @@ const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 import NavSec from "../../../../components/liveScore/NavSec";
+import OrganisationLd from "@/json-ld/OrganisationLd";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -50,7 +51,7 @@ const page = async ({ params }) => {
       url: "/",
     },
     {
-      name: `CRICKET SERIES`,
+      name: `LIVE CRICKET SCORES`,
       url: "/",
     },
     {
@@ -58,13 +59,14 @@ const page = async ({ params }) => {
       url: "/",
     },
     {
-      name: `CRICKET MATCH MANHATTAN`,
+      name: `MANHATTAN`,
       url: "/",
     },
   ];
 
   return (
     <>
+      <OrganisationLd />
       <div className={styles.containerMainLiveScore}>
         <NavBarSec active="live" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

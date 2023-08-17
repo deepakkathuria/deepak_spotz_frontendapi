@@ -2,8 +2,8 @@ import React from "react";
 import ScorePanel from "../../../../components/scorePage/ScorePanel";
 import NavBarSec from "../../../../components/scorePage/NavBarSec";
 import AudioBar from "../../../../components/scores/AudioBar";
-import NavBarTertiary from "../../../../components/scores/NavBarTertiary";
-import Link from "next/link";
+// import NavBarTertiary from "../../../../components/scores/NavBarTertiary";
+// import Link from "next/link";
 import styles from "../../../../components/scores/NavBarTertiary.module.css";
 import Teams from "../../../../components/scores/Teams";
 import UpdatesSound from "../../../../components/common/UpdatesSound";
@@ -12,6 +12,11 @@ const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 import NavSec from "../../../../components/liveScore/NavSec";
+import OrganisationLd from "@/json-ld/OrganisationLd";
+import { BreadcrumbJsonLd } from "next-seo";
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+import EventLd from "@/json-ld/EventLd";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -60,20 +65,58 @@ const page = async ({ params }) => {
       url: "/",
     },
     {
-      name: `CRICKET SERIES`,
-      url: "/",
+      name: `LIVE CRICKET SCORES`,
+      url: "/live-cricket-scores",
     },
     {
       name: `${seriesName}`.toUpperCase(),
-      url: "/",
+      url: `/live-cricket-scores/${seriesName}`,
     },
     {
-      name: `CRICKET MATCH SQUAD`,
-      url: "/",
+      name: `TEAMS`,
+      url: `/live-cricket-scores/${seriesName}/teams`,
     },
   ];
   return (
     <>
+      <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: "HOME",
+            item: "sportzwiki.com",
+          },
+          {
+            position: 2,
+            name: breadcrumbs[1]?.name,
+            item: `${site_url}${breadcrumbs[1]?.url}`,
+          },
+          {
+            position: 3,
+            name: breadcrumbs[2]?.name,
+            item: `${site_url}${breadcrumbs[2]?.url}`,
+          },
+          {
+            position: 4,
+            name: breadcrumbs[3]?.name,
+            // item: `${site_url}${breadcrumbs[3]?.url}`,
+          },
+          // {
+          //   position: 5,
+          //   name: breadcrumbs[4]?.name,
+          //   item: `${site_url}${breadcrumbs[4]?.url}`,
+          // },
+        ]}
+      />
+      <OrganisationLd />
+      <EventLd
+        eventName={data?.competition.title ?? ""}
+        startDate={data?.date_start_ist}
+        endDate={data?.date_end_ist}
+        venue={data?.venue.name}
+        url={`${site_url}${breadcrumbs[3]?.url}`}
+      />
       <div className={styles.containerMainLiveScore}>
         <NavBarSec active="live" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

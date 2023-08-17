@@ -1,7 +1,8 @@
+"use client"
 import { NewsArticleJsonLd } from "next-seo";
 
 const ArticleLd = (props) => {
-//   console.log(props.tags, "tags");
+  //   console.log(props.tags, "tags");
 
   return (
     <>
@@ -9,11 +10,7 @@ const ArticleLd = (props) => {
         useAppDir={true}
         url="https://example.com/article"
         title={props.title}
-        images={[
-          "https://example.com/photos/1x1/photo.jpg",
-          "https://example.com/photos/4x3/photo.jpg",
-          "https://example.com/photos/16x9/photo.jpg",
-        ]}
+        images={[`${props.thumbnail}`]}
         section="politic"
         keywords={props.tags}
         datePublished={props.date}

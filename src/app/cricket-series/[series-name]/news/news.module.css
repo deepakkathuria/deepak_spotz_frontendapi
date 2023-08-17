@@ -29,3 +29,16 @@
   margin-top: 1.5rem;
   color: #003161;
 }
+
+@media (max-width: 576px) {
+  .seriesOverviewTitle {
+    font-size: 1.6rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .soundBox {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}

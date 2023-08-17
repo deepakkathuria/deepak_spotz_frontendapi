@@ -7,7 +7,7 @@ const VenueCard = () => {
     <>
       <div className={styles.outerDiv}>
         <div className="img">
-          <Image src={"/gaurav/stadium.svg"} height={54} width={54} />
+          <Image src={"/gaurav/stadium.svg"} height={54} width={54} alt="" />
         </div>
         <div className={styles.details}>
           <div className={styles.name}>Arun jaitly stadium</div>

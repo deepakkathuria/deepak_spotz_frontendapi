@@ -27,3 +27,20 @@
   width: 15rem;
   overflow: hidden;
 }
+
+@media (max-width: 576px) {
+  .tableHead {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .left,
+  .right {
+    width: 100%;
+  }
+
+  .title,
+  .value {
+    width: 100%;
+  }
+}

@@ -4,6 +4,13 @@ import NewsCard from "@/components/common/NewsCard";
 import axios from "axios";
 import Breadcrumb from "@/components/common/Breadcrumb";
 // const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
+const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
+const NEXT_PUBLIC_WP_API_PASSWORD = process.env.NEXT_PUBLIC_WP_API_PASSWORD;
+
+const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWORD}`;
+const buffer = Buffer.from(credentials, "utf-8");
+const base64Credentials = buffer.toString("base64");
 
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 import OrganisationLd from "@/json-ld/OrganisationLd";
@@ -14,7 +21,13 @@ import { redirect } from "next/dist/server/api-utils";
 
 const fetchPostsByCategoryId = async (categoryId, currentPage) => {
   const res = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/posts?categories=${categoryId}&page=${currentPage}&per_page=48`,
+    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?categories=${categoryId}&page=${currentPage}&per_page=48`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+    },
     { cache: "no-store" }
   );
   const posts = await res.json();
@@ -23,7 +36,13 @@ const fetchPostsByCategoryId = async (categoryId, currentPage) => {
 
 const fetchCategoryDataBySlug = async (categorySlug) => {
   const res = await fetch(
-    `https://demo2.sportzwiki.com/wp-json/wp/v2/categories?slug=${categorySlug}`,
+    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/categories?slug=${categorySlug}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+    },
     { cache: "no-store" }
   );
   const categoryData = await res.json();
@@ -70,7 +89,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
   if (Number(searchParams.page) >= 1) {
     currentPage = Number(searchParams.page);
   }
-  console.log(currentPage, "countjbkbdfb");
+  // console.log(currentPage, "countjbkbdfb");
 
   let offset = (currentPage - 1) * dataPerPage;
 
@@ -168,7 +187,9 @@ const CategoryPosts = async ({ params, searchParams }) => {
           <h1 className={styles.categoryTitle}>
             {decodeURIComponent(params.category).toUpperCase()}
           </h1>
-          <p className={styles.catDescription}>{categoryData[0]?.description}</p>
+          <p className={styles.catDescription}>
+            {categoryData[0]?.description}
+          </p>
         </div>
 
         <div className={styles.newsCardsDisplay}>
@@ -179,8 +200,8 @@ const CategoryPosts = async ({ params, searchParams }) => {
           )}
 
           {Array.isArray(categoryPosts) &&
-            categoryPosts?.map((post) => (
-              <div className="card" key={post.ID}>
+            categoryPosts?.map((post, index) => (
+              <div className="card" key={index}>
                 <a href={`/${category}/${post?.slug}`}>
                   <NewsCard
                     id={post?.id}
@@ -203,9 +224,9 @@ const CategoryPosts = async ({ params, searchParams }) => {
         )}
 
         {pageNumbers &&
-          pageNumbers.map((page) => (
+          pageNumbers.map((page, index) => (
             <a
-              key={page}
+              key={index}
               href={`/${category}?page=${page}`}
               className={page === currentPage ? styles.activeLink : ""}
             >

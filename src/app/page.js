@@ -4,10 +4,8 @@ import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
 import NewsSectionLatest from "../components/common/NewsSectionLatest";
 import MobSecondaryNav from "@/components/common/MobSecondaryNav";
-// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
-import dynamic from "next/dynamic";
 
 const page = async () => {
   // try {
@@ -35,8 +33,14 @@ const page = async () => {
         <NewsSectionLatest />
 
         <div className={styles.newsSectionDiv}>
-          <NewsSection name="CRICKET" id="3" slug="cricket" />
-          <NewsSection name="WWE" id="10" slug="wwe" />
+          <NewsSection name="CRICKET" id="2" slug="cricket" />
+          <NewsSection name="WWE" id="4" slug="wwe" />
+          <NewsSection name="FOOTBALL" id="3" slug="football" />
+          <NewsSection
+            name="FANTASY CRICKET TIPS"
+            id="150559"
+            slug="fantasy-cricket"
+          />
           {/* {data?.map((item) => {
             return (
               <div key={item.ID}>

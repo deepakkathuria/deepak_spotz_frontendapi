@@ -21,3 +21,13 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+@media (max-width: 576px) {
+  .container {
+    width: 100%;
+    justify-content: baseline;
+    overflow: auto;
+    gap: 1rem;
+    /* margin-left: 2rem; */
+  }
+}

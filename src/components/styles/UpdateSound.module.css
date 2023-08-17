@@ -48,6 +48,10 @@
   padding: 1rem 0.8rem;
 }
 
+/* .UpdateHeadLines p {
+  overflow-x: scroll;
+} */
+
 @media (max-width: 576px) {
   .updateMainDiv {
     width: 100%;

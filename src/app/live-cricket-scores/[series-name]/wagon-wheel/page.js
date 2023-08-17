@@ -10,6 +10,7 @@ import UpdatesSound from "../../../../components/common/UpdatesSound";
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 import NavSec from "../../../../components/liveScore/NavSec";
+import OrganisationLd from "@/json-ld/OrganisationLd";
 
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
@@ -49,7 +50,7 @@ const page = async ({ params }) => {
       url: "/",
     },
     {
-      name: `CRICKET SERIES`,
+      name: `LIVE CRICKET SCORES`,
       url: "/",
     },
     {
@@ -57,12 +58,13 @@ const page = async ({ params }) => {
       url: "/",
     },
     {
-      name: `CRICKET MATCH WAGON`,
+      name: `WAGON WHEEL`,
       url: "/",
     },
   ];
   return (
     <>
+      <OrganisationLd />
       <div className={styles.containerMainLiveScore}>
         <NavBarSec active="live" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

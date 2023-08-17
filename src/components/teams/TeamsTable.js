@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./TeamsTable.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import slugify from "slugify";
 
 const TeamsTable = (props) => {
   // console.log(props?.data);
@@ -20,7 +21,9 @@ const TeamsTable = (props) => {
             return (
               <Link
                 key={index}
-                href={`/cricket-team/${team?.abbr.toLowerCase()}-${team?.tid}`}
+                href={`/cricket-team/${slugify(team?.title, {
+                  remove: /[*+~.()'"!:@]/g,
+                }).toLowerCase()}-${team?.tid}`}
               >
                 <tr
                   className={styles.TeamsTableBodyTr}

@@ -3,8 +3,13 @@ import styles from "./LiveCricketScores.module.css";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import UpdatesSound from "@/components/common/UpdatesSound";
 import ScoreCard from "@/components/common/ScoreCard";
+import Breadcrumb from "@/components/common/Breadcrumb";
+import OrganisationLd from "@/json-ld/OrganisationLd";
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
+import { BreadcrumbJsonLd } from "next-seo";
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const fetchLiveMatches = async () => {
   const res = await fetch(`${baseUrl}/matches/?status=3&token=${token}`);
@@ -13,13 +18,42 @@ const fetchLiveMatches = async () => {
 };
 
 const page = async () => {
+  const breadcrumbs = [
+    {
+      name: "HOME",
+      url: "/",
+    },
+    {
+      name: `LIVE CRICKET SCORES`,
+      url: "/live-cricket-scores",
+    },
+  ];
   const matches = await fetchLiveMatches();
   // console.log(matches, "matchesssssssss");
   return (
     <>
+      <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: "HOME",
+            item: "sportzwiki.com",
+          },
+          {
+            position: 2,
+            name: breadcrumbs[1]?.name,
+            item: `${site_url}${breadcrumbs[1]?.url}`,
+          },
+        ]}
+      />
+      <OrganisationLd />
       <div className={styles.container}>
-        <div className="navSev">
+        <div className="navSec">
           <NavBarSec active="live" />
+        </div>
+        <div style={{ marginTop: "1rem" }} className="breadcrumb">
+          <Breadcrumb breadcrumbsObj={breadcrumbs} />
         </div>
         <div className={styles.soundBox}>
           <UpdatesSound />
@@ -41,9 +75,9 @@ const page = async () => {
         <div className={styles.scoreCardWithSeriesName}>
           {matches?.response?.items?.map((match, index) => {
             return (
-              <div key={index} className="seriesCard">
+              <div key={index} className={styles.seriesCard}>
                 <div className={styles.name}>
-                  <p>India Tour of australia</p>
+                  <p>{match?.title}</p>
                 </div>
                 <ScoreCard
                   key={index}

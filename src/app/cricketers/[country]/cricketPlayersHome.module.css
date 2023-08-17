@@ -42,3 +42,26 @@
   flex-direction: column;
   gap: 3rem;
 }
+
+@media (max-width: 576px) {
+  .updateBox {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  /* .teamSelect {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    overflow: scroll;
+  } */
+
+  .search {
+    display: none;
+  }
+
+  .list {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    gap: 1rem;
+  }
+}

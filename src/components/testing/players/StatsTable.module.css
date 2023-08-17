@@ -33,3 +33,18 @@
   color: #0c4c8a;
   margin-bottom: 1rem;
 }
+
+@media (max-width: 576px) {
+  .tableData,
+  .tableDataBody {
+    min-width: 6rem;
+  }
+  .tableBody {
+    overflow: scroll;
+  }
+
+  .tableHead,
+  .tableRow {
+    width: 100%;
+  }
+}

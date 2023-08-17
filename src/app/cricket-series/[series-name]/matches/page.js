@@ -4,8 +4,13 @@ import UpdatesSound from "../../../../components/common/UpdatesSound";
 import ScoreCard from "../../../../components/common/ScoreCard";
 import StatsNav from "@/components/series/StatsNav";
 import NavBarSec from "@/components/scorePage/NavBarSec";
+import Breadcrumb from "@/components/common/Breadcrumb";
+import OrganisationLd from "@/json-ld/OrganisationLd";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+import { BreadcrumbJsonLd } from "next-seo";
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const fetchUpcomingMatches = async (matchId) => {
   const res = await fetch(
@@ -22,11 +27,58 @@ const page = async ({ params }) => {
     seriesName.split("-")[seriesName.split("-").length - 1]
   );
   const matches = await fetchUpcomingMatches(seriesIdInt);
+  const breadcrumbs = [
+    {
+      name: "HOME",
+      url: "/",
+    },
+    {
+      name: `CRICKET SERIES`,
+      url: "/cricket-series",
+    },
+    {
+      name: `${seriesName.toUpperCase().slice(0, 40)}...`,
+      url: `/cricket-series/${seriesName}`,
+    },
+    {
+      name: `MATCHES`,
+      url: `/cricket-series/${seriesName}/matches`,
+    },
+  ];
   // console.log(matches.response.items,'matchesssssssssssssss');
   return (
     <>
+      <OrganisationLd />
+      <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: "HOME",
+            item: "sportzwiki.com",
+          },
+          {
+            position: 2,
+            name: breadcrumbs[1]?.name,
+            item: `${site_url}${breadcrumbs[1]?.url}`,
+          },
+          {
+            position: 3,
+            name: breadcrumbs[2]?.name,
+            item: `${site_url}${breadcrumbs[1]?.url}`,
+          },
+          {
+            position: 4,
+            name: breadcrumbs[3]?.name,
+            item: `${site_url}${breadcrumbs[3]?.url}`,
+          },
+        ]}
+      />
       <div className={styles.container}>
         <NavBarSec active="series" />
+        <div style={{ marginTop: "1rem" }} className="breadcrumb">
+          <Breadcrumb breadcrumbsObj={breadcrumbs} />
+        </div>
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>

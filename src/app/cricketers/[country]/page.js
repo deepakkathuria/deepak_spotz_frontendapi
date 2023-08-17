@@ -4,8 +4,13 @@ import UpdatesSound from "../../../components/common/UpdatesSound";
 import PlayerTeamSelect from "../../../components/testing/players/PlayerTeamSelect";
 import PlayerList from "../../../components/testing/players/PlayerList";
 import NavBarSec from "@/components/scorePage/NavBarSec";
+import Breadcrumb from "@/components/common/Breadcrumb";
+import OrganisationLd from "@/json-ld/OrganisationLd";
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
+import { BreadcrumbJsonLd } from "next-seo";
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const fetchPlayersListByTeamId = async (teamIdResult) => {
   const res = await fetch(
@@ -75,10 +80,58 @@ const page = async ({ params }) => {
 
   const items = await fetchPlayersListByTeamId(teamIdResult);
 
+  const breadcrumbs = [
+    {
+      name: "HOME",
+      url: "/",
+    },
+    {
+      name: `CRICKETERS`,
+      url: "/cricketers",
+    },
+    // {
+    //   name: `${teamName.toUpperCase().slice(0, 40)}...`,
+    //   url: `/cricket-series/${teamName}`,
+    // },
+    // {
+    //   name: `NEWS`,
+    //   url: "/",
+    // },
+  ];
+
   return (
     <>
+    <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: "HOME",
+            item: "sportzwiki.com",
+          },
+          {
+            position: 2,
+            name: breadcrumbs[1]?.name,
+            item: `${site_url}${breadcrumbs[1]?.url}`,
+          },
+          // {
+          //   position: 3,
+          //   name: breadcrumbs[2]?.name,
+          //   item: `${site_url}${breadcrumbs[2]?.url}`,
+          // },
+          // {
+          //   position: 4,
+          //   name: breadcrumbs[3]?.name,
+          //   item: `${site_url}${breadcrumbs[3]?.url}`,
+          // },
+        ]}
+      />
+      <OrganisationLd />
       <div className={styles.container}>
         <NavBarSec active="players" />
+        <div style={{ marginTop: "1rem" }} className="breadcrumb">
+          <Breadcrumb breadcrumbsObj={breadcrumbs} />
+        </div>
         <div className={styles.updateBox}>
           <UpdatesSound />
         </div>
@@ -86,18 +139,18 @@ const page = async ({ params }) => {
           <PlayerTeamSelect />
         </div>
 
-        <div className={styles.playerGenderSelectorAndSearchContainer}>
+        {/* <div className={styles.playerGenderSelectorAndSearchContainer}>
           <div className={styles.genderSelector}>
-            {/* <ul>
+            <ul>
               <li className={styles.active}>All</li>
               <li>Men</li>
               <li>Women</li>
-            </ul> */}
+            </ul>
           </div>
-          <div className="search">
+          <div className={styles.search}>
             <input type="text" placeholder="Search Player" />
           </div>
-        </div>
+        </div> */}
         <div className={styles.list}>
           {Object.entries(items.response.items.players).map(
             ([playerType, playerArray], index) => (

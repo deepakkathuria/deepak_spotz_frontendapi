@@ -12,6 +12,10 @@ const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 import NavSec from "../../../../components/liveScore/NavSec";
+import OrganisationLd from "@/json-ld/OrganisationLd";
+import { BreadcrumbJsonLd } from "next-seo";
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -48,20 +52,51 @@ const page = async ({ params }) => {
       url: "/",
     },
     {
-      name: `CRICKET SERIES`,
-      url: "/",
+      name: `LIVE CRICKET SCORES`,
+      url: "/live-cricket-scores",
     },
     {
       name: `${seriesName}`.toUpperCase(),
-      url: "/",
+      url: `/live-cricket-scores/${seriesName}`,
     },
     {
-      name: `CRICKET MATCH NEWS`,
-      url: "/",
+      name: `NEWS`,
+      url: `/live-cricket-scores/${seriesName}/news`,
     },
   ];
   return (
     <>
+      <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: "HOME",
+            item: "sportzwiki.com",
+          },
+          {
+            position: 2,
+            name: breadcrumbs[1]?.name,
+            item: `${site_url}${breadcrumbs[1]?.url}`,
+          },
+          {
+            position: 3,
+            name: breadcrumbs[2]?.name,
+            item: `${site_url}${breadcrumbs[2]?.url}`,
+          },
+          {
+            position: 4,
+            name: breadcrumbs[3]?.name,
+            item: `${site_url}${breadcrumbs[3]?.url}`,
+          },
+          // {
+          //   position: 5,
+          //   name: breadcrumbs[4]?.name,
+          //   item: `${site_url}${breadcrumbs[4]?.url}`,
+          // },
+        ]}
+      />
+      <OrganisationLd />
       <div className={styles.containerMainLiveScore}>
         <NavBarSec active="live" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

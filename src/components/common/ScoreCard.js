@@ -19,7 +19,7 @@ const ScoreCard = (props) => {
           <a href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}`}>
             <div className={styles.scoreMain}>
               <div className={styles.matchTitleDiv}>
-                <div className={styles.liveIC}>Live</div>
+                <div className={styles.liveIC}>{props?.type || "Live"}</div>
                 <div className={styles.matchTitle}>
                   {props?.title ? props.title.substring(0, 60) : "NA"}
                 </div>

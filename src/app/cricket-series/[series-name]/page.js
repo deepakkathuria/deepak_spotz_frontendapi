@@ -8,8 +8,13 @@ import NewsSection from "../../../components/common/NewsSection";
 import ScoreCardPanelReusable from "@/components/common/ScoreCardPanelReuable";
 import StatsNav from "@/components/series/StatsNav";
 import NavBarSec from "@/components/scorePage/NavBarSec";
+import Breadcrumb from "@/components/common/Breadcrumb";
+import OrganisationLd from "@/json-ld/OrganisationLd";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+import { BreadcrumbJsonLd } from "next-seo";
+const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const fetchSeriesMatches = async (seriesId) => {
   const res = await fetch(
@@ -28,10 +33,49 @@ const page = async ({ params }) => {
 
   const seriesMatches = await fetchSeriesMatches(seriesIdInt);
 
+  const breadcrumbs = [
+    {
+      name: "HOME",
+      url: "/",
+    },
+    {
+      name: `CRICKET SERIES`,
+      url: "/cricket-series",
+    },
+    {
+      name: `${seriesName.toUpperCase().slice(0, 40)}...`,
+      url: `/cricket-series/${seriesName}`,
+    },
+  ];
+
   return (
     <>
+      <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: "HOME",
+            item: "sportzwiki.com",
+          },
+          {
+            position: 2,
+            name: breadcrumbs[1]?.name,
+            item: `${site_url}${breadcrumbs[1]?.url}`,
+          },
+          {
+            position: 3,
+            name: breadcrumbs[2]?.name,
+            item: `${site_url}${breadcrumbs[2]?.url}`,
+          },
+        ]}
+      />
+      <OrganisationLd />
       <div className={`${styles.container} ${styles.seriesOverview}`}>
         <NavBarSec active="series" />
+        <div style={{ marginTop: "1rem" }} className="breadcrumb">
+          <Breadcrumb breadcrumbsObj={breadcrumbs} />
+        </div>
         <div className={styles.updateBox}>
           <UpdatesSound />
         </div>

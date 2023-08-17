@@ -5,10 +5,10 @@ const StatsTable = (props) => {
   // console.log(props?.data.test.match_id);
   return (
     <>
-      <div className="tableContainer">
+      <div className={styles.tableContainer}>
         <div className={styles.tableTitle}>{props?.type}</div>
-        <div className="tableBody">
-          <div className="tableHead">
+        <div className={styles.tableBody}>
+          <div className={styles.tableHead}>
             <div className={styles.tableRow}>
               <div className={styles.tableData}>Format</div>
               <div className={styles.tableData}>MAT</div>

@@ -4,60 +4,7 @@ import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 
-// const fetchPostThumb = async (thumbId) => {
-//   const res = await fetch(
-//     `https://demo2.sportzwiki.com/wp-json/wp/v2/media/${thumbId}`
-//   );
-//   // console.log(`https://demo2.sportzwiki.com/wp-json/wp/v2/media/${thumbId}`);
-//   const data = await res.json();
-//   return data.guid.rendered;
-// };
-
 const NewsCard = async (props) => {
-  //   useEffect(() => {
-  //     const localeDate = props?.date;
-  //   }, []);
-  //   const formattedDate = Intl.DateTimeFormat("en-US", {
-  //     format: "short",
-  //   }).format(props?.date);
-
-  // const getPostThumbById = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       `${base_url}/getPostThumbnailByPostID?id=${props.id}`
-  //     );
-  //     if (!response.ok) {
-  //       throw new Error("Failed to fetch post data");
-  //     }
-  //     const postThumb = await response.json();
-  //     return postThumb[0]?.cover_image_guid; // Add null check using the optional chaining operator (?.)
-  //   } catch (err) {
-  //     console.log(err);
-  //     return null; // or any other value indicating the error condition
-  //   }
-  // };
-
-  // const oldPostThumbnail = await getPostThumbById();
-
-  // if (oldPostThumbnail && oldPostThumbnail[0]) {
-  //   var thumbnail = oldPostThumbnail;
-  //   // console.log(thumbnail, "Thumbnail");
-  // } else {
-  //   var thumbnail = props?.guid;
-  //   // console.log("Thumbnail guid");
-  // }
-
-  // console.log(thumbnail, "Thumbnail");
-  // console.log("Here");
-
-  // if (oldPostThumbnail && oldPostThumbnail[0]) {
-  //   var thumbnail = oldPostThumbnail;
-  // } else {
-  //   var thumbnail = postBody[0]?.guid;
-  // }
-
-  // const thumbnail = await fetchPostThumb(544014);
-
   return (
     <>
       <div className={styles.newsCardContainer}>
@@ -77,17 +24,11 @@ const NewsCard = async (props) => {
           />
         </div>
         <div className={styles.newsDetails}>
-          <p className={styles.newsTitle}>{props?.title}</p>
-          {/* <div
+          <div
             className={styles.newsTitle}
             dangerouslySetInnerHTML={{ __html: props?.title }}
-          /> */}
-          {/* <p className={styles.newsDescription}>
-            {props?.content?.substring(0, 45).replace(/(<([^>]+)>)/gi, "")}...
-          </p> */}
-          {/* <p className={styles.newsDate}>{props?.date}</p> */}
+          />
           <p>{new Date(props?.date).toLocaleString("en-US")}</p>
-          {/* <p>localeDate</p> */}
         </div>
       </div>
     </>

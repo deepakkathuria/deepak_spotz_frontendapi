@@ -8,25 +8,25 @@ export const navBarLinks = [
   {
     id: 2,
     title: "Cricket",
-    path: "/",
+    path: "/sports/cricket",
     icon: "fa fa",
   },
   {
     id: 3,
     title: "Football",
-    path: "/",
+    path: "/football",
     icon: "fa fa",
   },
   {
     id: 4,
     title: "WWE",
-    path: "/",
+    path: "/wwe",
     icon: "fa fa",
   },
   {
     id: 5,
     title: "E Sports",
-    path: "/",
+    path: "/esports",
     icon: "fa fa",
   },
 ];

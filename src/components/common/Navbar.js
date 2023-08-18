@@ -87,7 +87,7 @@ const Navbar = () => {
                   </li>
                 </a>
 
-                <a href={"e-sports"}>
+                <a href={"/esports"}>
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image
@@ -102,7 +102,7 @@ const Navbar = () => {
                   </li>
                 </a>
 
-                <a href={"/"}>
+                {/* <a href={"/"}>
                   <li className={`${styles.navLi} ${styles.moreItem}`}>
                     <div className="navItemName">More</div>
                     <div className={styles.navItemIcon}>
@@ -115,11 +115,11 @@ const Navbar = () => {
                       />
                     </div>
                   </li>
-                </a>
+                </a> */}
               </ul>
             </div>
             <div className={styles.navOptions}>
-              <a href={"/"}>
+              {/* <a href={"/"}>
                 <div className="navSearch">
                   <Image
                     src="/gaurav/search_ic.svg"
@@ -129,27 +129,24 @@ const Navbar = () => {
                     // className={styles.plainIc}
                   />
                 </div>
-              </a>
-              <a href={"/"}>
+              </a> */}
+              {/* <a href={"/"}>
                 <div className={styles.navLogin}>
-                  {/* <CgProfile color="/fff" size={"20"} /> */}
                   <Image
                     src="/gaurav/profile_ic.svg"
                     alt="profile menu icon"
                     width={20}
                     height={20}
-                    // className={styles.plainIc}
                   />
                   <div className={styles.navLoginText}>Login/SignUp</div>
                 </div>
-              </a>
-              <a href={"/"}>
+              </a> */}
+              {/* <a href={"/"}>
                 <div className="navHamburger">
-                  {/* <CgMenuMotion color="/fff" size={20} /> */}
                 </div>
-              </a>
+              </a> */}
               <div className={styles.navOptionsMobile}>
-                <div className="hamburger-ic">
+                <div className={styles.hamburgerIc}>
                   <Image
                     src="/gaurav/Menu_ic.svg"
                     alt="hamburger menu icon"
@@ -179,7 +176,11 @@ const Navbar = () => {
         >
           <ul className={styles.navMenuList}>
             {navBarLinks?.map((item) => {
-              return <li key={item.id}>{item.title}</li>;
+              return (
+                <a key={item.id} href={`${item.path}`}>
+                  <li>{item.title}</li>
+                </a>
+              );
             })}
           </ul>
         </div>

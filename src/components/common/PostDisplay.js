@@ -5,31 +5,17 @@ import Image from "next/image";
 import PostTags from "./PostTags";
 
 const PostDisplay = (props) => {
+  const paragraphs = props.description
+    .split("<p>")
+    .filter((para) => para.trim() !== "");
 
-
-
-  let modifiedDescription = props.description;
-
-  props.ad.forEach(ad => {
-    const paraNumber = ad.para_no;
-    const adCode = ad.code;
-    
-    // Find the starting index of the paragraph
-    const startIdx = modifiedDescription.indexOf('<p', 0);
-
-    // Find the closing tag of the paragraph
-    const endIdx = modifiedDescription.indexOf('</p>', startIdx);
-
-    if (startIdx !== -1 && endIdx !== -1) {
-      // Insert the ad code before the closing tag of the specified paragraph
-      modifiedDescription = 
-        modifiedDescription.slice(0, endIdx) + adCode + modifiedDescription.slice(endIdx);
+  for (const ad of props.ad) {
+    if (ad.para_no <= paragraphs.length) {
+      paragraphs.splice(ad.para_no, 0, ad.code);
     }
-  });
+  }
 
-
-
-  // console.log(props.adAfterImage,'modifiedDescriptionmodifiedDescriptionmodifiedDescription')
+  const finalHTML = paragraphs.join("");
 
   return (
     <>
@@ -66,20 +52,11 @@ const PostDisplay = (props) => {
               priority
             />
           </div>
-          <div
-            // className={styles.postSummaryInner}
-            dangerouslySetInnerHTML={{ __html: props?.adAfterImage }}
-          />
-          {/* <div className={styles.postSummary}>
-            <div
-              className={styles.postSummaryInner}
-              dangerouslySetInnerHTML={{ __html: props?.summary }}
-            />
-          </div> */}
+          <div dangerouslySetInnerHTML={{ __html: props?.adAfterImage }} />
           <div className={styles.postDescription}>
             <div
               className={styles.postDescriptionContent}
-              dangerouslySetInnerHTML={{ __html: modifiedDescription }}
+              dangerouslySetInnerHTML={{ __html: finalHTML }}
             />
           </div>
 

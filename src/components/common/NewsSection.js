@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "../styles/NewsSection.module.css";
 // import { GiCricketBat } from "react-icons/gi";
-import ButtonTab from "./ButtonTab";
+// import ButtonTab from "./ButtonTab";
 import NewsCard from "./NewsCard";
-import axios from "axios";
-import Link from "next/link";
+// import axios from "axios";
+// import Link from "next/link";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
 const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
@@ -30,29 +30,14 @@ const fetchPostByCategoryId = async (id, perPage) => {
 };
 
 const NewsSection = async (props) => {
-  // try {
-  //   var data = await axios.get(
-  //     `${base_url}/getPostByCategorySlug?slug=${props.slug}&page=1&limit=9`,
-  //     { next: { revalidate: 5 } }
-  //   );
-  // } catch (e) {
-  //   console.log(e.message);
-  // }
-  // console.log(props.id, "propeeeidjhvbdkjhvdbfjh");
   const data = await fetchPostByCategoryId(props.id, 9);
-  // console.log(data, "data2");
 
   return (
     <>
       <div className={styles.newsSectionContainer}>
         <div className={styles.newsSectionHeading}>
           <h3>{props?.name}</h3>
-          {/* <GiCricketBat color="#000" /> */}
         </div>
-        {/* <div className={styles.newsSectionTabs}>
-          <ButtonTab title="Latest News" />
-          <ButtonTab title="Fantasy Tips" selected="true" />
-        </div> */}
         <div className={styles.newsCardsDiv}>
           {data?.map((item, index) => {
             return (

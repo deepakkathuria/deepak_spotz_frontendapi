@@ -12,11 +12,13 @@ const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 // import NavSec from "../../../../components/liveScore/NavSec";
+NavSecScore
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 import EventLd from "@/json-ld/EventLd";
+import NavSecScore from "@/components/liveScore/NavSecScore";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -317,7 +319,7 @@ const page = async ({ params }) => {
             <AudioBar />
             {/* <NavBarTertiary activeTab="teams" /> */}
             <div className="nav">
-              {/* <NavSec active="teams" seriesName={seriesName} /> */}
+              <NavSecScore active="teams" seriesName={seriesName} />
             </div>
             <Teams
               data={playingSquad}

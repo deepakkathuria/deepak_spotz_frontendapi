@@ -17,6 +17,7 @@ import { BreadcrumbJsonLd } from "next-seo";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 import EventLd from "@/json-ld/EventLd";
+import NavSecScore from "@/components/liveScore/NavSecScore";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -320,7 +321,7 @@ const page = async ({ params }) => {
             <AudioBar />
             {/* <NavBarTertiary activeTab="score-card-live" /> */}
             <div className="nav">
-              {/* <NavSec active="scorecard" seriesName={seriesName} /> */}
+              <NavSecScore active="scorecard" seriesName={seriesName} />
             </div>
             <ScoreCardLive data={scoreCardInDetails} />
           </div>

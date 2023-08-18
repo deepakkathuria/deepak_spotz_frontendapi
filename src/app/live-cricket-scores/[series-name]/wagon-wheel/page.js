@@ -11,6 +11,7 @@ import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 // import NavSec from "../../../../components/liveScore/NavSec";
 import OrganisationLd from "@/json-ld/OrganisationLd";
+import NavSecScore from "@/components/liveScore/NavSecScore";
 
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
@@ -263,7 +264,7 @@ const page = async ({ params }) => {
             <AudioBar />
             {/* <NavBarTertiary activeTab="score-card-live" /> */}
             <div className="nav">
-              {/* <NavSec active="wagon" seriesName={seriesName} /> */}
+              <NavSecScore active="wagon" seriesName={seriesName} />
             </div>
             {/* <ScoreCardLive /> */}
             <h2>Wagon wheel coming soon...</h2>

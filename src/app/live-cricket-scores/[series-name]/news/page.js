@@ -14,6 +14,7 @@ import PostListBar from "../../../../components/common/PostListBar";
 // import NavSec from "../../../../components/liveScore/NavSec";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
+import NavSecScore from "@/components/liveScore/NavSecScore";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -295,7 +296,7 @@ const page = async ({ params }) => {
             <AudioBar />
             {/* <NavBarTertiary activeTab="score-card-live" /> */}
             <div className="nav">
-              {/* <NavSec active="news" seriesName={seriesName} /> */}
+              <NavSecScore active="news" seriesName={seriesName} />
             </div>
             {/* <ScoreCardLive /> */}
             <h2>Match news coming soon...</h2>

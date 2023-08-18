@@ -13,6 +13,7 @@ import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 // import NavSec from "../../../../components/liveScore/NavSec";
 import OrganisationLd from "@/json-ld/OrganisationLd";
+import NavSecScore from "@/components/liveScore/NavSecScore";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -261,7 +262,7 @@ const page = async ({ params }) => {
             <AudioBar />
             {/* <NavBarTertiary activeTab="score-card-live" /> */}
             <div className="nav">
-              {/* <NavSec active="photos" seriesName={seriesName} /> */}
+              <NavSecScore active="photos" seriesName={seriesName} />
             </div>
             {/* <ScoreCardLive /> */}
             <h2>Match photos coming soon...</h2>

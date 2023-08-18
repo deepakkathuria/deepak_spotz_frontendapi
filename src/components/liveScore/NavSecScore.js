@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./NavSec.module.css";
+import styles from "./NavSecScore.module.css";
 import Link from "next/link";
 
 const NavSecScore = (props) => {

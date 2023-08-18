@@ -11,6 +11,7 @@ import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import UpdatesSound from "@/components/common/UpdatesSound";
+// import Loading from "@/app/Loading";
 const baseUrlAd = process.env.NEXT_PUBLIC_BASE_URL;
 const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
 const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
@@ -198,7 +199,7 @@ const page = async ({ params }) => {
   ];
 
   const articleBody = await fetchPostBySlug(slug);
-  console.log(articleBody, "articleBodyarticleBodyarticleBody");
+  // console.log(articleBody, "articleBodyarticleBodyarticleBody");
   if (articleBody?.tags.length > 0) {
     var randomIndex = Math.floor(Math.random() * articleBody?.tags.length);
     var randomTag = articleBody?.tags[randomIndex].id;
@@ -292,18 +293,20 @@ const page = async ({ params }) => {
         </div>
         <PostCategoryBox categories={articleBody?.categories ?? []} />
         <div className={styles.postDetailListContainer}>
-          <PostDisplay
-            title={articleBody?.title.rendered ?? ""}
-            date={articleBody?.date_gmt ?? ""}
-            author={articleBody?.author?.name ?? ""}
-            description={articleBody?.content.rendered ?? ""}
-            tags={articleBody?.tags ?? []}
-            categories={articleBody?.categories ?? []}
-            thumbnail={articleBody?.featured_image_url}
-            summary={articleBody?.excerpt.rendered ?? ""}
-            ad={adAfterParaData || ""}
-            adAfterImage={adAfterImage || ""}
-          />
+          <Suspense fallback="Loading...">
+            <PostDisplay
+              title={articleBody?.title.rendered ?? ""}
+              date={articleBody?.date_gmt ?? ""}
+              author={articleBody?.author?.name ?? ""}
+              description={articleBody?.content.rendered ?? ""}
+              tags={articleBody?.tags ?? []}
+              categories={articleBody?.categories ?? []}
+              thumbnail={articleBody?.featured_image_url}
+              summary={articleBody?.excerpt.rendered ?? ""}
+              ad={adAfterParaData || ""}
+              adAfterImage={adAfterImage || ""}
+            />
+          </Suspense>
           <Suspense fallback={<p>Loading Post list bar...</p>}>
             <PostListBar category={articleBody?.categories[0].name} />
           </Suspense>

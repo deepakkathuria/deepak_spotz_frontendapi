@@ -67,15 +67,15 @@ const PostDisplay = (props) => {
             />
           </div>
           <div
-            className={styles.postSummaryInner}
+            // className={styles.postSummaryInner}
             dangerouslySetInnerHTML={{ __html: props?.adAfterImage }}
           />
-          <div className={styles.postSummary}>
+          {/* <div className={styles.postSummary}>
             <div
               className={styles.postSummaryInner}
               dangerouslySetInnerHTML={{ __html: props?.summary }}
             />
-          </div>
+          </div> */}
           <div className={styles.postDescription}>
             <div
               className={styles.postDescriptionContent}

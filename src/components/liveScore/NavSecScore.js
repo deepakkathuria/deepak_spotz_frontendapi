@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./navSec.module.css";
+import styles from "./NavSec.module.css";
 import Link from "next/link";
 
-const NavSec = (props) => {
+const NavSecScore = (props) => {
   return (
     <>
       <div className={styles.container}>
@@ -73,4 +73,4 @@ const NavSec = (props) => {
   );
 };
 
-export default NavSec;
+export default NavSecScore;

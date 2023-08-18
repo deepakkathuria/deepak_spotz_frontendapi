@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import styles from "./sports.module.css";
@@ -29,9 +29,11 @@ const page = () => {
         <div style={{ marginTop: "1rem" }} className="breadcrumb">
           <Breadcrumb breadcrumbsObj={breadcrumbs} />
         </div>
-        <div className={styles.scores}>
-          <LiveScoreSection />
-        </div>
+        <Suspense>
+          <div className={styles.scores}>
+            <LiveScoreSection />
+          </div>
+        </Suspense>
         <div className={styles.newsSection}>
           <NewsSection name="TRENDING NEWS" id="3" slug="cricket" />
           {/* <NewsSection name="IPL 2023" id="3" slug="cricket" />

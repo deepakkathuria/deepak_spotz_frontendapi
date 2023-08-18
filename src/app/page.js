@@ -6,6 +6,7 @@ import NewsSectionLatest from "../components/common/NewsSectionLatest";
 import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
+import Loading from "./Loading";
 
 const page = async () => {
   // try {
@@ -28,19 +29,30 @@ const page = async () => {
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
         <div className="scores">
-          <LiveScoreSection />
+          <Suspense fallback={<Loading/>}>
+            {/* <Suspense fallback='Loading...'> */}
+            <LiveScoreSection />
+          </Suspense>
         </div>
         <NewsSectionLatest />
 
         <div className={styles.newsSectionDiv}>
-          <NewsSection name="CRICKET" id="2" slug="cricket" />
-          <NewsSection name="WWE" id="4" slug="wwe" />
-          <NewsSection name="FOOTBALL" id="3" slug="football" />
-          <NewsSection
-            name="FANTASY CRICKET TIPS"
-            id="150559"
-            slug="fantasy-cricket"
-          />
+          <Suspense fallback="Loading....">
+            <NewsSection name="CRICKET" id="2" slug="cricket" />
+          </Suspense>
+          <Suspense fallback="Loading....">
+            <NewsSection name="WWE" id="4" slug="wwe" />
+          </Suspense>
+          <Suspense fallback="Loading....">
+            <NewsSection name="FOOTBALL" id="3" slug="football" />
+          </Suspense>
+          <Suspense fallback="Loading....">
+            <NewsSection
+              name="FANTASY CRICKET TIPS"
+              id="150559"
+              slug="fantasy-cricket"
+            />
+          </Suspense>
           {/* {data?.map((item) => {
             return (
               <div key={item.ID}>

@@ -6,7 +6,7 @@ import NewsSectionLatest from "../components/common/NewsSectionLatest";
 import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
-import Loading from "./Loading";
+import Loading from "./loading";
 
 const page = async () => {
   // try {

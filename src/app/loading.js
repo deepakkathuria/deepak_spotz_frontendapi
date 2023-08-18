@@ -1,7 +1,7 @@
 // import React from "react";
 import styles from "./loading.module.css";
 
-const loading = () => {
+const Loading = () => {
   return (
     <div class={styles.container}>
       <div class={styles.colSm6 + " " + styles.colMd3}>
@@ -56,4 +56,4 @@ const loading = () => {
   );
 };
 
-export default loading;
+export default Loading;

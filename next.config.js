@@ -51,6 +51,11 @@ const nextConfig = {
       source: "/cricketers",
       destination: "/cricketers/india",
     },
+
+    {
+      source: "/cricket/fantasy-cricket/:id",
+      destination: "/cricket/:id",
+    },
   ],
 };
 

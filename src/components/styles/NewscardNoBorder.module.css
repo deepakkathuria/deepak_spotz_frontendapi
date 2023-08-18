@@ -3,6 +3,12 @@
   display: flex;
   width: 40rem;
   overflow: hidden;
+  /* border: 0.05px solid rgba(0, 0, 0, 0.1); */
+  box-shadow: -0.590289px -0.590289px 0.983815px rgba(0, 0, 0, 0.25),
+    0.590289px 0.590289px 0.983815px rgba(0, 0, 0, 0.25);
+  /* margin-top: 2rem; */
+  /* box-shadow: -1.34px -1.34px 1.34px rgba(0, 0, 0, 0.15),
+    1.34px 1.34132px 1.34132px rgba(0, 0, 0, 0.15); */
 }
 
 .cardTitle {

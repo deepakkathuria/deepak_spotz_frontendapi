@@ -337,6 +337,7 @@ const page = async ({ params }) => {
                           featuredMedia={card?.featured_image_url}
                         />
                       </a>
+                      <hr />
                     </div>
                   );
                 })}

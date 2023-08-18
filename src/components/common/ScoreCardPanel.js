@@ -66,7 +66,7 @@ const ScoreCardPanel = async (props) => {
     autoplaySpeed: 4000,
     // infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    // slidesToShow: 1,
     slidesToScroll: 1,
     initialSlide: 0,
     responsive: [

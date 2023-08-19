@@ -21,8 +21,10 @@ const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWOR
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
-const fetchAD = async () => {
-  const res = await fetch(`${baseUrlAd}/getallads`, { cache: "no-store" });
+const fetchAD = async (adId) => {
+  const res = await fetch(`${baseUrlAd}/getpad?selectedTypes=${adId}`, {
+    cache: "no-store",
+  });
   const ad = res.json();
   return ad;
 };
@@ -212,22 +214,22 @@ const page = async ({ params }) => {
   const relatedPosts = await fetchRelatedPostsByTagId(randomTag);
   // console.log(relatedPosts, "relatedPostsrelationships");
 
-  const ad = await fetchAD();
+  const ad = await fetchAD(1);
   // console.log(ad, "addddddddddddddddddd");
   const adAfterParaData = [];
-  let adAfterImage = "";
+  // let adAfterImage = "";
 
   for (const item of ad) {
-    if (item.selected_types === "After Paragraph") {
-      // console.log("found");
-      adAfterParaData.push({
-        para_no: item.para_no,
-        code: item.code,
-      });
-    }
-    if (item.selected_types === "After Image") {
-      adAfterImage = item.code;
-    }
+    // if (item.selected_types === 1) {
+    // console.log("found");
+    adAfterParaData.push({
+      para_no: item.para_no,
+      code: item.code,
+    });
+    // }
+    // if (item.selected_types === "After Image") {
+    //   adAfterImage = item.code;
+    // }
   }
 
   const articleJsonLd = {
@@ -267,14 +269,6 @@ const page = async ({ params }) => {
 
   return (
     <>
-      {/* <ArticleLd
-        title={articleBody?.title.rendered ?? ""}
-        date={articleBody?.date_gmt ?? ""}
-        author={articleBody?.author?.name ?? ""}
-        description={articleBody?.content.rendered ?? ""}
-        shortDescription={articleBody?.excerpt.rendered ?? ""}
-        thumbnail={articleBody?.featured_image_url || ""}
-      /> */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -304,7 +298,7 @@ const page = async ({ params }) => {
               thumbnail={articleBody?.featured_image_url}
               summary={articleBody?.excerpt.rendered ?? ""}
               ad={adAfterParaData || ""}
-              adAfterImage={adAfterImage || ""}
+              // adAfterImage={adAfterImage || ""}
             />
           </Suspense>
           <Suspense fallback={<p>Loading Post list bar...</p>}>

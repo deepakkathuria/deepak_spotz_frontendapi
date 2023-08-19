@@ -5,6 +5,7 @@ import Image from "next/image";
 import PostTags from "./PostTags";
 
 const PostDisplay = (props) => {
+  // console.log(props.ad,'props.adprops.adprops.ad')
   const paragraphs = props.description
     .split("<p>")
     .filter((para) => para.trim() !== "");
@@ -52,7 +53,7 @@ const PostDisplay = (props) => {
               priority
             />
           </div>
-          <div dangerouslySetInnerHTML={{ __html: props?.adAfterImage }} />
+          {/* <div dangerouslySetInnerHTML={{ __html: props?.adAfterImage }} /> */}
           <div className={styles.postDescription}>
             <div
               className={styles.postDescriptionContent}

@@ -19,7 +19,7 @@
   align-items: center;
   align-content: center;
   /* gap: 2rem; */
-  background-color: #0c4c8a;
+  /* background-color: #0c4c8a; */
   height: 4rem;
   /* margin-inline: auto; */
   /* padding: 0 165px 0 165px; */
@@ -52,7 +52,8 @@
   gap: 2rem;
   list-style-type: none;
   font-size: 1.3rem;
-  color: #fff;
+  /* color: #fff; */
+  font-weight: 600;
 }
 
 .navItemIcon {

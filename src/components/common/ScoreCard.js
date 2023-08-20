@@ -19,9 +19,19 @@ const ScoreCard = (props) => {
           <a href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}`}>
             <div className={styles.scoreMain}>
               <div className={styles.matchTitleDiv}>
-                <div className={styles.liveIC}>{props?.type || "Live"}</div>
+                <div className={styles.liveIC}>
+                  {props?.status === 3
+                    ? "Live"
+                    : props?.status === 1
+                    ? "Scheduled"
+                    : props?.status === 2
+                    ? "Completed"
+                    : props?.status === 4
+                    ? "Abandoned"
+                    : ""}
+                </div>
                 <div className={styles.matchTitle}>
-                  {props?.title ? props.title.substring(0, 60) : "NA"}
+                  {props?.title ? props.title.substring(0, 60) : "-"}
                 </div>
               </div>
 
@@ -39,17 +49,17 @@ const ScoreCard = (props) => {
                     />
                   </div>
                   <div className={styles.countryName}>
-                    {props?.teamAName ? props.teamAName.substring(0, 60) : "NA"}
+                    {props?.teamAName ? props.teamAName.substring(0, 60) : "-"}
                   </div>
                 </div>
                 <div className={styles.countryScore}>
                   <div className={styles.countryScoreOver}>
-                    ({props?.teamAOvers ? props.teamAOvers : "NA"})
+                    ({props?.teamAOvers ? props.teamAOvers : "-"})
                   </div>
                   <div className={styles.countryScoreRuns}>
                     {props?.teamAScores
                       ? props.teamAScores.substring(0, 13)
-                      : "NA"}
+                      : "-"}
                   </div>
                 </div>
               </div>
@@ -68,7 +78,7 @@ const ScoreCard = (props) => {
                     />
                   </div>
                   <div className={styles.countryName}>
-                    {props?.teamBName ? props.teamBName.substring(0, 60) : "NA"}
+                    {props?.teamBName ? props.teamBName.substring(0, 60) : "-"}
                   </div>
                 </div>
                 <div className={styles.countryScore}>
@@ -76,13 +86,13 @@ const ScoreCard = (props) => {
                     (
                     {props?.teamBOvers
                       ? props.teamBOvers.substring(0, 13)
-                      : "NA"}
+                      : "-"}
                     )
                   </div>
                   <div className={styles.countryScoreRuns}>
                     {props?.teamBScores
                       ? props.teamBScores.substring(0, 12)
-                      : "NA"}
+                      : "-"}
                   </div>
                 </div>
               </div>

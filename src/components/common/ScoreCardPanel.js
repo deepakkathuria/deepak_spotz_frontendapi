@@ -11,25 +11,43 @@ import { getLiveScoreData } from "@/lib/PostDataFetch";
 import Link from "next/link";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
-// import ScorePanel from "../scorePage/ScorePanel";
 
-// const getData = async () => {
-//   const res = await fetch(`${base_url}/matches?token=${key}&status=3`, { cache: "no-store" });
-//   return await res.json();
-// };
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // JavaScript months are 0-11, so we add 1
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
+console.log(formattedDate);
 
 const getData = async () => {
-  const res = await fetch(`${base_url}/matches?token=${key}`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${base_url}/matches?token=${key}&date=${formattedDate}`,
+    {
+      cache: "no-store",
+    }
+  );
   const data = await res.json();
   return data.response.items;
 };
 
 const ScoreCardPanel = async (props) => {
-  // console.log(data, "dataaaaaa");
   const data = await getData();
-  // console.log(data, "dataaaaaa");
+
+  function customSort(a, b) {
+    const statusOrder = { 3: 0, 1: 1, 2: 2, 4: 3 };
+    const statusA = a.status.toString();
+    const statusB = b.status.toString();
+
+    return statusOrder[statusA] - statusOrder[statusB];
+  }
+
+  // Sort the API responses using the custom sorting function
+  const sortedResponses = data.slice().sort(customSort);
 
   const PrevArrow = ({ onClick }) => (
     <div
@@ -62,8 +80,8 @@ const ScoreCardPanel = async (props) => {
   var settings = {
     // dots: true,
     arrow: true,
-    autoplay: true,
-    autoplaySpeed: 4000,
+    // autoplay: true,
+    // autoplaySpeed: 4000,
     // infinite: true,
     speed: 500,
     // slidesToShow: 1,
@@ -122,7 +140,10 @@ const ScoreCardPanel = async (props) => {
             <button
               className={`${styles.matchTimingSelectorButton} ${styles.selected}`}
             >
-              <Link href={"/live-cricket-scores"}>Live (10)</Link>
+              All
+            </button>
+            <button className={`${styles.matchTimingSelectorButton}`}>
+              <Link href={"/live-cricket-scores"}>Live</Link>
             </button>
             <button className={styles.matchTimingSelectorButton}>
               <Link href={"/live-cricket-scores/completed"}>Recent</Link>
@@ -132,33 +153,18 @@ const ScoreCardPanel = async (props) => {
               Upcoming
             </button>
           </div>
-
-          {/* <div className={styles.matchTypeSelector}>
-            <button
-              className={`${styles.matchTypeSelectorButton} ${styles.selected}`}
-            >
-              All
-            </button>
-            <button className={styles.matchTypeSelectorButton}>
-              International
-            </button>
-            <button className={styles.matchTypeSelectorButton}>League</button>
-            <button className={styles.matchTypeSelectorButton}>Domestic</button>
-          </div> */}
         </div>
       )}
       <div className={styles.carouselContainer}>
         <Slider {...settings}>
-          {data?.map((match, index) => {
-            // console.log("Match title", match.title);
+          {sortedResponses?.map((match, index) => {
             return (
-              // <h1>djnkdf</h1>
               <div key={index} className={styles.customCarouselSlide}>
                 <ScoreCard
                   key={index}
                   matchID={match?.match_id}
                   title={match?.short_title ? match.short_title : "no title"}
-                  teamAName={match?.teama.name ? match?.teama.name : "NA"}
+                  teamAName={match?.teama.name ? match?.teama.name : "-"}
                   teamBName={match?.teamb.name}
                   teamAScores={match?.teama.scores}
                   teamBScores={match?.teamb.scores}
@@ -169,8 +175,9 @@ const ScoreCardPanel = async (props) => {
                   matchScoreDetails={
                     match?.status_note
                       ? match.status_note
-                      : "no status information"
+                      : "match yet to start"
                   }
+                  status={match?.status}
                 />
               </div>
             );
@@ -182,4 +189,3 @@ const ScoreCardPanel = async (props) => {
 };
 
 export default ScoreCardPanel;
-// export default dynamic(() => Promise.resolve(ScoreCardPanel, { ssr: false }));

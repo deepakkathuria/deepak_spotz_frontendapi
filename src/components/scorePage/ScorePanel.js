@@ -3,11 +3,6 @@ import styles from "./ScorePanel.module.css";
 import Image from "next/image";
 
 const ScorePanel = (props) => {
-  // console.log('ScoreA:', props.scoreTeamA)
-  // console.log('ScoreB:', props.scoreTeamB)
-  // console.log('overA:', props.overTeamA)
-  // console.log('overB:', props.overTeamB)
-  // console.log(props.batsman_idA, "batssssssssss");
   return (
     <>
       <div className={styles.scorePanelContainer}>

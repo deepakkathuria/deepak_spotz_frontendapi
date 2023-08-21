@@ -21,10 +21,9 @@ module.exports = {
       `${siteUrl}/categories-sitemap.xml`,
       `${siteUrl}/livescore-sitemap.xml`,
       `${siteUrl}/series-sitemap.xml`,
+      `${siteUrl}/google-news-sitemap.xml`,
     ],
   },
-
-
 
   transform: async (config, path) => {
     return {
@@ -33,15 +32,11 @@ module.exports = {
       priority: config.priority,
       lastmod: config.autoLastmod ? new Date().toISOString() : undefined,
       alternateRefs: config.alternateRefs ?? [],
-    }
+    };
   },
   additionalPaths: async (config) => [
-    await config.transform(config, '/google-news-sitemap'),
+    await config.transform(config, "/google-news-sitemap"),
   ],
-
-
-
-
 
   exclude: [
     "/secret",
@@ -52,5 +47,6 @@ module.exports = {
     "/categories-sitemap.xml",
     "/livescore-sitemap.xml",
     "/series-sitemap.xml",
+    "/google-news-sitemap.xml",
   ],
 };

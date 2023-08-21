@@ -29,6 +29,7 @@
     "react-twitter-embed": "^4.0.4",
     "slick-carousel": "^1.8.1",
     "slugify": "^1.6.6",
+    "socket.io-client": "^4.7.2",
     "swr": "^2.2.0"
   },
   "devDependencies": {

@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./CommentaryBox.module.css";
 
 const CommentaryBox = (props) => {
-  console.log(props.runsInOver, " : runsInOver");
+  // console.log(props.runsInOver, " : runsInOver");
   // console.log(props.eventType, "eventType");
   return (
     <>

@@ -13,8 +13,7 @@
 }
 
 @media (max-width: 576px) {
-
-  .container{
+  .container {
     margin-left: 1rem;
     margin-right: 1rem;
   }
@@ -29,5 +28,11 @@
   .title {
     min-width: 20rem;
     opacity: 70%;
+  }
+}
+
+@media (max-width: 576px) {
+  .row {
+    width: 100%;
   }
 }

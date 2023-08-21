@@ -125,3 +125,16 @@
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+  .containerRight {
+    display: none;
+  }
+  .commentaryStatBox {
+    width: 100%;
+  }
+  .scoreNews,
+  .leftContainer {
+    width: 100%;
+  }
+}

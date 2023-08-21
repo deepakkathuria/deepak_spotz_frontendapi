@@ -59,6 +59,7 @@ const ScoreCardPanel = async (props) => {
         width={10}
         height={10}
         alt="arrow-left"
+        quality={20}
       />
     </div>
   );
@@ -73,6 +74,7 @@ const ScoreCardPanel = async (props) => {
         width={10}
         height={10}
         alt="arrow-right"
+        quality={20}
       />
     </div>
   );

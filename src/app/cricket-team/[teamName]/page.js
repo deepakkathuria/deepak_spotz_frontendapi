@@ -90,6 +90,7 @@ const page = async ({ params }) => {
                     alt="Cricket Team Logo"
                     height={95}
                     width={95}
+                    quality={40}
                   />
                 </div>
                 <div className={styles.infoTable}>

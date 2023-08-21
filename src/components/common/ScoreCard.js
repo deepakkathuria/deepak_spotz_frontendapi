@@ -46,6 +46,7 @@ const ScoreCard = (props) => {
                       width={18}
                       height={12}
                       priority
+                      quality={30}
                     />
                   </div>
                   <div className={styles.countryName}>
@@ -75,6 +76,7 @@ const ScoreCard = (props) => {
                       width={18}
                       height={12}
                       priority
+                      quality={30}
                     />
                   </div>
                   <div className={styles.countryName}>
@@ -115,6 +117,7 @@ const ScoreCard = (props) => {
                   width={13}
                   height={13}
                   alt="arrow-left"
+                  quality={30}
                 />
               </div>
               Fantasy Team
@@ -126,6 +129,7 @@ const ScoreCard = (props) => {
                   width={13}
                   height={13}
                   alt="arrow-left"
+                  quality={30}
                 />
               </div>
               Place a bet
@@ -137,6 +141,7 @@ const ScoreCard = (props) => {
                   width={13}
                   height={13}
                   alt="arrow-left"
+                  quality={30}
                 />
               </div>
               Buy Ticket
@@ -148,6 +153,7 @@ const ScoreCard = (props) => {
                   width={13}
                   height={13}
                   alt="arrow-left"
+                  quality={30}
                 />
               </div>
               News

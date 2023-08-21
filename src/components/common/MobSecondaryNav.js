@@ -22,6 +22,7 @@ const MobSecondaryNav = () => {
                 alt="home menu icon"
                 width={12}
                 height={12}
+                quality={20}
                 // className={styles.plainIc}
               />
             </div>
@@ -35,6 +36,7 @@ const MobSecondaryNav = () => {
                   alt="home menu icon"
                   width={12}
                   height={12}
+                  quality={20}
                   // className={styles.plainIc}
                 />
               </div>
@@ -49,6 +51,7 @@ const MobSecondaryNav = () => {
                   alt="home menu icon"
                   width={12}
                   height={12}
+                  quality={20}
                   // className={styles.plainIc}
                 />
               </div>
@@ -62,6 +65,7 @@ const MobSecondaryNav = () => {
                 alt="home menu icon"
                 width={12}
                 height={12}
+                quality={20}
                 // className={styles.plainIc}
               />
             </div>
@@ -74,6 +78,7 @@ const MobSecondaryNav = () => {
                 alt="home menu icon"
                 width={12}
                 height={12}
+                quality={20}
                 // className={styles.plainIc}
               />
             </div>
@@ -88,6 +93,7 @@ const MobSecondaryNav = () => {
               alt="home menu icon"
               width={12}
               height={12}
+              quality={20}
               // className={styles.plainIc}
             />
           </div>
@@ -109,6 +115,7 @@ const MobSecondaryNav = () => {
                 alt="home menu icon"
                 width={12}
                 height={12}
+                quality={20}
                 // className={styles.plainIc}
               />
             </div>
@@ -122,6 +129,7 @@ const MobSecondaryNav = () => {
                 alt="home menu icon"
                 width={12}
                 height={12}
+                quality={20}
                 // className={styles.plainIc}
               />
             </div>
@@ -135,6 +143,7 @@ const MobSecondaryNav = () => {
                 alt="home menu icon"
                 width={12}
                 height={12}
+                quality={20}
                 // className={styles.plainIc}
               />
             </div>
@@ -148,6 +157,7 @@ const MobSecondaryNav = () => {
                 alt="home menu icon"
                 width={12}
                 height={12}
+                
                 // className={styles.plainIc}
               />
             </div>

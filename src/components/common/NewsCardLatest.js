@@ -21,6 +21,7 @@ const NewsCard = async (props) => {
             alt="SportzWiki Logo"
             sizes="100vh"
             style={{ width: "13.5rem", height: "10rem", borderRadius: "3px" }}
+            quality={40}
           />
         </div>
         <div className={styles.newsDetails}>

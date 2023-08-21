@@ -25,6 +25,7 @@ const NewscardNoBorder = async (props) => {
             style={{
               borderRadius: "3px",
             }}
+            quality={40}
           />
         </div>
         <div className={styles.postDetails}>

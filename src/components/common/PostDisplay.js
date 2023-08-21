@@ -51,6 +51,7 @@ const PostDisplay = (props) => {
               alt={props.title || props.title}
               className={styles.coverImage}
               priority
+              quality={40}
             />
           </div>
           {/* <div dangerouslySetInnerHTML={{ __html: props?.adAfterImage }} /> */}

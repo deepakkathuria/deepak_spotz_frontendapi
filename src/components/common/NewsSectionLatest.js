@@ -16,11 +16,11 @@ const fetchLatestNews = async (postRequired) => {
     `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?per_page=${postRequired}`,
     {
       method: "GET",
+      cache: "no-store",
       headers: {
         Authorization: `Basic ${base64Credentials}`,
       },
-    },
-    { cache: "no-store" }
+    }
   );
 
   return res.json();

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ScorePanel from "../../../components/scorePage/ScorePanel";
 import NavBarSec from "../../../components/scorePage/NavBarSec";
 import AudioBar from "../../../components/scores/AudioBar";
@@ -50,6 +50,30 @@ const page = async ({ params }) => {
   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
   //   console.log(seriesIdInt, "seriesIdInt", seriesName);
 
+  const [scoreCard1, setScoreCard] = useState(null);
+  const [matchInfo1, setMatchInfo] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const fetchedScoreCard = await fetchMatchScoreCard(seriesIdInt);
+        const fetchedMatchInfo = await fetchMatchInfo(seriesIdInt);
+
+        setScoreCard(fetchedScoreCard);
+        setMatchInfo(fetchedMatchInfo);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+
+    const intervalId = setInterval(fetchData, 10000); // Poll every 10 seconds
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, [seriesIdInt]);
+
   const matchInfo = await fetchMatchInfo(seriesIdInt);
   const data = matchInfo.response;
   const scoreCard = await fetchMatchScoreCard(seriesIdInt);
@@ -72,9 +96,7 @@ const page = async ({ params }) => {
       url: `/live-cricket-scores/${seriesName}`,
     },
   ];
-  // console.log(matchInfo, "matchInfonsjdkbvkbdvj");
 
-  // console.log(seriesName, "iddddd", typeof seriesName);
   return (
     <>
       <BreadcrumbJsonLd
@@ -100,11 +122,6 @@ const page = async ({ params }) => {
             name: breadcrumbs[3]?.name,
             // item: `${site_url}${breadcrumbs[3]?.url}`,
           },
-          // {
-          //   position: 5,
-          //   name: breadcrumbs[4]?.name,
-          //   item: `${site_url}${breadcrumbs[4]?.url}`,
-          // },
         ]}
       />
       <OrganisationLd />

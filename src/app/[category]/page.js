@@ -27,9 +27,10 @@ const fetchPostsByCategoryId = async (categoryId, currentPage) => {
       headers: {
         Authorization: `Basic ${base64Credentials}`,
       },
-    },
-    { cache: "no-store" }
+      cache: "no-store",
+    }
   );
+
   const posts = await res.json();
   return posts ?? [];
 };
@@ -42,9 +43,10 @@ const fetchCategoryDataBySlug = async (categorySlug) => {
       headers: {
         Authorization: `Basic ${base64Credentials}`,
       },
-    },
-    { cache: "no-store" }
+      cache: "no-store",
+    }
   );
+
   const categoryData = await res.json();
   return categoryData;
 };

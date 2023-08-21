@@ -144,7 +144,8 @@ const page = async () => {
                       ? match.status_note
                       : "no status information"
                   }
-                  type="Completed"
+                  // type="Completed"
+                  status={match?.status}
                 />
               </div>
             );

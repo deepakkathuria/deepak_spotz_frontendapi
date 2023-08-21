@@ -116,7 +116,8 @@ const page = async () => {
                       ? match?.status_note
                       : `Match starts on - ${match?.competition.datestart}`
                   }
-                  type="Upcoming"
+                  // type="Upcoming"
+                  status={match?.status}
                 />
               </div>
             );

@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from "react";
 import ScorePanel from "../../../components/scorePage/ScorePanel";
 import NavBarSec from "../../../components/scorePage/NavBarSec";

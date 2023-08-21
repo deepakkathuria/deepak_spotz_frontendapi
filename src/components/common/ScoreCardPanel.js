@@ -22,7 +22,7 @@ function getCurrentDate() {
 }
 
 const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
-console.log(formattedDate);
+// console.log(formattedDate);
 
 const getData = async () => {
   const res = await fetch(

@@ -11,8 +11,21 @@ import { BreadcrumbJsonLd } from "next-seo";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // JavaScript months are 0-11, so we add 1
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
+
 const fetchLiveMatches = async () => {
-  const res = await fetch(`${baseUrl}/matches/?status=3&token=${token}`);
+  const res = await fetch(
+    `${baseUrl}/matches/?status=3&token=${token}&date=${formattedDate}`
+  );
   const data = await res.json();
   return data;
 };
@@ -96,6 +109,7 @@ const page = async () => {
                       ? match.status_note
                       : "no status information"
                   }
+                  status={match?.status}
                 />
               </div>
             );

@@ -38,7 +38,7 @@ const fetchMatchScoreCard = async (matchId) => {
 };
 
 const Page = () => {
-  const seriesIdInt = 66086;
+  const seriesIdInt = 66251;
   const [scoreCard, setScoreCard] = useState(null);
   const [matchInfo, setMatchInfo] = useState(null);
 
@@ -64,23 +64,23 @@ const Page = () => {
   }, [seriesIdInt]);
 
   console.log(
-    scoreCard?.response.batsmen[0],
-    "scoreCardscoreCardscoreCardscoreCard"
+    matchInfo?.response.teama,
+    "matchInfomatchInfomatchInfomatchInfomatchInfo"
   );
   return (
     <div style={{ marginTop: "6rem" }}>
       <h2>data here</h2>
       {/* <h1>{scoreCard?.response.batsmen[0].name}</h1> */}
-      {/* <ScorePanel
-        logoTeamA={matchInfo?.teama?.logo_url ?? ""}
-        logoTeamB={matchInfo?.teamb?.logo_url ?? ""}
-        nameTeamA={matchInfo?.teama?.name ?? ""}
-        nameTeamB={matchInfo?.teamb?.name ?? ""}
-        overTeamA={matchInfo?.teama?.overs ?? ""}
-        overTeamB={matchInfo?.teamb?.overs ?? ""}
-        scoreTeamA={matchInfo?.teama?.scores ?? ""}
-        scoreTeamB={matchInfo?.teamb?.scores ?? ""}
-        currentStatus={matchInfo?.status_note ?? ""}
+      <ScorePanel
+        logoTeamA={matchInfo?.response?.teama?.logo_url ?? ""}
+        logoTeamB={matchInfo?.response?.teamb?.logo_url ?? ""}
+        nameTeamA={matchInfo?.response?.teama?.name ?? ""}
+        nameTeamB={matchInfo?.response?.teamb?.name ?? ""}
+        overTeamA={matchInfo?.response?.teama?.overs ?? ""}
+        overTeamB={matchInfo?.response?.teamb?.overs ?? ""}
+        scoreTeamA={matchInfo?.response?.teama?.scores ?? ""}
+        scoreTeamB={matchInfo?.response?.teamb?.scores ?? ""}
+        currentStatus={matchInfo?.response?.status_note ?? ""}
         // ************************************
         batsA={
           scoreCard?.response?.batsmen && scoreCard.response.batsmen.length > 0
@@ -223,9 +223,27 @@ const Page = () => {
             ? scoreCard.response.bowlers[1].econ ?? ""
             : ""
         }
-      /> */}
-      <div style={{fontSize:'2rem'}}>{JSON.stringify(matchInfo)}</div>
-      <div style={{fontSize:'2rem'}}>{JSON.stringify(scoreCard)}</div>
+      />
+
+      <InfoTable
+        matchFormat={`${matchInfo?.response?.competition.title ?? ""} ${
+          matchInfo?.response?.format_str ?? ""
+        }`}
+        series={matchInfo?.response?.competition.title ?? ""}
+        date={
+          new Date(matchInfo?.response?.date_start_ist).toLocaleDateString() ??
+          ""
+        }
+        time={
+          new Date(matchInfo?.response?.date_end_ist).toLocaleTimeString() ?? ""
+        }
+        venueName={matchInfo?.response?.venue.name ?? ""}
+        venueCountry={matchInfo?.response?.venue.country ?? ""}
+        stadium={matchInfo?.response?.venue.name ?? ""}
+        venueLocation={matchInfo?.response?.venue.location ?? ""}
+        umpires={matchInfo?.response?.umpires ?? ""}
+        referee={matchInfo?.response?.referee ?? ""}
+      />
     </div>
   );
 };

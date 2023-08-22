@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import ScorePanel from "../../../components/scorePage/ScorePanel";
 import NavBarSec from "../../../components/scorePage/NavBarSec";
 import AudioBar from "../../../components/scores/AudioBar";
@@ -18,22 +19,14 @@ import EventLd from "@/json-ld/EventLd";
 import NavSecScore from "@/components/liveScore/NavSecScore";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
-
-// const fetchMatchInfo = async (matchId) => {
-//   const res = await fetch(`${baseUrl}matches/${matchId}`, {
-//     next: { revalidate: 2 },
-//   });
-//   const matchInfo = await res.json();
-//   return matchInfo;
-// };
+import { Helmet } from "react-helmet";
+// import type { Metadata } from 'next'
 
 const fetchMatchInfo = async (matchId) => {
-  // console.log(matchId, "matchID");
   const res = await fetch(`${baseUrl}/matches/${matchId}/info?token=${key}`, {
     next: { revalidate: 2 },
   });
   const matchInfo = await res.json();
-  // console.log(matchInfo, "matchInfo");
   return matchInfo;
 };
 
@@ -45,14 +38,61 @@ const fetchMatchScoreCard = async (matchId) => {
   return scoreCard;
 };
 
-const page = async ({ params }) => {
+export const metadata = {
+  title: "...",
+  description: "...",
+};
+
+// export async function generateMetadata({ params }) {
+//   const { "series-name": seriesName } = params;
+//   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
+
+//   const matchInfo = await fetchMatchInfo(seriesIdInt);
+//   const data = matchInfo.response;
+//   console.log(data,"dadadadadadadadadadadadadadadadadadadadadadad");
+//   return {
+//     title: data?.competition.title ?? "",
+//     description: data?.competition.title ?? "",
+//   };
+// }
+
+const page = ({ params }) => {
   const { "series-name": seriesName } = params;
   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
+  // console.log(seriesIdInt, "seriesseriesseriesseriesseries");
   //   console.log(seriesIdInt, "seriesIdInt", seriesName);
+  const [scoreCard, setScoreCard] = useState(null);
+  const [matchInfo, setMatchInfo] = useState(null);
 
-  const matchInfo = await fetchMatchInfo(seriesIdInt);
-  const data = matchInfo.response;
-  const scoreCard = await fetchMatchScoreCard(seriesIdInt);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const fetchedScoreCard = await fetchMatchScoreCard(seriesIdInt);
+        const fetchedMatchInfo = await fetchMatchInfo(seriesIdInt);
+
+        setScoreCard(fetchedScoreCard);
+        setMatchInfo(fetchedMatchInfo);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+
+    const intervalId = setInterval(fetchData, 10000); // Poll every 10 seconds
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, [seriesIdInt]);
+
+  // console.log(
+  //   matchInfo?.response.teama,
+  //   "matchInfomatchInfomatchInfomatchInfomatchInfo"
+  // );
+
+  // const matchInfo = await fetchMatchInfo(seriesIdInt);
+  // const data = matchInfo.response;
+  // const scoreCard = await fetchMatchScoreCard(seriesIdInt);
 
   const breadcrumbs = [
     {
@@ -77,6 +117,10 @@ const page = async ({ params }) => {
   // console.log(seriesName, "iddddd", typeof seriesName);
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{matchInfo?.response?.competition.title ?? "SportzWiki"}</title>
+      </Helmet>
       <BreadcrumbJsonLd
         useAppDir={true}
         itemListElements={[
@@ -98,21 +142,15 @@ const page = async ({ params }) => {
           {
             position: 4,
             name: breadcrumbs[3]?.name,
-            // item: `${site_url}${breadcrumbs[3]?.url}`,
           },
-          // {
-          //   position: 5,
-          //   name: breadcrumbs[4]?.name,
-          //   item: `${site_url}${breadcrumbs[4]?.url}`,
-          // },
         ]}
       />
       <OrganisationLd />
       <EventLd
-        eventName={data?.competition.title ?? ""}
-        startDate={data?.date_start_ist}
-        endDate={data?.date_end_ist}
-        venue={data?.venue.name}
+        eventName={matchInfo?.response?.competition.title ?? ""}
+        startDate={matchInfo?.response?.date_start_ist}
+        endDate={matchInfo?.response?.date_end_ist}
+        venue={matchInfo?.response?.venue.name}
         url={`${site_url}${breadcrumbs[3]?.url}`}
       />
       <div
@@ -132,15 +170,15 @@ const page = async ({ params }) => {
               <UpdatesSound />
             </div>
             <ScorePanel
-              logoTeamA={data?.teama?.logo_url ?? ""}
-              logoTeamB={data?.teamb?.logo_url ?? ""}
-              nameTeamA={data?.teama?.name ?? ""}
-              nameTeamB={data?.teamb?.name ?? ""}
-              overTeamA={data?.teama?.overs ?? ""}
-              overTeamB={data?.teamb?.overs ?? ""}
-              scoreTeamA={data?.teama?.scores ?? ""}
-              scoreTeamB={data?.teamb?.scores ?? ""}
-              currentStatus={data?.status_note ?? ""}
+              logoTeamA={matchInfo?.response?.teama?.logo_url ?? ""}
+              logoTeamB={matchInfo?.response?.teamb?.logo_url ?? ""}
+              nameTeamA={matchInfo?.response?.teama?.name ?? ""}
+              nameTeamB={matchInfo?.response?.teamb?.name ?? ""}
+              overTeamA={matchInfo?.response?.teama?.overs ?? ""}
+              overTeamB={matchInfo?.response?.teamb?.overs ?? ""}
+              scoreTeamA={matchInfo?.response?.teama?.scores ?? ""}
+              scoreTeamB={matchInfo?.response?.teamb?.scores ?? ""}
+              currentStatus={matchInfo?.response?.status_note ?? ""}
               // ************************************
               batsA={
                 scoreCard?.response?.batsmen &&
@@ -319,23 +357,31 @@ const page = async ({ params }) => {
             </div>
 
             <InfoTable
-              matchFormat={`${data?.competition.title ?? ""} ${
-                data?.format_str ?? ""
+              matchFormat={`${matchInfo?.response?.competition.title ?? ""} ${
+                matchInfo?.response?.format_str ?? ""
               }`}
-              series={data?.competition.title ?? ""}
-              date={new Date(data?.date_start_ist).toLocaleDateString() ?? ""}
-              time={new Date(data?.date_end_ist).toLocaleTimeString() ?? ""}
-              venueName={data?.venue.name ?? ""}
-              venueCountry={data?.venue.country ?? ""}
-              stadium={data?.venue.name ?? ""}
-              venueLocation={data?.venue.location ?? ""}
-              umpires={data?.umpires ?? ""}
-              referee={data?.referee ?? ""}
+              series={matchInfo?.response?.competition.title ?? ""}
+              date={
+                new Date(
+                  matchInfo?.response?.date_start_ist
+                ).toLocaleDateString() ?? ""
+              }
+              time={
+                new Date(
+                  matchInfo?.response?.date_end_ist
+                ).toLocaleTimeString() ?? ""
+              }
+              venueName={matchInfo?.response?.venue.name ?? ""}
+              venueCountry={matchInfo?.response?.venue.country ?? ""}
+              stadium={matchInfo?.response?.venue.name ?? ""}
+              venueLocation={matchInfo?.response?.venue.location ?? ""}
+              umpires={matchInfo?.response?.umpires ?? ""}
+              referee={matchInfo?.response?.referee ?? ""}
             />
           </div>
-          <div className={styles.containerRight}>
+          {/* <div className={styles.containerRight}>
             <PostListBar category="cricket" />
-          </div>
+          </div> */}
         </div>
       </div>
     </>

@@ -1,8 +1,9 @@
+"use client";
 import NavBarSec from "../../../../components/scorePage/NavBarSec";
 import ScorePanel from "../../../../components/scorePage/ScorePanel";
 import AudioBar from "../../../../components/scores/AudioBar";
 import NavBarTertiary from "../../../../components/scores/NavBarTertiary";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import CommentaryBox from "../../../../components/scorePage/Commentary/CommentaryBox";
 import styles from "../../../../components/scores/NavBarTertiary.module.css";
 import Link from "next/link";
@@ -19,6 +20,7 @@ import EventLd from "@/json-ld/EventLd";
 import NavSecScore from "@/components/liveScore/NavSecScore";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+import { Helmet } from "react-helmet";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -54,17 +56,64 @@ const fetchMatchCommentary = async (matchId) => {
 //   const matchInfo = await res.json();
 //   return matchInfo;
 // };
+// export async function generateMetadata({ params }) {
+//   // const { slug } = params;
+//   const { "series-name": seriesName } = params;
+//   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
 
-const page = async ({ params }) => {
+//   // const post = await fetchPostBySlug(slug);
+//   const matchInfo = await fetchMatchInfo(seriesIdInt);
+//   const data = matchInfo.response;
+//   // const scoreCard = await fetchMatchScoreCard(seriesIdInt);
+
+//   return {
+//     title: data?.competition.title ?? "-",
+//     description: data?.competition.title ?? "-",
+//   };
+// }
+
+const page = ({ params }) => {
   const { "series-name": seriesName } = params;
   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
 
-  const matchInfo = await fetchMatchInfo(seriesIdInt);
-  const data = matchInfo.response;
-  const scoreCard = await fetchMatchScoreCard(seriesIdInt);
+  const [scoreCard, setScoreCard] = useState(null);
+  const [matchInfo, setMatchInfo] = useState(null);
+  const [commentary, setCommentary] = useState(null);
 
-  const commentaryInfo = await fetchMatchCommentary(seriesIdInt);
-  const commentaryList = commentaryInfo?.response?.commentaries.reverse();
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const fetchedScoreCard = await fetchMatchScoreCard(seriesIdInt);
+        const fetchedMatchInfo = await fetchMatchInfo(seriesIdInt);
+        const fetchedCommentaryInfo = await fetchMatchCommentary(seriesIdInt);
+
+        setScoreCard(fetchedScoreCard);
+        setMatchInfo(fetchedMatchInfo);
+        setCommentary(fetchedCommentaryInfo);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+
+    const intervalId = setInterval(fetchData, 10000); // Poll every 10 seconds
+
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, [seriesIdInt]);
+
+  console.log(
+    commentary?.response?.commentaries,
+    "scorecardscorecardscorecardscorecardscorecard"
+  );
+
+  // const matchInfo = await fetchMatchInfo(seriesIdInt);
+  // const data = matchInfo.response;
+  // const scoreCard = await fetchMatchScoreCard(seriesIdInt);
+
+  // const commentaryInfo = await fetchMatchCommentary(seriesIdInt);
+  // const commentaryList = commentaryInfo?.response?.commentaries?.reverse();
 
   const breadcrumbs = [
     {
@@ -113,12 +162,16 @@ const page = async ({ params }) => {
       />
       <OrganisationLd />
       <EventLd
-        eventName={data?.competition.title ?? ""}
-        startDate={data?.date_start_ist}
-        endDate={data?.date_end_ist}
-        venue={data?.venue.name}
+        eventName={matchInfo?.response?.competition.title ?? "-"}
+        startDate={matchInfo?.response?.date_start_ist}
+        endDate={matchInfo?.response?.date_end_ist}
+        venue={matchInfo?.response?.venue.name}
         url={`${site_url}${breadcrumbs[3]?.url}`}
       />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{matchInfo?.response?.competition?.title ?? "SportzWiki"}</title>
+      </Helmet>
       <div className={styles.containerMainLiveScore}>
         <NavBarSec active="live" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">
@@ -133,184 +186,183 @@ const page = async ({ params }) => {
               <UpdatesSound />
             </div>
             <ScorePanel
-              logoTeamA={data?.teama?.logo_url ?? ""}
-              logoTeamB={data?.teamb?.logo_url ?? ""}
-              nameTeamA={data?.teama?.name ?? ""}
-              nameTeamB={data?.teamb?.name ?? ""}
-              overTeamA={data?.teama?.overs ?? ""}
-              overTeamB={data?.teamb?.overs ?? ""}
-              scoreTeamA={data?.teama?.scores ?? ""}
-              scoreTeamB={data?.teamb?.scores ?? ""}
-              currentStatus={data?.status_note ?? ""}
-              // ************************************
+              logoTeamA={matchInfo?.response?.teama?.logo_url ?? ""}
+              logoTeamB={matchInfo?.response?.teamb?.logo_url ?? ""}
+              nameTeamA={matchInfo?.response?.teama?.name ?? ""}
+              nameTeamB={matchInfo?.response?.teamb?.name ?? ""}
+              overTeamA={matchInfo?.response?.teama?.overs ?? ""}
+              overTeamB={matchInfo?.response?.teamb?.overs ?? ""}
+              scoreTeamA={matchInfo?.response?.teama?.scores ?? ""}
+              scoreTeamB={matchInfo?.response?.teamb?.scores ?? ""}
+              currentStatus={matchInfo?.response?.status_note ?? ""}
               // ************************************
               batsA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0]?.name ?? ""
+                  ? scoreCard.response.batsmen[0].name ?? ""
                   : ""
               }
               batsB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1]?.name ?? ""
+                  ? scoreCard.response.batsmen[1].name ?? ""
                   : ""
               }
               batsman_idA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0]?.batsman_id ?? ""
+                  ? scoreCard.response.batsmen[0].batsman_id ?? ""
                   : ""
               }
               batsman_idB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1]?.batsman_id ?? ""
+                  ? scoreCard.response.batsmen[1].batsman_id ?? ""
                   : ""
               }
               runsA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0]?.runs ?? ""
+                  ? scoreCard.response.batsmen[0].runs ?? ""
                   : ""
               }
               runsB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1]?.runs ?? ""
+                  ? scoreCard.response.batsmen[1].runs ?? ""
                   : ""
               }
               balls_facedA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0]?.balls_faced ?? ""
+                  ? scoreCard.response.batsmen[0].balls_faced ?? ""
                   : ""
               }
               balls_facedB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1]?.balls_faced ?? ""
+                  ? scoreCard.response.batsmen[1].balls_faced ?? ""
                   : ""
               }
               foursA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0]?.fours ?? ""
+                  ? scoreCard.response.batsmen[0].fours ?? ""
                   : ""
               }
               foursB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1]?.fours ?? ""
+                  ? scoreCard.response.batsmen[1].fours ?? ""
                   : ""
               }
               sixesA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0]?.sixes ?? ""
+                  ? scoreCard.response.batsmen[0].sixes ?? ""
                   : ""
               }
               sixesB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1]?.sixes ?? ""
+                  ? scoreCard.response.batsmen[1].sixes ?? ""
                   : ""
               }
               strike_rateA={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 0
-                  ? scoreCard.response.batsmen[0]?.strike_rate ?? ""
+                  ? scoreCard.response.batsmen[0].strike_rate ?? ""
                   : ""
               }
               strike_rateB={
                 scoreCard?.response?.batsmen &&
                 scoreCard.response.batsmen.length > 1
-                  ? scoreCard.response.batsmen[1]?.strike_rate ?? ""
+                  ? scoreCard.response.batsmen[1].strike_rate ?? ""
                   : ""
               }
               // bowlers data
               bowlerNameA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0]?.name ?? ""
+                  ? scoreCard.response.bowlers[0].name ?? ""
                   : ""
               }
               bowlerNameB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1]?.name ?? ""
+                  ? scoreCard.response.bowlers[1].name ?? ""
                   : ""
               }
               bowlerIdA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0]?.bowler_id ?? ""
+                  ? scoreCard.response.bowlers[0].bowler_id ?? ""
                   : ""
               }
               bowlerIdB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1]?.bowler_id ?? ""
+                  ? scoreCard.response.bowlers[1].bowler_id ?? ""
                   : ""
               }
               bowlerOversA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0]?.overs ?? ""
+                  ? scoreCard.response.bowlers[0].overs ?? ""
                   : ""
               }
               bowlerOversB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1]?.overs ?? ""
+                  ? scoreCard.response.bowlers[1].overs ?? ""
                   : ""
               }
               bowlerRunsConcededA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0]?.runs_conceded ?? ""
+                  ? scoreCard.response.bowlers[0].runs_conceded ?? ""
                   : ""
               }
               bowlerRunsConcededB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1]?.runs_conceded ?? ""
+                  ? scoreCard.response.bowlers[1].runs_conceded ?? ""
                   : ""
               }
               bowlerWicketsA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0]?.wickets ?? ""
+                  ? scoreCard.response.bowlers[0].wickets ?? ""
                   : ""
               }
               bowlerWicketsB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1]?.wickets ?? ""
+                  ? scoreCard.response.bowlers[1].wickets ?? ""
                   : ""
               }
               bowlerMaidensA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0]?.maidens ?? ""
+                  ? scoreCard.response.bowlers[0].maidens ?? ""
                   : ""
               }
               bowlerMaidensB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1]?.maidens ?? ""
+                  ? scoreCard.response.bowlers[1].maidens ?? ""
                   : ""
               }
               bowlerEconA={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 0
-                  ? scoreCard.response.bowlers[0]?.econ ?? ""
+                  ? scoreCard.response.bowlers[0].econ ?? ""
                   : ""
               }
               bowlerEconB={
                 scoreCard?.response?.bowlers &&
                 scoreCard.response.bowlers.length > 1
-                  ? scoreCard.response.bowlers[1]?.econ ?? ""
+                  ? scoreCard.response.bowlers[1].econ ?? ""
                   : ""
               }
             />
@@ -325,13 +377,13 @@ const page = async ({ params }) => {
                 <div className={styles.overScore}>
                   <div className={styles.overRuns}>
                     <div className={styles.over}>
-                      Over {data?.teama?.scores ?? ""}
+                      Over {matchInfo?.response?.teama?.scores ?? "-"}
                     </div>
                     {/* <div className={styles.runs}>18 runs</div> */}
                   </div>
                   <div className={styles.score}>
                     <div className={styles.outOfRuns}>
-                      {data?.teama?.name ?? ""}: {data?.teama?.scores ?? ""}
+                      {matchInfo?.response?.teama?.name ?? "-"}: {matchInfo?.response?.teama?.scores ?? "-"}
                     </div>
                     {/* <div className={styles.runRate}>CRR:7.32</div> */}
                   </div>
@@ -343,14 +395,14 @@ const page = async ({ params }) => {
                         <div className="playerName">
                           {scoreCard?.response?.batsmen &&
                           scoreCard.response.batsmen.length > 0
-                            ? scoreCard.response.batsmen[0]?.name ?? ""
-                            : ""}
+                            ? scoreCard.response.batsmen[0]?.name ?? "-"
+                            : "-"}
                         </div>
                         <div className="playerScore">
                           {scoreCard?.response?.batsmen &&
                           scoreCard.response.batsmen.length > 0
-                            ? scoreCard.response.batsmen[0]?.runs ?? ""
-                            : ""}
+                            ? scoreCard.response.batsmen[0]?.runs ?? "-"
+                            : "-"}
                           (12)
                         </div>
                       </div>
@@ -360,14 +412,14 @@ const page = async ({ params }) => {
                         <div className={styles.playerName}>
                           {scoreCard?.response?.batsmen &&
                           scoreCard.response.batsmen.length > 0
-                            ? scoreCard.response.batsmen[1]?.name ?? ""
-                            : ""}
+                            ? scoreCard.response.batsmen[1]?.name ?? "-"
+                            : "-"}
                         </div>
                         <div className={styles.playerScore}>
                           {scoreCard?.response?.batsmen &&
                           scoreCard.response.batsmen.length > 0
-                            ? scoreCard.response.batsmen[1]?.runs ?? ""
-                            : ""}
+                            ? scoreCard.response.batsmen[1]?.runs ?? "-"
+                            : "-"}
                           (12)
                         </div>
                       </div>
@@ -378,78 +430,68 @@ const page = async ({ params }) => {
                       <div className={styles.playerName}>
                         {scoreCard?.response?.bowlers &&
                         scoreCard.response.bowlers.length > 0
-                          ? scoreCard.response.bowlers[0]?.name ?? ""
-                          : ""}
+                          ? scoreCard.response.bowlers[0]?.name ?? "-"
+                          : "-"}
                       </div>
                       <div className={styles.playerScore}>
                         {scoreCard?.response?.bowlers &&
                         scoreCard.response.bowlers.length > 0
-                          ? scoreCard.response.bowlers[0]?.runs_conceded ?? ""
-                          : ""}
+                          ? scoreCard.response.bowlers[0]?.runs_conceded ?? "-"
+                          : "-"}
                       </div>
                     </div>
                     <div className={styles.playerBowling2}>
-                      {/* <div className="playerBowling"> */}
                       <div className={styles.playerName}>
                         {scoreCard?.response?.bowlers &&
                         scoreCard.response.bowlers.length > 0
-                          ? scoreCard.response.bowlers[1]?.name ?? ""
-                          : ""}
+                          ? scoreCard.response.bowlers[1]?.name ?? "-"
+                          : "-"}
                       </div>
                       <div className={styles.playerScore}>
                         {scoreCard?.response?.bowlers &&
                         scoreCard.response.bowlers.length > 0
-                          ? scoreCard.response.bowlers[1]?.runs_conceded ?? ""
-                          : ""}
+                          ? scoreCard.response.bowlers[1]?.runs_conceded ?? "-"
+                          : "-"}
                       </div>
-                      {/* </div> */}
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="commentaryList">
-                {commentaryList?.map((commentary, index) => {
-                  // const last5Runs = commentaryList
-                  //   .slice(Math.max(index - 4, 0), index + 1)
-                  //   .map((c) => c.run ?? 0);
-
-                  return (
-                    <CommentaryBox
-                      key={index}
-                      text={
-                        commentary?.commentary ? commentary.commentary : "-"
-                      }
-                      over={commentary?.over ? commentary.over : "-"}
-                      ball={commentary?.ball ? commentary.ball : "-"}
-                      run={commentary?.run ? commentary.run : "0"}
-                      // last5Runs={last5Runs}
-                      eventType={commentary?.event || ""}
-                      runsInOver={
-                        commentary?.event === "overend"
-                          ? (commentary?.bats[0]?.runs || 0) +
-                            (commentary?.bats[1]?.runs || 0)
-                          : ""
-                      }
-                      // runsInOver={
-                      //   commentary?.event === "overend"
-                      //     ? commentary?.bats[0]?.runs || ""
-                      //     : ""
-                      // }
-                      howOut={
-                        commentary?.event === "wicket"
-                          ? commentary?.how_out || ""
-                          : ""
-                      }
-                    />
-                  );
-                })}
+                {commentary?.response?.commentaries
+                  ?.reverse()
+                  .map((commentary, index) => {
+                    return (
+                      <CommentaryBox
+                        key={index}
+                        text={
+                          commentary?.commentary ? commentary.commentary : "-"
+                        }
+                        over={commentary?.over ? commentary.over : "-"}
+                        ball={commentary?.ball ? commentary.ball : "-"}
+                        run={commentary?.run ? commentary.run : "0"}
+                        eventType={commentary?.event || "-"}
+                        runsInOver={
+                          commentary?.event === "overend"
+                            ? (commentary?.bats[0]?.runs || 0) +
+                              (commentary?.bats[1]?.runs || 0)
+                            : "-"
+                        }
+                        howOut={
+                          commentary?.event === "wicket"
+                            ? commentary?.how_out || "-"
+                            : "-"
+                        }
+                      />
+                    );
+                  })}
               </div>
             </div>
           </div>
-          <div className={styles.containerRight}>
+          {/* <div className={styles.containerRight}>
             <PostListBar category="cricket" />
-          </div>
+          </div> */}
           {/* <Commentary /> */}
         </div>
       </div>

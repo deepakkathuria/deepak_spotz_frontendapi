@@ -53,3 +53,21 @@
     /* display: none; */
   }
 }
+
+@media (max-width: 768px) {
+  .postPageContainer {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 4rem;
+  }
+
+  .postDetailListContainer {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .updateBox {
+    width: 100%;
+    /* display: none; */
+  }
+}

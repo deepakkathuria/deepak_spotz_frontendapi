@@ -101,6 +101,12 @@
   object-fit: cover;
 }
 
+@media (max-width: 576px) {
+  .coverImage {
+    height: 23rem;
+  }
+}
+
 @media (max-width: 768px) {
   .postDisplayContainer {
     width: 100%;
@@ -108,7 +114,7 @@
   }
 
   .coverImage {
-    height: 23rem;
+    height: 33rem;
   }
 
   /* .postDescriptionContent {

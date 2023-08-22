@@ -4,6 +4,8 @@
   /* color: #98ccff; */
   /* color: #0C4C8A; */
   font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .breadCrumbUl {
@@ -11,6 +13,8 @@
   gap: 0.5rem;
   list-style-type: none;
   color: #0c4c8a;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .breadCrumbUl :nth-last-child(1) {

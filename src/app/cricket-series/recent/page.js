@@ -15,7 +15,8 @@ const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const fetchSeriesList = async () => {
   const res = await fetch(
-    `${baseUrl}/competitions?per_page=30&&paged=1&status=result&token=${key}`
+    `${baseUrl}/competitions?per_page=30&&paged=1&status=result&token=${key}`,
+    { next: { revalidate: 30 } }
   );
 
   const data = await res.json();

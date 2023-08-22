@@ -14,7 +14,8 @@ const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const fetchUpcomingMatches = async (matchId) => {
   const res = await fetch(
-    `${baseUrl}/competitions/${matchId}/matches/?token=${key}&per_page=50&&paged=1`
+    `${baseUrl}/competitions/${matchId}/matches/?token=${key}&per_page=50&&paged=1`,
+    { next: { revalidate: 30 } }
   );
   const data = await res.json();
   return data;
@@ -83,7 +84,7 @@ const page = async ({ params }) => {
           <UpdatesSound />
         </div>
         <div className={styles.seriesOverviewTitle}>
-          <p>Sri Lanka Tour of india 2022</p>
+          {/* <p>Sri Lanka Tour of india 2022</p> */}
         </div>
         <div className={styles.tertiaryNav}>
           <StatsNav active="schedule" seriesName={seriesName} />

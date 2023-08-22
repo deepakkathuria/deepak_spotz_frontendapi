@@ -69,7 +69,7 @@ const page = ({ params }) => {
           <UpdatesSound />
         </div>
         <div className={styles.seriesOverviewTitle}>
-          <p>Sri Lanka Tour of india 2022</p>
+          {/* <p>Sri Lanka Tour of india 2022</p> */}
         </div>
         <div className={styles.tertiaryNav}>
           <StatsNav active="news" seriesName={seriesName} />

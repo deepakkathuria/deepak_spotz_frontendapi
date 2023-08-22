@@ -63,7 +63,7 @@ const fetchMatchInfo = async (matchId) => {
 //   };
 // }
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   // const { "series-id": seriesId } = params;
   // const seriesIdInt = parseInt(seriesId, 10);
   const { "series-name": seriesName } = params;

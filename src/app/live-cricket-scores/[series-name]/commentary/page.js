@@ -72,7 +72,7 @@ const fetchMatchCommentary = async (matchId) => {
 //   };
 // }
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   const { "series-name": seriesName } = params;
   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
 
@@ -499,4 +499,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default Page;

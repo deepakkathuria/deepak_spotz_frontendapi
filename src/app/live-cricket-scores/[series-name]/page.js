@@ -56,7 +56,7 @@ const fetchMatchScoreCard = async (matchId) => {
 //   };
 // }
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   const { "series-name": seriesName } = params;
   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
   // console.log(seriesIdInt, "seriesseriesseriesseriesseries");
@@ -388,4 +388,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default Page;

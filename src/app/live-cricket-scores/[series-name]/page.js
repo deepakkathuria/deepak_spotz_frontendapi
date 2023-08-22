@@ -38,10 +38,10 @@ const fetchMatchScoreCard = async (matchId) => {
   return scoreCard;
 };
 
-export const metadata = {
-  title: "...",
-  description: "...",
-};
+// export const metadata = {
+//   title: "...",
+//   description: "...",
+// };
 
 // export async function generateMetadata({ params }) {
 //   const { "series-name": seriesName } = params;

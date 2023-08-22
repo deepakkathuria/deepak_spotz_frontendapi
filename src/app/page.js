@@ -8,6 +8,19 @@ import OrganisationLd from "@/json-ld/OrganisationLd";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
 import Loading from "./loading";
 
+export async function generateMetadata() {
+  // const { slug } = params;
+  const siteURL = "https://sportzwiki.com";
+
+  return {
+    title: `Sportzwiki`,
+    description: `Latest Sports News: Get all latest sports news today on different sports, from Cricket, Football, Tennis, WWE, Esports, Badminton, Basketball, Boxing, F1, Hockey, Kabaddi &amp; Golf.`,
+    alternates: {
+      canonical: `${siteURL}`,
+    },
+  };
+}
+
 const page = async () => {
   // try {
   //   const response = await fetch(
@@ -29,7 +42,7 @@ const page = async () => {
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
         <div className="scores">
-          <Suspense fallback={<Loading/>}>
+          <Suspense fallback={<Loading />}>
             {/* <Suspense fallback='Loading...'> */}
             <LiveScoreSection />
           </Suspense>

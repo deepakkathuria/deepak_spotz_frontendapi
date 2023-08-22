@@ -30,6 +30,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       {/* <head></head> */}
+      {/* <Head>
+        <link rel="canonical" href="https://www.sportzwiki.com/" />
+      </Head> */}
       <body className={inter.className}>
         {/* <WebPageSchema /> */}
         {/* <div className="nav"> */}

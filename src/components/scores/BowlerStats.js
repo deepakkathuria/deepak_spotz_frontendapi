@@ -16,8 +16,9 @@ const BowlerStats = (props) => {
             <div>Dots</div>
           </div>
         </div>
-        {props?.data?.response?.innings[0]?.bowlers?.map((stat, index) => {
-          return (
+        {props?.data?.response?.innings &&
+        props.data.response.innings[0]?.bowlers ? (
+          props.data.response.innings[0].bowlers.map((stat, index) => (
             <div key={index} className={styles.tableBody}>
               <div className={styles.nameDetails}>
                 <div className={styles.name}>{stat?.name ?? "-"}</div>
@@ -31,8 +32,11 @@ const BowlerStats = (props) => {
                 <div>{stat.maidens ?? "-"}</div>
               </div>
             </div>
-          );
-        })}
+          ))
+        ) : (
+          <div>No bowlers data available</div>
+        )}
+
         {/* <div style={{ display: "flex" }} className={styles.didNotBat}>
           <p>Did not bat:</p>
           {props?.data?.response?.innings[0]?.did_not_bat?.map(

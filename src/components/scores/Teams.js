@@ -4,7 +4,7 @@ import Link from "next/link";
 import slugify from "slugify";
 
 const Teams = (props) => {
-  console.log(props.data.response.teama.squads, "fsjdbhfhsbd");
+  // console.log(props?.data?.response?.teama?.squads, "fsjdbhfhsbd");
   return (
     <>
       <div className={styles.container}>

@@ -1,5 +1,4 @@
-"use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ScorePanel from "../../../../components/scorePage/ScorePanel";
 import NavBarSec from "../../../../components/scorePage/NavBarSec";
 import AudioBar from "../../../../components/scores/AudioBar";
@@ -13,14 +12,13 @@ const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 // import NavSec from "../../../../components/liveScore/NavSec";
-NavSecScore;
+NavSecScore
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 import EventLd from "@/json-ld/EventLd";
 import NavSecScore from "@/components/liveScore/NavSecScore";
-import { Helmet } from "react-helmet";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -48,44 +46,17 @@ const fetchPlayingSquad = async (matchId) => {
   return data;
 };
 
-const Page = ({ params }) => {
+const page = async ({ params }) => {
   // const { "series-id": seriesId } = params;
   // const seriesIdInt = parseInt(seriesId, 10);
   const { "series-name": seriesName } = params;
   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
 
-  const [scoreCard, setScoreCard] = useState(null);
-  const [matchInfo, setMatchInfo] = useState(null);
-  const [playingSquad, setPlayingSquad] = useState(null);
+  const matchInfo = await fetchMatchInfo(seriesIdInt);
+  const data = matchInfo.response;
+  const scoreCard = await fetchMatchScoreCard(seriesIdInt);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const fetchedScoreCard = await fetchMatchScoreCard(seriesIdInt);
-        const fetchedMatchInfo = await fetchMatchInfo(seriesIdInt);
-        const fetchedPlayingSquad = await fetchPlayingSquad(seriesIdInt);
-
-        setScoreCard(fetchedScoreCard);
-        setMatchInfo(fetchedMatchInfo);
-        setPlayingSquad(fetchedPlayingSquad);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-
-    fetchData();
-
-    const intervalId = setInterval(fetchData, 10000); // Poll every 10 seconds
-
-    // Cleanup the interval when the component is unmounted
-    return () => clearInterval(intervalId);
-  }, [seriesIdInt]);
-
-  // const matchInfo = await fetchMatchInfo(seriesIdInt);
-  // const data = matchInfo.response;
-  // const scoreCard = await fetchMatchScoreCard(seriesIdInt);
-
-  // const playingSquad = await fetchPlayingSquad(seriesIdInt);
+  const playingSquad = await fetchPlayingSquad(seriesIdInt);
   // console.log("playingSquad", playingSquad);
 
   // const { "series-name": seriesName } = params;
@@ -110,10 +81,6 @@ const Page = ({ params }) => {
   ];
   return (
     <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{matchInfo?.response?.competition.title ?? "SportzWiki"}</title>
-      </Helmet>
       <BreadcrumbJsonLd
         useAppDir={true}
         itemListElements={[
@@ -146,10 +113,10 @@ const Page = ({ params }) => {
       />
       <OrganisationLd />
       <EventLd
-        eventName={matchInfo?.response?.competition.title ?? ""}
-        startDate={matchInfo?.response?.date_start_ist}
-        endDate={matchInfo?.response?.date_end_ist}
-        venue={matchInfo?.response?.venue.name}
+        eventName={data?.competition.title ?? ""}
+        startDate={data?.date_start_ist}
+        endDate={data?.date_end_ist}
+        venue={data?.venue.name}
         url={`${site_url}${breadcrumbs[3]?.url}`}
       />
       <div className={styles.containerMainLiveScore}>
@@ -166,15 +133,18 @@ const Page = ({ params }) => {
               <UpdatesSound />
             </div>
             <ScorePanel
-              logoTeamA={matchInfo?.response?.teama?.logo_url ?? ""}
-              logoTeamB={matchInfo?.response?.teamb?.logo_url ?? ""}
-              nameTeamA={matchInfo?.response?.teama?.name ?? ""}
-              nameTeamB={matchInfo?.response?.teamb?.name ?? ""}
-              overTeamA={matchInfo?.response?.teama?.overs ?? ""}
-              overTeamB={matchInfo?.response?.teamb?.overs ?? ""}
-              scoreTeamA={matchInfo?.response?.teama?.scores ?? ""}
-              scoreTeamB={matchInfo?.response?.teamb?.scores ?? ""}
-              currentStatus={matchInfo?.response?.status_note ?? ""}
+              teamIdA={data?.teama?.team_id ?? ""}
+              teamIdB={data?.teamb?.team_id ?? ""}
+              logoTeamA={data?.teama?.logo_url ?? ""}
+              logoTeamB={data?.teamb?.logo_url ?? ""}
+              nameTeamA={data?.teama?.name ?? ""}
+              nameTeamB={data?.teamb?.name ?? ""}
+              overTeamA={data?.teama?.overs ?? ""}
+              overTeamB={data?.teamb?.overs ?? ""}
+              scoreTeamA={data?.teama?.scores ?? ""}
+              scoreTeamB={data?.teamb?.scores ?? ""}
+              currentStatus={data?.status_note ?? ""}
+              // ************************************
               // ************************************
               batsA={
                 scoreCard?.response?.batsmen &&
@@ -353,13 +323,13 @@ const Page = ({ params }) => {
             </div>
             <Teams
               data={playingSquad}
-              nameTeamA={matchInfo?.response?.teama?.name ?? ""}
-              nameTeamB={matchInfo?.response?.teamb?.name ?? ""}
+              nameTeamA={data?.teama?.name ?? ""}
+              nameTeamB={data?.teamb?.name ?? ""}
             />
           </div>
-          {/* <div className={styles.containerRight}>
+          <div className={styles.containerRight}>
             <PostListBar category="cricket" />
-          </div> */}
+          </div>
         </div>
       </div>
     </>

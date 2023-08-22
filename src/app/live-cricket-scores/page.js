@@ -24,7 +24,8 @@ const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
 
 const fetchLiveMatches = async () => {
   const res = await fetch(
-    `${baseUrl}/matches/?status=3&token=${token}&date=${formattedDate}`
+    `${baseUrl}/matches/?status=3&token=${token}&date=${formattedDate}`,
+    { cache: "no-store" }
   );
   const data = await res.json();
   return data;

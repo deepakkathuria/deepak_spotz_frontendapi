@@ -12,7 +12,9 @@ const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 const fetchLiveMatches = async () => {
-  const res = await fetch(`${baseUrl}/matches/?status=1&token=${token}`);
+  const res = await fetch(`${baseUrl}/matches/?status=1&token=${token}`, {
+    next: { revalidate: 30 },
+  });
   const data = await res.json();
   return data;
 };
@@ -97,7 +99,7 @@ const page = async () => {
             return (
               <div key={index} className={styles.seriesCard}>
                 <div className={styles.name}>
-                  <p>{match?.title}</p>
+                  <p>{(match?.title).slice(0,40)}</p>
                 </div>
                 <ScoreCard
                   key={index}

@@ -14,7 +14,8 @@ const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 const fetchLiveMatches = async (dateRange) => {
   // const res = await fetch(`${baseUrl}/matches/?status=2&token=${token}`);
   const res = await fetch(
-    `${baseUrl}/matches/?status=2&token=${token}&date=${dateRange}`
+    `${baseUrl}/matches/?status=2&token=${token}&date=${dateRange}`,
+    { cache: "no-store" }
   );
   const data = await res.json();
   return data;

@@ -18,6 +18,8 @@ const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 import EventLd from "@/json-ld/EventLd";
 import NavSecScore from "@/components/liveScore/NavSecScore";
+import HeaderBox from "@/components/common/HeaderBox";
+import FaqLive from "@/components/common/FaqLive";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -135,6 +137,9 @@ const page = async ({ params }) => {
               className={styles.soundUpdateDiv}
             >
               <UpdatesSound />
+            </div>
+            <div className={styles.heading1}>
+              <h1>Live Cricket Scores & Updates</h1>
             </div>
             <ScorePanel
               logoTeamA={data?.teama?.logo_url ?? ""}
@@ -324,10 +329,16 @@ const page = async ({ params }) => {
               <NavSecScore active="scorecard" seriesName={seriesName} />
             </div>
             <ScoreCardLive data={scoreCardInDetails} />
+            <div className={styles.headerBox}>
+              <HeaderBox />
+            </div>
+            <div className={styles.faqs}>
+              <FaqLive />
+            </div>
           </div>
-          <div className={styles.containerRight}>
+          {/* <div className={styles.containerRight}>
             <PostListBar category="cricket" />
-          </div>
+          </div> */}
         </div>
       </div>
     </>

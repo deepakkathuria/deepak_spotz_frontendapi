@@ -27,6 +27,21 @@ export default function RootLayout({ children }) {
       "query-input": "required name=search_term_string",
     },
   };
+
+  const faqLD = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "what is sportzwiki",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Latest Sports News: Get all latest sports news today on different sports, from Cricket, Football, Tennis, WWE, Esports, Badminton, Basketball, Boxing, F1, Hockey, Kabaddi &amp; Golf.",
+        },
+      },
+    ],
+  };
   return (
     <html lang="en">
       {/* <head></head> */}
@@ -40,6 +55,10 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLD) }}
         />
         {/* </div> */}
         {/* <div className="bodyItems"></div> */}

@@ -20,7 +20,13 @@ import NavSecScore from "@/components/liveScore/NavSecScore";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 import { Helmet } from "react-helmet";
+import HeaderBox from "@/components/common/HeaderBox";
+import FaqLive from "@/components/common/FaqLive";
 // import type { Metadata } from 'next'
+
+// const header1 = "Live Cricket Scores & Updates";
+// const description =
+//   "Stay tuned to our live cricket score page for real-time updates, ball-by-ball commentary, and comprehensive match insights. Whether its international tests, ODIs, T20s, or domestic league matches, we've got you covered with the latest scores and match highlights. Don't miss a single moment of the action!";
 
 const fetchMatchInfo = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/info?token=${key}`, {
@@ -120,7 +126,13 @@ const Page = ({ params }) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>{matchInfo?.response?.competition.title ?? "SportzWiki"}</title>
+        {/* <description>
+          Latest Sports News: Get all latest sports news today on different
+          sports, from Cricket, Football, Tennis, WWE, Esports, Badminton,
+          Basketball, Boxing, F1, Hockey, Kabaddi &amp; Golf.
+        </description> */}
       </Helmet>
+
       <BreadcrumbJsonLd
         useAppDir={true}
         itemListElements={[
@@ -168,6 +180,9 @@ const Page = ({ params }) => {
               className={styles.soundUpdateDiv}
             >
               <UpdatesSound />
+            </div>
+            <div className={styles.heading1}>
+              <h1>Live Cricket Scores & Updates</h1>
             </div>
             <ScorePanel
               logoTeamA={matchInfo?.response?.teama?.logo_url ?? ""}
@@ -378,6 +393,12 @@ const Page = ({ params }) => {
               umpires={matchInfo?.response?.umpires ?? ""}
               referee={matchInfo?.response?.referee ?? ""}
             />
+            <div className={styles.headerBox}>
+              <HeaderBox />
+            </div>
+            <div className={styles.faqs}>
+              <FaqLive />
+            </div>
           </div>
           {/* <div className={styles.containerRight}>
             <PostListBar category="cricket" />

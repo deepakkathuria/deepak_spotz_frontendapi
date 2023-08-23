@@ -1,0 +1,15 @@
+.container {
+  max-width: 62rem;
+  /* height: 10rem; */
+  border: 1px solid #d6ebff;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.h1 {
+  margin-bottom: 1rem;
+}
+
+.p {
+  font-size: 1.4rem;
+}

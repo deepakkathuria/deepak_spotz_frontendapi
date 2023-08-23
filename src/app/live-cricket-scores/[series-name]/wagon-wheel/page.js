@@ -47,15 +47,15 @@ const page = async ({ params }) => {
   // const { "series-name": seriesName } = params;
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `LIVE CRICKET SCORES`,
+      name: `Live Cricket Scroes`,
       url: "/",
     },
     {
-      name: `${seriesName}`.toUpperCase(),
+      name: `${seriesName}`,
       url: "/",
     },
     {

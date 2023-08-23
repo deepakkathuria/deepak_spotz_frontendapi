@@ -11,6 +11,8 @@ import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import UpdatesSound from "@/components/common/UpdatesSound";
+import HeaderBox2 from "@/components/common/HeaderBox2";
+import FaqLive from "@/components/common/FaqLive";
 // import Loading from "@/app/Loading";
 const baseUrlAd = process.env.NEXT_PUBLIC_BASE_URL;
 const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
@@ -185,22 +187,22 @@ export async function generateMetadata({ params }) {
 const page = async ({ params }) => {
   const { category, slug } = params;
 
+  const articleBody = await fetchPostBySlug(slug);
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `${decodeURIComponent(category).toUpperCase()}`,
+      name: `${decodeURIComponent(category)}`,
       url: `/${category}`,
     },
     {
-      name: `${decodeURIComponent(slug).toUpperCase().substring(0, 30)}...`,
-      url: `/${category}/${slug}`,
+      name: `${articleBody?.title.rendered}`,
+      // url: `/${category}/${slug}`,
     },
   ];
 
-  const articleBody = await fetchPostBySlug(slug);
   // console.log(articleBody, "articleBodyarticleBodyarticleBody");
   if (articleBody?.tags.length > 0) {
     var randomIndex = Math.floor(Math.random() * articleBody?.tags.length);
@@ -304,6 +306,13 @@ const page = async ({ params }) => {
           <Suspense fallback={<p>Loading Post list bar...</p>}>
             <PostListBar category={articleBody?.categories[0].name} />
           </Suspense>
+        </div>
+        <div className="header" style={{ marginTop: "1rem" }}>
+          {/* <HeaderBox2
+            header="SportzWiki Media"
+            content="It is an honour to introduce—Sportzwiki – sports is life, is one of the leading online sports mediums across the globe. The digital platform over the years has grabbed the attention of an audience worldwide.From the cricketing ground to the badminton court—the dedicated team at Sportzwiki has been always on the lookout to provide insights, pre and post-match stuff and plenty with 24/7 window."
+          /> */}
+          <FaqLive />
         </div>
         <div className={styles.relatedArticleSection}>
           <div className={styles.relatedArticleTitle}>

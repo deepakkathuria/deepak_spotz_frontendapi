@@ -65,20 +65,20 @@ const page = async ({ params }) => {
 
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `LIVE CRICKET SCORES`,
+      name: `Live Cricket Scroes`,
       url: "/live-cricket-scores",
     },
     {
-      name: `${seriesName}`.toUpperCase(),
+      name: `${seriesName}`,
       url: `/live-cricket-scores/${seriesName}`,
     },
     {
-      name: `TEAMS`,
-      url: `/live-cricket-scores/${seriesName}/teams`,
+      name: `Teams`,
+      // url: `/live-cricket-scores/${seriesName}/teams`,
     },
   ];
   return (
@@ -88,7 +88,7 @@ const page = async ({ params }) => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {
@@ -135,7 +135,7 @@ const page = async ({ params }) => {
               <UpdatesSound />
             </div>
             <div className={styles.heading1}>
-              <h1>Live Cricket Scores & Updates</h1>
+            <h1>{matchInfo?.response?.teama?.name} vs {matchInfo?.response?.teamb?.name} Team</h1>
             </div>
             <ScorePanel
               teamIdA={data?.teama?.team_id ?? ""}

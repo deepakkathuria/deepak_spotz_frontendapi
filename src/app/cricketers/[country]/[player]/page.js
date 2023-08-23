@@ -9,6 +9,7 @@ import StatsTableBowling from "@/components/testing/players/StatsTableBowling";
 import Breadcrumb from "@/components/common/Breadcrumb";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
+import FaqLive from "@/components/common/FaqLive";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -41,11 +42,11 @@ const page = async ({ params }) => {
   // console.log(playerStats.response.batting, "playerIdIntplayerIdIntplayerIdInt");
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `CRICKETERS`,
+      name: `Cricketers`,
       url: "/cricketers",
     },
     //  {
@@ -53,12 +54,12 @@ const page = async ({ params }) => {
     //   url: "/",
     // },
     {
-      name: `${country.toUpperCase().slice(0, 40)}`,
+      name: `${country}`,
       url: `/cricketers/${country}`,
     },
     {
-      name: `${player.toUpperCase().slice(0, 40)}...`,
-      url: `/cricketers/${country}/${player}`,
+      name: `${player}`,
+      // url: `/cricketers/${country}/${player}`,
     },
     // {
     //   name: `NEWS`,
@@ -72,7 +73,7 @@ const page = async ({ params }) => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {
@@ -101,6 +102,9 @@ const page = async ({ params }) => {
         <div className={styles.updateBox}>
           <UpdatesSound />
         </div>
+        <h1 style={{ marginTop: "1rem" }}>
+          {playerInfo?.response?.player?.title || ""}
+        </h1>
         <div className={styles.dataMain}>
           <div className={styles.bannerNav}>
             <div className={styles.banner}></div>
@@ -246,6 +250,19 @@ const page = async ({ params }) => {
               type="Bowling Stats"
               typeStr="bowl"
             />
+            <div style={{ marginTop: "2rem" }} className="header">
+              <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
+              <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>
+                It is an honour to introduce—Sportzwiki – sports is life, is one
+                of the leading online sports mediums across the globe. The
+                digital platform over the years has grabbed the attention of an
+                audience worldwide.From the cricketing ground to the badminton
+                court—the dedicated team at Sportzwiki has been always on the
+                lookout to provide insights, pre and post-match stuff and plenty
+                with 24/7 window.
+              </p>
+            </div>
+            <FaqLive />
           </div>
 
           {/* <div className="newsSection">

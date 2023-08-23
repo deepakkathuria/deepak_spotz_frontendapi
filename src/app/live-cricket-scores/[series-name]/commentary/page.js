@@ -105,10 +105,10 @@ const Page = ({ params }) => {
     return () => clearInterval(intervalId);
   }, [seriesIdInt]);
 
-  console.log(
-    commentary?.response?.commentaries,
-    "scorecardscorecardscorecardscorecardscorecard"
-  );
+  // console.log(
+  //   commentary?.response?.commentaries,
+  //   "scorecardscorecardscorecardscorecardscorecard"
+  // );
 
   // const matchInfo = await fetchMatchInfo(seriesIdInt);
   // const data = matchInfo.response;
@@ -119,19 +119,19 @@ const Page = ({ params }) => {
 
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `LIVE CRICKET SCORES`,
+      name: `Live Cricket Scroes`,
       url: "/live-cricket-scores",
     },
     {
-      name: `${seriesName}`.toUpperCase(),
+      name: `${seriesName}`,
       url: `/live-cricket-scores/${seriesName}`,
     },
     {
-      name: `COMMENTARY`,
+      name: `Commentary`,
       // url: `/live-cricket-scores/${seriesName}/commentary`,
     },
   ];
@@ -142,7 +142,7 @@ const Page = ({ params }) => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {
@@ -188,7 +188,7 @@ const Page = ({ params }) => {
               <UpdatesSound />
             </div>
             <div className={styles.heading1}>
-              <h1>Live Cricket Scores & Updates</h1>
+            <h1>{matchInfo?.response?.teama?.name} vs {matchInfo?.response?.teamb?.name} Live Commentary</h1>
             </div>
             <ScorePanel
               logoTeamA={matchInfo?.response?.teama?.logo_url ?? ""}

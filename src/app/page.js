@@ -7,6 +7,8 @@ import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
 import Loading from "./loading";
+import FaqLive from "@/components/common/FaqLive";
+import HeaderBox2 from "@/components/common/HeaderBox2";
 
 export async function generateMetadata() {
   // const { slug } = params;
@@ -74,6 +76,19 @@ const page = async () => {
             );
           })} */}
         </div>
+        <div className="header">
+          <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
+          <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>
+            It is an honour to introduce—Sportzwiki – sports is life, is one of
+            the leading online sports mediums across the globe. The digital
+            platform over the years has grabbed the attention of an audience
+            worldwide.From the cricketing ground to the badminton court—the
+            dedicated team at Sportzwiki has been always on the lookout to
+            provide insights, pre and post-match stuff and plenty with 24/7
+            window.
+          </p>
+        </div>
+        <FaqLive />
       </div>
     </>
   );

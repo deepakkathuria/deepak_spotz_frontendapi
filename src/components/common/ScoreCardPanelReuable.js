@@ -149,6 +149,7 @@ const ScoreCardPanelReusable = async (props) => {
                       ? match.status_note
                       : "no status information"
                   }
+                  status={match?.status}
                 />
               </div>
             );

@@ -8,6 +8,7 @@ import OrganisationLd from "@/json-ld/OrganisationLd";
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 import { BreadcrumbJsonLd } from "next-seo";
+import FaqLive from "@/components/common/FaqLive";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -34,12 +35,12 @@ const fetchLiveMatches = async () => {
 const page = async () => {
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `LIVE CRICKET SCORES`,
-      url: "/live-cricket-scores",
+      name: `Live Cricket Scroes`,
+      // url: "/live-cricket-scores",
     },
   ];
   const matches = await fetchLiveMatches();
@@ -51,7 +52,7 @@ const page = async () => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {
@@ -72,6 +73,7 @@ const page = async () => {
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>
+        <h1 style={{ marginTop: "1rem" }}>Live Cricket Scores</h1>
         <div className="nav">
           <ul className={styles.navUl}>
             <li className={`${styles.navLi} ${styles.active}`}>
@@ -116,6 +118,19 @@ const page = async () => {
             );
           })}
         </div>
+        <div style={{ marginTop: "2rem" }} className="header">
+          <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
+          <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>
+            It is an honour to introduce—Sportzwiki – sports is life, is one of
+            the leading online sports mediums across the globe. The digital
+            platform over the years has grabbed the attention of an audience
+            worldwide.From the cricketing ground to the badminton court—the
+            dedicated team at Sportzwiki has been always on the lookout to
+            provide insights, pre and post-match stuff and plenty with 24/7
+            window.
+          </p>
+        </div>
+        <FaqLive />
       </div>
     </>
   );

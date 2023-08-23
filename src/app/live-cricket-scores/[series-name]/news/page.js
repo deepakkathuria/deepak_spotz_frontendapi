@@ -49,15 +49,15 @@ const page = async ({ params }) => {
   // const { "series-name": seriesName } = params;
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `LIVE CRICKET SCORES`,
+      name: `Live Cricket Scroes`,
       url: "/live-cricket-scores",
     },
     {
-      name: `${seriesName}`.toUpperCase(),
+      name: `${seriesName}`,
       url: `/live-cricket-scores/${seriesName}`,
     },
     {
@@ -72,7 +72,7 @@ const page = async ({ params }) => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {

@@ -65,6 +65,7 @@ export default function RootLayout({ children }) {
         {children}
         {/* <GlobalContextProvider>{children}</GlobalContextProvider> */}
         <Analytics />
+        <div style={{ height: "5rem" }}></div>
       </body>
     </html>
   );

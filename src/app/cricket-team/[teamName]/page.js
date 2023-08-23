@@ -10,6 +10,7 @@ import OrganisationLd from "@/json-ld/OrganisationLd";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import { BreadcrumbJsonLd } from "next-seo";
+import FaqLive from "@/components/common/FaqLive";
 // const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -24,30 +25,30 @@ const page = async ({ params }) => {
   const teamId = teamName?.split("-")[1];
   const currentCountry = "india";
   const data = await fetchTeamInfoById(teamId);
-  console.log(data);
+  // console.log(data);
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `CRICKET TEAM`,
+      name: `Cricket Team`,
       url: "/cricket-team",
     },
     {
-      name: `${teamName.toUpperCase().slice(0, 40)}...`,
-      url: `/cricket-team/${teamName}`,
+      name: `${teamName}`,
+      // url: `/cricket-team/${teamName}`,
     },
   ];
 
   return (
     <>
-          <BreadcrumbJsonLd
+      <BreadcrumbJsonLd
         useAppDir={true}
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {
@@ -76,6 +77,7 @@ const page = async ({ params }) => {
         <div className={styles.soundUpdatesDiv}>
           <UpdatesSound />
         </div>
+        <h1 style={{ marginTop: "1rem" }}>{data?.response?.title} Cricket Team</h1>
         <div className={styles.detailsContainer}>
           <div className={styles.leftSection}>
             <div className={styles.TeamCountryNavDiv}>
@@ -108,9 +110,9 @@ const page = async ({ params }) => {
                   </div>
                   <div className={styles.column}>
                     <p className={styles.infoName}>Full Name</p>
-                    <p className={styles.infoDetail}>
+                    {/* <p className={styles.infoDetail}>
                       India National Cricket Team
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>
@@ -163,6 +165,19 @@ const page = async ({ params }) => {
             <PostListBar category="cricket" />
           </div>
         </div>
+        <div style={{ marginTop: "2rem" }} className="header">
+          <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
+          <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>
+            It is an honour to introduce—Sportzwiki – sports is life, is one of
+            the leading online sports mediums across the globe. The digital
+            platform over the years has grabbed the attention of an audience
+            worldwide.From the cricketing ground to the badminton court—the
+            dedicated team at Sportzwiki has been always on the lookout to
+            provide insights, pre and post-match stuff and plenty with 24/7
+            window.
+          </p>
+        </div>
+        <FaqLive />
       </div>
     </>
   );

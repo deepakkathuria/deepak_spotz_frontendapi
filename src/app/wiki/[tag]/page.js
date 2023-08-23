@@ -89,7 +89,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: { site_url },
     },
     {
@@ -97,8 +97,8 @@ const CategoryPosts = async ({ params, searchParams }) => {
       url: `/`,
     },
     {
-      name: `${decodeURIComponent(tag).toUpperCase().substring(0, 40)}...`,
-      url: `/${tag}`,
+      name: `${decodeURIComponent(tag)}`,
+      // url: `/${tag}`,
     },
   ];
 
@@ -162,7 +162,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: `${site_url}/`,
           },
           {
@@ -225,7 +225,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
         <Breadcrumb breadcrumbsObj={breadcrumbs} />
         <div className={styles.categoryTitleDescription}>
           <h1 className={styles.categoryTitle}>
-            {decodeURIComponent(params.tag)?.toUpperCase()}
+            {decodeURIComponent(params.tag)}
           </h1>
         </div>
 

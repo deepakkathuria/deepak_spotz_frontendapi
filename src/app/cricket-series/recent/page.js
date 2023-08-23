@@ -10,6 +10,8 @@ import OrganisationLd from "@/json-ld/OrganisationLd";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import { BreadcrumbJsonLd } from "next-seo";
+import FaqLive from "@/components/common/FaqLive";
+import HeaderBox2 from "@/components/common/HeaderBox2";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -27,16 +29,16 @@ const page = async () => {
   const seriesList = await fetchSeriesList();
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `CRICKET SERIES`,
+      name: `Cricket Series`,
       url: "/cricket-series",
     },
     {
-      name: `RECENT`,
-      url: "/cricket-series/recent",
+      name: `Recent`,
+      // url: "/cricket-series/recent",
     },
   ];
   //   console.log(seriesList.response, "seriesListtttttttttttttttttttt");
@@ -47,7 +49,7 @@ const page = async () => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {
@@ -77,6 +79,7 @@ const page = async () => {
           <div style={{ marginTop: "2rem" }} className={styles.soundUpdateDiv}>
             <UpdatesSound />
           </div>
+          <h1 style={{ marginTop: "1rem" }}>Recent Cricket Series</h1>
           <div className={styles.containerSeriesMain}>
             <div className="left">
               <div
@@ -99,6 +102,13 @@ const page = async () => {
               {/* <div style={{ marginTop: "1rem" }} className="seriesListDiv">
                 <SeriesList />
               </div> */}
+              <div style={{ marginTop: "2rem" }} className="header">
+                <HeaderBox2
+                  header="SportzWiki Media"
+                  content="It is an honour to introduce—Sportzwiki – sports is life, is one of the leading online sports mediums across the globe. The digital platform over the years has grabbed the attention of an audience worldwide.From the cricketing ground to the badminton court—the dedicated team at Sportzwiki has been always on the lookout to provide insights, pre and post-match stuff and plenty with 24/7 window."
+                />
+                <FaqLive />
+              </div>
             </div>
             <div className={styles.right}>
               <PostListBar category="cricket" />

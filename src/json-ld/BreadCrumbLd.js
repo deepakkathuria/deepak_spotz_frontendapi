@@ -11,17 +11,17 @@ const BreadCrumbLd = (props) => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {
             position: 2,
-            name: props.category.toUpperCase(),
+            name: props.category,
             item: `${site_url}/${props.category}`,
           },
           {
             position: 3,
-            name: `${props.slug.toUpperCase().substring(0, 5)}...`,
+            name: `${props.slug}`,
             item: `${site_url}/${props.category}/${props.slug}`,
           },
         ]}

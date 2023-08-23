@@ -102,21 +102,21 @@ const Page = ({ params }) => {
 
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `LIVE CRICKET SCORES`,
+      name: `Live Cricket Scroes`,
       url: "/live-cricket-scores",
     },
     {
-      name: `${seriesName}`.toUpperCase(),
-      url: `/live-cricket-scores/${seriesName}`,
+      name: `${seriesName}`,
+      // url: `/live-cricket-scores/${seriesName}`,
     },
-    {
-      name: `LIVE CRICKET SCORECARD`,
-      url: `/live-cricket-scores/${seriesName}`,
-    },
+    // {
+    //   name: `LIVE CRICKET SCORECARD`,
+    //   url: `/live-cricket-scores/${seriesName}`,
+    // },
   ];
   // console.log(matchInfo, "matchInfonsjdkbvkbdvj");
 
@@ -138,7 +138,7 @@ const Page = ({ params }) => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {
@@ -153,7 +153,7 @@ const Page = ({ params }) => {
           },
           {
             position: 4,
-            name: breadcrumbs[3]?.name,
+            // name: breadcrumbs[3]?.name,
           },
         ]}
       />
@@ -182,7 +182,7 @@ const Page = ({ params }) => {
               <UpdatesSound />
             </div>
             <div className={styles.heading1}>
-              <h1>Live Cricket Scores & Updates</h1>
+              <h1>{matchInfo?.response?.teama?.name} vs {matchInfo?.response?.teamb?.name} Live Cricket Score</h1>
             </div>
             <ScorePanel
               logoTeamA={matchInfo?.response?.teama?.logo_url ?? ""}

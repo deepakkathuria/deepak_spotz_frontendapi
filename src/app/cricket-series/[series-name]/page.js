@@ -13,6 +13,7 @@ import OrganisationLd from "@/json-ld/OrganisationLd";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import { BreadcrumbJsonLd } from "next-seo";
+import FaqLive from "@/components/common/FaqLive";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -33,19 +34,20 @@ const page = async ({ params }) => {
   );
 
   const seriesMatches = await fetchSeriesMatches(seriesIdInt);
+  // console.log(seriesMatches.response.items[0].competition.title,'seriesIdsrhdfbgjhvsjh')
 
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `CRICKET SERIES`,
+      name: `Cricket Series`,
       url: "/cricket-series",
     },
     {
-      name: `${seriesName.toUpperCase().slice(0, 40)}...`,
-      url: `/cricket-series/${seriesName}`,
+      name: `${seriesName}`,
+      // url: `/cricket-series/${seriesName}`,
     },
   ];
 
@@ -56,7 +58,7 @@ const page = async ({ params }) => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {
@@ -80,6 +82,10 @@ const page = async ({ params }) => {
         <div className={styles.updateBox}>
           <UpdatesSound />
         </div>
+        <h1 style={{ marginTop: "1rem" }}>
+          {seriesMatches?.response?.items[0]?.competition?.title ||
+            "Cricket Series"}
+        </h1>
         <div className={styles.seriesOverviewTitle}>
           {/* <p>{seriesName}</p> */}
         </div>
@@ -93,6 +99,19 @@ const page = async ({ params }) => {
           {/* <p>NEWS</p> */}
           <NewsSection name="NEWS" id="3" slug="cricket" />
         </div>
+        <div style={{ marginTop: "2rem" }} className="header">
+          <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
+          <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>
+            It is an honour to introduce—Sportzwiki – sports is life, is one of
+            the leading online sports mediums across the globe. The digital
+            platform over the years has grabbed the attention of an audience
+            worldwide.From the cricketing ground to the badminton court—the
+            dedicated team at Sportzwiki has been always on the lookout to
+            provide insights, pre and post-match stuff and plenty with 24/7
+            window.
+          </p>
+        </div>
+        <FaqLive />
       </div>
     </>
   );

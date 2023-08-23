@@ -18,6 +18,7 @@ import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
 import { redirect } from "next/dist/server/api-utils";
+import FaqLive from "@/components/common/FaqLive";
 
 const fetchPostsByCategoryId = async (categoryId, currentPage) => {
   const res = await fetch(
@@ -34,6 +35,10 @@ const fetchPostsByCategoryId = async (categoryId, currentPage) => {
   const posts = await res.json();
   return posts ?? [];
 };
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 const fetchCategoryDataBySlug = async (categorySlug) => {
   const res = await fetch(
@@ -73,12 +78,12 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: `/`,
     },
     {
-      name: `${decodeURIComponent(category).toUpperCase().substring(0, 40)}...`,
-      url: `/${category}`,
+      name: `${decodeURIComponent(category)}`,
+      // url: `/${category}`,
     },
   ];
 
@@ -126,121 +131,130 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
   return (
     <>
-      <BreadcrumbJsonLd
-        useAppDir={true}
-        itemListElements={[
-          {
-            position: 1,
-            name: "HOME",
-            item: `${site_url}/`,
-          },
-          {
-            position: 2,
-            name: `${category}`,
-            item: `${site_url}/${category}/`,
-          },
-        ]}
-      />
+      <div className={styles.container}>
+        <BreadcrumbJsonLd
+          useAppDir={true}
+          itemListElements={[
+            {
+              position: 1,
+              name: "Home",
+              item: `${site_url}/`,
+            },
+            {
+              position: 2,
+              name: `${category}`,
+              item: `${site_url}/${category}/`,
+            },
+          ]}
+        />
 
-      <OrganizationJsonLd
-        useAppDir={true}
-        type="Corporation"
-        id="SportzWiki.com"
-        logo="https://www.example.com/photos/logo.jpg"
-        legalName="SportzWiki.com"
-        name="SportzWiki Media"
-        address={{
-          streetAddress: "91 SpringBoard",
-          addressLocality: "gurgaon",
-          addressRegion: "HR",
-          postalCode: "127021",
-          addressCountry: "IN",
-        }}
-        contactPoint={[
-          {
-            telephone: "+1-401-555-1212",
-            contactType: "customer service",
-            email: "customerservice@email.com",
-            areaServed: "US",
-            availableLanguage: ["English", "Spanish", "French"],
-          },
-          {
-            telephone: "+1-877-746-0909",
-            contactType: "customer service",
-            email: "servicecustomer@email.com",
-            contactOption: "TollFree",
-            availableLanguage: "English",
-          },
-          {
-            telephone: "+1-877-453-1304",
-            contactType: "technical support",
-            contactOption: "TollFree",
-            areaServed: ["US", "CA"],
-            availableLanguage: ["English", "French"],
-          },
-        ]}
-        sameAs={["https://www.orange-fox.com"]}
-        url="https://www.purpule-fox.io/"
-      />
+        <OrganizationJsonLd
+          useAppDir={true}
+          type="Corporation"
+          id="SportzWiki.com"
+          logo="https://www.example.com/photos/logo.jpg"
+          legalName="SportzWiki.com"
+          name="SportzWiki Media"
+          address={{
+            streetAddress: "91 SpringBoard",
+            addressLocality: "gurgaon",
+            addressRegion: "HR",
+            postalCode: "127021",
+            addressCountry: "IN",
+          }}
+          contactPoint={[
+            {
+              telephone: "+1-401-555-1212",
+              contactType: "customer service",
+              email: "customerservice@email.com",
+              areaServed: "US",
+              availableLanguage: ["English", "Spanish", "French"],
+            },
+            {
+              telephone: "+1-877-746-0909",
+              contactType: "customer service",
+              email: "servicecustomer@email.com",
+              contactOption: "TollFree",
+              availableLanguage: "English",
+            },
+            {
+              telephone: "+1-877-453-1304",
+              contactType: "technical support",
+              contactOption: "TollFree",
+              areaServed: ["US", "CA"],
+              availableLanguage: ["English", "French"],
+            },
+          ]}
+          sameAs={["https://www.orange-fox.com"]}
+          url="https://www.purpule-fox.io/"
+        />
 
-      <div className={styles.CategoryPosts}>
-        <div className={styles.categoryTitleDescription}>
-          <Breadcrumb breadcrumbsObj={breadcrumbs} />
-          <h1 className={styles.categoryTitle}>
-            {decodeURIComponent(params.category).toUpperCase()}
-          </h1>
-          <p className={styles.catDescription}>
+        <div className={styles.CategoryPosts}>
+          <div className={styles.categoryTitleDescription}>
+            <Breadcrumb breadcrumbsObj={breadcrumbs} />
+            {/* <h1 className={styles.categoryTitle}>
+              {decodeURIComponent(params.category)} News
+            </h1> */}
+            <h1 className={styles.categoryTitle}>
+              {capitalizeFirstLetter(decodeURIComponent(params.category))} News
+            </h1>
+
+            {/* <p className={styles.catDescription}>
             {categoryData[0]?.description}
-          </p>
+          </p> */}
+          </div>
+
+          <div className={styles.newsCardsDisplay}>
+            {!categoryPosts?.length && (
+              <div className="not">
+                <h1 style={{ color: "red" }}> No Content in this category</h1>
+              </div>
+            )}
+
+            {Array.isArray(categoryPosts) &&
+              categoryPosts?.map((post, index) => (
+                <div className="card" key={index}>
+                  <a href={`/${category}/${post?.slug}`}>
+                    <NewsCard
+                      id={post?.id}
+                      title={post?.title.rendered}
+                      content={post?.content.rendered}
+                      date={new Date(post?.date).toLocaleString("en-us")}
+                      featuredMedia={post?.featured_image_url}
+                    />
+                  </a>
+                </div>
+              ))}
+          </div>
         </div>
 
-        <div className={styles.newsCardsDisplay}>
-          {!categoryPosts?.length && (
-            <div className="not">
-              <h1 style={{ color: "red" }}> No Content in this category</h1>
-            </div>
+        <div className={styles.paginationContainer}>
+          {currentPage > 1 && (
+            <>
+              <a href={`/${category}`}>{"<<"}</a>
+            </>
           )}
 
-          {Array.isArray(categoryPosts) &&
-            categoryPosts?.map((post, index) => (
-              <div className="card" key={index}>
-                <a href={`/${category}/${post?.slug}`}>
-                  <NewsCard
-                    id={post?.id}
-                    title={post?.title.rendered}
-                    content={post?.content.rendered}
-                    date={new Date(post?.date).toLocaleString("en-us")}
-                    featuredMedia={post?.featured_image_url}
-                  />
-                </a>
-              </div>
+          {pageNumbers &&
+            pageNumbers.map((page, index) => (
+              <a
+                key={index}
+                href={`/${category}?page=${page}`}
+                className={page === currentPage ? styles.activeLink : ""}
+              >
+                {page}
+              </a>
             ))}
+
+          {currentPage < totalPages && (
+            <>
+              <a href={`/${category}?page=${currentPage + 1}`}>{">>"}</a>
+            </>
+          )}
         </div>
-      </div>
-
-      <div className={styles.paginationContainer}>
-        {currentPage > 1 && (
-          <>
-            <a href={`/${category}`}>{"<<"}</a>
-          </>
-        )}
-
-        {pageNumbers &&
-          pageNumbers.map((page, index) => (
-            <a
-              key={index}
-              href={`/${category}?page=${page}`}
-              className={page === currentPage ? styles.activeLink : ""}
-            >
-              {page}
-            </a>
-          ))}
-
-        {currentPage < totalPages && (
-          <>
-            <a href={`/${category}?page=${currentPage + 1}`}>{">>"}</a>
-          </>
-        )}
+        <h2>Latest {decodeURIComponent(params.category)} News</h2>
+        <p className={styles.catDescription}>{categoryData[0]?.description}</p>
+        <FaqLive />
       </div>
     </>
   );

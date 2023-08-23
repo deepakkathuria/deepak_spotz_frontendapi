@@ -7,6 +7,7 @@ import NavBarSec from "@/components/scorePage/NavBarSec";
 import Breadcrumb from "@/components/common/Breadcrumb";
 import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
+import FaqLive from "@/components/common/FaqLive";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -14,20 +15,20 @@ const page = ({ params }) => {
   const { "series-name": seriesName } = params;
   const breadcrumbs = [
     {
-      name: "HOME",
+      name: "Home",
       url: "/",
     },
     {
-      name: `CRICKET SERIES`,
+      name: `Cricket Series`,
       url: "/cricket-series",
     },
     {
-      name: `${seriesName.toUpperCase().slice(0, 40)}...`,
+      name: `${seriesName}`,
       url: `/cricket-series/${seriesName}`,
     },
     {
-      name: `NEWS`,
-      url: `/cricket-series/${seriesName}/news`,
+      name: `News`,
+      // url: `/cricket-series/${seriesName}/news`,
     },
   ];
   return (
@@ -37,7 +38,7 @@ const page = ({ params }) => {
         itemListElements={[
           {
             position: 1,
-            name: "HOME",
+            name: "Home",
             item: "sportzwiki.com",
           },
           {
@@ -68,6 +69,7 @@ const page = ({ params }) => {
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>
+        <h1 style={{ marginTop: "1rem" }}>Cricket Series News</h1>
         <div className={styles.seriesOverviewTitle}>
           {/* <p>Sri Lanka Tour of india 2022</p> */}
         </div>
@@ -75,6 +77,19 @@ const page = ({ params }) => {
           <StatsNav active="news" seriesName={seriesName} />
         </div>
         <NewsSection name="" id="3" slug="cricket" />
+        <div style={{ marginTop: "2rem" }} className="header">
+          <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
+          <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>
+            It is an honour to introduce—Sportzwiki – sports is life, is one of
+            the leading online sports mediums across the globe. The digital
+            platform over the years has grabbed the attention of an audience
+            worldwide.From the cricketing ground to the badminton court—the
+            dedicated team at Sportzwiki has been always on the lookout to
+            provide insights, pre and post-match stuff and plenty with 24/7
+            window.
+          </p>
+        </div>
+        <FaqLive />
       </div>
     </>
   );

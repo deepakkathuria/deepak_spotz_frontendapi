@@ -9,7 +9,7 @@ const PlayerList = (props) => {
     <>
       <div className={styles.container}>
         <div className={styles.letter}>
-          {props?.playerType.toUpperCase()} SQUAD
+          {props?.playerType} SQUAD
         </div>
         <div className={styles.list}>
           {props?.playerArray.map((player, index) => {

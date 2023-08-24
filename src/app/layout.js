@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/common/Navbar";
+import Footer from "@/components/common/Footer";
 // import { WebPageSchema } from "@/json-ld/WebPageSchema";
 // import { NextSeo } from "next-seo";
 
@@ -66,6 +67,7 @@ export default function RootLayout({ children }) {
         {/* <GlobalContextProvider>{children}</GlobalContextProvider> */}
         <Analytics />
         <div style={{ height: "5rem" }}></div>
+        <Footer />
       </body>
     </html>
   );

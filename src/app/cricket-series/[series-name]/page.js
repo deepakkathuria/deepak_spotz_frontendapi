@@ -97,7 +97,7 @@ const page = async ({ params }) => {
         </div>
         <div className={styles.news}>
           {/* <p>NEWS</p> */}
-          <NewsSection name="NEWS" id="3" slug="cricket" />
+          <NewsSection name="LATEST NEWS" id="2" slug="cricket" />
         </div>
         <div style={{ marginTop: "2rem" }} className="header">
           <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>

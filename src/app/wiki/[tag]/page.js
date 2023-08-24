@@ -35,7 +35,7 @@ const fetchTagIdByTagSlug = async (tagSlug) => {
 
 const fetchPostsByTagId = async (tagId, currentPage) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?tags=${tagId}&page=${currentPage}`,
+    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?tags=${tagId}&page=${currentPage}&per_page=48`,
     {
       method: "GET",
       headers: {
@@ -230,8 +230,8 @@ const CategoryPosts = async ({ params, searchParams }) => {
           </div>
 
           <div className={styles.newsCardsDisplay}>
-            {PostsOfTag?.map((post, index) => (
-              <div className="card" key={index}>
+            {PostsOfTag?.map((post) => (
+              <div className="card" key={post.ID}>
                 {/* {console.log(post.featured_image_url, "featuresdddddd")} */}
                 <a href={`/${post.category}/${post.slug}`}>
                   <NewsCard

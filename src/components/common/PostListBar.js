@@ -10,9 +10,9 @@ const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWOR
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
-const getPostByCategoryId = async () => {
+const getPostByCategoryId = async (id) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?categories=52664&per_page=9`,
+    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?categories=2&per_page=9`,
     {
       method: "GET",
       headers: {

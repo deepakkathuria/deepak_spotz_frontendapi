@@ -40,7 +40,7 @@ const page = () => {
           </div>
         </Suspense>
         <div className={styles.newsSection}>
-          <NewsSection name="TRENDING NEWS" id="3" slug="cricket" />
+          <NewsSection name="LATEST CRICKET NEWS" id="2" slug="cricket" />
           {/* <NewsSection name="IPL 2023" id="3" slug="cricket" />
           <NewsSection name="ASIA CUP 2023" id="3" slug="cricket" />
           <NewsSection name="EDITOR's CHOICE" id="3" slug="cricket" /> */}

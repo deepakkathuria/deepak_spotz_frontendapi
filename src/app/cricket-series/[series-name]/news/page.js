@@ -76,7 +76,7 @@ const page = ({ params }) => {
         <div className={styles.tertiaryNav}>
           <StatsNav active="news" seriesName={seriesName} />
         </div>
-        <NewsSection name="" id="3" slug="cricket" />
+        <NewsSection name="" id="2" slug="cricket" />
         <div style={{ marginTop: "2rem" }} className="header">
           <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
           <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>

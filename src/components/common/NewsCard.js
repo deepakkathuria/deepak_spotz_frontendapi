@@ -52,7 +52,9 @@ const NewsCard = async (props) => {
           {/* <p className={styles.newsDescription}>
             {props?.content?.substring(0, 45).replace(/(<([^>]+)>)/gi, "")}...
           </p> */}
-          <p className={styles.newsDate}>{props?.date}</p>
+          <p className={styles.newsDate}>
+            {new Date(props?.date).toLocaleString()}
+          </p>
         </div>
       </div>
     </>

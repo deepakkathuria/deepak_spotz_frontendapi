@@ -220,55 +220,56 @@ const CategoryPosts = async ({ params, searchParams }) => {
       />
 
       {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
+      <div className={styles.container}>
+        <div className={styles.CategoryPosts}>
+          <Breadcrumb breadcrumbsObj={breadcrumbs} />
+          <div className={styles.categoryTitleDescription}>
+            <h1 className={styles.categoryTitle}>
+              {decodeURIComponent(params.tag)}
+            </h1>
+          </div>
 
-      <div className={styles.CategoryPosts}>
-        <Breadcrumb breadcrumbsObj={breadcrumbs} />
-        <div className={styles.categoryTitleDescription}>
-          <h1 className={styles.categoryTitle}>
-            {decodeURIComponent(params.tag)}
-          </h1>
+          <div className={styles.newsCardsDisplay}>
+            {PostsOfTag?.map((post, index) => (
+              <div className="card" key={index}>
+                {/* {console.log(post.featured_image_url, "featuresdddddd")} */}
+                <a href={`/${post.category}/${post.slug}`}>
+                  <NewsCard
+                    title={post?.title?.rendered}
+                    content={post?.content?.rendered}
+                    date={new Date(post?.date).toLocaleString("en-us")}
+                    featuredMedia={post?.featured_image_url}
+                  />
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className={styles.newsCardsDisplay}>
-          {PostsOfTag?.map((post) => (
-            <div className="card" key={post.ID}>
-              {/* {console.log(post.featured_image_url, "featuresdddddd")} */}
-              <a href={`/${post.category}/${post.slug}`}>
-                <NewsCard
-                  title={post?.title?.rendered}
-                  content={post?.content?.rendered}
-                  date={new Date(post?.date).toLocaleString("en-us")}
-                  featuredMedia={post?.featured_image_url}
-                />
-              </a>
-            </div>
-          ))}
+        <div className={styles.paginationContainer}>
+          {currentPage > 1 && (
+            <>
+              <a href={`/${category}`}>{"<<"}</a>
+            </>
+          )}
+
+          {pageNumbers &&
+            pageNumbers.map((page) => (
+              <Link
+                key={page}
+                href={`/${tag}?page=${page}`}
+                className={page === currentPage ? styles.activeLink : ""}
+              >
+                {page}
+              </Link>
+            ))}
+
+          {currentPage < totalPages && (
+            <>
+              <a href={`/${tag}?page=${currentPage + 1}`}>{">>"}</a>
+            </>
+          )}
         </div>
-      </div>
-
-      <div className={styles.paginationContainer}>
-        {currentPage > 1 && (
-          <>
-            <a href={`/${category}`}>{"<<"}</a>
-          </>
-        )}
-
-        {pageNumbers &&
-          pageNumbers.map((page) => (
-            <Link
-              key={page}
-              href={`/${tag}?page=${page}`}
-              className={page === currentPage ? styles.activeLink : ""}
-            >
-              {page}
-            </Link>
-          ))}
-
-        {currentPage < totalPages && (
-          <>
-            <a href={`/${tag}?page=${currentPage + 1}`}>{">>"}</a>
-          </>
-        )}
       </div>
     </>
   );

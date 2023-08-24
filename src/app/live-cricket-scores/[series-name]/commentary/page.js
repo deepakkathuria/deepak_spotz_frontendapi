@@ -42,9 +42,9 @@ const fetchMatchInfo = async (matchId) => {
   return matchInfo;
 };
 
-const fetchMatchCommentary = async (matchId) => {
+const fetchMatchCommentary = async (matchId, inning) => {
   const res = await fetch(
-    `${baseUrl}/matches/${matchId}/innings/1/commentary?token=${key}`,
+    `${baseUrl}/matches/${matchId}/innings/${inning}/commentary?token=${key}`,
     { cache: "no-store" }
   );
   const commentary = res.json();
@@ -81,13 +81,24 @@ const Page = ({ params }) => {
   const [scoreCard, setScoreCard] = useState(null);
   const [matchInfo, setMatchInfo] = useState(null);
   const [commentary, setCommentary] = useState(null);
+  const [inning, setInning] = useState(1);
+
+  const handleTeamChange1 = () => {
+    setInning(1);
+  };
+  const handleTeamChange2 = () => {
+    setInning(2);
+  };
 
   useEffect(() => {
     async function fetchData() {
       try {
         const fetchedScoreCard = await fetchMatchScoreCard(seriesIdInt);
         const fetchedMatchInfo = await fetchMatchInfo(seriesIdInt);
-        const fetchedCommentaryInfo = await fetchMatchCommentary(seriesIdInt);
+        const fetchedCommentaryInfo = await fetchMatchCommentary(
+          seriesIdInt,
+          inning
+        );
 
         setScoreCard(fetchedScoreCard);
         setMatchInfo(fetchedMatchInfo);
@@ -103,7 +114,7 @@ const Page = ({ params }) => {
 
     // Cleanup the interval when the component is unmounted
     return () => clearInterval(intervalId);
-  }, [seriesIdInt]);
+  }, [seriesIdInt, inning]);
 
   // console.log(
   //   commentary?.response?.commentaries,
@@ -188,7 +199,10 @@ const Page = ({ params }) => {
               <UpdatesSound />
             </div>
             <div className={styles.heading1}>
-            <h1>{matchInfo?.response?.teama?.name} vs {matchInfo?.response?.teamb?.name} Live Commentary</h1>
+              <h1>
+                {matchInfo?.response?.teama?.name} vs{" "}
+                {matchInfo?.response?.teamb?.name} Live Commentary
+              </h1>
             </div>
             <ScorePanel
               logoTeamA={matchInfo?.response?.teama?.logo_url ?? ""}
@@ -464,6 +478,29 @@ const Page = ({ params }) => {
                 </div>
               </div>
 
+              <div className={styles.teamSelector}>
+                <div
+                  onClick={() => handleTeamChange1()}
+                  className={
+                    inning === 2
+                      ? `${styles.teamA}`
+                      : ` ${styles.teamA} ${styles.active}`
+                  }
+                >
+                  {matchInfo?.response?.teama?.name || "Team A"}
+                </div>
+                <div
+                  onClick={() => handleTeamChange2()}
+                  className={
+                    inning === 1
+                      ? `${styles.teamB}`
+                      : ` ${styles.teamB} ${styles.active}`
+                  }
+                >
+                  {matchInfo?.response?.teamb?.name || "Team B"}
+                </div>
+              </div>
+
               <div className="commentaryList">
                 {commentary?.response?.commentaries
                   ?.reverse()
@@ -474,20 +511,20 @@ const Page = ({ params }) => {
                         text={
                           commentary?.commentary ? commentary.commentary : "-"
                         }
-                        over={commentary?.over ? commentary.over : "-"}
-                        ball={commentary?.ball ? commentary.ball : "-"}
+                        over={commentary?.over ? commentary.over : "0"}
+                        ball={commentary?.ball ? commentary.ball : "0"}
                         run={commentary?.run ? commentary.run : "0"}
                         eventType={commentary?.event || "-"}
                         runsInOver={
                           commentary?.event === "overend"
                             ? (commentary?.bats[0]?.runs || 0) +
                               (commentary?.bats[1]?.runs || 0)
-                            : "-"
+                            : null
                         }
                         howOut={
                           commentary?.event === "wicket"
-                            ? commentary?.how_out || "-"
-                            : "-"
+                            ? commentary?.how_out || ""
+                            : ""
                         }
                       />
                     );

@@ -108,6 +108,29 @@
   gap: 2rem;
 }
 
+.teamSelector {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.teamA,
+.teamB {
+  padding: 1rem;
+  border: 1px solid #003161;
+  border-radius: 5px;
+  color: #0f1010;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #003161 !important;
+  color: #fff !important;
+}
+
 @media (max-width: 576px) {
   .container {
     white-space: nowrap;
@@ -132,6 +155,18 @@
   .containerRight {
     display: none;
   }
+
+  .teamSelector {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  /* .teamA,
+  .teamB {
+    width: 95%;
+  } */
 }
 
 @media (max-width: 768px) {

@@ -9,7 +9,7 @@ const CommentaryBox = (props) => {
       <div className={styles.container}>
         <div className={styles.scoreOver}>
           <div className={styles.over}>
-            OV {props.over}.{props.ball ? props.ball : 0}
+            {props.over}.{props.ball ? props.ball : 0}
           </div>
           <div className={styles.run}>{props.run} Run</div>
         </div>
@@ -23,10 +23,20 @@ const CommentaryBox = (props) => {
             <h4>{props.last5Runs[4]}</h4>
           </div> */}
           <div>
-            <div style={{ color: "red" }}>{props?.howOut || ""}</div>
+            <div
+              style={{ color: "red", fontWeight: "bold", fontSize: "1.3rem" }}
+            >
+              {props?.howOut || ""}
+            </div>
             {props?.runsInOver && (
-              <div style={{ color: "green" }}>
-                {`Runs scored in over : ${props?.runsInOver}` || ""}
+              <div
+                style={{
+                  color: "green",
+                  fontWeight: "bold",
+                  fontSize: "1.3rem",
+                }}
+              >
+                {`Runs scored in over : ${props?.runsInOver}`}
               </div>
             )}
           </div>

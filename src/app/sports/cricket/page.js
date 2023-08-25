@@ -4,7 +4,7 @@ import NavBarSec from "@/components/scorePage/NavBarSec";
 import styles from "./sports.module.css";
 import NewsSection from "@/components/common/NewsSection";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import HeaderBox2 from "@/components/common/HeaderBox2";
 import FaqLive from "@/components/common/FaqLive";
 
@@ -25,7 +25,7 @@ const page = () => {
   ];
   return (
     <>
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <NavBarSec active="home" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

@@ -3,13 +3,13 @@ import styles from "./seriesVenue.module.css";
 import UpdatesSound from "../../../../components/common/UpdatesSound";
 import VenueCard from "../../../../components/common/VenueCard";
 import StatsNav from "@/components/series/StatsNav";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 
 const page = ({ params }) => {
   const { "series-name": seriesName } = params;
   return (
     <>
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <div className="updateBox">
           <UpdatesSound />

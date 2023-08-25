@@ -5,7 +5,7 @@ import ScoreCard from "../../../../components/common/ScoreCard";
 import StatsNav from "@/components/series/StatsNav";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import { BreadcrumbJsonLd } from "next-seo";
@@ -50,7 +50,7 @@ const page = async ({ params }) => {
   // console.log(matches.response.items,'matchesssssssssssssss');
   return (
     <>
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <BreadcrumbJsonLd
         useAppDir={true}
         itemListElements={[

@@ -13,7 +13,7 @@ const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
@@ -152,41 +152,41 @@ const CategoryPosts = async ({ params, searchParams }) => {
           useAppDir={true}
           type="Corporation"
           id="SportzWiki.com"
-          logo="https://www.example.com/photos/logo.jpg"
+          // logo="https://www.example.com/photos/logo.jpg"
           legalName="SportzWiki.com"
           name="SportzWiki Media"
           address={{
-            streetAddress: "91 SpringBoard",
+            streetAddress: "palam vihar",
             addressLocality: "gurgaon",
             addressRegion: "HR",
-            postalCode: "127021",
+            postalCode: "122017",
             addressCountry: "IN",
           }}
           contactPoint={[
             {
-              telephone: "+1-401-555-1212",
+              telephone: "0124-4284294",
               contactType: "customer service",
-              email: "customerservice@email.com",
-              areaServed: "US",
-              availableLanguage: ["English", "Spanish", "French"],
+              email: "enquiry@sportzwiki.com",
+              areaServed: "IN",
+              availableLanguage: ["English"],
             },
-            {
-              telephone: "+1-877-746-0909",
-              contactType: "customer service",
-              email: "servicecustomer@email.com",
-              contactOption: "TollFree",
-              availableLanguage: "English",
-            },
-            {
-              telephone: "+1-877-453-1304",
-              contactType: "technical support",
-              contactOption: "TollFree",
-              areaServed: ["US", "CA"],
-              availableLanguage: ["English", "French"],
-            },
+            // {
+            //   telephone: "+1-877-746-0909",
+            //   contactType: "customer service",
+            //   email: "servicecustomer@email.com",
+            //   contactOption: "TollFree",
+            //   availableLanguage: "English",
+            // },
+            // {
+            //   telephone: "+1-877-453-1304",
+            //   contactType: "technical support",
+            //   contactOption: "TollFree",
+            //   areaServed: ["US", "CA"],
+            //   availableLanguage: ["English", "French"],
+            // },
           ]}
-          sameAs={["https://www.orange-fox.com"]}
-          url="https://www.purpule-fox.io/"
+          // sameAs={["https://www.orange-fox.com"]}
+          url="https://www.sportzwiki.com/"
         />
 
         <div className={styles.CategoryPosts}>

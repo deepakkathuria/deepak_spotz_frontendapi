@@ -17,7 +17,7 @@ const ArticleLd = (props) => {
         dateModified={props.date}
         authorName={props.author}
         publisherName="SportzWiki Media Pvt Ltd"
-        publisherLogo="https://www.example.com/photos/logo.jpg"
+        // publisherLogo="https://www.example.com/photos/logo.jpg"
         description={props.shortDescription}
         body={props.description}
         //   isAccessibleForFree={true}

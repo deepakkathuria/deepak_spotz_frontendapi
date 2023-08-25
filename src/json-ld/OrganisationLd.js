@@ -10,40 +10,40 @@ const OrganisationLd = () => {
         type="Corporation"
         id={site_url}
         logo="https://www.example.com/photos/logo.jpg"
-        legalName="Sportzwiki Media Pvt Ltd"
-        name="Purple Fox"
+        legalName="SportzWiki.com"
+        name="SportzWiki Media"
         address={{
-          streetAddress: "91 Springboard",
-          addressLocality: "Sector 18, udyog vihar",
+          streetAddress: "palam vihar",
+          addressLocality: "gurgaon",
           addressRegion: "HR",
-          postalCode: "122008",
+          postalCode: "122017",
           addressCountry: "IN",
         }}
         contactPoint={[
           {
-            telephone: "+1-401-555-1212",
+            telephone: "0124-4284294",
             contactType: "customer service",
-            email: "customerservice@email.com",
-            areaServed: "US",
-            availableLanguage: ["English", "Spanish", "French"],
+            email: "enquiry@sportzwiki.com",
+            areaServed: "IN",
+            availableLanguage: ["English"],
           },
-          {
-            telephone: "+1-877-746-0909",
-            contactType: "customer service",
-            email: "servicecustomer@email.com",
-            contactOption: "TollFree",
-            availableLanguage: "English",
-          },
-          {
-            telephone: "+1-877-453-1304",
-            contactType: "technical support",
-            contactOption: "TollFree",
-            areaServed: ["US", "CA"],
-            availableLanguage: ["English", "French"],
-          },
+          // {
+          //   telephone: "+1-877-746-0909",
+          //   contactType: "customer service",
+          //   email: "servicecustomer@email.com",
+          //   contactOption: "TollFree",
+          //   availableLanguage: "English",
+          // },
+          // {
+          //   telephone: "+1-877-453-1304",
+          //   contactType: "technical support",
+          //   contactOption: "TollFree",
+          //   areaServed: ["US", "CA"],
+          //   availableLanguage: ["English", "French"],
+          // },
         ]}
-        sameAs={["https://www.orange-fox.com"]}
-        url="https://www.purpule-fox.io/"
+        // sameAs={["https://www.orange-fox.com"]}
+        url="https://www.sportzwiki.com/"
       />
     </>
   );

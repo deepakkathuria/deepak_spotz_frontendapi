@@ -4,7 +4,7 @@ import NavBarSec from "../../../components/scorePage/NavBarSec";
 import UpdatesSound from "../../../components/common/UpdatesSound";
 import ScoreCard from "../../../components/common/ScoreCard";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 import { BreadcrumbJsonLd } from "next-seo";
@@ -69,7 +69,7 @@ const page = async () => {
           // },
         ]}
       />
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <div className={styles.navSec}>
           <NavBarSec active="live" />

@@ -5,7 +5,7 @@ import TeamCountryNav from "../../../../components/teams/TeamCountryNav";
 import ScoreCardPanel from "../../../../components/common/ScoreCardPanel";
 import NewsSection from "../../../../components/common/NewsSection";
 import NavBarSec from "@/components/scorePage/NavBarSec";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
 
 const page = () => {
@@ -13,7 +13,7 @@ const page = () => {
   
   return (
     <>
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <NavBarSec active="teams" />
         <div className={styles.updateBox}>

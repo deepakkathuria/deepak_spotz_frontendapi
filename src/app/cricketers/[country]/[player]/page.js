@@ -7,7 +7,7 @@ import StatsTable from "../../../../components/testing/players/StatsTable";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import StatsTableBowling from "@/components/testing/players/StatsTableBowling";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -93,7 +93,7 @@ const page = async ({ params }) => {
           // },
         ]}
       />
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <NavBarSec active="players" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

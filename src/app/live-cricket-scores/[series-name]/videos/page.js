@@ -12,7 +12,7 @@ const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 // import NavSec from "../../../../components/liveScore/NavSec";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import NavSecScore from "@/components/liveScore/NavSecScore";
 
 const fetchMatchScoreCard = async (matchId) => {
@@ -64,7 +64,7 @@ const page = async ({ params }) => {
   ];
   return (
     <>
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.containerMainLiveScore}>
         <NavBarSec active="live" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

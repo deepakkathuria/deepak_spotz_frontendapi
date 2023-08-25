@@ -5,7 +5,7 @@ import PlayerTeamSelect from "../../../components/testing/players/PlayerTeamSele
 import PlayerList from "../../../components/testing/players/PlayerList";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 import { BreadcrumbJsonLd } from "next-seo";
@@ -127,7 +127,7 @@ const page = async ({ params }) => {
           // },
         ]}
       />
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <NavBarSec active="players" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

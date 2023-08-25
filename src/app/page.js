@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
 import NewsSectionLatest from "../components/common/NewsSectionLatest";
 import MobSecondaryNav from "@/components/common/MobSecondaryNav";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
 import Loading from "./loading";
 import FaqLive from "@/components/common/FaqLive";
@@ -40,7 +40,7 @@ const page = async () => {
 
   return (
     <>
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
         <div className="scores">

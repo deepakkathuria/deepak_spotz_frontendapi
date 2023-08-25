@@ -12,7 +12,7 @@ const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 // import NavSec from "../../../../components/liveScore/NavSec";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
@@ -117,7 +117,7 @@ const page = async ({ params }) => {
           // },
         ]}
       />
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <EventLd
         eventName={data?.competition.title ?? ""}
         startDate={data?.date_start_ist}

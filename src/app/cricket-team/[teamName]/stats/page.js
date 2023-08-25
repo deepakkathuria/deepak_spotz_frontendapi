@@ -6,13 +6,13 @@ import StatsSelectOptions from "../../../../components/testing/StatsSelectOption
 import StatsSelectionBox from "../../../../components/testing/StatsSelectionBox";
 import StatsTeamTable from "../../../../components/testing/StatsTeamTable";
 import NavBarSec from "@/components/scorePage/NavBarSec";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 
 const page = () => {
   const currentCountry = "india";
   return (
     <>
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <NavBarSec active="teams" />
         <div className={styles.soundBox}>

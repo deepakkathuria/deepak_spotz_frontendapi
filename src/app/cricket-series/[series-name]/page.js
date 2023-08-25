@@ -9,7 +9,7 @@ import ScoreCardPanelReusable from "@/components/common/ScoreCardPanelReuable";
 import StatsNav from "@/components/series/StatsNav";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import { BreadcrumbJsonLd } from "next-seo";
@@ -73,7 +73,7 @@ const page = async ({ params }) => {
           },
         ]}
       />
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={`${styles.container} ${styles.seriesOverview}`}>
         <NavBarSec active="series" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

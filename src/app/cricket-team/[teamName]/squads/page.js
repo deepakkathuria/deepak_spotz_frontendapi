@@ -7,7 +7,7 @@ import Teams from "@/components/scores/Teams";
 import PlayerCardMini from "@/components/testing/players/PlayerCardMini";
 import Link from "next/link";
 import slugify from "slugify";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
@@ -24,10 +24,10 @@ const page = async ({ params }) => {
   // const teamId = teamName?.split("-")[1];
   const teamId = parseInt(teamName.split("-")[teamName.split("-").length - 1]);
   const data = await fetchTeamPlayers(teamId);
-  console.log(data.response, "dataaaaaaaaaaaaaaa");
+  // console.log(data.response, "dataaaaaaaaaaaaaaa");
   return (
     <>
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <NavBarSec active="teams" />
         <div className={styles.soundBox}>

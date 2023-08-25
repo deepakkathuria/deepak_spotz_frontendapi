@@ -5,7 +5,7 @@ import NewsSection from "../../../../components/common/NewsSection";
 import StatsNav from "@/components/series/StatsNav";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -58,7 +58,7 @@ const page = ({ params }) => {
           },
         ]}
       />
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <div className="nav">
           <NavBarSec active="series" />

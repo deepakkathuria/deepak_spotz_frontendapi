@@ -12,7 +12,7 @@ const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../../components/common/Breadcrumb";
 import PostListBar from "../../../../components/common/PostListBar";
 // import NavSec from "../../../../components/liveScore/NavSec";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import NavSecScore from "@/components/liveScore/NavSecScore";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -97,7 +97,7 @@ const page = async ({ params }) => {
           // },
         ]}
       />
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.containerMainLiveScore}>
         <NavBarSec active="live" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

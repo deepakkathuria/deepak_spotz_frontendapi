@@ -9,7 +9,7 @@ import parse from "html-react-parser";
 import Link from "next/link";
 import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "@/json-ld/BreadCrumbLd";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import UpdatesSound from "@/components/common/UpdatesSound";
 import HeaderBox2 from "@/components/common/HeaderBox2";
 import FaqLive from "@/components/common/FaqLive";
@@ -177,7 +177,7 @@ export async function generateMetadata({ params }) {
       title: title,
       description: description,
       siteId: "1467726470533754880",
-      creator: "@gaurav",
+      creator: "@sportzwiki",
       creatorId: "1467726470533754880",
       images: [imageUrl],
     },
@@ -278,7 +278,7 @@ const page = async ({ params }) => {
 
       <BreadCrumbLd category={category ?? ""} slug={slug ?? ""} />
 
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
 
       <div className={styles.postPageContainer}>
         <div style={{ marginTop: "6rem" }} className={styles.updateBox}>

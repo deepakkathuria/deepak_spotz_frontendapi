@@ -6,7 +6,7 @@ import Image from "next/image";
 import PostListBar from "../../../components/common/PostListBar";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import { BreadcrumbJsonLd } from "next-seo";
@@ -68,7 +68,7 @@ const page = async ({ params }) => {
           // },
         ]}
       />
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <NavBarSec active="teams" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

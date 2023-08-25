@@ -12,7 +12,7 @@ const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../../../components/common/Breadcrumb";
 import PostListBar from "../../../components/common/PostListBar";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import EventLd from "../../../json-ld/EventLd";
 import NavSecScore from "../../../components/liveScore/NavSecScore";

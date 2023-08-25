@@ -5,7 +5,7 @@ import styles from "./teamNews.module.css";
 import NewsSection from "../../../../components/common/NewsSection";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import Breadcrumb from "@/components/common/Breadcrumb";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
@@ -62,7 +62,7 @@ const page = ({ params }) => {
           },
         ]}
       />
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         {/* soundUpdatesDiv */}
         <NavBarSec active="teams" />

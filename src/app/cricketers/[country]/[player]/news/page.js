@@ -4,14 +4,14 @@ import NewsSection from "../../../../../components/common/NewsSection";
 import UpdatesSound from "../../../../../components/common/UpdatesSound";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import PlayersNav from "@/components/testing/players/PlayersNav";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 
 
 const page = ({ params }) => {
   const { country, player } = params;
   return (
     <>
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <NavBarSec active="players" />
         <div className={styles.updateBox}>

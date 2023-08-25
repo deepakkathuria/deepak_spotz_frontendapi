@@ -9,7 +9,7 @@ import Breadcrumb from "@/components/common/Breadcrumb";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import { BreadcrumbJsonLd } from "next-seo";
-import OrganisationLd from "@/json-ld/OrganisationLd";
+// import OrganisationLd from "@/json-ld/OrganisationLd";
 import FaqLive from "@/components/common/FaqLive";
 // const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
@@ -66,7 +66,7 @@ const page = async () => {
           // },
         ]}
       />
-      <OrganisationLd />
+      {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <NavBarSec active="teams" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

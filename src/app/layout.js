@@ -120,6 +120,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      {/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}
       {/* <head></head> */}
       {/* <Head>
         <link rel="canonical" href="https://www.sportzwiki.com/" />

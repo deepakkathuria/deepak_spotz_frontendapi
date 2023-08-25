@@ -143,15 +143,20 @@ export async function generateMetadata({ params }) {
   const title = post?.title?.rendered ?? "SportzWiki";
   const description = post?.excerpt?.rendered ?? "SportzWiki";
   const imageUrl = post?.featured_image_url ?? "";
-  const parsedDescription = parse(description);
+  const parsedTitle = title.replace(/<[^>]+>/g, "");
+  const parsedDescription = description.replace(/<[^>]+>/g, "");
+
+  // const htmlStringDescription = articleBody?.content.rendered;
+
+  // const plainStringTitle = htmlStringTitle.replace(/<[^>]+>/g, "");
 
   return {
-    title: title,
+    title: parsedTitle,
     description: description,
 
     openGraph: {
-      title: title,
-      description: description,
+      title: parsedTitle,
+      description: parsedDescription,
       url: "https://www.sportzwiki.com",
       siteName: "Sportzwiki",
       images: [
@@ -159,13 +164,13 @@ export async function generateMetadata({ params }) {
           url: imageUrl,
           width: 800,
           height: 600,
-          alt: title,
+          alt: parsedTitle,
         },
         {
           url: imageUrl,
           width: 1800,
           height: 1600,
-          alt: title,
+          alt: parsedTitle,
         },
       ],
       locale: "en_US",
@@ -174,8 +179,8 @@ export async function generateMetadata({ params }) {
 
     twitter: {
       card: "summary_large_image",
-      title: title,
-      description: description,
+      title: parsedTitle,
+      description: parsedDescription,
       siteId: "1467726470533754880",
       creator: "@sportzwiki",
       creatorId: "1467726470533754880",

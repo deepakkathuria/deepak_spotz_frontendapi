@@ -28,7 +28,7 @@
 }
 
 .categoryTitle {
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
   margin-top: 1rem;
 }
 
@@ -70,11 +70,12 @@
   }
 
   .categoryTitle {
-    margin-top: 0.5rem;
+    margin-top: 2rem;
   }
 
   .categoryTitle {
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
+    margin-bottom: 2rem;
   }
 
   .newsCardsDisplay {

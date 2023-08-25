@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
 const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
 const NEXT_PUBLIC_WP_API_PASSWORD = process.env.NEXT_PUBLIC_WP_API_PASSWORD;

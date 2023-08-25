@@ -149,7 +149,7 @@ const page = async ({ params }) => {
               nationality={playerInfo?.response?.player?.nationality}
             />
           </div>
-          <div className={styles.about}>
+          {/* <div className={styles.about}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis
             molestiae neque odit, aliquam, iste expedita nulla cum laudantium,
             ut pariatur sed doloribus. Ex saepe impedit deleniti optio quisquam,
@@ -238,7 +238,7 @@ const page = async ({ params }) => {
             hic placeat soluta quibusdam culpa dignissimos error voluptate saepe
             blanditiis sint deserunt laudantium eligendi omnis explicabo
             doloremque!
-          </div>
+          </div> */}
           <div className={styles.table}>
             <StatsTable
               data={playerStats.response.batting}

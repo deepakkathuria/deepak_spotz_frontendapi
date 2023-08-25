@@ -110,7 +110,7 @@ const Page = ({ params }) => {
       url: "/live-cricket-scores",
     },
     {
-      name: `${seriesName}`,
+      name: `${matchInfo?.response?.teama?.name} vs ${matchInfo?.response?.teamb?.name}`,
       // url: `/live-cricket-scores/${seriesName}`,
     },
     // {

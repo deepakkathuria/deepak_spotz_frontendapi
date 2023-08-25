@@ -73,7 +73,7 @@ const page = async ({ params }) => {
       url: "/live-cricket-scores",
     },
     {
-      name: `${seriesName}`,
+      name: `${matchInfo?.response?.teama?.name} vs ${matchInfo?.response?.teamb?.name}`,
       url: `/live-cricket-scores/${seriesName}`,
     },
     {
@@ -135,7 +135,10 @@ const page = async ({ params }) => {
               <UpdatesSound />
             </div>
             <div className={styles.heading1}>
-            <h1>{matchInfo?.response?.teama?.name} vs {matchInfo?.response?.teamb?.name} Team</h1>
+              <h1>
+                {matchInfo?.response?.teama?.name} vs{" "}
+                {matchInfo?.response?.teamb?.name} Team
+              </h1>
             </div>
             <ScorePanel
               teamIdA={data?.teama?.team_id ?? ""}

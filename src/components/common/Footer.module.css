@@ -26,3 +26,19 @@
 .listUl {
   line-height: 3rem;
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+    gap: 8rem;
+    padding: 0;
+    padding-top: 3rem;
+    /* padding-left: 4rem; */
+  }
+
+  .container1,
+  .container2 {
+    margin-left: 3rem;
+  }
+}

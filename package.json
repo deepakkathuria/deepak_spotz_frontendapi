@@ -17,6 +17,7 @@
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
     "html-react-parser": "^4.1.0",
+    "html-to-text": "^9.0.5",
     "next": "13.4.1",
     "next-images": "^1.8.5",
     "next-seo": "^6.0.0",

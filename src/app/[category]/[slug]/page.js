@@ -234,6 +234,13 @@ const page = async ({ params }) => {
     // }
   }
 
+  const htmlStringTitle = articleBody?.title.rendered;
+  const htmlStringDescription = articleBody?.content.rendered;
+
+  const plainStringTitle = htmlStringTitle.replace(/<[^>]+>/g, "");
+  const plainStringDescription = htmlStringDescription.replace(/<[^>]+>/g, "");
+  // const metaTitle =
+
   const articleJsonLd = {
     "@context": "https://schema.org/",
     "@type": "NewsArticle",
@@ -241,8 +248,8 @@ const page = async ({ params }) => {
       "@type": "WebPage",
       "@id": "www.sportzwiki.com",
     },
-    headline: articleBody?.title.rendered ?? "",
-    description: articleBody?.content.rendered ?? "",
+    headline: plainStringTitle ?? "",
+    description: plainStringDescription ?? "",
     image: {
       "@type": "ImageObject",
       url: articleBody?.featured_image_url || "",

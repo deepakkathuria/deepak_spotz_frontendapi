@@ -17,6 +17,7 @@ const base64Credentials = buffer.toString("base64");
 
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
+import slugify from "slugify";
 
 const fetchTagIdByTagSlug = async (tagSlug) => {
   const res = await fetch(
@@ -121,6 +122,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
   }
 
   const PostsOfTag = await fetchPostsByTagId(tagId[0].id, currentPage);
+  // console.log(PostsOfTag, "postsOfTag");
 
   // const data = await axios.get(
   //   `${base_url}getpostbytagslug?slug=cricket&page=1&limit=100`
@@ -232,7 +234,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
             {PostsOfTag?.map((post) => (
               <div className="card" key={post.ID}>
                 {/* {console.log(post.featured_image_url, "featuresdddddd")} */}
-                <a href={`/${post.category}/${post.slug}`}>
+                <a href={`/${post.primary_category_slug}/${post.slug}`}>
                   <NewsCard
                     title={post?.title?.rendered}
                     content={post?.content?.rendered}

@@ -143,8 +143,8 @@ export async function generateMetadata({ params }) {
   const title = post?.title?.rendered ?? "SportzWiki";
   const description = post?.excerpt?.rendered ?? "SportzWiki";
   const imageUrl = post?.featured_image_url ?? "";
-  const parsedTitle = title.replace(/<[^>]+>/g, "");
-  const parsedDescription = description.replace(/<[^>]+>/g, "");
+  const parsedTitle = (title ?? "").replace(/<[^>]+>/g, "");
+  const parsedDescription = (description ?? "").replace(/<[^>]+>/g, "");
 
   // const htmlStringDescription = articleBody?.content.rendered;
 
@@ -242,8 +242,13 @@ const page = async ({ params }) => {
   const htmlStringTitle = articleBody?.title.rendered;
   const htmlStringDescription = articleBody?.content.rendered;
 
-  const plainStringTitle = htmlStringTitle.replace(/<[^>]+>/g, "");
-  const plainStringDescription = htmlStringDescription.replace(/<[^>]+>/g, "");
+  // const plainStringTitle = htmlStringTitle.replace(/<[^>]+>/g, "");
+  const plainStringTitle = (htmlStringTitle ?? "").replace(/<[^>]+>/g, "");
+  // const plainStringDescription = htmlStringDescription.replace(/<[^>]+>/g, "");
+  const plainStringDescription = (htmlStringDescription ?? "").replace(
+    /<[^>]+>/g,
+    ""
+  );
   // const metaTitle =
 
   const articleJsonLd = {

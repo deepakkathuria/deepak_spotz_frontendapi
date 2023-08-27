@@ -1,3 +1,10 @@
+.btns {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
 .btn {
   border: none;
   background-color: #003161;
@@ -5,4 +12,51 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
+}
+
+.sliderContainer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.slider {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  cursor: grab;
+  scroll-behavior: smooth;
+  transition: scrollLeft 0.25s ease;
+}
+
+.slider:active {
+  cursor: grabbing;
+}
+
+.card {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  margin-right: 5px;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .sliderContainer {
+    width: 100%;
+  }
+
+  .card {
+    width: calc(100% - 20px);
+  }
 }

@@ -63,9 +63,9 @@ const CardSlider = ({ cards }) => {
   };
 
   return (
-    <div className="slider-container">
+    <div className={styles.sliderContainer}>
       <div
-        className="slider"
+        className={styles.slider}
         ref={sliderRef}
         onMouseDown={handleMouseDown}
         onMouseLeave={handleMouseLeave}
@@ -73,7 +73,11 @@ const CardSlider = ({ cards }) => {
         onMouseMove={handleMouseMove}
       >
         {cards.map((card, index) => (
-          <div key={index} className="card" ref={index === 0 ? cardRef : null}>
+          <div
+            key={index}
+            className={styles.card}
+            ref={index === 0 ? cardRef : null}
+          >
             <ScoreCard
               key={index}
               matchID={card?.match_id}
@@ -94,15 +98,7 @@ const CardSlider = ({ cards }) => {
           </div>
         ))}
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row-reverse",
-          gap: "1rem",
-          marginTop: "1rem",
-        }}
-        className="btns"
-      >
+      <div className={styles.btns}>
         <button className={styles.btn} onClick={handleNext}>
           <Image
             src="/gaurav/arrow-right-c.svg"
@@ -124,62 +120,6 @@ const CardSlider = ({ cards }) => {
           />
         </button>
       </div>
-
-      <style jsx>{`
-        .slider-container {
-          position: relative;
-          width: 100%;
-          overflow: hidden;
-        }
-        .slider::-webkit-scrollbar {
-          display: none; /* Chrome, Safari, Opera */
-        }
-        .slider {
-          scrollbar-width: none; /* Firefox */
-        }
-        .slider {
-          -ms-overflow-style: none; /* IE and Edge */
-        }
-
-        .slider {
-          display: flex;
-          width: 100%;
-          //   height: 130px;
-          overflow-x: scroll;
-          scroll-snap-type: x mandatory;
-          cursor: grab;
-          scroll-behavior: smooth;
-          transition: scrollLeft 0.25s ease;
-        }
-
-        .slider:active {
-          cursor: grabbing;
-        }
-
-        .card {
-          flex: 0 0 auto;
-          width: auto;
-          height: auto;
-        //   border: 1px solid #e1e1e1;
-          margin-right: 5px;
-          scroll-snap-align: start;
-        //   background-color: #fff;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        //   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        @media (max-width: 768px) {
-          .slider-container {
-            width: 100%;
-          }
-
-          .card {
-            width: calc(100% - 20px);
-          }
-        }
-      `}</style>
     </div>
   );
 };

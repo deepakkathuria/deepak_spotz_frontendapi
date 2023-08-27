@@ -3,16 +3,18 @@ import React from "react";
 import UpdatesSound from "./UpdatesSound";
 import ScoreCardPanel from "./ScoreCardPanel";
 import styles from "../../app/page.module.css";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
+import CardSlider from "../home/CardSlider";
 
 const LiveScoreSection = () => {
   return (
     <>
       <div className={styles.updateSoundDiv}>
-        <UpdatesSound />
+        
       </div>
       <div className={styles.scoresDiv}>
         <ScoreCardPanel display ={true} />
+        
       </div>
     </>
   );

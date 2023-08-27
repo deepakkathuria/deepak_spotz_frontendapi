@@ -8,10 +8,40 @@ import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 import LiveScoreSection from "@/components/common/LiveScoreSection";
 import Loading from "./loading";
 import FaqLive from "@/components/common/FaqLive";
-import HeaderBox2 from "@/components/common/HeaderBox2";
+import UpdatesSound from "@/components/common/UpdatesSound";
+// import HeaderBox2 from "@/components/common/HeaderBox2";
+import CardSlider from "@/components/home/CardSlider";
+import Link from "next/link";
+const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // JavaScript months are 0-11, so we add 1
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
+
+const getData = async () => {
+  const res = await fetch(
+    `${base_url}/matches?token=${key}&date=${formattedDate}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const data = await res.json();
+  return data.response.items;
+};
+
+const fetchLiveScores = async () => {
+  const res = await fetch;
+};
 
 export async function generateMetadata() {
-  // const { slug } = params;
   const siteURL = "https://sportzwiki.com";
 
   return {
@@ -24,29 +54,28 @@ export async function generateMetadata() {
 }
 
 const page = async () => {
-  // try {
-  //   const response = await fetch(
-  //     `${base_url}/getcategoriesbyname?category1=cricket&category2=news&category3=football`,
-  //     // `https://demo.sportzwiki.com/api/v1/getcategoriesbyname?category1=cricket&category2=news&category3=football`,
-  //     { next: { revalidate: 5 } }
-  //   );
-  //   if (!response.ok) {
-  //     throw new Error(response.statusText);
-  //   }
-  //   var data = await response.json();
-  // } catch (e) {
-  //   console.log(e.message);
-  // }
+  const data = await getData();
+
+  function customSort(a, b) {
+    const statusOrder = { 3: 0, 1: 1, 2: 2, 4: 3 };
+    const statusA = a.status.toString();
+    const statusB = b.status.toString();
+
+    return statusOrder[statusA] - statusOrder[statusB];
+  }
+
+  const sortedResponses = data.slice().sort(customSort);
 
   return (
     <>
-      {/* <OrganisationLd /> */}
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
         <div className="scores">
           <Suspense fallback={<Loading />}>
-            {/* <Suspense fallback='Loading...'> */}
-            <LiveScoreSection />
+            <UpdatesSound />
+            <div style={{ marginTop: "2rem" }} className="slider">
+              <CardSlider cards={sortedResponses} />
+            </div>
           </Suspense>
         </div>
         <NewsSectionLatest />
@@ -95,4 +124,3 @@ const page = async () => {
 };
 
 export default page;
-// export default dynamic(() => Promise.resolve(page, { ssr: false }));

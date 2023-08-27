@@ -20,6 +20,7 @@ const Navbar = () => {
             <div className={styles.NavLogo}>
               <a href={"/"}>
                 <Image
+                  priority
                   src="/gaurav/sportzwiki_logo.svg"
                   width={130}
                   height={30}
@@ -33,6 +34,7 @@ const Navbar = () => {
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image
+                        priority
                         src="/gaurav/home_ic.svg"
                         alt="home menu icon"
                         width={16}
@@ -47,6 +49,7 @@ const Navbar = () => {
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image
+                        priority
                         src="/gaurav/cricket_ic.svg"
                         alt="cricket bat icon"
                         width={16}
@@ -61,6 +64,7 @@ const Navbar = () => {
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image
+                        priority
                         src="/gaurav/football_ic.svg"
                         alt="home menu icon"
                         width={16}
@@ -76,6 +80,7 @@ const Navbar = () => {
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image
+                        priority
                         src="/gaurav/wwe_ic.svg"
                         alt="home menu icon"
                         width={16}
@@ -91,6 +96,7 @@ const Navbar = () => {
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image
+                        priority
                         src="/gaurav/gamepad_ic.svg"
                         alt="home menu icon"
                         width={16}
@@ -107,6 +113,7 @@ const Navbar = () => {
                     <div className="navItemName">More</div>
                     <div className={styles.navItemIcon}>
                       <Image
+                      priority
                         src="/gaurav/down_arrow_ic.svg"
                         alt="more icon"
                         width={12}
@@ -122,6 +129,7 @@ const Navbar = () => {
               {/* <a href={"/"}>
                 <div className="navSearch">
                   <Image
+                  priority
                     src="/gaurav/search_ic.svg"
                     alt="search icon"
                     width={22}
@@ -133,6 +141,7 @@ const Navbar = () => {
               {/* <a href={"/"}>
                 <div className={styles.navLogin}>
                   <Image
+                  priority
                     src="/gaurav/profile_ic.svg"
                     alt="profile menu icon"
                     width={20}
@@ -148,6 +157,7 @@ const Navbar = () => {
               <div className={styles.navOptionsMobile}>
                 <div className={styles.hamburgerIc}>
                   <Image
+                    priority
                     src="/gaurav/Menu_ic.svg"
                     alt="hamburger menu icon"
                     width={25}

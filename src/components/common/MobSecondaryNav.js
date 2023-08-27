@@ -18,6 +18,7 @@ const MobSecondaryNav = () => {
           <li className={styles.activeLi}>
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/home_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -32,6 +33,7 @@ const MobSecondaryNav = () => {
             <li>
               <div className={styles.icon}>
                 <Image
+                  priority
                   src="/gaurav/cricket_ic.svg"
                   alt="home menu icon"
                   width={12}
@@ -47,6 +49,7 @@ const MobSecondaryNav = () => {
             <li>
               <div className={styles.icon}>
                 <Image
+                  priority
                   src="/gaurav/football_ic.svg"
                   alt="home menu icon"
                   width={12}
@@ -61,6 +64,7 @@ const MobSecondaryNav = () => {
           <li>
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/wwe_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -74,6 +78,7 @@ const MobSecondaryNav = () => {
           <li>
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -89,6 +94,7 @@ const MobSecondaryNav = () => {
           More
           <div className={styles.icon}>
             <Image
+              priority
               src="/gaurav/down_arrow_ic.svg"
               alt="home menu icon"
               width={12}
@@ -111,6 +117,7 @@ const MobSecondaryNav = () => {
           <li>
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -125,6 +132,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -139,6 +147,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -153,11 +162,12 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
                 height={12}
-                
+
                 // className={styles.plainIc}
               />
             </div>
@@ -167,6 +177,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -180,6 +191,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -193,6 +205,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -206,6 +219,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -219,6 +233,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -232,6 +247,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -245,6 +261,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -258,6 +275,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -271,6 +289,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -284,6 +303,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -297,6 +317,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -310,6 +331,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -323,6 +345,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -336,6 +359,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -349,6 +373,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -362,6 +387,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -375,6 +401,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -388,6 +415,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -401,6 +429,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -414,6 +443,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -427,6 +457,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -440,6 +471,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -453,6 +485,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -466,6 +499,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -479,6 +513,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}
@@ -492,6 +527,7 @@ const MobSecondaryNav = () => {
             {" "}
             <div className={styles.icon}>
               <Image
+                priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
                 width={12}

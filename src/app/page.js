@@ -1,17 +1,11 @@
-// "use client";
 import React, { Suspense } from "react";
 import styles from "./page.module.css";
 import NewsSection from "@/components/common/NewsSection";
 import NewsSectionLatest from "../components/common/NewsSectionLatest";
 import MobSecondaryNav from "@/components/common/MobSecondaryNav";
-// import OrganisationLd from "@/json-ld/OrganisationLd";
-import LiveScoreSection from "@/components/common/LiveScoreSection";
-import Loading from "./loading";
 import FaqLive from "@/components/common/FaqLive";
 import UpdatesSound from "@/components/common/UpdatesSound";
-// import HeaderBox2 from "@/components/common/HeaderBox2";
 import CardSlider from "@/components/home/CardSlider";
-import Link from "next/link";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
@@ -29,16 +23,12 @@ const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
 const getData = async () => {
   const res = await fetch(
     `${base_url}/matches?token=${key}&date=${formattedDate}`,
-    {
-      cache: "no-store",
-    }
+
+    // cache: "no-store",
+    { next: { revalidate: 30 } }
   );
   const data = await res.json();
   return data.response.items;
-};
-
-const fetchLiveScores = async () => {
-  const res = await fetch;
 };
 
 export async function generateMetadata() {
@@ -71,39 +61,32 @@ const page = async () => {
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
         <div className="scores">
-          <Suspense fallback={<Loading />}>
-            <UpdatesSound />
-            <div style={{ marginTop: "2rem" }} className="slider">
-              <CardSlider cards={sortedResponses} />
-            </div>
-          </Suspense>
+          {/* <Suspense fallback={"Loading..."}> */}
+          <UpdatesSound />
+          <div style={{ marginTop: "2rem" }} className="slider">
+            <CardSlider cards={sortedResponses} />
+          </div>
+          {/* </Suspense> */}
         </div>
         <NewsSectionLatest />
 
         <div className={styles.newsSectionDiv}>
-          <Suspense fallback="Loading....">
-            <NewsSection name="CRICKET" id="2" slug="cricket" />
-          </Suspense>
-          <Suspense fallback="Loading....">
-            <NewsSection name="WWE" id="4" slug="wwe" />
-          </Suspense>
-          <Suspense fallback="Loading....">
-            <NewsSection name="FOOTBALL" id="3" slug="football" />
-          </Suspense>
-          <Suspense fallback="Loading....">
-            <NewsSection
-              name="FANTASY CRICKET TIPS"
-              id="150559"
-              slug="fantasy-cricket"
-            />
-          </Suspense>
-          {/* {data?.map((item) => {
-            return (
-              <div key={item.ID}>
-                <NewsSection name={item.name} slug={item.slug} />
-              </div>
-            );
-          })} */}
+          {/* <Suspense fallback="Loading...."> */}
+          <NewsSection name="CRICKET" id="2" slug="cricket" />
+          {/* </Suspense> */}
+          {/* <Suspense fallback="Loading....">  */}
+          <NewsSection name="WWE" id="4" slug="wwe" />
+          {/* </Suspense> */}
+          {/* <Suspense fallback="Loading...."> */}
+          <NewsSection name="FOOTBALL" id="3" slug="football" />
+          {/* </Suspense> */}
+          {/* <Suspense fallback="Loading...."> */}
+          <NewsSection
+            name="FANTASY CRICKET TIPS"
+            id="150559"
+            slug="fantasy-cricket"
+          />
+          {/* </Suspense> */}
         </div>
         <div className="header">
           <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>

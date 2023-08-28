@@ -1,5 +1,7 @@
-const siteUrl =
-  process.env.NODE_ENV == "production" ? process.env.siteUrl : "localhost:3000";
+// const siteUrl =
+//   process.env.NODE_ENV == "production" ? process.env.siteUrl : "localhost:3000";
+
+const siteUrl = "test.sportzwiki.com";
 
 module.exports = {
   siteUrl,

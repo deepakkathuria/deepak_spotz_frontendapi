@@ -141,7 +141,7 @@ export async function generateMetadata({ params }) {
   const post = await fetchPostBySlug(slug);
 
   const title = post?.title?.rendered ?? "SportzWiki";
-  const description = post?.excerpt?.rendered ?? "SportzWiki";
+  const description = post?.meta_description ?? "SportzWiki";
   const imageUrl = post?.featured_image_url ?? "";
   const parsedTitle = (title ?? "").replace(/<[^>]+>/g, "");
   const parsedDescription = (description ?? "").replace(/<[^>]+>/g, "");

@@ -26,7 +26,7 @@ export async function GET(request) {
 
   const sitemaps = Array(amountOfSitemapFiles)
     .fill("")
-    .map((v, index) => `${siteUrl}/images-sitemap-${index}.xml`);
+    .map((v, index) => `https://${siteUrl}/images-sitemap-${index}.xml`);
 
   return getServerSideSitemapIndex(sitemaps);
 }

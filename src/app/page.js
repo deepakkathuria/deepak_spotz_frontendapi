@@ -32,14 +32,15 @@ const getData = async () => {
 };
 
 export async function generateMetadata() {
-  const siteURL = "https://sportzwiki.com";
+  const siteURL = "https://sportzwiki.com/";
 
   return {
-    title: `Sportzwiki`,
+    title: `Sports News: Get Latest News on Football, Cricket, Tennis, WWE, E-Sports`,
     description: `Latest Sports News: Get all latest sports news today on different sports, from Cricket, Football, Tennis, WWE, Esports, Badminton, Basketball, Boxing, F1, Hockey, Kabaddi &amp; Golf.`,
     alternates: {
       canonical: `${siteURL}`,
     },
+    robots:`index, follow`
   };
 }
 

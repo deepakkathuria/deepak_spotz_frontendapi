@@ -69,7 +69,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
   // const { Currentpage = 1 } = params;
   const categoryData = await fetchCategoryDataBySlug(category);
 
-  // console.log(categoryData, "categorydatatatatta");
+  // console.log(categoryData[0], "categorydatatatatta");
   // if (categoryData.length < 1) {
   //   redirect(404, "/");
   // }
@@ -253,7 +253,10 @@ const CategoryPosts = async ({ params, searchParams }) => {
           )}
         </div>
         <h2>Latest {decodeURIComponent(params.category)} News</h2>
-        <p className={styles.catDescription}>{categoryData[0]?.description}</p>
+        <div
+          className={styles.catDescription}
+          dangerouslySetInnerHTML={{ __html: categoryData[0]?.description }}
+        />
         <FaqLive />
       </div>
     </>

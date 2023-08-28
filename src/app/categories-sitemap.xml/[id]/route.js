@@ -36,7 +36,7 @@ export async function GET(request, { params }) {
 
     const sitemap_data = urls?.map((ele) => {
       return {
-        loc: `${site_url}/${ele.slug}`,
+        loc: `https://${site_url}/${ele.slug}`,
         // lastmod: ele.last_modified,
       };
     });

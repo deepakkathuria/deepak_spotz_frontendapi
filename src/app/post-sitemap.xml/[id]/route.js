@@ -35,17 +35,13 @@ export async function GET(request, { params }) {
     };
 
     const urls = await fetchPostUrls(id);
-    // console.log(
-    //   urls[0].slug,
-    //   urls[0].primary_category,
-    //   "urlssssssssssssssssssss"
-    // );
+    // console.log(urls, "urlssssssssssssssssssss");
     // const a = [];
 
     const sitemap_data = urls?.map((ele) => {
       return {
-        loc: `${site_url}/${ele.primary_category_slug}/${ele.slug}`,
-        lastmod: ele.last_modified,
+        loc: `https://${site_url}/${ele.primary_category_slug}/${ele.slug}`,
+        lastmod: ele.modified_gmt,
       };
     });
     return getServerSideSitemap(sitemap_data);

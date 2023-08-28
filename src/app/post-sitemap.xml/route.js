@@ -30,7 +30,7 @@ export async function GET(request) {
 
   const sitemaps = Array(amountOfSitemapFiles)
     .fill("")
-    .map((v, index) => `${siteUrl}/post-sitemap-${index}.xml`);
+    .map((v, index) => `https://${siteUrl}/post-sitemap-${index}.xml`);
 
   // console.log(sitemaps);
 

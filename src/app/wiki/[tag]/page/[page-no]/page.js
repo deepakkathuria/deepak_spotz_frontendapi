@@ -1,10 +1,10 @@
 // "use client"
 import React from "react";
-import styles from "../../[category]/CategoryPosts.module.css";
-import NewsCard from "../../../components/common/NewsCard";
-import axios from "axios";
+import styles from "../../../../[category]/CategoryPosts.module.css";
+import NewsCard from "../../../../../components/common/NewsCard";
+// import axios from "axios";
 import Link from "next/link";
-import Breadcrumb from "@/components/common/Breadcrumb";
+import Breadcrumb from "../../../../../components/common/Breadcrumb";
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
@@ -17,7 +17,7 @@ const base64Credentials = buffer.toString("base64");
 
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
-import slugify from "slugify";
+// import slugify from "slugify";
 
 const fetchTagIdByTagSlug = async (tagSlug) => {
   const res = await fetch(
@@ -67,12 +67,46 @@ const fetchPostsByTagId = async (tagId, currentPage) => {
 // };
 // Fetch Data tag page
 
+// export async function generateMetadata({ params }) {
+//   const { tag } = params;
+//   return {
+//     title: `SportzWiki | ${decodeURIComponent(tag)}`,
+//     description:
+//       "Latest Sports News: Get all latest sports news today on different sports, from Cricket, Football, Tennis, WWE, Esports, Badminton, Basketball, Boxing, F1, Hockey, Kabaddi &amp; Golf.",
+//   };
+// }
+
 export async function generateMetadata({ params }) {
+  const DATA_PER_PAGE = 48;
   const { tag } = params;
+  let { "page-no": currentPage = "1" } = params;
+  currentPage = parseInt(currentPage);
+
+  const tagData = await fetchTagIdByTagSlug(tag);
+  const totalPages = Math.ceil((tagData[0]?.count || 0) / DATA_PER_PAGE);
+
+  const iconsOther = [];
+
+  if (currentPage !== 1) {
+    iconsOther.push({
+      rel: "prev",
+      url: `https://www.sportzwiki.com/wiki/${tag}/page/${currentPage - 1}`,
+    });
+  }
+
+  if (currentPage !== totalPages) {
+    iconsOther.push({
+      rel: "next",
+      url: `https://www.sportzwiki.com/wiki/${tag}/page/${currentPage + 1}`,
+    });
+  }
+
   return {
     title: `SportzWiki | ${decodeURIComponent(tag)}`,
-    description:
-      "Latest Sports News: Get all latest sports news today on different sports, from Cricket, Football, Tennis, WWE, Esports, Badminton, Basketball, Boxing, F1, Hockey, Kabaddi &amp; Golf.",
+    description: "this is a comment",
+    icons: {
+      other: iconsOther,
+    },
   };
 }
 
@@ -81,11 +115,38 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
   const tagId = await fetchTagIdByTagSlug(tag);
   const tagData = await fetchTagIdByTagSlug(tag);
-  const totalTags = tagData[0].count;
-  // console.log(totalTags, "taggggghjvdvhjkjvhks");
-  // console.log(`tagId: ${tagId} avskhvsjfghv`);
+  // const totalTags = tagData[0].count;
+  // console.log(tagId[0]?.name,'tagiddddddddd')
 
-  // console.log(PostsOfTag, "postsOfTaghjhavsdjhvjhvsj");
+  let { "page-no": currentPage = "1" } = params;
+  currentPage = parseInt(currentPage, 10);
+
+  if (isNaN(currentPage) || currentPage <= 0) {
+    currentPage = 1;
+  }
+
+  const dataPerPage = 48;
+
+  const totalPages = Math.ceil((tagData[0]?.count || 0) / dataPerPage);
+  const pagesToShow = 5;
+  const delta = Math.floor(pagesToShow / 2);
+
+  let startPage = Math.max(currentPage - delta, 1);
+  let endPage = Math.min(currentPage + delta, totalPages);
+
+  if (startPage > 2) {
+    startPage += 1;
+  }
+  if (endPage < totalPages - 1) {
+    endPage -= 1;
+  }
+
+  const range = (start, end) =>
+    Array.from({ length: end - start + 1 }, (_, i) => i + start);
+
+  const pageRange = range(startPage, endPage);
+
+  const PostsOfTag = await fetchPostsByTagId(tagId[0].id, currentPage);
 
   const breadcrumbs = [
     {
@@ -101,58 +162,6 @@ const CategoryPosts = async ({ params, searchParams }) => {
       // url: `/${tag}`,
     },
   ];
-
-  // const totalData = await axios.get(
-  //   `${base_url}/gettotalpostbytagslug?slug=${tag}`
-  // );
-  const totalData = totalTags;
-
-  // console.log(totalData, " : total data, ", "type is : ", typeof totalData);
-
-  const dataPerPage = 48;
-
-  const totalPages = Math.ceil(totalData?.data?.count / dataPerPage);
-
-  // console.log(totalPages, "totalData");
-
-  let currentPage = 1;
-
-  if (Number(searchParams.page) >= 1) {
-    currentPage = Number(searchParams.page);
-  }
-
-  const PostsOfTag = await fetchPostsByTagId(tagId[0].id, currentPage);
-  // console.log(PostsOfTag, "postsOfTag");
-
-  // const data = await axios.get(
-  //   `${base_url}getpostbytagslug?slug=cricket&page=1&limit=100`
-  // );
-
-  // const data = await fetchPosts(tag, dataPerPage);
-  // console.log(data, "cricket");
-
-  let pageNumbers = [];
-  const start = Math.max(currentPage - 4, 1);
-  const end = Math.min(currentPage + 4, totalPages);
-
-  for (let i = start; i <= end; i++) {
-    pageNumbers.push(i);
-  }
-
-  // Adjust the range if currentPage is close to the start or end
-  if (start === 1 && end < 9) {
-    const diff = 9 - end;
-    const additionalNumbers = Math.min(diff, totalPages - end);
-    for (let i = end + 1; i <= end + additionalNumbers; i++) {
-      pageNumbers.push(i);
-    }
-  } else if (end === totalPages && start > totalPages - 8) {
-    const diff = start - (totalPages - 8);
-    const additionalNumbers = Math.min(diff, start - 1);
-    for (let i = start - 1; i >= start - additionalNumbers; i--) {
-      pageNumbers.unshift(i);
-    }
-  }
 
   return (
     <>
@@ -226,7 +235,8 @@ const CategoryPosts = async ({ params, searchParams }) => {
           <Breadcrumb breadcrumbsObj={breadcrumbs} />
           <div className={styles.categoryTitleDescription}>
             <h1 className={styles.categoryTitle}>
-              {decodeURIComponent(params.tag)}
+              {/* {decodeURIComponent(params.tag)} */}
+              {tagId[0]?.name}
             </h1>
           </div>
 
@@ -249,6 +259,48 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
         <div className={styles.paginationContainer}>
           {currentPage > 1 && (
+            <Link
+              className={styles.nextPrevBtn}
+              aria-label="Previous page"
+              href={`/wiki/${tag}/page/${currentPage - 1}`}
+            >
+              Previous
+            </Link>
+          )}
+          {startPage > 2 && (
+            <>
+              <Link href={`/wiki/${tag}/page/1`}>1</Link>
+              <span aria-hidden="true">...</span>
+            </>
+          )}
+          {pageRange.map((page) => (
+            <Link
+              className={page === currentPage ? styles.activePage : ""}
+              key={page}
+              href={`/wiki/${tag}/page/${page}`}
+            >
+              {page}
+            </Link>
+          ))}
+          {endPage < totalPages - 1 && (
+            <>
+              <span aria-hidden="true">...</span>
+              <Link href={`/wiki/${tag}/page/${totalPages}`}>{totalPages}</Link>
+            </>
+          )}
+          {currentPage < totalPages && (
+            <Link
+              aria-label="Next page"
+              href={`/wiki/${tag}/page/${currentPage + 1}`}
+              className={styles.nextPrevBtn}
+            >
+              Next
+            </Link>
+          )}
+        </div>
+
+        {/* <div className={styles.paginationContainer}>
+          {currentPage > 1 && (
             <>
               <a href={`/${category}`}>{"<<"}</a>
             </>
@@ -270,7 +322,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
               <a href={`/${tag}?page=${currentPage + 1}`}>{">>"}</a>
             </>
           )}
-        </div>
+        </div> */}
       </div>
     </>
   );

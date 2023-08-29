@@ -51,13 +51,17 @@
   justify-content: center;
 }
 
-.activeLink {
+.activePage {
   background-color: #092d55;
   color: #fff;
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 3px;
   font-weight: bold;
+}
+
+.nextPrevBtn {
+  font-weight: 600;
 }
 
 @media (max-width: 576px) {

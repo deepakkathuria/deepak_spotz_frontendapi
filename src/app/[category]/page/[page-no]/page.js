@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./CategoryPosts.module.css";
-import NewsCard from "@/components/common/NewsCard";
+import styles from "../../CategoryPosts.module.css";
+import NewsCard from "../../../../components/common/NewsCard";
 import axios from "axios";
-import Breadcrumb from "@/components/common/Breadcrumb";
+import Breadcrumb from "../../../../components/common/Breadcrumb";
 // const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
 const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
@@ -17,8 +17,9 @@ const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
-import { redirect } from "next/dist/server/api-utils";
-import FaqLive from "@/components/common/FaqLive";
+// import { redirect } from "next/dist/server/api-utils";
+import FaqLive from "../../../../components/common/FaqLive";
+import Link from "next/link";
 
 const fetchPostsByCategoryId = async (categoryId, currentPage) => {
   const res = await fetch(
@@ -57,24 +58,44 @@ const fetchCategoryDataBySlug = async (categorySlug) => {
 };
 
 export async function generateMetadata({ params }) {
+  const DATA_PER_PAGE = 48;
   const category = params.category;
+  let { "page-no": currentPage = "1" } = params;
+  currentPage = parseInt(currentPage);
+
+  const categoryData = await fetchCategoryDataBySlug(category);
+  const totalPages = Math.ceil((categoryData[0]?.count || 0) / DATA_PER_PAGE);
+
+  const iconsOther = [];
+
+  if (currentPage !== 1) {
+    iconsOther.push({
+      rel: "prev",
+      url: `https://www.sportzwiki.com/${category}/page/${currentPage - 1}`,
+    });
+  }
+
+  if (currentPage !== totalPages) {
+    iconsOther.push({
+      rel: "next",
+      url: `https://www.sportzwiki.com/${category}/page/${currentPage + 1}`,
+    });
+  }
+
   return {
     title: `SportzWiki | ${decodeURIComponent(category)}`,
     description: "this is a comment",
+    icons: {
+      other: iconsOther,
+    },
   };
 }
 
 const CategoryPosts = async ({ params, searchParams }) => {
   const category = params.category;
+  // let { "page-no": currentPage = 1 } = params;
   // const { Currentpage = 1 } = params;
   const categoryData = await fetchCategoryDataBySlug(category);
-
-  // console.log(categoryData[0], "categorydatatatatta");
-  // if (categoryData.length < 1) {
-  //   redirect(404, "/");
-  // }
-  // console.log(categoryData, "categoryDatabsdjbhvsjdkbhjh");
-  // console.log(categoryPosts, "categoryPosts");
 
   const breadcrumbs = [
     {
@@ -87,47 +108,40 @@ const CategoryPosts = async ({ params, searchParams }) => {
     },
   ];
 
+  let { "page-no": currentPage = "1" } = params;
+  currentPage = parseInt(currentPage, 10);
+
+  if (isNaN(currentPage) || currentPage <= 0) {
+    currentPage = 1;
+  }
+
   const dataPerPage = 48;
 
-  const totalPages = Math.ceil(categoryData[0]?.count / dataPerPage);
+  const totalPages = Math.ceil((categoryData[0]?.count || 0) / dataPerPage);
+  const pagesToShow = 5;
+  const delta = Math.floor(pagesToShow / 2);
 
-  let currentPage = 1;
+  let startPage = Math.max(currentPage - delta, 1);
+  let endPage = Math.min(currentPage + delta, totalPages);
 
-  if (Number(searchParams.page) >= 1) {
-    currentPage = Number(searchParams.page);
+  if (startPage > 2) {
+    startPage += 1;
   }
-  // console.log(currentPage, "countjbkbdfb");
-
-  let offset = (currentPage - 1) * dataPerPage;
-
-  let pageNumbers = [];
-  const start = Math.max(currentPage - 4, 1);
-  const end = Math.min(currentPage + 4, totalPages);
-
-  for (let i = start; i <= end; i++) {
-    pageNumbers.push(i);
+  if (endPage < totalPages - 1) {
+    endPage -= 1;
   }
 
-  // Adjust the range if currentPage is close to the start or end
+  const range = (start, end) =>
+    Array.from({ length: end - start + 1 }, (_, i) => i + start);
 
-  // pagination logic OLD
-  if (start === 1 && end < 9) {
-    const diff = 9 - end;
-    const additionalNumbers = Math.min(diff, totalPages - end);
-    for (let i = end + 1; i <= end + additionalNumbers; i++) {
-      pageNumbers.push(i);
-    }
-  } else if (end === totalPages && start > totalPages - 8) {
-    const diff = start - (totalPages - 8);
-    const additionalNumbers = Math.min(diff, start - 1);
-    for (let i = start - 1; i >= start - additionalNumbers; i--) {
-      pageNumbers.unshift(i);
-    }
-  }
+  const pageRange = range(startPage, endPage);
+
   const categoryPosts = await fetchPostsByCategoryId(
     categoryData[0]?.id,
     currentPage
   );
+
+  // console.log(categoryPosts[0]?.primary_category,'categoryPostscategoryPosts')
 
   return (
     <>
@@ -196,7 +210,12 @@ const CategoryPosts = async ({ params, searchParams }) => {
               {decodeURIComponent(params.category)} News
             </h1> */}
             <h1 className={styles.categoryTitle}>
-              {capitalizeFirstLetter(decodeURIComponent(params.category))} News
+              {capitalizeFirstLetter(
+                categoryPosts[0]?.primary_category ||
+                  decodeURIComponent(params.category)
+              )}
+              <span> </span>
+              News
             </h1>
 
             {/* <p className={styles.catDescription}>
@@ -230,29 +249,49 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
         <div className={styles.paginationContainer}>
           {currentPage > 1 && (
+            <Link
+              className={styles.nextPrevBtn}
+              aria-label="Previous page"
+              href={`/${category}/page/${currentPage - 1}`}
+            >
+              Previous
+            </Link>
+          )}
+          {startPage > 2 && (
             <>
-              <a href={`/${category}`}>{"<<"}</a>
+              <Link href={`/${category}/page/1`}>1</Link>
+              <span aria-hidden="true">...</span>
             </>
           )}
-
-          {pageNumbers &&
-            pageNumbers.map((page, index) => (
-              <a
-                key={index}
-                href={`/${category}?page=${page}`}
-                className={page === currentPage ? styles.activeLink : ""}
-              >
-                {page}
-              </a>
-            ))}
-
-          {currentPage < totalPages && (
+          {pageRange.map((page) => (
+            <Link
+              className={page === currentPage ? styles.activePage : ""}
+              key={page}
+              href={`/${category}/page/${page}`}
+            >
+              {page}
+            </Link>
+          ))}
+          {endPage < totalPages - 1 && (
             <>
-              <a href={`/${category}?page=${currentPage + 1}`}>{">>"}</a>
+              <span aria-hidden="true">...</span>
+              <Link href={`/${category}/page/${totalPages}`}>{totalPages}</Link>
             </>
+          )}
+          {currentPage < totalPages && (
+            <Link
+              aria-label="Next page"
+              href={`/${category}/page/${currentPage + 1}`}
+              className={styles.nextPrevBtn}
+            >
+              Next
+            </Link>
           )}
         </div>
-        <h2>Latest {decodeURIComponent(params.category)} News</h2>
+
+        <h2 style={{ marginTop: "3rem" }}>
+          Latest {decodeURIComponent(params.category)} News
+        </h2>
         <div
           className={styles.catDescription}
           dangerouslySetInnerHTML={{ __html: categoryData[0]?.description }}

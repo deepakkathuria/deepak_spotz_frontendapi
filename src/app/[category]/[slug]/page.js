@@ -35,6 +35,7 @@ const fetchRelatedPostsByTagId = async (id) => {
   const response = await fetch(
     `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?tags=${id}&per_page=6`,
     {
+      next: { revalidate: 300 },
       method: "GET",
       headers: {
         Authorization: `Basic ${base64Credentials}`,
@@ -52,6 +53,7 @@ const fetchPostBySlug = async (slug) => {
     const response = await fetch(
       `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?slug=${slug}`,
       {
+        next: { revalidate: 300 },
         method: "GET",
         headers: {
           Authorization: `Basic ${base64Credentials}`,
@@ -94,6 +96,7 @@ const fetchTagById = async (tagId) => {
   const response = await fetch(
     `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/tags/${tagId}`,
     {
+      next: { revalidate: 300 },
       method: "GET",
       headers: {
         Authorization: `Basic ${base64Credentials}`,
@@ -109,6 +112,7 @@ const fetchCategoryById = async (categoryId) => {
   const response = await fetch(
     `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/categories/${categoryId}`,
     {
+      next: { revalidate: 300 },
       method: "GET",
       headers: {
         Authorization: `Basic ${base64Credentials}`,
@@ -123,6 +127,7 @@ const getAuthorName = async (authorId) => {
   const response = await fetch(
     `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/users/${authorId}`,
     {
+      next: { revalidate: 300 },
       method: "GET",
       headers: {
         Authorization: `Basic ${base64Credentials}`,
@@ -321,14 +326,10 @@ const page = async ({ params }) => {
             />
           </Suspense>
           <Suspense fallback={<p>Loading Post list bar...</p>}>
-            <PostListBar category={articleBody?.categories[0].name} />
+            <PostListBar category={articleBody?.categories[0].slug} />
           </Suspense>
         </div>
         <div className="header" style={{ marginTop: "1rem" }}>
-          {/* <HeaderBox2
-            header="SportzWiki Media"
-            content="It is an honour to introduce—Sportzwiki – sports is life, is one of the leading online sports mediums across the globe. The digital platform over the years has grabbed the attention of an audience worldwide.From the cricketing ground to the badminton court—the dedicated team at Sportzwiki has been always on the lookout to provide insights, pre and post-match stuff and plenty with 24/7 window."
-          /> */}
           <FaqLive />
         </div>
         <div className={styles.relatedArticleSection}>

@@ -21,7 +21,7 @@ import { OrganizationJsonLd } from "next-seo";
 
 const fetchMetaData = async (tag) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_BASE_URL_WP}/${tag}`,
+    `${NEXT_PUBLIC_BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_BASE_URL_WP}/wiki/${tag}`,
     {
       next: { revalidate: 1500 },
       method: "GET",
@@ -91,41 +91,191 @@ const fetchPostsByTagId = async (tagId, currentPage) => {
 //   };
 // }
 
+// export async function generateMetadata({ params }) {
+//   const DATA_PER_PAGE = 48;
+//   const { tag } = params;
+//   let { "page-no": currentPage = "1" } = params;
+//   currentPage = parseInt(currentPage);
+
+//   const tagData = await fetchTagIdByTagSlug(tag);
+//   const totalPages = Math.ceil((tagData[0]?.count || 0) / DATA_PER_PAGE);
+
+//   const metaData = await fetchMetaData(tag);
+//   // console.log(metaData,'metaDatametaDatametaDatametaData')
+
+//   const headContent = metaData.head;
+//   // Extract meta title
+//   const titleMatch = headContent.match(/<title>(.*?)<\/title>/);
+//   const metaTitle = titleMatch ? titleMatch[1] : null;
+
+//   // Extract meta description
+//   const descriptionMatch = headContent.match(
+//     /<meta name="description" content="(.*?)"/
+//   );
+//   const metaDescription = descriptionMatch ? descriptionMatch[1] : null;
+
+//   // Extract robots
+//   const robotsMatch = headContent.match(/<meta name="robots" content="(.*?)"/);
+//   const robots = robotsMatch ? robotsMatch[1] : null;
+
+//   // Split the content by commas
+//   const robotsProperties = robots.split(",").map((property) => property.trim());
+
+//   // Access each property separately
+//   const follow = robotsProperties.includes("follow") ? true : false;
+//   const index = robotsProperties.includes("index") ? true : false;
+//   const maxSnippet = robotsProperties.find((property) =>
+//     property.startsWith("max-snippet:")
+//   );
+//   const maxVideoPreview = robotsProperties.find((property) =>
+//     property.startsWith("max-video-preview:")
+//   );
+//   const maxImagePreview = robotsProperties.find((property) =>
+//     property.startsWith("max-image-preview:")
+//   );
+
+//   // Extract canonical
+//   const canonicalMatch = headContent.match(
+//     /<link rel="canonical" href="(.*?)"/
+//   );
+//   const canonical = canonicalMatch
+//     ? canonicalMatch[1].replace(
+//         "https://swdupli.sportzwiki.com",
+//         "https://sportzwiki.com"
+//       )
+//     : null;
+
+//   const iconsOther = [];
+
+//   if (currentPage !== 1) {
+//     iconsOther.push({
+//       rel: "prev",
+//       url: `https://www.sportzwiki.com/wiki/${tag}/page/${currentPage - 1}`,
+//     });
+//   }
+
+//   if (currentPage !== totalPages) {
+//     iconsOther.push({
+//       rel: "next",
+//       url: `https://www.sportzwiki.com/wiki/${tag}/page/${currentPage + 1}`,
+//     });
+//   }
+
+//   return {
+//     title: metaTitle,
+//     description: metaDescription,
+//     icons: {
+//       other: iconsOther,
+//     },
+//     robots: {
+//       index: index,
+//       follow: follow,
+//       "max-video-preview": maxVideoPreview,
+//       "max-image-preview": maxImagePreview,
+//       "max-snippet": maxSnippet,
+//     },
+//     alternates: {
+//       canonical: canonical,
+//     },
+//   };
+// }
+
 export async function generateMetadata({ params }) {
-  const DATA_PER_PAGE = 48;
-  const { tag } = params;
-  let { "page-no": currentPage = "1" } = params;
-  currentPage = parseInt(currentPage);
+  try {
+    const DATA_PER_PAGE = 48;
+    const { tag } = params;
+    let { "page-no": currentPage = "1" } = params;
+    currentPage = parseInt(currentPage);
 
-  const tagData = await fetchTagIdByTagSlug(tag);
-  const totalPages = Math.ceil((tagData[0]?.count || 0) / DATA_PER_PAGE);
+    const tagData = await fetchTagIdByTagSlug(tag);
+    const totalPages = Math.ceil((tagData[0]?.count || 0) / DATA_PER_PAGE);
 
-  // const metaData = await fetchMetaData(tag);
-  // console.log(metaData,'metaDatametaDatametaDatametaData')
+    const metaData = await fetchMetaData(tag);
 
-  const iconsOther = [];
+    const headContent = metaData.head;
 
-  if (currentPage !== 1) {
-    iconsOther.push({
-      rel: "prev",
-      url: `https://www.sportzwiki.com/wiki/${tag}/page/${currentPage - 1}`,
-    });
+    // Extract meta title
+    const titleMatch = headContent.match(/<title>(.*?)<\/title>/);
+    const metaTitle = titleMatch ? titleMatch[1] : null;
+
+    // Extract meta description
+    const descriptionMatch = headContent.match(
+      /<meta name="description" content="(.*?)"/
+    );
+    const metaDescription = descriptionMatch ? descriptionMatch[1] : null;
+
+    // Extract robots
+    const robotsMatch = headContent.match(
+      /<meta name="robots" content="(.*?)"/
+    );
+    const robots = robotsMatch ? robotsMatch[1] : null;
+
+    // Split the content by commas
+    const robotsProperties = robots
+      .split(",")
+      .map((property) => property.trim());
+
+    // Access each property separately
+    const follow = robotsProperties.includes("follow") ? true : false;
+    const index = robotsProperties.includes("index") ? true : false;
+    const maxSnippet = robotsProperties.find((property) =>
+      property.startsWith("max-snippet:")
+    );
+    const maxVideoPreview = robotsProperties.find((property) =>
+      property.startsWith("max-video-preview:")
+    );
+    const maxImagePreview = robotsProperties.find((property) =>
+      property.startsWith("max-image-preview:")
+    );
+
+    // Extract canonical
+    const canonicalMatch = headContent.match(
+      /<link rel="canonical" href="(.*?)"/
+    );
+    const canonical = canonicalMatch
+      ? canonicalMatch[1].replace(
+          "https://swdupli.sportzwiki.com",
+          "https://sportzwiki.com"
+        )
+      : null;
+
+    const iconsOther = [];
+
+    if (currentPage !== 1) {
+      iconsOther.push({
+        rel: "prev",
+        url: `https://www.sportzwiki.com/wiki/${tag}/page/${currentPage - 1}`,
+      });
+    }
+
+    if (currentPage !== totalPages) {
+      iconsOther.push({
+        rel: "next",
+        url: `https://www.sportzwiki.com/wiki/${tag}/page/${currentPage + 1}`,
+      });
+    }
+
+    return {
+      title: metaTitle,
+      description: metaDescription,
+      icons: {
+        other: iconsOther,
+      },
+      robots: {
+        index: index,
+        follow: follow,
+        "max-video-preview": maxVideoPreview,
+        "max-image-preview": maxImagePreview,
+        "max-snippet": maxSnippet,
+      },
+      alternates: {
+        canonical: canonical,
+      },
+    };
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+    // throw new Error("Failed to generate metadata. Please try again later.");
   }
-
-  if (currentPage !== totalPages) {
-    iconsOther.push({
-      rel: "next",
-      url: `https://www.sportzwiki.com/wiki/${tag}/page/${currentPage + 1}`,
-    });
-  }
-
-  return {
-    title: `SportzWiki | ${decodeURIComponent(tag)}`,
-    description: "this is a comment",
-    icons: {
-      other: iconsOther,
-    },
-  };
 }
 
 const CategoryPosts = async ({ params, searchParams }) => {

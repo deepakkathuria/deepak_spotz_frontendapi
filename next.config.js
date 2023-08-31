@@ -58,6 +58,11 @@ const nextConfig = {
     },
 
     {
+      source: "/cricket/fantasy-cricket",
+      destination: "/cricket/",
+    },
+
+    {
       source: "/:id",
       destination: "/:id/page/1",
     },

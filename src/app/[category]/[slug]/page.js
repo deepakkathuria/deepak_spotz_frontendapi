@@ -31,11 +31,26 @@ const fetchAD = async (adId) => {
   return ad;
 };
 
+const fetchMetaData = async (category, slug) => {
+  const res = await fetch(
+    `${NEXT_PUBLIC_BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_BASE_URL_WP}/${category}/${slug}`,
+    {
+      next: { revalidate: 1500 },
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+    }
+  );
+  const headData = await res.json();
+  return headData;
+};
+
 const fetchRelatedPostsByTagId = async (id) => {
   const response = await fetch(
     `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?tags=${id}&per_page=6`,
     {
-      next: { revalidate: 300 },
+      next: { revalidate: 1500 },
       method: "GET",
       headers: {
         Authorization: `Basic ${base64Credentials}`,
@@ -47,19 +62,17 @@ const fetchRelatedPostsByTagId = async (id) => {
 
 const fetchPostBySlug = async (slug) => {
   try {
-    // const response = await fetch(
-    //   `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?slug=england-mulling-to-introduce-a-new-t20-league-in-the-country-likely-to-scrap-vitality-blast-and-the-hundred-reports`
-    // );
     const response = await fetch(
       `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?slug=${slug}`,
       {
-        next: { revalidate: 300 },
         method: "GET",
         headers: {
           Authorization: `Basic ${base64Credentials}`,
         },
+        next: { revalidate: 1500 },
       }
     );
+
     const articleData = await response.json();
 
     // Fetch tags data and populate names
@@ -138,26 +151,78 @@ const getAuthorName = async (authorId) => {
   return authorName;
 };
 
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+// const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
 export async function generateMetadata({ params }) {
   const { slug } = params;
 
   const post = await fetchPostBySlug(slug);
+  // console.log(post,'postttttttttttttttttttttttt');
 
   const title = post?.title?.rendered ?? "SportzWiki";
   const description = post?.meta_description ?? "SportzWiki";
   const imageUrl = post?.featured_image_url ?? "";
   const parsedTitle = (title ?? "").replace(/<[^>]+>/g, "");
   const parsedDescription = (description ?? "").replace(/<[^>]+>/g, "");
+  let canonicalUrl = "";
 
-  // const htmlStringDescription = articleBody?.content.rendered;
+  try {
+    const metaData = await fetchMetaData(post?.categories[0].slug, post?.slug);
 
-  // const plainStringTitle = htmlStringTitle.replace(/<[^>]+>/g, "");
+    if (!metaData || !metaData.head) {
+      console.error(
+        "Error: Failed to fetch metadata or metadata is incomplete."
+      );
+      return; // Exit early if there's no metadata or head content
+    }
+
+    const headContent = metaData.head;
+    const canonicalRegex = /<link rel="canonical" href="(.*?)" \/>/;
+    const match = headContent.match(canonicalRegex);
+
+    if (match && match[1]) {
+      canonicalUrl = match[1].replace(
+        "https://swdupli.sportzwiki.com",
+        "https://sportzwiki.com"
+      );
+      console.log("Canonical URL:", canonicalUrl);
+    } else {
+      console.log("Canonical URL not found.");
+    }
+  } catch (error) {
+    console.error("An unexpected issue occurred. Please try again later.");
+    console.debug("Detailed error:", error.message); // For debugging purposes
+  }
+
+  const robotsData =
+    post?.robots === ""
+      ? {
+          robots: {
+            index: true,
+            follow: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+          },
+        }
+      : {
+          robots: {
+            index: false,
+            follow: false,
+            // "max-video-preview": -1,
+            // "max-image-preview": "large",
+            // "max-snippet": -1,
+          },
+        };
 
   return {
     title: parsedTitle,
     description: description,
+    ...robotsData,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    // canonical: canonicalUrl,
 
     openGraph: {
       title: parsedTitle,
@@ -288,6 +353,8 @@ const page = async ({ params }) => {
     datePublished: articleBody?.date_gmt ?? "",
     dateModified: articleBody?.date_gmt ?? "",
   };
+
+  // console.log(headContent, "shbjfvjvcjyujh");
 
   // console.log(adAfterImage, "jhvfhbshbskbkjsbvhk");
 

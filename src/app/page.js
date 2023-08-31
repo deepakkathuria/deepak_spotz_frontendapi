@@ -25,7 +25,7 @@ const getData = async () => {
     `${base_url}/matches?token=${key}&date=${formattedDate}`,
 
     // cache: "no-store",
-    { next: { revalidate: 30 } }
+    { next: { revalidate: 60 } }
   );
   const data = await res.json();
   return data.response.items;
@@ -40,7 +40,7 @@ export async function generateMetadata() {
     alternates: {
       canonical: `${siteURL}`,
     },
-    robots:`index, follow`
+    robots: `index, follow`,
   };
 }
 
@@ -82,11 +82,11 @@ const page = async () => {
           <NewsSection name="FOOTBALL" id="3" slug="football" />
           {/* </Suspense> */}
           {/* <Suspense fallback="Loading...."> */}
-          <NewsSection
+          {/* <NewsSection
             name="FANTASY CRICKET TIPS"
             id="150559"
             slug="fantasy-cricket"
-          />
+          /> */}
           {/* </Suspense> */}
         </div>
         <div className="header">

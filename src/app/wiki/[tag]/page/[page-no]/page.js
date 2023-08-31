@@ -19,6 +19,21 @@ import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
 // import slugify from "slugify";
 
+const fetchMetaData = async (tag) => {
+  const res = await fetch(
+    `${NEXT_PUBLIC_BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_BASE_URL_WP}/${tag}`,
+    {
+      next: { revalidate: 1500 },
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+    }
+  );
+  const headData = await res.json();
+  return headData;
+};
+
 const fetchTagIdByTagSlug = async (tagSlug) => {
   const res = await fetch(
     `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/tags?slug=${tagSlug}`,
@@ -84,6 +99,9 @@ export async function generateMetadata({ params }) {
 
   const tagData = await fetchTagIdByTagSlug(tag);
   const totalPages = Math.ceil((tagData[0]?.count || 0) / DATA_PER_PAGE);
+
+  // const metaData = await fetchMetaData(tag);
+  // console.log(metaData,'metaDatametaDatametaDatametaData')
 
   const iconsOther = [];
 

@@ -1,6 +1,7 @@
 import React from "react";
 import PostDisplayMain from "@/components/common/PostDisplayMain";
 import CategoryDisplayMain from "@/components/common/CategoryDisplayMain";
+import Link from "next/link";
 const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
 const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
 const NEXT_PUBLIC_WP_API_PASSWORD = process.env.NEXT_PUBLIC_WP_API_PASSWORD;

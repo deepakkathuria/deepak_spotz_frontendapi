@@ -57,15 +57,20 @@ const nextConfig = {
       destination: "/cricket/:id",
     },
 
-    {
-      source: "/cricket/fantasy-cricket",
-      destination: "/cricket/",
-    },
+    // {
+    //   source: "/cricket/fantasy-cricket",
+    //   destination: "/cricket/",
+    // },
 
     {
       source: "/:id",
       destination: "/:id/page/1",
     },
+
+    // {
+    //   source: "/:id/:slug/:slug1",
+    //   destination: "/:id/:slug/:slug1/page/1",
+    // },
 
     {
       source: "/wiki/:id",

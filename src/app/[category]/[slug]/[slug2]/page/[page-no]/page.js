@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "../../CategoryPosts.module.css";
-import NewsCard from "../../../../components/common/NewsCard";
+import styles from "../../../../CategoryPosts.module.css";
+import NewsCard from "../../../../../../components/common/NewsCard";
 import axios from "axios";
-import Breadcrumb from "../../../../components/common/Breadcrumb";
+import Breadcrumb from "../../../../../../components/common/Breadcrumb";
 // const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
 const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
@@ -18,7 +18,7 @@ const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
 // import { redirect } from "next/dist/server/api-utils";
-import FaqLive from "../../../../components/common/FaqLive";
+import FaqLive from "../../../../../../components/common/FaqLive";
 import Link from "next/link";
 
 const fetchMetaData = async (categorySlug) => {
@@ -154,7 +154,8 @@ const fetchCategoryDataBySlug = async (categorySlug) => {
 export async function generateMetadata({ params }) {
   try {
     const DATA_PER_PAGE = 48;
-    const category = params.category;
+    const category = params.slug;
+    // console.log(category, "categorycategorycategory99978977866");
     let { "page-no": currentPage = "1" } = params;
     currentPage = parseInt(currentPage);
 
@@ -245,16 +246,17 @@ export async function generateMetadata({ params }) {
     };
   } catch (error) {
     console.error("Error generating metadata:", error);
-    throw new Error("Failed to generate metadata. Please try again later.");
+    // throw new Error("Failed to generate metadata. Please try again later.");
   }
 }
 
 const CategoryPosts = async ({ params, searchParams }) => {
-  const category = params.category;
-  let { "page-no": currentPage = 1 } = params;
+  const { category, slug, slug2 } = params;
+  // const { slug } = params;
+  // let { "page-no": currentPage = 1 } = params;
   // const { Currentpage = 1 } = params;
   // const categoryData = await fetchCategoryDataBySlug(category);
-  const categoryData = await fetchCategoryDataBySlug(category);
+  const categoryData = await fetchCategoryDataBySlug(slug2);
   // console.log(categoryData[0]?.name,'categoryDatacategoryDatacategoryData')
 
   const breadcrumbs = [
@@ -264,25 +266,24 @@ const CategoryPosts = async ({ params, searchParams }) => {
     },
     {
       name: `${decodeURIComponent(category)}`,
+      url: `/${category}`,
+    },
+    {
+      name: `${decodeURIComponent(slug)}`,
+      url: `/${category}/${slug}`,
+    },
+    {
+      name: `${decodeURIComponent(slug2)}`,
       // url: `/${category}`,
     },
   ];
 
-  // let currentPage = "1";
-
-  // let { "page-no": currentPage = "1" } = params;let currentPage = "1"; // default value
-
-  // if (params.currentPage && params.currentPage["page-no"]) {
-  //   currentPage = params.currentPage["page-no"];
-  // }
-
+  let { "page-no": currentPage = "1" } = params;
   currentPage = parseInt(currentPage, 10);
 
-  // if (isNaN(currentPage) || currentPage <= 0) {
-  //   currentPage = 1;
-  // }
-
-  console.log(currentPage, "bdsjgbjhbvjhbdeibvejk");
+  if (isNaN(currentPage) || currentPage <= 0) {
+    currentPage = 1;
+  }
 
   const dataPerPage = 48;
 
@@ -309,8 +310,6 @@ const CategoryPosts = async ({ params, searchParams }) => {
     categoryData[0]?.id,
     currentPage
   );
-
-  // console.log('hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
 
   // console.log(categoryPosts[0]?.primary_category,'categoryPostscategoryPosts')
 
@@ -382,7 +381,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
             </h1> */}
             <h1 className={styles.categoryTitle}>
               {capitalizeFirstLetter(
-                categoryData[0]?.name || decodeURIComponent(params.category)
+                categoryData[0]?.name || decodeURIComponent(params.slug)
               )}
               {/* <span> </span>
               News */}
@@ -422,14 +421,14 @@ const CategoryPosts = async ({ params, searchParams }) => {
             <Link
               className={styles.nextPrevBtn}
               aria-label="Previous page"
-              href={`/${category}/page/${currentPage - 1}`}
+              href={`/${category}/${slug}/${slug2}/page/${currentPage - 1}`}
             >
               Previous
             </Link>
           )}
           {startPage > 2 && (
             <>
-              <Link href={`/${category}/page/1`}>1</Link>
+              <Link href={`/${category}/${slug}/${slug2}/page/1`}>1</Link>
               <span aria-hidden="true">...</span>
             </>
           )}
@@ -437,7 +436,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
             <Link
               className={page === currentPage ? styles.activePage : ""}
               key={page}
-              href={`/${category}/page/${page}`}
+              href={`/${category}/${slug}/${slug2}/page/${page}`}
             >
               {page}
             </Link>
@@ -445,13 +444,15 @@ const CategoryPosts = async ({ params, searchParams }) => {
           {endPage < totalPages - 1 && (
             <>
               <span aria-hidden="true">...</span>
-              <Link href={`/${category}/page/${totalPages}`}>{totalPages}</Link>
+              <Link href={`/${category}/${slug}/${slug2}/page/${totalPages}`}>
+                {totalPages}
+              </Link>
             </>
           )}
           {currentPage < totalPages && (
             <Link
               aria-label="Next page"
-              href={`/${category}/page/${currentPage + 1}`}
+              href={`/${category}/${slug}/${slug2}/page/${currentPage + 1}`}
               className={styles.nextPrevBtn}
             >
               Next
@@ -460,7 +461,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
         </div>
 
         <h2 style={{ marginTop: "3rem" }}>
-          Latest {decodeURIComponent(params.category)} News
+          Latest {decodeURIComponent(params.slug2)} News
         </h2>
         <div
           className={styles.catDescription}

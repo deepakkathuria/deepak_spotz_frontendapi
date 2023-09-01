@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "../../CategoryPosts.module.css";
-import NewsCard from "../../../../components/common/NewsCard";
-import axios from "axios";
-import Breadcrumb from "../../../../components/common/Breadcrumb";
+import styles from "../../app/[category]/CategoryPosts.module.css";
+import NewsCard from "./NewsCard";
+// import axios from "axios";
+import Breadcrumb from "./Breadcrumb";
 // const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
 const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
@@ -18,7 +18,7 @@ const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
 // import { redirect } from "next/dist/server/api-utils";
-import FaqLive from "../../../../components/common/FaqLive";
+import FaqLive from "./FaqLive";
 import Link from "next/link";
 
 const fetchMetaData = async (categorySlug) => {
@@ -249,13 +249,14 @@ export async function generateMetadata({ params }) {
   }
 }
 
-const CategoryPosts = async ({ params, searchParams }) => {
-  const category = params.category;
-  let { "page-no": currentPage = 1 } = params;
+const CategoryDisplayMain = async (props) => {
+  // const category = 'gaurav'
+  const { category, slug } = props;
+  // let { "page-no": currentPage = 1 } = params;
   // const { Currentpage = 1 } = params;
   // const categoryData = await fetchCategoryDataBySlug(category);
-  const categoryData = await fetchCategoryDataBySlug(category);
-  // console.log(categoryData[0]?.name,'categoryDatacategoryDatacategoryData')
+  const categoryData = await fetchCategoryDataBySlug(slug);
+  //   console.log(categoryData[0]?.description,'categoryDatacategoryDatacategoryData')
 
   const breadcrumbs = [
     {
@@ -264,25 +265,20 @@ const CategoryPosts = async ({ params, searchParams }) => {
     },
     {
       name: `${decodeURIComponent(category)}`,
+      url: `/${category}`,
+    },
+    {
+      name: `${decodeURIComponent(slug)}`,
       // url: `/${category}`,
     },
   ];
 
-  // let currentPage = "1";
-
-  // let { "page-no": currentPage = "1" } = params;let currentPage = "1"; // default value
-
-  // if (params.currentPage && params.currentPage["page-no"]) {
-  //   currentPage = params.currentPage["page-no"];
-  // }
-
+  let { "page-no": currentPage = "1" } = props.currentPage;
   currentPage = parseInt(currentPage, 10);
 
-  // if (isNaN(currentPage) || currentPage <= 0) {
-  //   currentPage = 1;
-  // }
-
-  console.log(currentPage, "bdsjgbjhbvjhbdeibvejk");
+  if (isNaN(currentPage) || currentPage <= 0) {
+    currentPage = 1;
+  }
 
   const dataPerPage = 48;
 
@@ -310,8 +306,6 @@ const CategoryPosts = async ({ params, searchParams }) => {
     currentPage
   );
 
-  // console.log('hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
-
   // console.log(categoryPosts[0]?.primary_category,'categoryPostscategoryPosts')
 
   return (
@@ -329,6 +323,11 @@ const CategoryPosts = async ({ params, searchParams }) => {
               position: 2,
               name: `${category}`,
               item: `${site_url}/${category}/`,
+            },
+            {
+              position: 3,
+              name: `${slug}`,
+              item: `${site_url}/${category}/${slug}/`,
             },
           ]}
         />
@@ -382,7 +381,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
             </h1> */}
             <h1 className={styles.categoryTitle}>
               {capitalizeFirstLetter(
-                categoryData[0]?.name || decodeURIComponent(params.category)
+                categoryData[0]?.name || decodeURIComponent(props.slug)
               )}
               {/* <span> </span>
               News */}
@@ -403,7 +402,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
             {Array.isArray(categoryPosts) &&
               categoryPosts?.map((post, index) => (
                 <div className="card" key={index}>
-                  <a href={`/${category}/${post?.slug}`}>
+                  <a href={`/${slug}/${post?.slug}`}>
                     <NewsCard
                       id={post?.id}
                       title={post?.title.rendered}
@@ -422,14 +421,14 @@ const CategoryPosts = async ({ params, searchParams }) => {
             <Link
               className={styles.nextPrevBtn}
               aria-label="Previous page"
-              href={`/${category}/page/${currentPage - 1}`}
+              href={`/${category}/${slug}/page/${currentPage - 1}`}
             >
               Previous
             </Link>
           )}
           {startPage > 2 && (
             <>
-              <Link href={`/${category}/page/1`}>1</Link>
+              <Link href={`/${category}/${slug}/page/1`}>1</Link>
               <span aria-hidden="true">...</span>
             </>
           )}
@@ -437,7 +436,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
             <Link
               className={page === currentPage ? styles.activePage : ""}
               key={page}
-              href={`/${category}/page/${page}`}
+              href={`/${category}/${slug}/page/${page}`}
             >
               {page}
             </Link>
@@ -445,13 +444,15 @@ const CategoryPosts = async ({ params, searchParams }) => {
           {endPage < totalPages - 1 && (
             <>
               <span aria-hidden="true">...</span>
-              <Link href={`/${category}/page/${totalPages}`}>{totalPages}</Link>
+              <Link href={`/${category}/${slug}/page/${totalPages}`}>
+                {totalPages}
+              </Link>
             </>
           )}
           {currentPage < totalPages && (
             <Link
               aria-label="Next page"
-              href={`/${category}/page/${currentPage + 1}`}
+              href={`/${category}/${slug}/page/${currentPage + 1}`}
               className={styles.nextPrevBtn}
             >
               Next
@@ -460,7 +461,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
         </div>
 
         <h2 style={{ marginTop: "3rem" }}>
-          Latest {decodeURIComponent(params.category)} News
+          Latest {decodeURIComponent(props.slug)} News
         </h2>
         <div
           className={styles.catDescription}
@@ -472,4 +473,4 @@ const CategoryPosts = async ({ params, searchParams }) => {
   );
 };
 
-export default CategoryPosts;
+export default CategoryDisplayMain;

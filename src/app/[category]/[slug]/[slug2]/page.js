@@ -151,111 +151,113 @@ const fetchCategoryDataBySlug = async (categorySlug) => {
 //   };
 // }
 
-export async function generateMetadata({ params }) {
-  try {
-    const DATA_PER_PAGE = 48;
-    const category = params.category;
-    let { "page-no": currentPage = "1" } = params;
-    currentPage = parseInt(currentPage);
+// export async function generateMetadata({ params }) {
+//   try {
+//     const DATA_PER_PAGE = 48;
+//     const category = params.category;
+//     let { "page-no": currentPage = "1" } = params;
+//     currentPage = parseInt(currentPage);
 
-    const metaData = await fetchMetaData(category);
-    const headContent = metaData.head;
+//     const metaData = await fetchMetaData(category);
+//     const headContent = metaData.head;
 
-    // Extract meta title
-    const titleMatch = headContent.match(/<title>(.*?)<\/title>/);
-    const metaTitle = titleMatch ? titleMatch[1] : null;
+//     // Extract meta title
+//     const titleMatch = headContent.match(/<title>(.*?)<\/title>/);
+//     const metaTitle = titleMatch ? titleMatch[1] : null;
 
-    // Extract meta description
-    const descriptionMatch = headContent.match(
-      /<meta name="description" content="(.*?)"/
-    );
-    const metaDescription = descriptionMatch ? descriptionMatch[1] : null;
+//     // Extract meta description
+//     const descriptionMatch = headContent.match(
+//       /<meta name="description" content="(.*?)"/
+//     );
+//     const metaDescription = descriptionMatch ? descriptionMatch[1] : null;
 
-    // Extract robots
-    const robotsMatch = headContent.match(
-      /<meta name="robots" content="(.*?)"/
-    );
-    const robots = robotsMatch ? robotsMatch[1] : null;
+//     // Extract robots
+//     const robotsMatch = headContent.match(
+//       /<meta name="robots" content="(.*?)"/
+//     );
+//     const robots = robotsMatch ? robotsMatch[1] : null;
 
-    // Split the content by commas
-    const robotsProperties = robots
-      .split(",")
-      .map((property) => property.trim());
+//     // Split the content by commas
+//     const robotsProperties = robots
+//       .split(",")
+//       .map((property) => property.trim());
 
-    // Access each property separately
-    const follow = robotsProperties.includes("follow") ? true : false;
-    const index = robotsProperties.includes("index") ? true : false;
-    const maxSnippet = robotsProperties.find((property) =>
-      property.startsWith("max-snippet:")
-    );
-    const maxVideoPreview = robotsProperties.find((property) =>
-      property.startsWith("max-video-preview:")
-    );
-    const maxImagePreview = robotsProperties.find((property) =>
-      property.startsWith("max-image-preview:")
-    );
+//     // Access each property separately
+//     const follow = robotsProperties.includes("follow") ? true : false;
+//     const index = robotsProperties.includes("index") ? true : false;
+//     const maxSnippet = robotsProperties.find((property) =>
+//       property.startsWith("max-snippet:")
+//     );
+//     const maxVideoPreview = robotsProperties.find((property) =>
+//       property.startsWith("max-video-preview:")
+//     );
+//     const maxImagePreview = robotsProperties.find((property) =>
+//       property.startsWith("max-image-preview:")
+//     );
 
-    // Extract canonical
-    const canonicalMatch = headContent.match(
-      /<link rel="canonical" href="(.*?)"/
-    );
-    const canonical = canonicalMatch
-      ? canonicalMatch[1].replace(
-          "https://swdupli.sportzwiki.com",
-          "https://sportzwiki.com"
-        )
-      : null;
+//     // Extract canonical
+//     const canonicalMatch = headContent.match(
+//       /<link rel="canonical" href="(.*?)"/
+//     );
+//     const canonical = canonicalMatch
+//       ? canonicalMatch[1].replace(
+//           "https://swdupli.sportzwiki.com",
+//           "https://sportzwiki.com"
+//         )
+//       : null;
 
-    const categoryData = await fetchCategoryDataBySlug(category);
-    // console.log(categoryData,'categoryDatacategoryData')
-    const totalPages = Math.ceil((categoryData[0]?.count || 0) / DATA_PER_PAGE);
+//     const categoryData = await fetchCategoryDataBySlug(category);
+//     // console.log(categoryData,'categoryDatacategoryData')
+//     const totalPages = Math.ceil((categoryData[0]?.count || 0) / DATA_PER_PAGE);
 
-    const iconsOther = [];
+//     const iconsOther = [];
 
-    if (currentPage !== 1) {
-      iconsOther.push({
-        rel: "prev",
-        url: `https://www.sportzwiki.com/${category}/page/${currentPage - 1}`,
-      });
-    }
+//     if (currentPage !== 1) {
+//       iconsOther.push({
+//         rel: "prev",
+//         url: `https://www.sportzwiki.com/${category}/page/${currentPage - 1}`,
+//       });
+//     }
 
-    if (currentPage !== totalPages) {
-      iconsOther.push({
-        rel: "next",
-        url: `https://www.sportzwiki.com/${category}/page/${currentPage + 1}`,
-      });
-    }
+//     if (currentPage !== totalPages) {
+//       iconsOther.push({
+//         rel: "next",
+//         url: `https://www.sportzwiki.com/${category}/page/${currentPage + 1}`,
+//       });
+//     }
 
-    return {
-      title: metaTitle,
-      description: metaDescription,
-      icons: {
-        other: iconsOther,
-      },
-      robots: {
-        index: index,
-        follow: follow,
-        "max-video-preview": maxVideoPreview,
-        "max-image-preview": maxImagePreview,
-        "max-snippet": maxSnippet,
-      },
-      alternates: {
-        canonical: canonical,
-      },
-    };
-  } catch (error) {
-    console.error("Error generating metadata:", error);
-    throw new Error("Failed to generate metadata. Please try again later.");
-  }
-}
+//     return {
+//       title: metaTitle,
+//       description: metaDescription,
+//       icons: {
+//         other: iconsOther,
+//       },
+//       robots: {
+//         index: index,
+//         follow: follow,
+//         "max-video-preview": maxVideoPreview,
+//         "max-image-preview": maxImagePreview,
+//         "max-snippet": maxSnippet,
+//       },
+//       alternates: {
+//         canonical: canonical,
+//       },
+//     };
+//   } catch (error) {
+//     console.error("Error generating metadata:", error);
+//     throw new Error("Failed to generate metadata. Please try again later.");
+//   }
+// }
 
 const CategoryPosts = async ({ params, searchParams }) => {
-  const category = params.category;
-  let { "page-no": currentPage = 1 } = params;
+  const slug = params.slug2;
+  console.log(slug, "categorycategorycategory");
+  //   let { "page-no": currentPage = 1 } = params;
   // const { Currentpage = 1 } = params;
   // const categoryData = await fetchCategoryDataBySlug(category);
-  const categoryData = await fetchCategoryDataBySlug(category);
+  const categoryData = await fetchCategoryDataBySlug(slug);
   // console.log(categoryData[0]?.name,'categoryDatacategoryDatacategoryData')
+  let currentPage = "1";
 
   const breadcrumbs = [
     {
@@ -263,7 +265,15 @@ const CategoryPosts = async ({ params, searchParams }) => {
       url: `/`,
     },
     {
-      name: `${decodeURIComponent(category)}`,
+      name: `${decodeURIComponent(params?.category)}`,
+      url: `/${params?.category}`,
+    },
+    {
+      name: `${decodeURIComponent(params?.slug)}`,
+      url: `/${params?.category}/${params?.slug}`,
+    },
+    {
+      name: `${decodeURIComponent(params?.slug2)}`,
       // url: `/${category}`,
     },
   ];
@@ -327,8 +337,8 @@ const CategoryPosts = async ({ params, searchParams }) => {
             },
             {
               position: 2,
-              name: `${category}`,
-              item: `${site_url}/${category}/`,
+              name: `${slug}`,
+              item: `${site_url}/${slug}/`,
             },
           ]}
         />
@@ -382,7 +392,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
             </h1> */}
             <h1 className={styles.categoryTitle}>
               {capitalizeFirstLetter(
-                categoryData[0]?.name || decodeURIComponent(params.category)
+                categoryData[0]?.name || decodeURIComponent(params.slug2)
               )}
               {/* <span> </span>
               News */}
@@ -403,7 +413,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
             {Array.isArray(categoryPosts) &&
               categoryPosts?.map((post, index) => (
                 <div className="card" key={index}>
-                  <a href={`/${category}/${post?.slug}`}>
+                  <a href={`/${slug}/${post?.slug}`}>
                     <NewsCard
                       id={post?.id}
                       title={post?.title.rendered}
@@ -422,14 +432,18 @@ const CategoryPosts = async ({ params, searchParams }) => {
             <Link
               className={styles.nextPrevBtn}
               aria-label="Previous page"
-              href={`/${category}/page/${currentPage - 1}`}
+              href={`/${params.category}/${params.slug}/${slug}/page/${
+                currentPage - 1
+              }`}
             >
               Previous
             </Link>
           )}
           {startPage > 2 && (
             <>
-              <Link href={`/${category}/page/1`}>1</Link>
+              <Link href={`/${params.category}/${params.slug}/${slug}/page/1`}>
+                1
+              </Link>
               <span aria-hidden="true">...</span>
             </>
           )}
@@ -437,7 +451,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
             <Link
               className={page === currentPage ? styles.activePage : ""}
               key={page}
-              href={`/${category}/page/${page}`}
+              href={`/${params.category}/${params.slug}/${slug}/page/${page}`}
             >
               {page}
             </Link>
@@ -445,13 +459,19 @@ const CategoryPosts = async ({ params, searchParams }) => {
           {endPage < totalPages - 1 && (
             <>
               <span aria-hidden="true">...</span>
-              <Link href={`/${category}/page/${totalPages}`}>{totalPages}</Link>
+              <Link
+                href={`/${params.category}/${params.slug}/${slug}/page/${totalPages}`}
+              >
+                {totalPages}
+              </Link>
             </>
           )}
           {currentPage < totalPages && (
             <Link
               aria-label="Next page"
-              href={`/${category}/page/${currentPage + 1}`}
+              href={`/${params.category}/${params.slug}/${slug}/page/${
+                currentPage + 1
+              }`}
               className={styles.nextPrevBtn}
             >
               Next
@@ -460,7 +480,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
         </div>
 
         <h2 style={{ marginTop: "3rem" }}>
-          Latest {decodeURIComponent(params.category)} News
+          Latest {decodeURIComponent(params.slug2)} News
         </h2>
         <div
           className={styles.catDescription}

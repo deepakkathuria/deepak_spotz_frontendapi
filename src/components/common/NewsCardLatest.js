@@ -14,7 +14,7 @@ const NewsCard = async (props) => {
             src={
               props?.featuredMedia
                 ? props?.featuredMedia
-                : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+                : "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1693483094/swLogo_zvkyfp.jpg"
             }
             width={0}
             height={0}

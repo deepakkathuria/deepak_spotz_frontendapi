@@ -6,7 +6,7 @@ import { getPostThumbById } from "@/lib/PostDataFetch";
 const NewscardNoBorder = async (props) => {
   const thumbnail =
     props?.thumbnail ||
-    "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg";
+    "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1693483094/swLogo_zvkyfp.jpg";
 
   return (
     <>
@@ -16,7 +16,7 @@ const NewscardNoBorder = async (props) => {
             src={
               typeof thumbnail !== "undefined" && thumbnail.length
                 ? thumbnail
-                : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+                : "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1693483094/swLogo_zvkyfp.jpg"
             }
             width={150}
             height={100}

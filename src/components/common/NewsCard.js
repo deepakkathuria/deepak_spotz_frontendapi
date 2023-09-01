@@ -11,19 +11,19 @@ const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWOR
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
-const fetchPostThumb = async (thumbId) => {
-  const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/media/${thumbId}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Basic ${base64Credentials}`,
-      },
-    }
-  );
-  const data = await res.json();
-  return data.guid.rendered;
-};
+// const fetchPostThumb = async (thumbId) => {
+//   const res = await fetch(
+//     `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/media/${thumbId}`,
+//     {
+//       method: "GET",
+//       headers: {
+//         Authorization: `Basic ${base64Credentials}`,
+//       },
+//     }
+//   );
+//   const data = await res.json();
+//   return data.guid.rendered;
+// };
 
 const NewsCard = async (props) => {
   return (
@@ -34,7 +34,7 @@ const NewsCard = async (props) => {
             src={
               props?.featuredMedia
                 ? props?.featuredMedia
-                : "https://feetfirst.org/wp-content/uploads/2020/08/placeholder-16_9.jpg"
+                : "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1693483094/swLogo_zvkyfp.jpg"
             }
             width={0}
             height={0}

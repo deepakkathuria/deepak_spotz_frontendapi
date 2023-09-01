@@ -93,19 +93,19 @@ const fetchPostBySlug = async (slug) => {
 };
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { category, slug } = params;
   const result = await isCategory(slug);
-  console.log("here1");
+  // console.log("here1");
 
   if (result === true) {
-    console.log("here2");
+    // console.log("here2");
     const DATA_PER_PAGE = 48;
     let { "page-no": currentPage = "1" } = params;
     currentPage = parseInt(currentPage);
-    console.log("here3");
+    // console.log("here3");
 
     const metaData = await fetchMetaDataCat(slug);
-    console.log("here4");
+    // console.log("here4");
     const headContent = metaData.head;
 
     // Extract meta title
@@ -162,14 +162,18 @@ export async function generateMetadata({ params }) {
     if (currentPage !== 1) {
       iconsOther.push({
         rel: "prev",
-        url: `https://www.sportzwiki.com/${slug}/page/${currentPage - 1}`,
+        url: `https://www.sportzwiki.com/${category}/${slug}/page/${
+          currentPage - 1
+        }`,
       });
     }
 
     if (currentPage !== totalPages) {
       iconsOther.push({
         rel: "next",
-        url: `https://www.sportzwiki.com/${slug}/page/${currentPage + 1}`,
+        url: `https://www.sportzwiki.com/${category}/${slug}/page/${
+          currentPage + 1
+        }`,
       });
     }
 

@@ -154,12 +154,13 @@ const fetchCategoryDataBySlug = async (categorySlug) => {
 export async function generateMetadata({ params }) {
   try {
     const DATA_PER_PAGE = 48;
-    const category = params.slug;
-    console.log(category, "categorycategorycategory131242345");
+    const { category, slug } = params;
+    // const category = params.slug;
+    // console.log(category, "categorycategorycategory131242345");
     let { "page-no": currentPage = "1" } = params;
     currentPage = parseInt(currentPage);
 
-    const metaData = await fetchMetaData(category);
+    const metaData = await fetchMetaData(slug);
     const headContent = metaData.head;
 
     // Extract meta title
@@ -207,7 +208,7 @@ export async function generateMetadata({ params }) {
         )
       : null;
 
-    const categoryData = await fetchCategoryDataBySlug(category);
+    const categoryData = await fetchCategoryDataBySlug(slug);
     // console.log(categoryData,'categoryDatacategoryData')
     const totalPages = Math.ceil((categoryData[0]?.count || 0) / DATA_PER_PAGE);
 
@@ -216,14 +217,18 @@ export async function generateMetadata({ params }) {
     if (currentPage !== 1) {
       iconsOther.push({
         rel: "prev",
-        url: `https://www.sportzwiki.com/${category}/page/${currentPage - 1}`,
+        url: `https://www.sportzwiki.com/${category}/${slug}/page/${
+          currentPage - 1
+        }`,
       });
     }
 
     if (currentPage !== totalPages) {
       iconsOther.push({
         rel: "next",
-        url: `https://www.sportzwiki.com/${category}/page/${currentPage + 1}`,
+        url: `https://www.sportzwiki.com/${category}/${slug}/page/${
+          currentPage + 1
+        }`,
       });
     }
 
@@ -277,7 +282,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
     currentPage = 1;
   }
 
-  console.log(currentPage,"currentPagecurrentPagecurrentPage76587")
+  // console.log(currentPage,"currentPagecurrentPagecurrentPage76587")
 
   const dataPerPage = 48;
 

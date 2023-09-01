@@ -72,84 +72,96 @@ const fetchCategoryDataBySlug = async (categorySlug) => {
   return categoryData;
 };
 
-// export async function generateMetadata({ params }) {
-//   const DATA_PER_PAGE = 48;
-//   const category = params.category;
-//   let { "page-no": currentPage = "1" } = params;
-//   currentPage = parseInt(currentPage);
+export async function generateMetadata({ params }) {
+  const DATA_PER_PAGE = 48;
+  const { category, slug, slug2 } = params;
+  let { "page-no": currentPage = "1" } = params;
+  currentPage = parseInt(currentPage);
 
-//   const metaData = await fetchMetaData(category);
-//   // console.log(metaData, "metaDatametaDatametaDatametaData");
-//   const headContent = metaData.head;
-//   // Extract meta title
-//   const titleMatch = headContent.match(/<title>(.*?)<\/title>/);
-//   const metaTitle = titleMatch ? titleMatch[1] : null;
+  const metaData = await fetchMetaData(slug2);
+  // console.log(metaData, "metaDatametaDatametaDatametaData");
+  const headContent = metaData.head;
+  // Extract meta title
+  const titleMatch = headContent.match(/<title>(.*?)<\/title>/);
+  const metaTitle = titleMatch ? titleMatch[1] : null;
 
-//   // Extract meta description
-//   const descriptionMatch = headContent.match(
-//     /<meta name="description" content="(.*?)"/
-//   );
-//   const metaDescription = descriptionMatch ? descriptionMatch[1] : null;
+  // Extract meta description
+  const descriptionMatch = headContent.match(
+    /<meta name="description" content="(.*?)"/
+  );
+  const metaDescription = descriptionMatch ? descriptionMatch[1] : null;
 
-//   // Extract robots
-//   const robotsMatch = headContent.match(/<meta name="robots" content="(.*?)"/);
-//   const robots = robotsMatch ? robotsMatch[1] : null;
+  // Extract robots
+  const robotsMatch = headContent.match(/<meta name="robots" content="(.*?)"/);
+  const robots = robotsMatch ? robotsMatch[1] : null;
 
-//   // Split the content by commas
-//   const robotsProperties = robots.split(',').map(property => property.trim());
-//   // Access each property separately
-//   const follow = robotsProperties.includes("follow") ? true : false;
-//   const index = robotsProperties.includes("index") ? true : false;
-//   const maxSnippet = robotsProperties.find(property => property.startsWith("max-snippet:"));
-//   const maxVideoPreview = robotsProperties.find(property => property.startsWith("max-video-preview:"));
-//   const maxImagePreview = robotsProperties.find(property => property.startsWith("max-image-preview:"));
+  // Split the content by commas
+  const robotsProperties = robots.split(",").map((property) => property.trim());
+  // Access each property separately
+  const follow = robotsProperties.includes("follow") ? true : false;
+  const index = robotsProperties.includes("index") ? true : false;
+  const maxSnippet = robotsProperties.find((property) =>
+    property.startsWith("max-snippet:")
+  );
+  const maxVideoPreview = robotsProperties.find((property) =>
+    property.startsWith("max-video-preview:")
+  );
+  const maxImagePreview = robotsProperties.find((property) =>
+    property.startsWith("max-image-preview:")
+  );
 
-//   // Extract canonical
-//   const canonicalMatch = headContent.match(
-//     /<link rel="canonical" href="(.*?)"/
-//   );
-//   const canonical = canonicalMatch ? canonicalMatch[1].replace(
-//     "https://swdupli.sportzwiki.com",
-//     "https://sportzwiki.com"
-//   ) : null;
+  // Extract canonical
+  const canonicalMatch = headContent.match(
+    /<link rel="canonical" href="(.*?)"/
+  );
+  const canonical = canonicalMatch
+    ? canonicalMatch[1].replace(
+        "https://swdupli.sportzwiki.com",
+        "https://sportzwiki.com"
+      )
+    : null;
 
-//   const categoryData = await fetchCategoryDataBySlug(category);
-//   const totalPages = Math.ceil((categoryData[0]?.count || 0) / DATA_PER_PAGE);
+  const categoryData = await fetchCategoryDataBySlug(slug2);
+  const totalPages = Math.ceil((categoryData[0]?.count || 0) / DATA_PER_PAGE);
 
-//   const iconsOther = [];
+  const iconsOther = [];
 
-//   if (currentPage !== 1) {
-//     iconsOther.push({
-//       rel: "prev",
-//       url: `https://www.sportzwiki.com/${category}/page/${currentPage - 1}`,
-//     });
-//   }
+  if (currentPage !== 1) {
+    iconsOther.push({
+      rel: "prev",
+      url: `https://www.sportzwiki.com/${category}/${slug}/${slug2}/page/${
+        currentPage - 1
+      }`,
+    });
+  }
 
-//   if (currentPage !== totalPages) {
-//     iconsOther.push({
-//       rel: "next",
-//       url: `https://www.sportzwiki.com/${category}/page/${currentPage + 1}`,
-//     });
-//   }
+  if (currentPage !== totalPages) {
+    iconsOther.push({
+      rel: "next",
+      url: `https://www.sportzwiki.com/${category}/${slug}/${slug2}/page/${
+        currentPage + 1
+      }`,
+    });
+  }
 
-//   return {
-//     title: metaTitle,
-//     description: metaDescription,
-//     icons: {
-//       other: iconsOther,
-//     },
-//     robots: {
-//       index: index,
-//       follow: follow,
-//       "max-video-preview": maxVideoPreview,
-//       "max-image-preview": maxImagePreview,
-//       "max-snippet": maxSnippet,
-//     },
-//     alternates: {
-//       canonical: canonical,
-//     },
-//   };
-// }
+  return {
+    title: metaTitle,
+    description: metaDescription,
+    icons: {
+      other: iconsOther,
+    },
+    robots: {
+      index: index,
+      follow: follow,
+      "max-video-preview": maxVideoPreview,
+      "max-image-preview": maxImagePreview,
+      "max-snippet": maxSnippet,
+    },
+    alternates: {
+      canonical: canonical,
+    },
+  };
+}
 
 // export async function generateMetadata({ params }) {
 //   try {

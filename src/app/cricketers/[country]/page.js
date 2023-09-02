@@ -74,6 +74,14 @@ function getIdFromName(teamName) {
   return team ? team.id : null;
 }
 
+export async function generateMetadata({ params }) {
+  const { country } = params;
+  return {
+    title: `${country} Cricketers Information | International, Domestic & Women`,
+    description: `Full ${country} cricket player information of International, domestic & woemens Cricket team on SportzWiki.`,
+  };
+}
+
 const page = async ({ params }) => {
   const { country } = params;
 

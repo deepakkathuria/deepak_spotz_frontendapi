@@ -30,6 +30,23 @@ const fetchPlayerStatsById = async (playerId) => {
   return data;
 };
 
+export async function generateMetadata({ params }) {
+  const { country, player } = params;
+
+  const playerIdInt = parseInt(player.split("-")[player.split("-").length - 1]);
+
+  const playerInfo = await fetchPlayerInfoById(playerIdInt);
+  // console.log(playerInfo);
+  return {
+    title: `${
+      playerInfo?.response?.player?.title || ""
+    } | Indian Cricketers Information | International &  Domestic`,
+    description: `Full player information of ${
+      playerInfo?.response?.player?.title || ""
+    }, fulll details, career on SportzWiki.`,
+  };
+}
+
 const page = async ({ params }) => {
   const { country, player } = params;
   const playerIdInt = parseInt(player.split("-")[player.split("-").length - 1]);
@@ -43,7 +60,7 @@ const page = async ({ params }) => {
       url: "/",
     },
     {
-      name: `CRICKETERS`,
+      name: `Cricketers`,
       url: "/cricketers",
     },
     {
@@ -51,7 +68,7 @@ const page = async ({ params }) => {
       url: `/cricketers/${country}`,
     },
     {
-      name: `${player}`,
+      name: `${playerInfo?.response?.player?.title}`,
       url: `/cricketers/${country}/${player}`,
     },
     {
@@ -102,7 +119,9 @@ const page = async ({ params }) => {
         <div className={styles.updateBox}>
           <UpdatesSound />
         </div>
-        <h1 style={{ marginTop: "1rem" }}>{playerInfo?.response?.player?.title} Stats</h1>
+        <h1 style={{ marginTop: "1rem" }}>
+          {playerInfo?.response?.player?.title} Stats
+        </h1>
         <div className={styles.dataMain}>
           <div className={styles.bannerNav}>
             <div className={styles.banner}></div>

@@ -25,6 +25,12 @@ const fetchSeriesList = async () => {
   return data;
 };
 
+export const metadata = {
+  title: "Upcoming Cricket Series - International & Domestic on SportzWiki",
+  description:
+    "Check upcoming cricket schedule of International, Domestic & others T20 series on SportzWiki.",
+};
+
 const page = async () => {
   const seriesList = await fetchSeriesList();
   const breadcrumbs = [

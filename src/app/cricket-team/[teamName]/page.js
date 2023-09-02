@@ -20,6 +20,19 @@ const fetchTeamInfoById = async (teamId) => {
   return team;
 };
 
+export async function generateMetadata({ params }) {
+  // read route params then fetch data
+  const { teamName } = params;
+  const teamId = teamName?.split("-")[1];
+  const data = await fetchTeamInfoById(teamId);
+
+  // return an object
+  return {
+    title: `${data?.response?.title} Cricket Team - SportzWiki`,
+    description: `Get full cricket team information of ${data?.response?.title} on SportzWiki.`,
+  };
+}
+
 const page = async ({ params }) => {
   const { teamName } = params;
   const teamId = teamName?.split("-")[1];
@@ -36,7 +49,7 @@ const page = async ({ params }) => {
       url: "/cricket-team",
     },
     {
-      name: `${teamName}`,
+      name: `${data?.response?.title}`,
       // url: `/cricket-team/${teamName}`,
     },
   ];
@@ -77,7 +90,9 @@ const page = async ({ params }) => {
         <div className={styles.soundUpdatesDiv}>
           <UpdatesSound />
         </div>
-        <h1 style={{ marginTop: "1rem" }}>{data?.response?.title} Cricket Team</h1>
+        <h1 style={{ marginTop: "1rem" }}>
+          {data?.response?.title} Cricket Team
+        </h1>
         <div className={styles.detailsContainer}>
           <div className={styles.leftSection}>
             <div className={styles.TeamCountryNavDiv}>

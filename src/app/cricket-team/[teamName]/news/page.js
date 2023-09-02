@@ -8,13 +8,38 @@ import Breadcrumb from "@/components/common/Breadcrumb";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
+const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
-const page = ({ params }) => {
+const fetchTeamInfoById = async (teamId) => {
+  const res = await fetch(`${base_url}/teams/${teamId}?token=${token}`);
+  const team = await res.json();
+  return team;
+};
+
+export async function generateMetadata({ params }) {
+  // read route params then fetch data
+  const { teamName } = params;
+  const teamId = teamName?.split("-")[1];
+  const data = await fetchTeamInfoById(teamId);
+
+  // return an object
+  return {
+    title: `${data?.response?.title} Cricket News - SportzWiki`,
+    description: `Get full cricket team News of ${data?.response?.title} on SportzWiki.`,
+  };
+}
+
+const page = async ({ params }) => {
   const { teamName } = params;
   const teamId = teamName?.split("-")[1];
   const currentCountry = "india";
+
+  // const { teamName } = params;
+  // const teamId = teamName?.split("-")[1];
+  const data = await fetchTeamInfoById(teamId);
 
   const breadcrumbs = [
     {
@@ -26,7 +51,7 @@ const page = ({ params }) => {
       url: "/cricket-team",
     },
     {
-      name: `${teamName}`,
+      name: `${data?.response?.title}`,
       url: `/cricket-team/${teamName}`,
     },
     {
@@ -72,7 +97,9 @@ const page = ({ params }) => {
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>
-        <h1 style={{ marginTop: "1rem" }}>Cricket Team News</h1>
+        <h1
+          style={{ marginTop: "1rem" }}
+        >{`${data?.response?.title} Cricket Team News`}</h1>
         <div className="nav">
           <TeamCountryNav active="news" currentCountry={teamName} />
         </div>

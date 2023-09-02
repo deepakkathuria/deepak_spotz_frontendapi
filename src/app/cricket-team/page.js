@@ -22,6 +22,12 @@ const fetchTeamList = async () => {
   return data;
 };
 
+export const metadata = {
+  title: "Cricket Team List | International, Domestic & Women",
+  description:
+    "Get full Team List of International, Doemstic, Women & Other Cricket Team on SportzWiki.",
+};
+
 const page = async () => {
   const teams = await fetchTeamList();
   const breadcrumbs = [

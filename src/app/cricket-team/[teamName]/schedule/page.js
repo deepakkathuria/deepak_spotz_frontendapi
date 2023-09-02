@@ -12,6 +12,14 @@ import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
 // const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+// const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
+// const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+
+const fetchTeamInfoById = async (teamId) => {
+  const res = await fetch(`${base_url}/teams/${teamId}?token=${token}`);
+  const team = await res.json();
+  return team;
+};
 
 const fetchTeamMatches = async (teamId) => {
   const res = await fetch(`${base_url}/teams/${teamId}/matches?token=${token}`);
@@ -19,12 +27,27 @@ const fetchTeamMatches = async (teamId) => {
   return data;
 };
 
+export async function generateMetadata({ params }) {
+  // read route params then fetch data
+  const { teamName } = params;
+  const teamId = teamName?.split("-")[1];
+  const data = await fetchTeamInfoById(teamId);
+  // const data = await fetchTeamMatches(teamId);
+
+  // return an object
+  return {
+    title: `${data?.response?.title} Cricket Team Schedule - SportzWiki`,
+    description: `Get full cricket team schedule of ${data?.response?.title} on SportzWiki.`,
+  };
+}
+
 const page = async ({ params }) => {
   const { teamName } = params;
   // const teamId = teamName?.split("-")[1];
   const teamId = parseInt(teamName.split("-")[teamName.split("-").length - 1]);
   const currentCountry = "india";
   const data = await fetchTeamMatches(teamId);
+  const data2 = await fetchTeamInfoById(teamId);
   // console.log(data.response.items[0],"datatatattataa");
   const breadcrumbs = [
     {
@@ -36,7 +59,7 @@ const page = async ({ params }) => {
       url: "/cricket-team",
     },
     {
-      name: `${teamName}`,
+      name: `${data2?.response?.title}`,
       url: `/cricket-team/${teamName}`,
     },
     {
@@ -80,7 +103,9 @@ const page = async ({ params }) => {
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>
-        <h1 style={{ marginTop: "1rem" }}>{teamName} Team Schedule</h1>
+        <h1 style={{ marginTop: "1rem" }}>
+          {data2?.response?.title} Team Schedule
+        </h1>
         <div className="nav">
           <TeamCountryNav active="schedule" currentCountry={teamName} />
         </div>
@@ -108,6 +133,7 @@ const page = async ({ params }) => {
                       ? match.status_note
                       : "no status information"
                   }
+                  status={match?.status}
                 />
               </div>
             );

@@ -10,9 +10,46 @@ import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+// const site_url = process.env.NEXT_PUBLIC_SITE_URL;
 
-const page = ({ params }) => {
+const fetchSeriesMatches = async (seriesId) => {
+  const res = await fetch(
+    `${baseUrl}/competitions/${seriesId}/matches/?token=${key}&per_page=1&&paged=1`,
+    { next: { revalidate: 30 } }
+  );
+  const data = await res.json();
+  return data;
+};
+
+export async function generateMetadata({ params }) {
+  // read route params then fetch data
   const { "series-name": seriesName } = params;
+  // const seriesNameOnly = seriesName.split("-");
+  // console.log(seriesNameOnly);
+  const seriesIdInt = parseInt(
+    seriesName.split("-")[seriesName.split("-").length - 1]
+  );
+
+  const seriesMatches = await fetchSeriesMatches(seriesIdInt);
+
+  // return an object
+  return {
+    title: `${seriesMatches?.response?.items[0]?.competition?.title} News - SportzWiki`,
+    description: `Check full updates of ${seriesMatches?.response?.items[0]?.competition?.title}, full coverage, ball by ball comentary only on SportzWiki.`,
+  };
+}
+
+const page = async ({ params }) => {
+  const { "series-name": seriesName } = params;
+  const seriesIdInt = parseInt(
+    seriesName.split("-")[seriesName.split("-").length - 1]
+  );
+
+  const seriesMatches = await fetchSeriesMatches(seriesIdInt);
+
   const breadcrumbs = [
     {
       name: "Home",
@@ -69,7 +106,9 @@ const page = ({ params }) => {
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>
-        <h1 style={{ marginTop: "1rem" }}>Cricket Series News</h1>
+        <h1
+          style={{ marginTop: "1rem" }}
+        >{`${seriesMatches?.response?.items[0]?.competition?.title} News`}</h1>
         <div className={styles.seriesOverviewTitle}>
           {/* <p>Sri Lanka Tour of india 2022</p> */}
         </div>

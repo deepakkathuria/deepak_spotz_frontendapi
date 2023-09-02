@@ -25,6 +25,12 @@ const fetchSeriesList = async () => {
   return data;
 };
 
+export const metadata = {
+  title: "Recent Cricket Series - International, Domestic, T20 & T10 Series",
+  description:
+    "Check schedule of recent cricket series of International, Domestic & others T20, T10 series on SportzWiki.",
+};
+
 const page = async () => {
   const seriesList = await fetchSeriesList();
   const breadcrumbs = [

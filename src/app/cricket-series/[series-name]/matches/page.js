@@ -22,9 +22,24 @@ const fetchUpcomingMatches = async (matchId) => {
   return data;
 };
 
+export async function generateMetadata({ params }) {
+  // read route params then fetch data
+  const { "series-name": seriesName } = params;
+  const seriesIdInt = parseInt(
+    seriesName.split("-")[seriesName.split("-").length - 1]
+  );
+  const matches = await fetchUpcomingMatches(seriesIdInt);
+
+  // return an object
+  return {
+    title: `${matches?.response?.items[0]?.competition?.title} Matches - SportzWiki`,
+    description: `Check full updates of ${matches?.response?.items[0]?.competition?.title} , full coverage, ball by ball comentary only on SportzWiki.`,
+  };
+}
+
 const page = async ({ params }) => {
   const { "series-name": seriesName } = params;
-  console.log(seriesName, "seriesNameeeeeeeeeeeeeeeeeeee");
+  // console.log(seriesName, "seriesNameeeeeeeeeeeeeeeeeeee");
   const seriesIdInt = parseInt(
     seriesName.split("-")[seriesName.split("-").length - 1]
   );

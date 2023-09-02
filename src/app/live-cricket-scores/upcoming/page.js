@@ -20,6 +20,13 @@ const fetchLiveMatches = async () => {
   return data;
 };
 
+export const metadata = {
+  title:
+    "Cricket Live Score - Upcoming International, Domestic ODI, Test & T20 Series",
+  description:
+    "View Cricket Score of upcoming International, domestic and T20 Series on SportzWiki.",
+};
+
 const page = async () => {
   const matches = await fetchLiveMatches();
   const breadcrumbs = [

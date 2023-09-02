@@ -48,6 +48,24 @@ const fetchPlayingSquad = async (matchId) => {
   return data;
 };
 
+export async function generateMetadata({ params }) {
+  // read route params then fetch data
+  const { "series-name": seriesName } = params;
+  const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
+  const info = await fetchMatchInfo(seriesIdInt);
+  console.log(info?.response?.title);
+
+  // return an object
+  return {
+    title: `Catch Full Team Details of ${
+      info?.response?.short_title || info?.response?.short_title
+    }  | SportzWiki.com`,
+    description: `Check full Team ${
+      info?.response?.short_title || info?.response?.short_title
+    }, Cricket Match with live Cricket score, ball by ball commentary updates on SportzWiki.`,
+  };
+}
+
 const page = async ({ params }) => {
   // const { "series-id": seriesId } = params;
   // const seriesIdInt = parseInt(seriesId, 10);

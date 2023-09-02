@@ -22,6 +22,12 @@ const fetchLiveMatches = async (dateRange) => {
   return data;
 };
 
+export const metadata = {
+  title: "Latest Cricket Match Result",
+  description:
+    "Get recent cricket match score with full commentary of International & Domestic Cricket ",
+};
+
 const page = async () => {
   const breadcrumbs = [
     {

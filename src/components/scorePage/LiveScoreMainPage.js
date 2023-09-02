@@ -1,25 +1,40 @@
-import React from "react";
-import ScorePanel from "../../../../components/scorePage/ScorePanel";
-import NavBarSec from "../../../../components/scorePage/NavBarSec";
-import AudioBar from "../../../../components/scores/AudioBar";
-import NavBarTertiary from "../../../../components/scores/NavBarTertiary";
-import Link from "next/link";
-import styles from "../../../../components/scores/NavBarTertiary.module.css";
-import ScoreCardLive from "../../../../components/scores/ScoreCardLive";
-import UpdatesSound from "../../../../components/common/UpdatesSound";
+"use client";
+import React, { useState, useEffect } from "react";
+import ScorePanel from "./ScorePanel";
+import NavBarSec from "./NavBarSec";
+import AudioBar from "../scores/AudioBar";
+// import NavBarTertiary from "../scores/NavBarTertiary";
+import InfoTable from "../scores/InfoTable";
+// import Link from "next/link";
+import styles from "../scores/NavBarTertiary.module.css";
+import UpdatesSound from "../common/UpdatesSound";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
-import Breadcrumb from "../../../../components/common/Breadcrumb";
-import PostListBar from "../../../../components/common/PostListBar";
-// import NavSec from "../../../../components/liveScore/NavSec";
+import Breadcrumb from "../common/Breadcrumb";
+// import PostListBar from "../../../components/common/PostListBar";
+// import NavSec from "@/components/liveScore/NavSec";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
+import EventLd from "../../json-ld/EventLd";
+import NavSecScore from "../liveScore/NavSecScore";
 const base_url = process.env.NEXT_PUBLIC_BASE_URL;
 const site_url = process.env.NEXT_PUBLIC_SITE_URL;
-import EventLd from "@/json-ld/EventLd";
-import NavSecScore from "@/components/liveScore/NavSecScore";
-import HeaderBox from "@/components/common/HeaderBox";
-import FaqLive from "@/components/common/FaqLive";
+// import { Helmet } from "react-helmet";
+import HeaderBox from "../common/HeaderBox";
+import FaqLive from "../common/FaqLive";
+// import type { Metadata } from 'next'
+
+// const header1 = "Live Cricket Scores & Updates";
+// const description =
+//   "Stay tuned to our live cricket score page for real-time updates, ball-by-ball commentary, and comprehensive match insights. Whether its international tests, ODIs, T20s, or domestic league matches, we've got you covered with the latest scores and match highlights. Don't miss a single moment of the action!";
+
+const fetchMatchInfo = async (matchId) => {
+  const res = await fetch(`${baseUrl}/matches/${matchId}/info?token=${key}`, {
+    next: { revalidate: 2 },
+  });
+  const matchInfo = await res.json();
+  return matchInfo;
+};
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -29,61 +44,62 @@ const fetchMatchScoreCard = async (matchId) => {
   return scoreCard;
 };
 
-const fetchMatchScoreCardDetail = async (matchId) => {
-  const res = await fetch(
-    `${baseUrl}/matches/${matchId}/scorecard?token=${key}`,
-    {
-      next: { revalidate: 2 },
+// export const metadata = {
+//   title: "...",
+//   description: "...",
+// };
+
+// export async function generateMetadata({ params }) {
+//   const { "series-name": seriesName } = params;
+//   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
+
+//   const matchInfo = await fetchMatchInfo(seriesIdInt);
+//   const data = matchInfo.response;
+//   console.log(data,"dadadadadadadadadadadadadadadadadadadadadadad");
+//   return {
+//     title: data?.competition.title ?? "",
+//     description: data?.competition.title ?? "",
+//   };
+// }
+
+const LiveScoreMainPage = (props) => {
+  const { seriesName } = props;
+  const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
+  // console.log(seriesIdInt, "seriesseriesseriesseriesseries");
+  //   console.log(seriesIdInt, "seriesIdInt", seriesName);
+  const [scoreCard, setScoreCard] = useState(null);
+  const [matchInfo, setMatchInfo] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const fetchedScoreCard = await fetchMatchScoreCard(seriesIdInt);
+        const fetchedMatchInfo = await fetchMatchInfo(seriesIdInt);
+
+        setScoreCard(fetchedScoreCard);
+        setMatchInfo(fetchedMatchInfo);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     }
-  );
-  const info = await res.json();
-  return info;
-};
 
-const fetchMatchInfo = async (matchId) => {
-  // console.log(matchId, "matchID");
-  const res = await fetch(`${baseUrl}/matches/${matchId}/info?token=${key}`, {
-    next: { revalidate: 2 },
-  });
-  const matchInfo = await res.json();
-  // console.log(matchInfo, "matchInfo");
-  return matchInfo;
-};
+    fetchData();
 
-export async function generateMetadata({ params }) {
-  // read route params then fetch data
-  const { "series-name": seriesName } = params;
-  const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
-  const info = await fetchMatchInfo(seriesIdInt);
-  console.log(info?.response?.title);
+    const intervalId = setInterval(fetchData, 10000); // Poll every 10 seconds
 
-  // return an object
-  return {
-    title: `Catch Full Scoreboard of ${
-      info?.response?.short_title || info?.response?.short_title
-    }  | SportzWiki.com`,
-    description: `Check full scoreboard of ${
-      info?.response?.short_title || info?.response?.short_title
-    }, Cricket Match with live Cricket score, ball by ball commentary updates on SportzWiki.`,
-  };
-}
+    // Cleanup the interval when the component is unmounted
+    return () => clearInterval(intervalId);
+  }, [seriesIdInt]);
 
-const page = async ({ params }) => {
-  // const { "series-id": seriesId } = params;
-  // const seriesIdInt = parseInt(seriesId, 10);
-  const { "series-name": seriesName } = params;
-  const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
-
-  // const { "series-name": seriesName } = params;
-
-  const matchInfo = await fetchMatchInfo(seriesIdInt);
-  const data = matchInfo.response;
-  const scoreCard = await fetchMatchScoreCard(seriesIdInt);
-  const scoreCardInDetails = await fetchMatchScoreCardDetail(seriesIdInt);
   // console.log(
-  //   scoreCardInDetails.response.innings[0].batsmen,
-  //   "matchInfodkfghvbj "
+  //   matchInfo?.response.teama,
+  //   "matchInfomatchInfomatchInfomatchInfomatchInfo"
   // );
+
+  // const matchInfo = await fetchMatchInfo(seriesIdInt);
+  // const data = matchInfo.response;
+  // const scoreCard = await fetchMatchScoreCard(seriesIdInt);
+
   const breadcrumbs = [
     {
       name: "Home",
@@ -95,16 +111,32 @@ const page = async ({ params }) => {
     },
     {
       name: `${matchInfo?.response?.teama?.name} vs ${matchInfo?.response?.teamb?.name}`,
-      url: `/live-cricket-scores/${seriesName}`,
+      // url: `/live-cricket-scores/${seriesName}`,
     },
-    {
-      name: `Full Scorecard`,
-      // url: `/live-cricket-scores/${seriesName}/full-scorecard`,
-    },
+    // {
+    //   name: `LIVE CRICKET SCORECARD`,
+    //   url: `/live-cricket-scores/${seriesName}`,
+    // },
   ];
+  // console.log(matchInfo, "matchInfonsjdkbvkbdvj");
 
+  // console.log(seriesName, "iddddd", typeof seriesName);
   return (
     <>
+      {/* <Helmet>
+        <meta charSet="utf-8" />
+        <title>{`Catch live score of ${
+          matchInfo?.response?.teama?.name ?? ""
+        } vs ${
+          matchInfo?.response?.teamb?.name ?? ""
+        } | SportzWiki.com`}</title>
+        <description>
+          {`Check ${matchInfo?.response?.teama?.name ?? ""} vs ${
+            matchInfo?.response?.teamb?.name ?? ""
+          }, Cricket Match with live Cricket score, ball by ball commentary updates on SportzWiki.`}
+        </description>
+      </Helmet> */}
+
       <BreadcrumbJsonLd
         useAppDir={true}
         itemListElements={[
@@ -125,25 +157,22 @@ const page = async ({ params }) => {
           },
           {
             position: 4,
-            name: breadcrumbs[3]?.name,
-            // item: `${site_url}${breadcrumbs[3]?.url}`,
+            // name: breadcrumbs[3]?.name,
           },
-          // {
-          //   position: 5,
-          //   name: breadcrumbs[4]?.name,
-          //   item: `${site_url}${breadcrumbs[4]?.url}`,
-          // },
         ]}
       />
       {/* <OrganisationLd /> */}
       <EventLd
-        eventName={data?.competition.title ?? ""}
-        startDate={data?.date_start_ist}
-        endDate={data?.date_end_ist}
-        venue={data?.venue.name}
+        eventName={matchInfo?.response?.competition.title ?? ""}
+        startDate={matchInfo?.response?.date_start_ist}
+        endDate={matchInfo?.response?.date_end_ist}
+        venue={matchInfo?.response?.venue.name}
         url={`${site_url}${breadcrumbs[3]?.url}`}
       />
-      <div className={styles.containerMainLiveScore}>
+      <div
+        className={styles.containerMainLiveScore}
+        style={{ marginBottom: "4rem" }}
+      >
         <NavBarSec active="live" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">
           <Breadcrumb breadcrumbsObj={breadcrumbs} />
@@ -159,20 +188,19 @@ const page = async ({ params }) => {
             <div className={styles.heading1}>
               <h1>
                 {matchInfo?.response?.teama?.name} vs{" "}
-                {matchInfo?.response?.teamb?.name} Cricket ScoreCard
+                {matchInfo?.response?.teamb?.name} Live Cricket Score
               </h1>
             </div>
             <ScorePanel
-              logoTeamA={data?.teama?.logo_url ?? ""}
-              logoTeamB={data?.teamb?.logo_url ?? ""}
-              nameTeamA={data?.teama?.name ?? ""}
-              nameTeamB={data?.teamb?.name ?? ""}
-              overTeamA={data?.teama?.overs ?? ""}
-              overTeamB={data?.teamb?.overs ?? ""}
-              scoreTeamA={data?.teama?.scores ?? ""}
-              scoreTeamB={data?.teamb?.scores ?? ""}
-              currentStatus={data?.status_note ?? ""}
-              // ************************************
+              logoTeamA={matchInfo?.response?.teama?.logo_url ?? ""}
+              logoTeamB={matchInfo?.response?.teamb?.logo_url ?? ""}
+              nameTeamA={matchInfo?.response?.teama?.name ?? ""}
+              nameTeamB={matchInfo?.response?.teamb?.name ?? ""}
+              overTeamA={matchInfo?.response?.teama?.overs ?? ""}
+              overTeamB={matchInfo?.response?.teamb?.overs ?? ""}
+              scoreTeamA={matchInfo?.response?.teama?.scores ?? ""}
+              scoreTeamB={matchInfo?.response?.teamb?.scores ?? ""}
+              currentStatus={matchInfo?.response?.status_note ?? ""}
               // ************************************
               batsA={
                 scoreCard?.response?.batsmen &&
@@ -344,12 +372,34 @@ const page = async ({ params }) => {
                   : ""
               }
             />
+
             <AudioBar />
-            {/* <NavBarTertiary activeTab="score-card-live" /> */}
             <div className="nav">
-              <NavSecScore active="scorecard" seriesName={seriesName} />
+              <NavSecScore active="info" seriesName={seriesName} />
             </div>
-            <ScoreCardLive data={scoreCardInDetails} />
+
+            <InfoTable
+              matchFormat={`${matchInfo?.response?.competition.title ?? ""} ${
+                matchInfo?.response?.format_str ?? ""
+              }`}
+              series={matchInfo?.response?.competition.title ?? ""}
+              date={
+                new Date(
+                  matchInfo?.response?.date_start_ist
+                ).toLocaleDateString() ?? ""
+              }
+              time={
+                new Date(
+                  matchInfo?.response?.date_end_ist
+                ).toLocaleTimeString() ?? ""
+              }
+              venueName={matchInfo?.response?.venue.name ?? ""}
+              venueCountry={matchInfo?.response?.venue.country ?? ""}
+              stadium={matchInfo?.response?.venue.name ?? ""}
+              venueLocation={matchInfo?.response?.venue.location ?? ""}
+              umpires={matchInfo?.response?.umpires ?? ""}
+              referee={matchInfo?.response?.referee ?? ""}
+            />
             <div className={styles.headerBox}>
               <HeaderBox />
             </div>
@@ -366,4 +416,4 @@ const page = async ({ params }) => {
   );
 };
 
-export default page;
+export default LiveScoreMainPage;

@@ -4,6 +4,7 @@ import styles from "../styles/Navbar.module.css";
 import Image from "next/image";
 import { navBarLinks } from "@/utils/navLinks";
 import Link from "next/link";
+import SearchBar from "./Search";
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -126,6 +127,9 @@ const Navbar = () => {
               </ul>
             </div>
             <div className={styles.navOptions}>
+              <div className={styles.search}>
+                <SearchBar />
+              </div>
               {/* <a href={"/"}>
                 <div className="navSearch">
                   <Image
@@ -185,6 +189,11 @@ const Navbar = () => {
           }
         >
           <ul className={styles.navMenuList}>
+            <li>
+              <div className={styles.mobSearch}>
+                <SearchBar />
+              </div>
+            </li>
             {navBarLinks?.map((item) => {
               return (
                 <a key={item.id} href={`${item.path}`}>

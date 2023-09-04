@@ -6,8 +6,8 @@ import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 import FaqLive from "@/components/common/FaqLive";
 import UpdatesSound from "@/components/common/UpdatesSound";
 import CardSlider from "@/components/home/CardSlider";
-const base_url = process.env.ENTITY_URL;
-const key = process.env.ENTITY_TOKEN;
+const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
 function getCurrentDate() {
   const today = new Date();
@@ -20,7 +20,7 @@ function getCurrentDate() {
 
 const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
 
-console.log(`${base_url}/matches?token=${key}&date=${formattedDate}`);
+// console.log(`${base_url}/matches?token=${key}&date=${formattedDate}`);
 const getData = async () => {
   const res = await fetch(
     `${base_url}/matches?token=${key}&date=${formattedDate}`,
@@ -48,7 +48,7 @@ export async function generateMetadata() {
 
 const page = async () => {
   const data = await getData();
-  console.log(data, "datatatattt");
+  // console.log(data, "datatatattt");
 
   function customSort(a, b) {
     const statusOrder = { 3: 0, 1: 1, 2: 2, 4: 3 };

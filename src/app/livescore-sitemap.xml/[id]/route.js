@@ -1,7 +1,7 @@
 import { getServerSideSitemap } from "next-sitemap";
 import slugify from "slugify";
-const baseUrl = process.env.ENTITY_URL;
-const key = process.env.ENTITY_TOKEN;
+const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const siteUrl = process.env.siteUrl;
 
 export async function GET(request, { params }) {

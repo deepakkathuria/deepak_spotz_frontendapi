@@ -9,8 +9,8 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getLiveScoreData } from "@/lib/PostDataFetch";
 import Link from "next/link";
-const base_url = process.env.ENTITY_URL;
-const key = process.env.ENTITY_TOKEN;
+const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
 function getCurrentDate() {
   const today = new Date();
@@ -25,6 +25,7 @@ const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
 // console.log(formattedDate);
 
 const getData = async () => {
+  console.log(`${base_url}/matches?token=${key}&date=${formattedDate}`,"vsdkbvdsjbhsjbhdkhb");
   const res = await fetch(
     `${base_url}/matches?token=${key}&date=${formattedDate}`,
     {
@@ -37,17 +38,18 @@ const getData = async () => {
 
 const ScoreCardPanel = async (props) => {
   const data = await getData();
+  console.log(data,'hsbdjkbhdvukhbsduhbeushbj')
 
-  function customSort(a, b) {
-    const statusOrder = { 3: 0, 1: 1, 2: 2, 4: 3 };
-    const statusA = a.status.toString();
-    const statusB = b.status.toString();
+  // function customSort(a, b) {
+  //   const statusOrder = { 3: 0, 1: 1, 2: 2, 4: 3 };
+  //   const statusA = a.status.toString();
+  //   const statusB = b.status.toString();
 
-    return statusOrder[statusA] - statusOrder[statusB];
-  }
+  //   return statusOrder[statusA] - statusOrder[statusB];
+  // }
 
   // Sort the API responses using the custom sorting function
-  const sortedResponses = data.slice().sort(customSort);
+  // const sortedResponses = data.slice().sort(customSort);
 
   const PrevArrow = ({ onClick }) => (
     <div
@@ -158,7 +160,7 @@ const ScoreCardPanel = async (props) => {
         </div>
       )}
       <div className={styles.carouselContainer}>
-        <Slider {...settings}>
+        {/* <Slider {...settings}>
           {sortedResponses?.map((match, index) => {
             return (
               <div key={index} className={styles.customCarouselSlide}>
@@ -184,7 +186,7 @@ const ScoreCardPanel = async (props) => {
               </div>
             );
           })}
-        </Slider>
+        </Slider> */}
       </div>
     </>
   );

@@ -8,8 +8,8 @@
 // import Link from "next/link";
 // import styles from "../../../components/scores/NavBarTertiary.module.css";
 // import UpdatesSound from "../../../components/common/UpdatesSound";
-// const baseUrl = process.env.ENTITY_URL;
-// const key = process.env.ENTITY_TOKEN;
+// const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
+// const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 // import Breadcrumb from "../../../components/common/Breadcrumb";
 // import PostListBar from "../../../components/common/PostListBar";
 // // import NavSec from "@/components/liveScore/NavSec";
@@ -421,8 +421,8 @@
 import React from "react";
 import LiveScoreMainPage from "@/components/scorePage/LiveScoreMainPage";
 import styles from "./commonStyle.module.css";
-const baseUrl = process.env.ENTITY_URL;
-const key = process.env.ENTITY_TOKEN;
+const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
 const fetchMatchInfo = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/info?token=${key}`, {

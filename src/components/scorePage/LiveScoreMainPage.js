@@ -8,8 +8,8 @@ import InfoTable from "../scores/InfoTable";
 // import Link from "next/link";
 import styles from "../scores/NavBarTertiary.module.css";
 import UpdatesSound from "../common/UpdatesSound";
-const baseUrl = process.env.ENTITY_URL;
-const key = process.env.ENTITY_TOKEN;
+const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../common/Breadcrumb";
 // import PostListBar from "../../../components/common/PostListBar";
 // import NavSec from "@/components/liveScore/NavSec";
@@ -23,6 +23,7 @@ const site_url = process.env.SITE_URL;
 import HeaderBox from "../common/HeaderBox";
 import FaqLive from "../common/FaqLive";
 // import type { Metadata } from 'next'
+console.log(baseUrl,'baseeeeeeeee')
 
 // const header1 = "Live Cricket Scores & Updates";
 // const description =
@@ -33,14 +34,17 @@ const fetchMatchInfo = async (matchId) => {
     next: { revalidate: 2 },
   });
   const matchInfo = await res.json();
+  console.log(matchInfo,'matchInfomatchInfomatchInfo')
   return matchInfo;
 };
 
 const fetchMatchScoreCard = async (matchId) => {
+  console.log(`${baseUrl}/matches/${matchId}/live?token=${key}`)
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
     next: { revalidate: 2 },
   });
   const scoreCard = await res.json();
+  // console
   return scoreCard;
 };
 

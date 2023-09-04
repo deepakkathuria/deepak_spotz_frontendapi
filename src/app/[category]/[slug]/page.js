@@ -2,17 +2,17 @@ import React from "react";
 import PostDisplayMain from "@/components/common/PostDisplayMain";
 import CategoryDisplayMain from "@/components/common/CategoryDisplayMain";
 import Link from "next/link";
-const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
-const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
-const NEXT_PUBLIC_WP_API_PASSWORD = process.env.NEXT_PUBLIC_WP_API_PASSWORD;
+const BASE_URL_WP = process.env.BASE_URL_WP;
+const WP_API_USERNAME = process.env.WP_API_USERNAME;
+const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
 
-const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWORD}`;
+const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
 const isCategory = async (slug) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/categories?slug=${slug}`,
+    `${BASE_URL_WP}wp-json/wp/v2/categories?slug=${slug}`,
     {
       method: "GET",
       headers: {
@@ -27,7 +27,7 @@ const isCategory = async (slug) => {
 
 const fetchCategoryDataBySlug = async (categorySlug) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/categories?slug=${categorySlug}`,
+    `${BASE_URL_WP}wp-json/wp/v2/categories?slug=${categorySlug}`,
     {
       method: "GET",
       headers: {
@@ -43,7 +43,7 @@ const fetchCategoryDataBySlug = async (categorySlug) => {
 
 const fetchMetaData = async (category, slug) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_BASE_URL_WP}/${category}/${slug}`,
+    `${BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${BASE_URL_WP}/${category}/${slug}`,
     {
       next: { revalidate: 1500 },
       method: "GET",
@@ -58,7 +58,7 @@ const fetchMetaData = async (category, slug) => {
 
 const fetchMetaDataCat = async (categorySlug) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_BASE_URL_WP}/${categorySlug}`,
+    `${BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${BASE_URL_WP}/${categorySlug}`,
     {
       next: { revalidate: 1500 },
       method: "GET",
@@ -74,7 +74,7 @@ const fetchMetaDataCat = async (categorySlug) => {
 const fetchPostBySlug = async (slug) => {
   try {
     const response = await fetch(
-      `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?slug=${slug}`,
+      `${BASE_URL_WP}wp-json/wp/v2/posts?slug=${slug}`,
       {
         method: "GET",
         headers: {

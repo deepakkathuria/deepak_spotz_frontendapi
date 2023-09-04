@@ -1,10 +1,10 @@
 import { getServerSideSitemap } from "next-sitemap";
 const site_url = process.env.siteUrl;
-const base_url = process.env.NEXT_PUBLIC_BASE_URL_WP;
-const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
-const NEXT_PUBLIC_WP_API_PASSWORD = process.env.NEXT_PUBLIC_WP_API_PASSWORD;
+const base_url = process.env.BASE_URL_WP;
+const WP_API_USERNAME = process.env.WP_API_USERNAME;
+const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
 
-const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWORD}`;
+const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 

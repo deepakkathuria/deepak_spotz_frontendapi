@@ -7,9 +7,9 @@ Host: test.sportzwiki.com
 
 # Sitemaps
 Sitemap: test.sportzwiki.com/sitemap.xml
-Sitemap: test.sportzwiki.com/images-sitemap.xml
-Sitemap: test.sportzwiki.com/post-sitemap.xml
-Sitemap: test.sportzwiki.com/categories-sitemap.xml
-Sitemap: test.sportzwiki.com/livescore-sitemap.xml
-Sitemap: test.sportzwiki.com/series-sitemap.xml
-Sitemap: test.sportzwiki.com/google-news-sitemap.xml
+Sitemap: https://test.sportzwiki.com/images-sitemap.xml
+Sitemap: https://test.sportzwiki.com/post-sitemap.xml
+Sitemap: https://test.sportzwiki.com/categories-sitemap.xml
+Sitemap: https://test.sportzwiki.com/livescore-sitemap.xml
+Sitemap: https://test.sportzwiki.com/series-sitemap.xml
+Sitemap: https://test.sportzwiki.com/google-news-sitemap.xml

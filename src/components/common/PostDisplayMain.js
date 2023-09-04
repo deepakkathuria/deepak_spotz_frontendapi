@@ -14,12 +14,12 @@ import UpdatesSound from "./UpdatesSound";
 // import HeaderBox2 from "@/components/common/HeaderBox2";
 import FaqLive from "./FaqLive";
 // import Loading from "@/app/Loading";
-const baseUrlAd = process.env.NEXT_PUBLIC_BASE_URL;
-const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
-const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
-const NEXT_PUBLIC_WP_API_PASSWORD = process.env.NEXT_PUBLIC_WP_API_PASSWORD;
+const baseUrlAd = process.env.BASE_URL_DO;
+const BASE_URL_WP = process.env.BASE_URL_WP;
+const WP_API_USERNAME = process.env.WP_API_USERNAME;
+const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
 
-const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWORD}`;
+const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
@@ -33,7 +33,7 @@ const fetchAD = async (adId) => {
 
 const fetchMetaData = async (category, slug) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_BASE_URL_WP}/${category}/${slug}`,
+    `${BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${BASE_URL_WP}/${category}/${slug}`,
     {
       next: { revalidate: 1500 },
       method: "GET",
@@ -48,7 +48,7 @@ const fetchMetaData = async (category, slug) => {
 
 const fetchRelatedPostsByTagId = async (id) => {
   const response = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?tags=${id}&per_page=6`,
+    `${BASE_URL_WP}wp-json/wp/v2/posts?tags=${id}&per_page=6`,
     {
       next: { revalidate: 1500 },
       method: "GET",
@@ -63,7 +63,7 @@ const fetchRelatedPostsByTagId = async (id) => {
 const fetchPostBySlug = async (slug) => {
   try {
     const response = await fetch(
-      `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?slug=${slug}`,
+      `${BASE_URL_WP}wp-json/wp/v2/posts?slug=${slug}`,
       {
         method: "GET",
         headers: {
@@ -107,7 +107,7 @@ const fetchPostBySlug = async (slug) => {
 // Function to fetch tag data by ID
 const fetchTagById = async (tagId) => {
   const response = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/tags/${tagId}`,
+    `${BASE_URL_WP}wp-json/wp/v2/tags/${tagId}`,
     {
       next: { revalidate: 300 },
       method: "GET",
@@ -123,7 +123,7 @@ const fetchTagById = async (tagId) => {
 // Function to fetch category data by ID
 const fetchCategoryById = async (categoryId) => {
   const response = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/categories/${categoryId}`,
+    `${BASE_URL_WP}wp-json/wp/v2/categories/${categoryId}`,
     {
       next: { revalidate: 300 },
       method: "GET",
@@ -138,7 +138,7 @@ const fetchCategoryById = async (categoryId) => {
 
 const getAuthorName = async (authorId) => {
   const response = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/users/${authorId}`,
+    `${BASE_URL_WP}wp-json/wp/v2/users/${authorId}`,
     {
       next: { revalidate: 300 },
       method: "GET",
@@ -151,7 +151,7 @@ const getAuthorName = async (authorId) => {
   return authorName;
 };
 
-// const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+// const site_url = process.env.SITE_URL;
 
 const PostDisplayMain = async (props) => {
   const { category, slug } = props;

@@ -6,6 +6,7 @@ const siteUrl =
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,
+  generateIndexSitemap: false,
   sitemapSize: 7000,
   robotsTxtOptions: {
     policies: [
@@ -18,12 +19,12 @@ module.exports = {
     ],
 
     additionalSitemaps: [
-      `${siteUrl}/images-sitemap.xml`,
-      `${siteUrl}/post-sitemap.xml`,
-      `${siteUrl}/categories-sitemap.xml`,
-      `${siteUrl}/livescore-sitemap.xml`,
-      `${siteUrl}/series-sitemap.xml`,
-      `${siteUrl}/google-news-sitemap.xml`,
+      `https://${siteUrl}/images-sitemap.xml`,
+      `https://${siteUrl}/post-sitemap.xml`,
+      `https://${siteUrl}/categories-sitemap.xml`,
+      `https://${siteUrl}/livescore-sitemap.xml`,
+      `https://${siteUrl}/series-sitemap.xml`,
+      `https://${siteUrl}/google-news-sitemap.xml`,
     ],
   },
 

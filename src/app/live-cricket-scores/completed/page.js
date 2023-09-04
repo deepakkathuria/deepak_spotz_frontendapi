@@ -5,12 +5,12 @@ import UpdatesSound from "../../../components/common/UpdatesSound";
 import ScoreCard from "../../../components/common/ScoreCard";
 import Breadcrumb from "@/components/common/Breadcrumb";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
-const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
-const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
+const token = process.env.ENTITY_TOKEN;
+const baseUrl = process.env.ENTITY_URL;
 import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+const base_url = process.env.BASE_URL_DO;
+const site_url = process.env.SITE_URL;
 
 const fetchLiveMatches = async (dateRange) => {
   // const res = await fetch(`${baseUrl}/matches/?status=2&token=${token}`);

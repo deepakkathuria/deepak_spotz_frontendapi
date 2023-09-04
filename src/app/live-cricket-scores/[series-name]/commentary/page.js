@@ -9,8 +9,8 @@
 // import Link from "next/link";
 // // import Commentary from "@/components/scorePage/Commentary";
 // import UpdatesSound from "../../../../components/common/UpdatesSound";
-// const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
-// const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+// const baseUrl = process.env.ENTITY_URL;
+// const key = process.env.ENTITY_TOKEN;
 // import Breadcrumb from "../../../../components/common/Breadcrumb";
 // import PostListBar from "../../../../components/common/PostListBar";
 // // import NavSec from "../../../../components/liveScore/NavSec";
@@ -18,8 +18,8 @@
 // import { BreadcrumbJsonLd } from "next-seo";
 // import EventLd from "@/json-ld/EventLd";
 // import NavSecScore from "@/components/liveScore/NavSecScore";
-// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-// const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+// const base_url = process.env.BASE_URL_DO;
+// const site_url = process.env.SITE_URL;
 // import { Helmet } from "react-helmet";
 // import HeaderBox from "@/components/common/HeaderBox";
 // import FaqLive from "@/components/common/FaqLive";
@@ -552,8 +552,8 @@
 
 import React from "react";
 import LiveScoreCommentaryPage from "@/components/scorePage/LiveScoreCommentaryPage";
-const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
-const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+const baseUrl = process.env.ENTITY_URL;
+const key = process.env.ENTITY_TOKEN;
 
 const fetchMatchInfo = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/info?token=${key}`, {

@@ -8,8 +8,8 @@ import PlayerCardMini from "@/components/testing/players/PlayerCardMini";
 import Link from "next/link";
 import slugify from "slugify";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
-const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
-const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+const base_url = process.env.ENTITY_URL;
+const token = process.env.ENTITY_TOKEN;
 
 const fetchTeamPlayers = async (teamId) => {
   const res = await fetch(`${base_url}/teams/${teamId}/player?token=${token}`);

@@ -1,7 +1,7 @@
 // // "use client"
 // import React from 'react'
 // import axios from 'axios'
-// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+// const base_url = process.env.BASE_URL_DO;
 // import { useGlobalContext } from '../app/context/store';
 
 // const fetchPostsByTagName = async(tag) => {

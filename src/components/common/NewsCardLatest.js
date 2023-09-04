@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
+const base_url = process.env.BASE_URL_DO;
 
 const NewsCard = async (props) => {
   return (

@@ -8,10 +8,10 @@ import Breadcrumb from "@/components/common/Breadcrumb";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
-// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
-const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
-const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+// const base_url = process.env.BASE_URL_DO;
+const site_url = process.env.SITE_URL;
+const base_url = process.env.ENTITY_URL;
+const token = process.env.ENTITY_TOKEN;
 
 const fetchTeamInfoById = async (teamId) => {
   const res = await fetch(`${base_url}/teams/${teamId}?token=${token}`);

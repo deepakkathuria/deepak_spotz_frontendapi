@@ -7,12 +7,12 @@ import PostListBar from "../../../components/common/PostListBar";
 import NavBarSec from "@/components/scorePage/NavBarSec";
 import Breadcrumb from "@/components/common/Breadcrumb";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
-const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
-const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+const base_url = process.env.ENTITY_URL;
+const token = process.env.ENTITY_TOKEN;
 import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
-// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+// const base_url = process.env.BASE_URL_DO;
+const site_url = process.env.SITE_URL;
 
 const fetchTeamInfoById = async (teamId) => {
   const res = await fetch(`${base_url}/teams/${teamId}?token=${token}`);
@@ -131,7 +131,7 @@ const page = async ({ params }) => {
                   </div>
                 </div>
               </div>
-              <div className={styles.teamInfo}>
+              {/* <div className={styles.teamInfo}>
                 <p>
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste
                   autem officiis facilis sint eveniet ex blanditiis qui
@@ -173,7 +173,7 @@ const page = async ({ params }) => {
                   blanditiis corrupti distinctio ab tempore molestias debitis
                   vero dicta hic recusandae!
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className={styles.rightSection}>

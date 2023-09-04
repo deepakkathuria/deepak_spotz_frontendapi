@@ -5,18 +5,18 @@ import styles from "../styles/NewsSection.module.css";
 import NewsCard from "./NewsCard";
 // import axios from "axios";
 // import Link from "next/link";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
-const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
-const NEXT_PUBLIC_WP_API_PASSWORD = process.env.NEXT_PUBLIC_WP_API_PASSWORD;
+const base_url = process.env.BASE_URL_DO;
+const BASE_URL_WP = process.env.BASE_URL_WP;
+const WP_API_USERNAME = process.env.WP_API_USERNAME;
+const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
 
-const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWORD}`;
+const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
 const fetchPostByCategoryId = async (id, perPage) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?categories=${id}&per_page=${perPage}`,
+    `${BASE_URL_WP}wp-json/wp/v2/posts?categories=${id}&per_page=${perPage}`,
     {
       method: "GET",
       headers: {

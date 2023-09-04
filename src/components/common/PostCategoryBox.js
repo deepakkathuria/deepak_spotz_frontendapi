@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/PostCategoryBox.module.css";
 import Link from "next/link";
-// const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+// const site_url = process.env.SITE_URL;
 
 const PostCategoryBox = (props) => {
   return (

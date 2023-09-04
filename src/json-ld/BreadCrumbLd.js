@@ -1,7 +1,7 @@
 import React from "react";
 import { BreadcrumbJsonLd } from "next-seo";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+const base_url = process.env.BASE_URL_DO;
+const site_url = process.env.SITE_URL;
 
 const BreadCrumbLd = (props) => {
   return (

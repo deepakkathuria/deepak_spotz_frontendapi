@@ -6,13 +6,13 @@ import TeamsPageNav from "../../components/teams/TeamsPageNav";
 import TeamsTable from "../../components/teams/TeamsTable";
 import styles from "./cricketTeamHome.module.css";
 import Breadcrumb from "@/components/common/Breadcrumb";
-const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
-const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+const base_url = process.env.ENTITY_URL;
+const token = process.env.ENTITY_TOKEN;
 import { BreadcrumbJsonLd } from "next-seo";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
 import FaqLive from "@/components/common/FaqLive";
-// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+// const base_url = process.env.BASE_URL_DO;
+const site_url = process.env.SITE_URL;
 
 const fetchTeamList = async () => {
   const res = await fetch(

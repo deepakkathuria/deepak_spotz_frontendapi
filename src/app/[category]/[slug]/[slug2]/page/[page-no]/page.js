@@ -3,16 +3,16 @@ import styles from "../../../../CategoryPosts.module.css";
 import NewsCard from "../../../../../../components/common/NewsCard";
 import axios from "axios";
 import Breadcrumb from "../../../../../../components/common/Breadcrumb";
-// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
-const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
-const NEXT_PUBLIC_WP_API_PASSWORD = process.env.NEXT_PUBLIC_WP_API_PASSWORD;
+// const base_url = process.env.BASE_URL_DO;
+const BASE_URL_WP = process.env.BASE_URL_WP;
+const WP_API_USERNAME = process.env.WP_API_USERNAME;
+const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
 
-const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWORD}`;
+const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+const site_url = process.env.SITE_URL;
 // import OrganisationLd from "@/json-ld/OrganisationLd";
 
 import { BreadcrumbJsonLd } from "next-seo";
@@ -23,7 +23,7 @@ import Link from "next/link";
 
 const fetchMetaData = async (categorySlug) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_BASE_URL_WP}/${categorySlug}`,
+    `${BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${BASE_URL_WP}/${categorySlug}`,
     {
       next: { revalidate: 1500 },
       method: "GET",
@@ -38,7 +38,7 @@ const fetchMetaData = async (categorySlug) => {
 
 const fetchPostsByCategoryId = async (categoryId, currentPage) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?categories=${categoryId}&page=${currentPage}&per_page=48`,
+    `${BASE_URL_WP}wp-json/wp/v2/posts?categories=${categoryId}&page=${currentPage}&per_page=48`,
     {
       method: "GET",
       headers: {
@@ -58,7 +58,7 @@ function capitalizeFirstLetter(string) {
 
 const fetchCategoryDataBySlug = async (categorySlug) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/categories?slug=${categorySlug}`,
+    `${BASE_URL_WP}wp-json/wp/v2/categories?slug=${categorySlug}`,
     {
       method: "GET",
       headers: {

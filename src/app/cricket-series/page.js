@@ -7,13 +7,13 @@ import styles from "./cricketSeries.module.css";
 import PostListBar from "../../components/common/PostListBar";
 import Breadcrumb from "@/components/common/Breadcrumb";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
-const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
-const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+const baseUrl = process.env.ENTITY_URL;
+const key = process.env.ENTITY_TOKEN;
 import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
 import HeaderBox2 from "@/components/common/HeaderBox2";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+const base_url = process.env.BASE_URL_DO;
+const site_url = process.env.SITE_URL;
 
 const fetchSeriesList = async () => {
   const res = await fetch(

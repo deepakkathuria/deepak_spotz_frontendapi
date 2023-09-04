@@ -9,8 +9,8 @@ import Image from "next/image";
 import dynamic from "next/dynamic";
 import { getLiveScoreData } from "@/lib/PostDataFetch";
 import Link from "next/link";
-const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
-const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+const base_url = process.env.ENTITY_URL;
+const key = process.env.ENTITY_TOKEN;
 
 function getCurrentDate() {
   const today = new Date();

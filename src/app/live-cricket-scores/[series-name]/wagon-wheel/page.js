@@ -13,8 +13,8 @@ import PostListBar from "../../../../components/common/PostListBar";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
 import NavSecScore from "@/components/liveScore/NavSecScore";
 
-const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
-const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+const baseUrl = process.env.ENTITY_URL;
+const key = process.env.ENTITY_TOKEN;
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {

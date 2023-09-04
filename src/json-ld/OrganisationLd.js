@@ -1,6 +1,6 @@
 import React from "react";
 import { OrganizationJsonLd } from "next-seo";
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+const site_url = process.env.SITE_URL;
 
 const OrganisationLd = () => {
   return (

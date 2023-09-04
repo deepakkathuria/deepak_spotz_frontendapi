@@ -1,4 +1,4 @@
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL_WP;
+const baseUrl = process.env.BASE_URL_WP;
 
 const fetchCountOfDynamicPages = async () => {
   try {

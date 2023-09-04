@@ -5,13 +5,13 @@ import NewsCard from "../../../../../components/common/NewsCard";
 // import axios from "axios";
 import Link from "next/link";
 import Breadcrumb from "../../../../../components/common/Breadcrumb";
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-const NEXT_PUBLIC_BASE_URL_WP = process.env.NEXT_PUBLIC_BASE_URL_WP;
-const NEXT_PUBLIC_WP_API_USERNAME = process.env.NEXT_PUBLIC_WP_API_USERNAME;
-const NEXT_PUBLIC_WP_API_PASSWORD = process.env.NEXT_PUBLIC_WP_API_PASSWORD;
+const site_url = process.env.SITE_URL;
+const base_url = process.env.BASE_URL_DO;
+const BASE_URL_WP = process.env.BASE_URL_WP;
+const WP_API_USERNAME = process.env.WP_API_USERNAME;
+const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
 
-const credentials = `${NEXT_PUBLIC_WP_API_USERNAME}:${NEXT_PUBLIC_WP_API_PASSWORD}`;
+const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
@@ -21,7 +21,7 @@ import { OrganizationJsonLd } from "next-seo";
 
 const fetchMetaData = async (tag) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${NEXT_PUBLIC_BASE_URL_WP}/wiki/${tag}`,
+    `${BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${BASE_URL_WP}/wiki/${tag}`,
     {
       next: { revalidate: 1500 },
       method: "GET",
@@ -36,7 +36,7 @@ const fetchMetaData = async (tag) => {
 
 const fetchTagIdByTagSlug = async (tagSlug) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/tags?slug=${tagSlug}`,
+    `${BASE_URL_WP}wp-json/wp/v2/tags?slug=${tagSlug}`,
     {
       method: "GET",
       headers: {
@@ -51,7 +51,7 @@ const fetchTagIdByTagSlug = async (tagSlug) => {
 
 const fetchPostsByTagId = async (tagId, currentPage) => {
   const res = await fetch(
-    `${NEXT_PUBLIC_BASE_URL_WP}wp-json/wp/v2/posts?tags=${tagId}&page=${currentPage}&per_page=48`,
+    `${BASE_URL_WP}wp-json/wp/v2/posts?tags=${tagId}&page=${currentPage}&per_page=48`,
     {
       method: "GET",
       headers: {

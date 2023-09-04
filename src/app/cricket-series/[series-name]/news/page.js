@@ -8,12 +8,12 @@ import Breadcrumb from "@/components/common/Breadcrumb";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
 import { BreadcrumbJsonLd } from "next-seo";
 import FaqLive from "@/components/common/FaqLive";
-const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-const site_url = process.env.NEXT_PUBLIC_SITE_URL;
-const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
-const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
-// const base_url = process.env.NEXT_PUBLIC_BASE_URL;
-// const site_url = process.env.NEXT_PUBLIC_SITE_URL;
+const base_url = process.env.BASE_URL_DO;
+const site_url = process.env.SITE_URL;
+const baseUrl = process.env.ENTITY_URL;
+const key = process.env.ENTITY_TOKEN;
+// const base_url = process.env.BASE_URL_DO;
+// const site_url = process.env.SITE_URL;
 
 const fetchSeriesMatches = async (seriesId) => {
   const res = await fetch(

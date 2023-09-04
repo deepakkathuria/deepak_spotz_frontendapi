@@ -50,15 +50,15 @@ const page = async () => {
   const data = await getData();
   console.log(data, "datatatattt");
 
-  // function customSort(a, b) {
-  //   const statusOrder = { 3: 0, 1: 1, 2: 2, 4: 3 };
-  //   const statusA = a.status.toString();
-  //   const statusB = b.status.toString();
+  function customSort(a, b) {
+    const statusOrder = { 3: 0, 1: 1, 2: 2, 4: 3 };
+    const statusA = a.status.toString();
+    const statusB = b.status.toString();
 
-  //   return statusOrder[statusA] - statusOrder[statusB];
-  // }
+    return statusOrder[statusA] - statusOrder[statusB];
+  }
 
-  // const sortedResponses = data.slice().sort(customSort);
+  const sortedResponses = data.slice().sort(customSort);
 
   return (
     <>

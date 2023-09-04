@@ -1,0 +1,11 @@
+.searchPage {
+  max-width: 1040px;
+  margin: 0 auto;
+  margin-top: 4rem;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.search{
+  margin-top: 15rem;
+}

@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import styles from "../styles/Navbar.module.css";
 import Image from "next/image";
 import { navBarLinks } from "@/utils/navLinks";
-import Link from "next/link";
-import SearchBar from "./Search";
+// import Link from "next/link";
+// import SearchBar from "./Search";
 
 const Navbar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -127,13 +127,13 @@ const Navbar = () => {
               </ul>
             </div>
             <div className={styles.navOptions}>
-              <div className={styles.search}>
+              {/* <div className={styles.search}>
                 <SearchBar />
-              </div>
-              {/* <a href={"/"}>
+              </div> */}
+              <a href={"/search"}>
                 <div className="navSearch">
                   <Image
-                  priority
+                    priority
                     src="/gaurav/search_ic.svg"
                     alt="search icon"
                     width={22}
@@ -141,7 +141,7 @@ const Navbar = () => {
                     // className={styles.plainIc}
                   />
                 </div>
-              </a> */}
+              </a>
               {/* <a href={"/"}>
                 <div className={styles.navLogin}>
                   <Image
@@ -189,11 +189,11 @@ const Navbar = () => {
           }
         >
           <ul className={styles.navMenuList}>
-            <li>
+            {/* <li>
               <div className={styles.mobSearch}>
                 <SearchBar />
               </div>
-            </li>
+            </li> */}
             {navBarLinks?.map((item) => {
               return (
                 <a key={item.id} href={`${item.path}`}>

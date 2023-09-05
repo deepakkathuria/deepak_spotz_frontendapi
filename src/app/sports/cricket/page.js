@@ -46,7 +46,8 @@ const page = async () => {
     return statusOrder[statusA] - statusOrder[statusB];
   }
 
-  const sortedResponses = data.slice().sort(customSort);
+  // const sortedResponses = data.slice().sort(customSort);
+  const sortedResponses = (data ?? []).slice().sort(customSort);
 
   const breadcrumbs = [
     {

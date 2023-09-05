@@ -409,9 +409,23 @@ const CategoryPosts = async ({ params, searchParams }) => {
           </div>
 
           <div className={styles.newsCardsDisplay}>
-            {PostsOfTag?.map((post) => (
+            {Array.isArray(PostsOfTag) &&
+              PostsOfTag.map((post) => (
+                <div className="card" key={post.ID}>
+                  {/* {console.log(post.featured_image_url, "featuresdddddd")} */}
+                  <a href={`/${post.primary_category_slug}/${post.slug}`}>
+                    <NewsCard
+                      title={post?.title?.rendered}
+                      content={post?.content?.rendered}
+                      date={new Date(post?.date).toLocaleString("en-us")}
+                      featuredMedia={post?.featured_image_url}
+                      // ...other props
+                    />
+                  </a>
+                </div>
+              ))}
+            {/* {PostsOfTag?.map((post) => (
               <div className="card" key={post.ID}>
-                {/* {console.log(post.featured_image_url, "featuresdddddd")} */}
                 <a href={`/${post.primary_category_slug}/${post.slug}`}>
                   <NewsCard
                     title={post?.title?.rendered}
@@ -421,7 +435,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
                   />
                 </a>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
 

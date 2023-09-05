@@ -124,38 +124,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_TRACKING_ID} />
-
-      <Script
-        async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
-        crossOrigin="anonymous"
-        strategy="lazyOnload"
-      />
-      <Script
-        async
-        src="https://cdn.unibotscdn.com/ubplayer/player.js"
-        strategy="lazyOnload"
-      />
-      <Script
-        async
-        src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
-        strategy="lazyOnload"
-      />
-      <Script
-        src="https://cdn.rediads.com/sportzwiki/js/ads.min.js"
-        defer
-        strategy="lazyOnload"
-      />
-      <Script
-        src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js"
-        strategy="lazyOnload"
-      />
-
-      {/* <head>
+      <head>
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
-          crossOrigin="anonymous"
+          crossorigin="anonymous"
         ></script>
         <script
           async
@@ -174,7 +147,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://cdn.rediads.com/css/style.min.css"
         ></link>
-      </head> */}
+      </head>
       <Script id="gtag" strategy="afterInteractive">
         {`
       window.dataLayer = window.dataLayer || [];
@@ -222,7 +195,7 @@ export default function RootLayout({ children }) {
         <Analytics />
         <div style={{ height: "5rem" }}></div>
         <Footer />
-        <div className="Rediads_BottomSticky">
+        <div class="Rediads_BottomSticky">
           <div
             data-adslot="/21855545885/sportzwiki.com/BottomOverlay"
             data-size-desktop="[[728,90]]"

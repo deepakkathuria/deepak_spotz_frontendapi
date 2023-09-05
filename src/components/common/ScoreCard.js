@@ -16,7 +16,9 @@ const ScoreCard = (props) => {
     <>
       <div className={styles.scoreCardContainer}>
         <div className={styles.scoreCardInner}>
-          <a href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}`}>
+          <a
+            href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/commentary`}
+          > 
             <div className={styles.scoreMain}>
               <div className={styles.matchTitleDiv}>
                 <div className={styles.liveIC}>
@@ -28,7 +30,7 @@ const ScoreCard = (props) => {
                     ? "Completed"
                     : props?.status === 4
                     ? "Abandoned"
-                    : ""}
+                    : "Scorecard"}
                 </div>
                 <div className={styles.matchTitle}>
                   {props?.title ? props.title.substring(0, 60) : "-"}

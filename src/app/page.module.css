@@ -21,6 +21,58 @@
   flex-direction: column;
 }
 
+.scoreCardPanelContainer {
+  display: flex;
+  gap: 1.2rem;
+}
+/* .customCarouselSlide {
+  margin-right: 5rem;
+} */
+
+.scoreCardMatchTypeSelector {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.matchTimingSelector {
+  display: flex;
+  gap: 1rem;
+}
+
+.matchTimingSelectorButton {
+  background-color: #fff;
+  color: #206bb3;
+  border: none;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.selected {
+  color: #003161 !important;
+  text-decoration: underline;
+}
+
+.matchTypeSelector {
+  display: flex;
+  gap: 1rem;
+}
+
+.matchTypeSelectorButton {
+  background-color: #fff;
+  color: #206bb3;
+  border: none !important;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* ScoreCardPanel.module.css */
+
+.carouselContainer {
+  position: relative;
+  width: 100%;
+}
+
 @media (max-width: 576px) {
   .homeContainer {
     margin-left: 1rem;
@@ -33,5 +85,60 @@
 
   .scoresDiv {
     margin-bottom: 2rem;
+  }
+
+  .scoreCardMatchTypeSelector {
+    display: flex;
+    flex-direction: column;
+  }
+  .matchTypeSelector {
+    /* display: none; */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    /* padding-top: 0.3rem; */
+    /* padding-bottom: 0.3rem; */
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
+  }
+  /* .matchTypeSelector {
+    display: flex;
+    gap: 1rem;
+  } */
+
+  .matchTypeSelectorButton {
+    text-decoration: none;
+    width: 100%;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.4rem;
+  }
+
+  .matchTypeSelector :nth-child(1) {
+    background-color: #003161;
+    color: #fff !important;
+  }
+
+  .bracket {
+    display: none;
+  }
+
+  .matchTimingSelector {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.2rem;
+  }
+  .matchTimingSelectorButton {
+    width: 100%;
+    font-size: 1.4rem;
+    text-decoration: none;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0;
+  }
+  .selected {
+    border-bottom: 1.6px solid #003161;
+    /* border: none; */
   }
 }

@@ -87,7 +87,9 @@ const page = async () => {
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>
-        <h1 style={{ marginTop: "1rem" }}>Live Cricket Scores</h1>
+        <h1 style={{ marginTop: "1rem"}}>
+          Cricket Match Schedule
+        </h1>
         <div className="nav">
           <ul className={styles.navUl}>
             <li className={`${styles.navLi} ${styles.active}`}>

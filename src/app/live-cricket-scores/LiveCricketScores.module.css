@@ -42,13 +42,24 @@
     margin: 0 0.5rem;
   }
 
-  .nav,
+  .nav {
+    display: flex;
+    /* justify-content: center; */
+    margin-left: 1rem;
+  }
+
   .navUl {
-    width: 90%;
-    font-size: 1.5rem;
+    display: flex;
+    font-size: 1.9rem;
+  }
+
+  /* .nav, */
+  /* width: 90%; */
+  /* .navUl {
     margin-left: 0.5rem;
     margin-right: 0.5rem;
-  }
+  } */
+
   .navUl {
     display: flex;
     /* justify-content: space-around; */

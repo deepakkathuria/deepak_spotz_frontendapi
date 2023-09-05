@@ -6,6 +6,7 @@ import MobSecondaryNav from "@/components/common/MobSecondaryNav";
 import FaqLive from "@/components/common/FaqLive";
 import UpdatesSound from "@/components/common/UpdatesSound";
 import CardSlider from "@/components/home/CardSlider";
+import Link from "next/link";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
@@ -68,6 +69,24 @@ const page = async () => {
           {/* <Suspense fallback={"Loading..."}> */}
           <UpdatesSound />
           <div style={{ marginTop: "2rem" }} className="slider">
+            <div className={styles.scoreCardMatchTypeSelector}>
+              <div className={styles.matchTimingSelector}>
+                <button
+                  className={`${styles.matchTimingSelectorButton} ${styles.selected}`}
+                >
+                  All
+                </button>
+                <button className={`${styles.matchTimingSelectorButton}`}>
+                  <Link href={"/live-cricket-scores"}>Live</Link>
+                </button>
+                <button className={styles.matchTimingSelectorButton}>
+                  <Link href={"/live-cricket-scores/completed"}>Recent</Link>
+                </button>
+                <button className={styles.matchTimingSelectorButton}>
+                  <Link href={"/live-cricket-scores/upcoming"}>Upcoming</Link>
+                </button>
+              </div>
+            </div>
             {data && <CardSlider cards={sortedResponses} />}
           </div>
         </div>

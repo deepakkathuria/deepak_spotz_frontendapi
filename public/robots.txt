@@ -6,10 +6,10 @@ Disallow: /
 Host: https://sportzwiki.com
 
 # Sitemaps
-Sitemap: https://test.sportzwiki.com/sitemap.xml
-Sitemap: https://test.sportzwiki.com/images-sitemap.xml
-Sitemap: https://test.sportzwiki.com/post-sitemap.xml
-Sitemap: https://test.sportzwiki.com/categories-sitemap.xml
-Sitemap: https://test.sportzwiki.com/livescore-sitemap.xml
-Sitemap: https://test.sportzwiki.com/series-sitemap.xml
-Sitemap: https://test.sportzwiki.com/google-news-sitemap.xml
+Sitemap: https://sportzwiki.com/sitemap.xml
+Sitemap: https://sportzwiki.com/images-sitemap.xml
+Sitemap: https://sportzwiki.com/post-sitemap.xml
+Sitemap: https://sportzwiki.com/categories-sitemap.xml
+Sitemap: https://sportzwiki.com/livescore-sitemap.xml
+Sitemap: https://sportzwiki.com/series-sitemap.xml
+Sitemap: https://sportzwiki.com/google-news-sitemap.xml

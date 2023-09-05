@@ -125,17 +125,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_TRACKING_ID} />
       <head>
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
-          crossOrigin="anonymous"
-          strategy="lazyOnload"
-        />
-        {/* <script
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
           crossorigin="anonymous"
-        ></script> */}
+        ></script>
         <script
           async
           src="https://cdn.unibotscdn.com/ubplayer/player.js"

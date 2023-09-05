@@ -4,8 +4,10 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import Script from "next/script";
 // import { WebPageSchema } from "@/json-ld/WebPageSchema";
 // import { NextSeo } from "next-seo";
+const GTM_ID = "G-HGXKFDCKYE";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -120,6 +122,47 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <head>
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
+          crossorigin="anonymous"
+        ></script>
+        <script
+          async
+          src="https://cdn.unibotscdn.com/ubplayer/player.js"
+        ></script>
+        <script
+          async
+          src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+        ></script>
+        <script
+          src="https://cdn.rediads.com/sportzwiki/js/ads.min.js"
+          defer
+        ></script>
+        <script src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js"></script>
+        <link
+          rel="stylesheet"
+          href="https://cdn.rediads.com/css/style.min.css"
+        ></link>
+      </head>
+      <Script id="google-tag-manager" strategy="afterInteractive">
+        {`
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','${GTM_ID}');
+        `}
+      </Script>
+      <Script id="gtag" strategy="afterInteractive">
+        {`
+      window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-40644512-1');
+    `}
+      </Script>
       {/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}
       {/* <head></head> */}
       {/* <Head>
@@ -150,6 +193,15 @@ export default function RootLayout({ children }) {
         <Analytics />
         <div style={{ height: "5rem" }}></div>
         <Footer />
+        <div class="Rediads_BottomSticky">
+          <div
+            data-adslot="/21855545885/sportzwiki.com/BottomOverlay"
+            data-size-desktop="[[728,90]]"
+            data-size-mobile="[[320,50]]"
+            data-ad-refresh={true}
+            data-ad="bottom_sticky"
+          ></div>
+        </div>
       </body>
     </html>
   );

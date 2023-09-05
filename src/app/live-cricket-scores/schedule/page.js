@@ -3,36 +3,46 @@ import styles from "../LiveCricketScores.module.css";
 import NavBarSec from "../../../components/scorePage/NavBarSec";
 import UpdatesSound from "../../../components/common/UpdatesSound";
 import ScoreCard from "../../../components/common/ScoreCard";
-import Breadcrumb from "@/components/common/Breadcrumb";
+import Breadcrumb from "../../../components/common/Breadcrumb";
 // import OrganisationLd from "@/json-ld/OrganisationLd";
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 import { BreadcrumbJsonLd } from "next-seo";
-import FaqLive from "@/components/common/FaqLive";
-const base_url = process.env.BASE_URL_DO;
+import FaqLive from "../../../components/common/FaqLive";
+// const base_url = process.env.BASE_URL_DO;
 const site_url = process.env.SITE_URL;
 
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // JavaScript months are 0-11, so we add 1
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
+
 const fetchLiveMatches = async () => {
-  const res = await fetch(`${baseUrl}/matches/?status=1&token=${token}`, {
-    next: { revalidate: 30 },
-  });
+  const res = await fetch(
+    `${baseUrl}/matches/?token=${token}&date=${formattedDate}&per_page=50`,
+    { cache: "no-store" }
+  );
   const data = await res.json();
   return data;
 };
 
 export const metadata = {
-  title:
-    "Cricket Live Score - Upcoming International, Domestic ODI, Test & T20 Series",
+  title: "Live Cricket Score | Ball By Ball Commentary",
   description:
-    "View Cricket Score of upcoming International, domestic and T20 Series on SportzWiki.",
+    "Get live cricket scores, match schedules, ball by ball commentary of Upcoming and Ongoing International & Domaestic Cricket match, latest news & many more.",
   alternates: {
-    canonical: `${site_url}/live-cricket-scores`,
+    canonical: `${site_url}/live-cricket-scores/schedule`,
   },
   robots: `index, follow`,
 };
 
 const page = async () => {
-  const matches = await fetchLiveMatches();
   const breadcrumbs = [
     {
       name: "Home",
@@ -44,9 +54,10 @@ const page = async () => {
     },
     {
       name: `Schedule`,
-      // url: "/live-cricket-scores/upcoming",
+      // url: "/live-cricket-scores",
     },
   ];
+  const matches = await fetchLiveMatches();
   // console.log(matches, "matchesssssssss");
   return (
     <>
@@ -63,26 +74,11 @@ const page = async () => {
             name: breadcrumbs[1]?.name,
             item: `${site_url}${breadcrumbs[1]?.url}`,
           },
-          {
-            position: 3,
-            name: breadcrumbs[2]?.name,
-            item: `${site_url}${breadcrumbs[2]?.url}`,
-          },
-          // {
-          //   position: 4,
-          //   name: breadcrumbs[3]?.name,
-          //   item: `${site_url}${breadcrumbs[3]?.url}`,
-          // },
-          // {
-          //   position: 5,
-          //   name: breadcrumbs[4]?.name,
-          //   item: `${site_url}${breadcrumbs[4]?.url}`,
-          // },
         ]}
       />
       {/* <OrganisationLd /> */}
       <div className={styles.container}>
-        <div className={styles.navSec}>
+        <div className="navSec">
           <NavBarSec active="live" />
         </div>
         <div style={{ marginTop: "1rem" }} className="breadcrumb">
@@ -91,10 +87,10 @@ const page = async () => {
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>
-        <h1 style={{ marginTop: "1rem" }}>Upcoming Matches</h1>
-        <div className={styles.nav}>
+        <h1 style={{ marginTop: "1rem" }}>Live Cricket Scores</h1>
+        <div className="nav">
           <ul className={styles.navUl}>
-            <li className={`${styles.navLi}`}>
+            <li className={`${styles.navLi} ${styles.active}`}>
               <a href="/live-cricket-scores/schedule">Schedule</a>
             </li>
             <li className={`${styles.navLi}`}>
@@ -103,7 +99,7 @@ const page = async () => {
             <li className={styles.navLi}>
               <a href="/live-cricket-scores/completed">Completed</a>
             </li>
-            <li className={`${styles.navLi} ${styles.active}`}>
+            <li className={styles.navLi}>
               <a href="/live-cricket-scores/upcoming">Upcoming</a>
             </li>
           </ul>
@@ -111,11 +107,10 @@ const page = async () => {
 
         <div className={styles.scoreCardWithSeriesName}>
           {matches?.response?.items?.map((match, index) => {
-            // console.log(match, "matchhhhhhhhhhhhhhhhhhhh");
             return (
               <div key={index} className={styles.seriesCard}>
                 <div className={styles.name}>
-                  <p>{(match?.title).slice(0, 40)}</p>
+                  <p>{match?.title.slice(0, 30)}</p>
                 </div>
                 <ScoreCard
                   key={index}
@@ -131,10 +126,9 @@ const page = async () => {
                   teamBLogo={match?.teamb.logo_url}
                   matchScoreDetails={
                     match?.status_note
-                      ? match?.status_note
-                      : `Match starts on - ${match?.competition.datestart}`
+                      ? match.status_note
+                      : "no status information"
                   }
-                  // type="Upcoming"
                   status={match?.status}
                 />
               </div>

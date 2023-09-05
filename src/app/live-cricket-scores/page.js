@@ -35,7 +35,11 @@ const fetchLiveMatches = async () => {
 export const metadata = {
   title: "Live Cricket Score | Ball By Ball Commentary",
   description:
-    "Get live cricket scores, match schedules, ball by ball commentary of Upcoming and Ongoing International & Domaestic Cricket match, latest news & many more.",
+    "Get live cricket scores, match schedules, ball by ball commentary of Upcoming and Ongoing International & Domestic Cricket match, latest news & many more.",
+  alternates: {
+    canonical: `${site_url}/live-cricket-scores`,
+  },
+  robots: `index, follow`,
 };
 
 const page = async () => {
@@ -82,6 +86,9 @@ const page = async () => {
         <h1 style={{ marginTop: "1rem" }}>Live Cricket Scores</h1>
         <div className="nav">
           <ul className={styles.navUl}>
+            <li className={`${styles.navLi}`}>
+              <a href="/live-cricket-scores/schedule">Schedule</a>
+            </li>
             <li className={`${styles.navLi} ${styles.active}`}>
               <a href="/live-cricket-scores">Live</a>
             </li>

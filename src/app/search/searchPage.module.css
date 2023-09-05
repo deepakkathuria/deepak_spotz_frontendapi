@@ -6,6 +6,8 @@
   height: 100dvh;
 }
 
-.search{
+.search {
   margin-top: 15rem;
+  display: flex;
+  justify-content: center;
 }

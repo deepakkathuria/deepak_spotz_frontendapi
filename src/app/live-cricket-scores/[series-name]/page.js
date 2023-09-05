@@ -423,6 +423,7 @@ import LiveScoreMainPage from "@/components/scorePage/LiveScoreMainPage";
 import styles from "./commonStyle.module.css";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+const site_url = process.env.SITE_URL;
 
 const fetchMatchInfo = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/info?token=${key}`, {
@@ -447,6 +448,10 @@ export async function generateMetadata({ params }) {
     description: `Check ${
       info?.response?.short_title || info?.response?.short_title
     }, Cricket Match with live Cricket score, ball by ball commentary updates on SportzWiki.`,
+    alternates: {
+      canonical: `${site_url}/live-cricket-scores/${seriesName}`,
+    },
+    robots: `index, follow`,
   };
 }
 

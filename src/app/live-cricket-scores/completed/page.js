@@ -26,6 +26,10 @@ export const metadata = {
   title: "Latest Cricket Match Result",
   description:
     "Get recent cricket match score with full commentary of International & Domestic Cricket ",
+  alternates: {
+    canonical: `${site_url}/live-cricket-scores`,
+  },
+  robots: `index, follow`,
 };
 
 const page = async () => {
@@ -39,7 +43,7 @@ const page = async () => {
       url: "/live-cricket-scores",
     },
     {
-      name: `COMPLETED`,
+      name: `Completed`,
       // url: "/live-cricket-scores/completed",
     },
   ];
@@ -117,6 +121,9 @@ const page = async () => {
         <h1 style={{ marginTop: "1rem" }}>Completed Matches</h1>
         <div className={styles.nav}>
           <ul className={styles.navUl}>
+            <li className={`${styles.navLi}`}>
+              <a href="/live-cricket-scores/schedule">Schedule</a>
+            </li>
             <li className={`${styles.navLi}`}>
               <a href="/live-cricket-scores">Live</a>
             </li>

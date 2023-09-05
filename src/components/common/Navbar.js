@@ -38,8 +38,8 @@ const Navbar = () => {
                         priority
                         src="/gaurav/home_ic.svg"
                         alt="home menu icon"
-                        width={16}
-                        height={16}
+                        width={20}
+                        height={20}
                       />
                     </div>
                     <div className="navItemName">Home</div>
@@ -53,8 +53,8 @@ const Navbar = () => {
                         priority
                         src="/gaurav/cricket_ic.svg"
                         alt="cricket bat icon"
-                        width={16}
-                        height={16}
+                        width={20}
+                        height={20}
                       />
                     </div>
                     <div className="navItemName">Cricket</div>
@@ -68,8 +68,8 @@ const Navbar = () => {
                         priority
                         src="/gaurav/football_ic.svg"
                         alt="home menu icon"
-                        width={16}
-                        height={16}
+                        width={20}
+                        height={20}
                         className={styles.plainIc}
                       />
                     </div>
@@ -84,8 +84,8 @@ const Navbar = () => {
                         priority
                         src="/gaurav/wwe_ic.svg"
                         alt="home menu icon"
-                        width={16}
-                        height={16}
+                        width={20}
+                        height={20}
                         className={styles.plainIc}
                       />
                     </div>
@@ -100,8 +100,8 @@ const Navbar = () => {
                         priority
                         src="/gaurav/gamepad_ic.svg"
                         alt="home menu icon"
-                        width={16}
-                        height={16}
+                        width={20}
+                        height={20}
                         className={styles.plainIc}
                       />
                     </div>
@@ -136,8 +136,8 @@ const Navbar = () => {
                     priority
                     src="/gaurav/search_ic.svg"
                     alt="search icon"
-                    width={22}
-                    height={22}
+                    width={25}
+                    height={25}
                     // className={styles.plainIc}
                   />
                 </div>

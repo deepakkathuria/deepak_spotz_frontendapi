@@ -554,6 +554,7 @@ import React from "react";
 import LiveScoreCommentaryPage from "@/components/scorePage/LiveScoreCommentaryPage";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+const site_url = process.env.SITE_URL;
 
 const fetchMatchInfo = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/info?token=${key}`, {
@@ -578,6 +579,10 @@ export async function generateMetadata({ params }) {
     description: `Get ${
       info?.response?.short_title || info?.response?.short_title
     } live score & full commentary updates on SportzWiki.`,
+    alternates: {
+      canonical: `${site_url}/live-cricket-scores/${seriesName}/commentary`,
+    },
+    robots: `index, follow`,
   };
 }
 

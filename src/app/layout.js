@@ -5,9 +5,10 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import Script from "next/script";
+import GoogleAnalytics from "./GoogleAnalytics";
 // import { WebPageSchema } from "@/json-ld/WebPageSchema";
 // import { NextSeo } from "next-seo";
-const GTM_ID = "G-HGXKFDCKYE";
+// const GTM_ID = "G-HGXKFDCKYE";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -122,6 +123,7 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_TRACKING_ID} />
       <head>
         <script
           async
@@ -146,7 +148,7 @@ export default function RootLayout({ children }) {
           href="https://cdn.rediads.com/css/style.min.css"
         ></link>
       </head>
-      <Script id="google-tag-manager" strategy="afterInteractive">
+      {/* <Script id="google-tag-manager" strategy="afterInteractive">
         {`
         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -154,7 +156,7 @@ export default function RootLayout({ children }) {
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','${GTM_ID}');
         `}
-      </Script>
+      </Script> */}
       <Script id="gtag" strategy="afterInteractive">
         {`
       window.dataLayer = window.dataLayer || [];

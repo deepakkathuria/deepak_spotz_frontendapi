@@ -16,7 +16,15 @@ const PostDisplay = (props) => {
     }
   }
 
-  const finalHTML = paragraphs.join("");
+  const finalHTMLAD = paragraphs.join("");
+
+  const urlRegex =
+    /href="https:\/\/admin\.sportzwiki\.com(?!\/wp-content\/uploads)([^"]+)"/g;
+  // console.log(finalHTML);
+  const finalHTML = finalHTMLAD.replace(
+    urlRegex,
+    'href="https://sportzwiki.com$1"'
+  );
 
   return (
     <>

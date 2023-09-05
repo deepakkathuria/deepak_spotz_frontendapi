@@ -128,7 +128,7 @@ export default function RootLayout({ children }) {
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
         <script
           async
@@ -148,15 +148,6 @@ export default function RootLayout({ children }) {
           href="https://cdn.rediads.com/css/style.min.css"
         ></link>
       </head>
-      {/* <Script id="google-tag-manager" strategy="afterInteractive">
-        {`
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','${GTM_ID}');
-        `}
-      </Script> */}
       <Script id="gtag" strategy="afterInteractive">
         {`
       window.dataLayer = window.dataLayer || [];
@@ -165,14 +156,23 @@ export default function RootLayout({ children }) {
     gtag('config', 'UA-40644512-1');
     `}
       </Script>
-      {/* <link rel="icon" href="/favicon.ico" sizes="any" /> */}
-      {/* <head></head> */}
-      {/* <Head>
-        <link rel="canonical" href="https://www.sportzwiki.com/" />
-      </Head> */}
+
+      {/* <Script
+        id="adsbygoogle-init"
+        strategy="beforeInteractive"
+        crossOrigin="anonymous"
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
+      ></Script>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-xxx"
+        data-ad-slot="xxx"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      /> */}
+
       <body className={inter.className}>
-        {/* <WebPageSchema /> */}
-        {/* <div className="nav"> */}
         <Navbar />
         <script
           type="application/ld+json"
@@ -195,7 +195,7 @@ export default function RootLayout({ children }) {
         <Analytics />
         <div style={{ height: "5rem" }}></div>
         <Footer />
-        <div class="Rediads_BottomSticky">
+        <div className="Rediads_BottomSticky">
           <div
             data-adslot="/21855545885/sportzwiki.com/BottomOverlay"
             data-size-desktop="[[728,90]]"

@@ -39,8 +39,9 @@ export async function GET(request, { params }) {
     // const a = [];
 
     const sitemap_data = urls?.map((ele) => {
+      const primaryCategorySlug = ele.primary_category_slug || 'news';
       return {
-        loc: `${site_url}/${ele.primary_category_slug}/${ele.slug}`,
+        loc: `${site_url}/${primaryCategorySlug}/${ele.slug}`,
         lastmod: ele.modified_gmt,
       };
     });

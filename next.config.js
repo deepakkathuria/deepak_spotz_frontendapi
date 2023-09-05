@@ -13,6 +13,7 @@ const nextConfig = {
       "images.entitysport.com",
       "demo2.sportzwiki.com",
       "swdupli.sportzwiki.com",
+      "admin.sportzwiki.com",
     ],
   },
   // ...

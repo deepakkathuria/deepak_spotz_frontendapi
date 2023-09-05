@@ -356,12 +356,12 @@ const page = async ({ params }) => {
               nameTeamA={data?.teama?.name ?? ""}
               nameTeamB={data?.teamb?.name ?? ""}
             />
-            <div className={styles.headerBox}>
+            {/* <div className={styles.headerBox}>
               <HeaderBox />
-            </div>
-            <div className={styles.faqs}>
+            </div> */}
+            {/* <div className={styles.faqs}>
               <FaqLive />
-            </div>
+            </div> */}
           </div>
           {/* <div className={styles.containerRight}>
             <PostListBar category="cricket" />

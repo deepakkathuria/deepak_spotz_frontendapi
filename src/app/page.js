@@ -110,7 +110,7 @@ const page = async () => {
           /> */}
           {/* </Suspense> */}
         </div>
-        <div className="header">
+        {/* <div className="header">
           <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
           <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>
             It is an honour to introduce—Sportzwiki – sports is life, is one of
@@ -122,7 +122,7 @@ const page = async () => {
             window.
           </p>
         </div>
-        <FaqLive />
+        <FaqLive /> */}
       </div>
     </>
   );

@@ -404,12 +404,12 @@ const LiveScoreMainPage = (props) => {
               umpires={matchInfo?.response?.umpires ?? ""}
               referee={matchInfo?.response?.referee ?? ""}
             />
-            <div className={styles.headerBox}>
+            {/* <div className={styles.headerBox}>
               <HeaderBox />
-            </div>
-            <div className={styles.faqs}>
+            </div> */}
+            {/* <div className={styles.faqs}>
               <FaqLive />
-            </div>
+            </div> */}
           </div>
           {/* <div className={styles.containerRight}>
             <PostListBar category="cricket" />

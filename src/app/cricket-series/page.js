@@ -90,13 +90,13 @@ const page = async () => {
                   data={seriesList?.response || []}
                 />
               </div>
-              <div style={{ marginTop: "2rem" }} className="header">
+              {/* <div style={{ marginTop: "2rem" }} className="header">
                 <HeaderBox2
                   header="SportzWiki Media"
                   content="It is an honour to introduce—Sportzwiki – sports is life, is one of the leading online sports mediums across the globe. The digital platform over the years has grabbed the attention of an audience worldwide.From the cricketing ground to the badminton court—the dedicated team at Sportzwiki has been always on the lookout to provide insights, pre and post-match stuff and plenty with 24/7 window."
                 />
                 <FaqLive />
-              </div>
+              </div> */}
             </div>
             <div className={styles.right}>
               <PostListBar category="cricket" />

@@ -290,9 +290,9 @@ const PostDisplayMain = async (props) => {
             <PostListBar category={articleBody?.categories[0].slug} />
           </Suspense>
         </div>
-        <div className="header" style={{ marginTop: "1rem" }}>
+        {/* <div className="header" style={{ marginTop: "1rem" }}>
           <FaqLive />
-        </div>
+        </div> */}
         <div className={styles.relatedArticleSection}>
           <div className={styles.relatedArticleTitle}>
             Related <span>Article</span>

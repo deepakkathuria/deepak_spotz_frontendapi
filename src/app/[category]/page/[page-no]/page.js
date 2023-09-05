@@ -466,7 +466,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
           className={styles.catDescription}
           dangerouslySetInnerHTML={{ __html: categoryData[0]?.description }}
         />
-        <FaqLive />
+        {/* <FaqLive /> */}
       </div>
     </>
   );

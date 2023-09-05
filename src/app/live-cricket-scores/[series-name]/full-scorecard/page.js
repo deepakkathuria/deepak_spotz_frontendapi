@@ -354,12 +354,12 @@ const page = async ({ params }) => {
               <NavSecScore active="scorecard" seriesName={seriesName} />
             </div>
             <ScoreCardLive data={scoreCardInDetails} />
-            <div className={styles.headerBox}>
+            {/* <div className={styles.headerBox}>
               <HeaderBox />
-            </div>
-            <div className={styles.faqs}>
+            </div> */}
+            {/* <div className={styles.faqs}>
               <FaqLive />
-            </div>
+            </div> */}
           </div>
           {/* <div className={styles.containerRight}>
             <PostListBar category="cricket" />

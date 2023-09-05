@@ -9,7 +9,7 @@ const AudioBar = () => {
         <div className={styles.audioPlayer}>
           <Image
             className={styles.audioPlayer}
-            src="https://res.cloudinary.com/dbb7g0jqa/image/upload/v1693483094/swLogo_zvkyfp.jpg"
+            src="https://res.cloudinary.com/dbb7g0jqa/image/upload/v1687933543/Group_2456_kpy57v.png"
             width={340}
             height={53}
             alt=""

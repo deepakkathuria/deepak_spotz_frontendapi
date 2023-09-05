@@ -40,7 +40,7 @@ export async function GET(request, { params }) {
 
     const sitemap_data = urls?.map((ele) => {
       return {
-        loc: `https://${site_url}/${ele.primary_category_slug}/${ele.slug}`,
+        loc: `${site_url}/${ele.primary_category_slug}/${ele.slug}`,
         lastmod: ele.modified_gmt,
       };
     });

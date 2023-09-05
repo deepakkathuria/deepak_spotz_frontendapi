@@ -1,7 +1,7 @@
 // import fetchCountOfDynamicPages from "@/lib/fetchCountOfDynamicPages";
 import { getServerSideSitemapIndex } from "next-sitemap";
 const baseUrl = process.env.BASE_URL_WP;
-const siteUrl = process.env.SITE_URL;
+const siteUrl = process.env.siteUrl;
 const WP_API_USERNAME = process.env.WP_API_USERNAME;
 const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
 
@@ -30,7 +30,7 @@ export async function GET(request) {
 
   const sitemaps = Array(amountOfSitemapFiles)
     .fill("")
-    .map((v, index) => `https://${siteUrl}/post-sitemap-${index}.xml`);
+    .map((v, index) => `${siteUrl}/post-sitemap-${index}.xml`);
 
   // console.log(sitemaps);
 

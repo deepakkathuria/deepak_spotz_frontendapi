@@ -1,6 +1,6 @@
 import { getServerSideSitemapIndex } from "next-sitemap";
 const baseUrl = process.env.BASE_URL_WP;
-const siteUrl = process.env.SITE_URL;
+const siteUrl = process.env.siteUrl;
 const WP_API_USERNAME = process.env.WP_API_USERNAME;
 const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
 
@@ -26,7 +26,7 @@ export async function GET(request) {
 
   const sitemaps = Array(amountOfSitemapFiles)
     .fill("")
-    .map((v, index) => `https://${siteUrl}/images-sitemap-${index}.xml`);
+    .map((v, index) => `${siteUrl}/images-sitemap-${index}.xml`);
 
   return getServerSideSitemapIndex(sitemaps);
 }

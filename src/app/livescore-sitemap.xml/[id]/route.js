@@ -29,7 +29,7 @@ export async function GET(request, { params }) {
 
     const sitemap_data = response.items?.map((ele) => {
       return {
-        loc: `https://${siteUrl}/live-cricket-scores/${slugify(ele.title, {
+        loc: `${siteUrl}/live-cricket-scores/${slugify(ele.title, {
           remove: /[*+~.()'"!:@]/g,
           lower: true,
         })}-${ele.match_id}`,

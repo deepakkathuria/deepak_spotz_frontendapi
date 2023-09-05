@@ -124,7 +124,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_TRACKING_ID} />
-      <head>
+
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
+        crossOrigin="anonymous"
+      />
+      <Script async src="https://cdn.unibotscdn.com/ubplayer/player.js" />
+      <Script
+        async
+        src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+      />
+      <Script src="https://cdn.rediads.com/sportzwiki/js/ads.min.js" defer />
+      <Script src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js" />
+
+      {/* <head>
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
@@ -147,7 +161,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://cdn.rediads.com/css/style.min.css"
         ></link>
-      </head>
+      </head> */}
       <Script id="gtag" strategy="afterInteractive">
         {`
       window.dataLayer = window.dataLayer || [];

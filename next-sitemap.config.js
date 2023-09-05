@@ -5,28 +5,27 @@ const siteUrl =
 
 module.exports = {
   siteUrl,
-  generateRobotsTxt: true,
+  // generateRobotsTxt: true,
   generateIndexSitemap: false,
   sitemapSize: 7000,
-  robotsTxtOptions: {
-    policies: [
-      {
-        userAgent: "*",
-        disallow: ["/secret", "/gaurav", "/testing"],
-        disallow: "/",
-        // allow: "/",
-      },
-    ],
+  // robotsTxtOptions: {
+  //   policies: [
+  //     {
+  //       userAgent: "*",
+  //       disallow: ["/secret", "/gaurav", "/testing"],
+  //       disallow: "/",
+  //     },
+  //   ],
 
-    additionalSitemaps: [
-      `https://${siteUrl}/images-sitemap.xml`,
-      `https://${siteUrl}/post-sitemap.xml`,
-      `https://${siteUrl}/categories-sitemap.xml`,
-      `https://${siteUrl}/livescore-sitemap.xml`,
-      `https://${siteUrl}/series-sitemap.xml`,
-      `https://${siteUrl}/google-news-sitemap.xml`,
-    ],
-  },
+  //   additionalSitemaps: [
+  //     `https://${siteUrl}/images-sitemap.xml`,
+  //     `https://${siteUrl}/post-sitemap.xml`,
+  //     `https://${siteUrl}/categories-sitemap.xml`,
+  //     `https://${siteUrl}/livescore-sitemap.xml`,
+  //     `https://${siteUrl}/series-sitemap.xml`,
+  //     `https://${siteUrl}/google-news-sitemap.xml`,
+  //   ],
+  // },
 
   transform: async (config, path) => {
     return {

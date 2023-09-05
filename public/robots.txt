@@ -1,6 +1,6 @@
 # *
 User-agent: *
-Disallow: /
+Disallow: /wp-admin/
 
 # Host
 Host: https://sportzwiki.com

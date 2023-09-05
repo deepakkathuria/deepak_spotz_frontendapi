@@ -129,14 +129,27 @@ export default function RootLayout({ children }) {
         async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
         crossOrigin="anonymous"
+        strategy="lazyOnload"
       />
-      <Script async src="https://cdn.unibotscdn.com/ubplayer/player.js" />
+      <Script
+        async
+        src="https://cdn.unibotscdn.com/ubplayer/player.js"
+        strategy="lazyOnload"
+      />
       <Script
         async
         src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+        strategy="lazyOnload"
       />
-      <Script src="https://cdn.rediads.com/sportzwiki/js/ads.min.js" defer />
-      <Script src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js" />
+      <Script
+        src="https://cdn.rediads.com/sportzwiki/js/ads.min.js"
+        defer
+        strategy="lazyOnload"
+      />
+      <Script
+        src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js"
+        strategy="lazyOnload"
+      />
 
       {/* <head>
         <script

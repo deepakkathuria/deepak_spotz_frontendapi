@@ -6,6 +6,7 @@ import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import Script from "next/script";
 import GoogleAnalytics from "./GoogleAnalytics";
+import CustomAd1 from "@/ad/CustomAd1";
 // import { WebPageSchema } from "@/json-ld/WebPageSchema";
 // import { NextSeo } from "next-seo";
 // const GTM_ID = "G-HGXKFDCKYE";
@@ -124,13 +125,20 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_TRACKING_ID} />
+      {/* <CustomAd1 /> */}
+      <Script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
+        crossOrigin="anonymous"
+        strategy="lazyOnload"
+      ></Script>
       <head>
-        <script
+        {/* <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
           crossOrigin="anonymous"
-        ></script>
-        <script
+        ></script> */}
+        {/* <script
           async
           src="https://cdn.unibotscdn.com/ubplayer/player.js"
         ></script>
@@ -146,7 +154,7 @@ export default function RootLayout({ children }) {
         <link
           rel="stylesheet"
           href="https://cdn.rediads.com/css/style.min.css"
-        ></link>
+        ></link> */}
       </head>
       <Script id="gtag" strategy="afterInteractive">
         {`
@@ -156,21 +164,6 @@ export default function RootLayout({ children }) {
     gtag('config', 'UA-40644512-1');
     `}
       </Script>
-
-      {/* <Script
-        id="adsbygoogle-init"
-        strategy="beforeInteractive"
-        crossOrigin="anonymous"
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
-      ></Script>
-      <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-xxx"
-        data-ad-slot="xxx"
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      /> */}
 
       <body className={inter.className}>
         <Navbar />
@@ -188,10 +181,7 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLD) }}
         />
-        {/* </div> */}
-        {/* <div className="bodyItems"></div> */}
         {children}
-        {/* <GlobalContextProvider>{children}</GlobalContextProvider> */}
         <Analytics />
         <div style={{ height: "5rem" }}></div>
         <Footer />

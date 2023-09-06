@@ -38,9 +38,9 @@ export async function generateMetadata({ params }) {
   const playerInfo = await fetchPlayerInfoById(playerIdInt);
   // console.log(playerInfo);
   return {
-    title: `${
-      playerInfo?.response?.player?.title || ""
-    } | Indian Cricketers Information | International &  Domestic`,
+    title: `${playerInfo?.response?.player?.title || ""} | ${
+      playerInfo?.response?.player?.nationality
+    } Cricketers Information | International &  Domestic`,
     description: `Full player information of ${
       playerInfo?.response?.player?.title || ""
     }, fulll details, career on SportzWiki.`,

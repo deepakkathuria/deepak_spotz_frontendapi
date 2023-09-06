@@ -586,7 +586,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const page = async({ params }) => {
+const page = async ({ params }) => {
   const { "series-name": seriesName } = params;
   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
   const info = await fetchMatchInfo(seriesIdInt);
@@ -595,7 +595,12 @@ const page = async({ params }) => {
   const createEventLD = {
     "@context": "http://schema.org",
     "@type": "SportsEvent",
-    name: info?.response?.title,
+    name: `Catch live score of ${
+      info?.response?.short_title || info?.response?.short_title
+    }  | SportzWiki.com`,
+    description: `Check ${
+      info?.response?.short_title || info?.response?.short_title
+    }, Cricket Match with live Cricket score, ball by ball commentary updates on SportzWiki.`,
     startDate: isoDate,
     location: {
       "@type": "Place",

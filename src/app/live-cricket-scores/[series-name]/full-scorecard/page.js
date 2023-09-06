@@ -114,7 +114,12 @@ const page = async ({ params }) => {
   const createEventLD = {
     "@context": "http://schema.org",
     "@type": "SportsEvent",
-    name: matchInfo?.response?.title,
+    name: `Catch live score of ${
+      matchInfo?.response?.short_title || info?.response?.short_title
+    }  | SportzWiki.com`,
+    description: `Check ${
+      matchInfo?.response?.short_title || info?.response?.short_title
+    }, Cricket Match with live Cricket score, ball by ball commentary updates on SportzWiki.`,
     startDate: isoDate,
     location: {
       "@type": "Place",

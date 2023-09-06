@@ -52,7 +52,11 @@ const NewsSection = async (props) => {
           {data?.map((item, index) => {
             return (
               <div key={index}>
-                <a href={`${item?.news ?? "news"}/${item?.slug}`}>
+                <a
+                  href={`/${item.primary_category_slug || "news"}/${
+                    item?.slug
+                  }`}
+                >
                   <NewsCardLatest
                     title={item?.title?.rendered}
                     id={item?.id}

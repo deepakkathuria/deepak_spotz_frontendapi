@@ -314,7 +314,11 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
   const pageRange = range(startPage, endPage);
 
-  const PostsOfTag = await fetchPostsByTagId(tagId[0].id, currentPage);
+  // const PostsOfTag = await fetchPostsByTagId(tagId[0].id, currentPage);
+  if (tagId && tagId.length > 0) {
+    const PostsOfTag = await fetchPostsByTagId(tagId[0].id, currentPage);
+    // Rest of the code...
+  }
 
   const breadcrumbs = [
     {

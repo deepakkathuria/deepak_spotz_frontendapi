@@ -128,7 +128,7 @@ export default function RootLayout({ children }) {
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
-          crossorigin="anonymous"
+          crossOrigin="anonymous"
         ></script>
         <script
           async
@@ -195,7 +195,7 @@ export default function RootLayout({ children }) {
         <Analytics />
         <div style={{ height: "5rem" }}></div>
         <Footer />
-        <div class="Rediads_BottomSticky">
+        <div className="Rediads_BottomSticky">
           <div
             data-adslot="/21855545885/sportzwiki.com/BottomOverlay"
             data-size-desktop="[[728,90]]"

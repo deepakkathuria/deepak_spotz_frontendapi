@@ -68,6 +68,10 @@ a {
   margin-top: 8rem;
 }
 
+.columbiaMobile {
+  display: none;
+}
+
 /* .video-container {
   position: relative; 
   padding-bottom: 56.25%; 
@@ -109,6 +113,10 @@ a {
   } */
   ::-webkit-scrollbar {
     width: 0px;
+  }
+
+  .columbiaMobile {
+    display: block;
   }
 
   .container {

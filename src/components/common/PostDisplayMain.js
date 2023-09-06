@@ -283,10 +283,28 @@ const PostDisplayMain = async (props) => {
               // adAfterImage={adAfterImage || ""}
             />
           </Suspense>
+          <div
+            id="div-clmb-ctn-515735-1"
+            style={{ float: "left", minHeight: "2px", width: "100%" }}
+            data-slot="515735"
+            data-position="1"
+            data-section="ArticleShow"
+            data-ua="M"
+            className="colombia columbiaMobile"
+          />
           <Suspense fallback={<p>Loading Post list bar...</p>}>
             <PostListBar category={articleBody?.categories[0].slug} />
           </Suspense>
         </div>
+        <div
+          id="div-clmb-ctn-515737-1"
+          style={{ float: "left", minHeight: "2px", width: "100%" }}
+          data-slot="515737"
+          data-position="1"
+          data-section="ArticleShow"
+          data-ua="D"
+          className="colombia columbiaDesktop"
+        />
         {/* <div className="header" style={{ marginTop: "1rem" }}>
           <FaqLive />
         </div> */}
@@ -322,15 +340,6 @@ const PostDisplayMain = async (props) => {
                 })}
             </Suspense>
           </div>
-          <div
-            id="div-clmb-ctn-515735-1"
-            style={{ float: "left", minHeight: "2px", width: "100%" }}
-            data-slot="515735"
-            data-position="1"
-            data-section="ArticleShow"
-            data-ua="M"
-            className="colombia"
-          ></div>
         </div>
       </div>
     </>

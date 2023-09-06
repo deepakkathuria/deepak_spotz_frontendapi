@@ -44,7 +44,7 @@ export async function generateMetadata({ params }) {
     } Cricketers Information | International &  Domestic`,
     description: `Full player information of ${
       playerInfo?.response?.player?.title || ""
-    }, fulll details, career on SportzWiki.`,
+    }, full details, career on SportzWiki.`,
   };
 }
 

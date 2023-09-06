@@ -149,7 +149,7 @@ export async function generateMetadata({ params }) {
     );
     const canonical = canonicalMatch
       ? canonicalMatch[1].replace(
-          "https://swdupli.sportzwiki.com",
+          "https://admin.sportzwiki.com",
           "https://sportzwiki.com"
         )
       : null;
@@ -220,12 +220,13 @@ export async function generateMetadata({ params }) {
       }
 
       const headContent = metaData.head;
+      console.log(headContent, "headContentheadContentheadContentheadContent");
       const canonicalRegex = /<link rel="canonical" href="(.*?)" \/>/;
       const match = headContent.match(canonicalRegex);
 
       if (match && match[1]) {
         canonicalUrl = match[1].replace(
-          "https://swdupli.sportzwiki.com",
+          "https://admin.sportzwiki.com",
           "https://sportzwiki.com"
         );
         // console.log("Canonical URL:", canonicalUrl);

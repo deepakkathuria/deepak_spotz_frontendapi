@@ -203,7 +203,7 @@ export async function generateMetadata({ params }) {
     );
     const canonical = canonicalMatch
       ? canonicalMatch[1].replace(
-          "https://swdupli.sportzwiki.com",
+          "https://admin.sportzwiki.com",
           "https://sportzwiki.com"
         )
       : null;

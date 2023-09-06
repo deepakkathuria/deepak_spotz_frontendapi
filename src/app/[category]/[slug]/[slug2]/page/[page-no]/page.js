@@ -162,6 +162,7 @@ export async function generateMetadata({ params }) {
 
     const metaData = await fetchMetaData(slug2);
     const headContent = metaData.head;
+    console.log(headContent,'headContentheadContentheadContent');
 
     // Extract meta title
     const titleMatch = headContent.match(/<title>(.*?)<\/title>/);
@@ -203,7 +204,7 @@ export async function generateMetadata({ params }) {
     );
     const canonical = canonicalMatch
       ? canonicalMatch[1].replace(
-          "https://swdupli.sportzwiki.com",
+          "https://admin.sportzwiki.com",
           "https://sportzwiki.com"
         )
       : null;
@@ -217,14 +218,18 @@ export async function generateMetadata({ params }) {
     if (currentPage !== 1) {
       iconsOther.push({
         rel: "prev",
-        url: `https://www.sportzwiki.com/${category}/${slug}/${slug2}/page/${currentPage - 1}`,
+        url: `https://www.sportzwiki.com/${category}/${slug}/${slug2}/page/${
+          currentPage - 1
+        }`,
       });
     }
 
     if (currentPage !== totalPages) {
       iconsOther.push({
         rel: "next",
-        url: `https://www.sportzwiki.com/${category}/${slug}/${slug2}/page/${currentPage + 1}`,
+        url: `https://www.sportzwiki.com/${category}/${slug}/${slug2}/page/${
+          currentPage + 1
+        }`,
       });
     }
 

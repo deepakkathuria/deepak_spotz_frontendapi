@@ -56,7 +56,7 @@ const page = async () => {
     },
     {
       name: `Sports`,
-      url: "/",
+      // url: "/",
     },
     {
       name: `Cricket`,

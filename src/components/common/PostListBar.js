@@ -39,7 +39,11 @@ const PostListBar = async (props) => {
             postsList2?.map((item, index) => {
               return (
                 <div key={index}>
-                  <a href={`/${props.category}/${item?.slug}`}>
+                  <a
+                    href={`/${item.primary_category_slug || "news"}/${
+                      item?.slug
+                    }`}
+                  >
                     <NewscardNoBorder
                       title={item?.title.rendered}
                       date={item?.date}

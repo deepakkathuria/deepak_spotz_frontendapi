@@ -103,8 +103,36 @@ const page = async ({ params }) => {
       // url: `/live-cricket-scores/${seriesName}/teams`,
     },
   ];
+  // const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
+  // const info = await fetchMatchInfo(seriesIdInt);
+  const dateLd = matchInfo?.response?.date_start_ist;
+  const isoDate = new Date(dateLd).toISOString();
+  const createEventLD = {
+    "@context": "http://schema.org",
+    "@type": "SportsEvent",
+    name: matchInfo?.response?.title,
+    startDate: isoDate,
+    location: {
+      "@type": "Place",
+      name: matchInfo?.response?.venue.name,
+    },
+    competitor: [
+      {
+        "@type": "SportsTeam",
+        name: matchInfo?.response?.teama?.name,
+      },
+      {
+        "@type": "SportsTeam",
+        name: matchInfo?.response?.teamb?.name,
+      },
+    ],
+  };
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(createEventLD) }}
+      />
       <BreadcrumbJsonLd
         useAppDir={true}
         itemListElements={[
@@ -136,13 +164,13 @@ const page = async ({ params }) => {
         ]}
       />
       {/* <OrganisationLd /> */}
-      <EventLd
+      {/* <EventLd
         eventName={data?.competition?.title ?? ""}
         startDate={data?.date_start_ist}
         endDate={data?.date_end_ist}
         venue={data?.venue?.name}
         url={`${site_url}${breadcrumbs[3]?.url}`}
-      />
+      /> */}
       <div className={styles.containerMainLiveScore}>
         <NavBarSec active="live" />
         <div style={{ marginTop: "1rem" }} className="breadcrumb">

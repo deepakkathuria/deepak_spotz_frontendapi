@@ -22,24 +22,40 @@ const site_url = process.env.SITE_URL;
 // import { Helmet } from "react-helmet";
 import HeaderBox from "../common/HeaderBox";
 import FaqLive from "../common/FaqLive";
+import { createEventLD } from "@/json-ld/eventLDnew";
 // import type { Metadata } from 'next'
-console.log(baseUrl,'baseeeeeeeee')
+console.log(baseUrl, "baseeeeeeeee");
 
 // const header1 = "Live Cricket Scores & Updates";
 // const description =
 //   "Stay tuned to our live cricket score page for real-time updates, ball-by-ball commentary, and comprehensive match insights. Whether its international tests, ODIs, T20s, or domestic league matches, we've got you covered with the latest scores and match highlights. Don't miss a single moment of the action!";
+
+const faqLD = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "what is sportzwiki",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Latest Sports News: Get all latest sports news today on different sports, from Cricket, Football, Tennis, WWE, Esports, Badminton, Basketball, Boxing, F1, Hockey, Kabaddi &amp; Golf.",
+      },
+    },
+  ],
+};
 
 const fetchMatchInfo = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/info?token=${key}`, {
     next: { revalidate: 2 },
   });
   const matchInfo = await res.json();
-  console.log(matchInfo,'matchInfomatchInfomatchInfo')
+  console.log(matchInfo, "matchInfomatchInfomatchInfo");
   return matchInfo;
 };
 
 const fetchMatchScoreCard = async (matchId) => {
-  console.log(`${baseUrl}/matches/${matchId}/live?token=${key}`)
+  console.log(`${baseUrl}/matches/${matchId}/live?token=${key}`);
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
     next: { revalidate: 2 },
   });
@@ -125,21 +141,38 @@ const LiveScoreMainPage = (props) => {
   // console.log(matchInfo, "matchInfonsjdkbvkbdvj");
 
   // console.log(seriesName, "iddddd", typeof seriesName);
+  // const eventLDData = createEventLD(matchInfo);
+  // console.log(eventLDData, "eventLDDataeventLDDataeventLDData");
+  // const dateLd = matchInfo?.response?.date_start_ist;
+  // const isoDate = new Date(dateLd).toISOString();
+  // console.log(isoDate, "isoDateisoDateisoDateisoDateisoDate");
+
+  const createEventLD = {
+    "@context": "http://schema.org",
+    "@type": "SportsEvent",
+    name: matchInfo?.response?.competition.title,
+    location: {
+      "@type": "Place",
+      name: matchInfo?.response?.venue.name,
+    },
+    competitor: [
+      {
+        "@type": "SportsTeam",
+        name: matchInfo?.response?.teama?.name,
+      },
+      {
+        "@type": "SportsTeam",
+        name: matchInfo?.response?.teamb?.name,
+      },
+    ],
+  };
+
   return (
     <>
-      {/* <Helmet>
-        <meta charSet="utf-8" />
-        <title>{`Catch live score of ${
-          matchInfo?.response?.teama?.name ?? ""
-        } vs ${
-          matchInfo?.response?.teamb?.name ?? ""
-        } | SportzWiki.com`}</title>
-        <description>
-          {`Check ${matchInfo?.response?.teama?.name ?? ""} vs ${
-            matchInfo?.response?.teamb?.name ?? ""
-          }, Cricket Match with live Cricket score, ball by ball commentary updates on SportzWiki.`}
-        </description>
-      </Helmet> */}
+      {/* <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(createEventLD) }}
+      /> */}
 
       <BreadcrumbJsonLd
         useAppDir={true}
@@ -166,13 +199,13 @@ const LiveScoreMainPage = (props) => {
         ]}
       />
       {/* <OrganisationLd /> */}
-      <EventLd
+      {/* <EventLd
         eventName={matchInfo?.response?.competition.title ?? ""}
         startDate={matchInfo?.response?.date_start_ist}
         endDate={matchInfo?.response?.date_end_ist}
         venue={matchInfo?.response?.venue.name}
         url={`${site_url}${breadcrumbs[3]?.url}`}
-      />
+      /> */}
       <div
         className={styles.containerMainLiveScore}
         style={{ marginBottom: "4rem" }}

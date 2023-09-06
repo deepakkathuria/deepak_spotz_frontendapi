@@ -174,13 +174,13 @@ const LiveScoreCommentaryPage = (props) => {
         ]}
       />
       {/* <OrganisationLd /> */}
-      <EventLd
+      {/* <EventLd
         eventName={matchInfo?.response?.competition.title ?? "-"}
         startDate={matchInfo?.response?.date_start_ist}
         endDate={matchInfo?.response?.date_end_ist}
         venue={matchInfo?.response?.venue.name}
         url={`${site_url}${breadcrumbs[3]?.url}`}
-      />
+      /> */}
       {/* <Helmet>
         <meta charSet="utf-8" />
         <title>{matchInfo?.response?.competition?.title ?? "SportzWiki"}</title>

@@ -586,10 +586,38 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const page = ({ params }) => {
+const page = async({ params }) => {
   const { "series-name": seriesName } = params;
+  const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
+  const info = await fetchMatchInfo(seriesIdInt);
+  const dateLd = info?.response?.date_start_ist;
+  const isoDate = new Date(dateLd).toISOString();
+  const createEventLD = {
+    "@context": "http://schema.org",
+    "@type": "SportsEvent",
+    name: info?.response?.title,
+    startDate: isoDate,
+    location: {
+      "@type": "Place",
+      name: info?.response?.venue.name,
+    },
+    competitor: [
+      {
+        "@type": "SportsTeam",
+        name: info?.response?.teama?.name,
+      },
+      {
+        "@type": "SportsTeam",
+        name: info?.response?.teamb?.name,
+      },
+    ],
+  };
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(createEventLD) }}
+      />
       <LiveScoreCommentaryPage seriesName={seriesName} />
     </>
   );

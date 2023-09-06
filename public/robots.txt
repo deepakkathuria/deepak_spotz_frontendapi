@@ -1,6 +1,7 @@
 # *
 User-agent: *
 Disallow: /wp-admin/
+Disallow: /sports/cricket
 
 # Host
 Host: https://sportzwiki.com

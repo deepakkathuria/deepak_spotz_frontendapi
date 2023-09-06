@@ -27,7 +27,7 @@ export async function GET(request) {
 
   const sitemaps = Array(amountOfSitemapFiles)
     .fill("")
-    .map((v, index) => `${siteUrl}/categories-sitemap-${index}.xml`);
+    .map((v, index) => `https://sportzwiki.com/categories-sitemap-${index}.xml`);
 
   return getServerSideSitemapIndex(sitemaps);
 }

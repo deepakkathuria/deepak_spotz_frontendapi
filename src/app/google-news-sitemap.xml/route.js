@@ -37,14 +37,15 @@ export async function GET(request) {
     const sitemap_data = urls?.map((ele) => {
       return {
         loc: `${site_url}/${ele.primary_category_slug}/${ele.slug}`,
-        lastmod: ele.modified_gmt,
-        image: ele.featured_image_url,
+        // lastmod: ele.modified_gmt,
+        // image: ele.featured_image_url,
         news: {
           title: ele.title.rendered,
           publicationName: "SportzWiki Media",
           publicationLanguage: "en",
           date: ele.date_gmt,
         },
+        publication_date: new Date(ele.date_gmt).toISOString(),
       };
     });
     return getServerSideSitemap(sitemap_data);

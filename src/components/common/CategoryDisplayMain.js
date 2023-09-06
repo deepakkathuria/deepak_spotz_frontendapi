@@ -245,7 +245,7 @@ export async function generateMetadata({ params }) {
     };
   } catch (error) {
     console.error("Error generating metadata:", error);
-    throw new Error("Failed to generate metadata. Please try again later.");
+    // throw new Error("Failed to generate metadata. Please try again later.");
   }
 }
 

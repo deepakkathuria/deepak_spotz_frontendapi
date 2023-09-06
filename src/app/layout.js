@@ -138,15 +138,15 @@ export default function RootLayout({ children }) {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
           crossOrigin="anonymous"
         ></script> */}
-        {/* <script
+        {/* <cript
           async
           src="https://cdn.unibotscdn.com/ubplayer/player.js"
         ></script>
-        <script
+        <cript
           async
           src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
         ></script>
-        <script
+        <cript
           src="https://cdn.rediads.com/sportzwiki/js/ads.min.js"
           defer
         ></script>
@@ -155,6 +155,26 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://cdn.rediads.com/css/style.min.css"
         ></link> */}
+        <Script
+          async
+          src="https://cdn.unibotscdn.com/ubplayer/player.js"
+        ></Script>
+        <Script
+          src="https://cdn.rediads.com/sportzwiki/js/ads.min.js"
+          defer
+        ></Script>
+        <Script
+          src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js"
+          defer
+        ></Script>
+        <Script
+          async
+          src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+        ></Script>
+        <Script
+          src="https://cdn.rediads.com/css/style.min.css"
+          rel="stylesheet"
+        ></Script>
         <Script
           id="custom-ad-below-post-mobile"
           strategy="lazyOnload"

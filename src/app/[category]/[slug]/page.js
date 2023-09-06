@@ -220,7 +220,7 @@ export async function generateMetadata({ params }) {
       }
 
       const headContent = metaData.head;
-      console.log(headContent, "headContentheadContentheadContentheadContent");
+      // console.log(headContent, "headContentheadContentheadContentheadContent");
       const canonicalRegex = /<link rel="canonical" href="(.*?)" \/>/;
       const match = headContent.match(canonicalRegex);
 

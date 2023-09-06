@@ -150,12 +150,14 @@ export default function RootLayout({ children }) {
           src="https://cdn.rediads.com/sportzwiki/js/ads.min.js"
           defer
         ></script>
-        <script src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js"></script>
+        <cript src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js"></script>
         <link
           rel="stylesheet"
           href="https://cdn.rediads.com/css/style.min.css"
         ></link> */}
-        {/* <script
+        <Script
+          id="custom-ad-below-post-mobile"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -170,7 +172,7 @@ export default function RootLayout({ children }) {
               } catch(e) {}
             `,
           }}
-        ></script> */}
+        ></Script>
       </head>
       <Script id="gtag" strategy="afterInteractive">
         {`

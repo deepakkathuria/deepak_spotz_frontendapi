@@ -155,8 +155,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://cdn.rediads.com/css/style.min.css"
         ></link> */}
-        <Script
-          strategy="lazyOnload"
+        {/* <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
@@ -171,7 +170,7 @@ export default function RootLayout({ children }) {
               } catch(e) {}
             `,
           }}
-        ></Script>
+        ></script> */}
       </head>
       <Script id="gtag" strategy="afterInteractive">
         {`
@@ -183,15 +182,6 @@ export default function RootLayout({ children }) {
       </Script>
 
       <body className={inter.className}>
-        {/* <div
-          id="div-clmb-ctn-515735-1"
-          style={{ float: "left", minHeight: "2px", width: "100%" }}
-          data-slot="515735"
-          data-position="1"
-          data-section="ArticleShow"
-          data-ua="M"
-          className="colombia"
-        ></div> */}
         <Navbar />
         <script
           type="application/ld+json"

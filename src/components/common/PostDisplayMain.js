@@ -106,13 +106,16 @@ const fetchPostBySlug = async (slug) => {
 
 // Function to fetch tag data by ID
 const fetchTagById = async (tagId) => {
-  const response = await fetch(`${BASE_URL_WP}wp-json/wp/v2/tags/${tagId}`, {
-    next: { revalidate: 300 },
-    method: "GET",
-    headers: {
-      Authorization: `Basic ${base64Credentials}`,
-    },
-  });
+  const response = await fetch(
+    `${BASE_URL_WP}wp-json/wp/v2/tags/${tagId}`,
+    {
+      next: { revalidate: 300 },
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+    }
+  );
   const tagData = await response.json();
   return tagData;
 };
@@ -322,15 +325,6 @@ const PostDisplayMain = async (props) => {
                 })}
             </Suspense>
           </div>
-          <div
-            id="div-clmb-ctn-515735-1"
-            style={{ float: "left", minHeight: "2px", width: "100%" }}
-            data-slot="515735"
-            data-position="1"
-            data-section="ArticleShow"
-            data-ua="M"
-            className="colombia"
-          ></div>
         </div>
       </div>
     </>

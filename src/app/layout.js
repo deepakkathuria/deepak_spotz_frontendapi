@@ -155,6 +155,23 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://cdn.rediads.com/css/style.min.css"
         ></link> */}
+        <Script
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                (function() {
+                  var cads = document.createElement("script");
+                  cads.async = true;
+                  cads.type = "text/javascript";
+                  cads.src = "https://static.clmbtech.com/ad/commons/js/82562/colombia_v2.js";
+                  var node = document.getElementsByTagName("script")[0];
+                  node.parentNode.insertBefore(cads, node);
+                })();
+              } catch(e) {}
+            `,
+          }}
+        ></Script>
       </head>
       <Script id="gtag" strategy="afterInteractive">
         {`
@@ -166,6 +183,15 @@ export default function RootLayout({ children }) {
       </Script>
 
       <body className={inter.className}>
+        {/* <div
+          id="div-clmb-ctn-515735-1"
+          style={{ float: "left", minHeight: "2px", width: "100%" }}
+          data-slot="515735"
+          data-position="1"
+          data-section="ArticleShow"
+          data-ua="M"
+          className="colombia"
+        ></div> */}
         <Navbar />
         <script
           type="application/ld+json"
@@ -181,6 +207,7 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLD) }}
         />
+
         {children}
         <Analytics />
         <div style={{ height: "5rem" }}></div>

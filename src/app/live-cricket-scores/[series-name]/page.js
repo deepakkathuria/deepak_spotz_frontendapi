@@ -421,6 +421,7 @@
 import React from "react";
 import LiveScoreMainPage from "@/components/scorePage/LiveScoreMainPage";
 import styles from "./commonStyle.module.css";
+import { BreadcrumbJsonLd } from "next-seo";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const site_url = process.env.SITE_URL;
@@ -486,52 +487,56 @@ const page = async ({ params }) => {
       },
     ],
   };
-
-  const createBreadCrumbLD = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        item: {
-          "@id": "https://sportzwiki.com/",
-          name: "Home",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        item: {
-          "@id": "https://sportzwiki.com/live-cricket-scores/",
-          name: "Live Cricket Scores",
-        },
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        item: {
-          "@id":
-            `https://sportzwiki.com/live-cricket-scores/${seriesName}` ||
-            `https://sportzwiki.com/live-cricket-scores/${seriesName}`,
-          name: `${info?.response?.teama?.name} vs ${info?.response?.teamb?.name}`,
-        },
-      },
-    ],
-  };
   // const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
   // const info = fetchMatchInfo(seriesIdInt);
   // console.log(seriesName, "seriesNameseriesNameseriesNameseriesName");
-
+  const breadcrumbs = [
+    {
+      name: "Home",
+      url: "/",
+    },
+    {
+      name: `Live Cricket Scroes`,
+      url: "/live-cricket-scores",
+    },
+    {
+      name: `${info?.response?.teama?.name} vs ${info?.response?.teamb?.name}`,
+      url: `/live-cricket-scores/${seriesName}`,
+    },
+    // {
+    //   name: `LIVE CRICKET SCORECARD`,
+    //   url: `/live-cricket-scores/${seriesName}`,
+    // },
+  ];
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(createEventLD) }}
+      <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: "Home",
+            item: "sportzwiki.com",
+          },
+          {
+            position: 2,
+            name: breadcrumbs[1]?.name,
+            item: `https://${site_url}${breadcrumbs[1]?.url}`,
+          },
+          {
+            position: 3,
+            name: breadcrumbs[2]?.name,
+            item: `https://${site_url}${breadcrumbs[2]?.url}`,
+          },
+          // {
+          // position: 4,
+          // name: breadcrumbs[3]?.name,
+          // },
+        ]}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(createBreadCrumbLD) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(createEventLD) }}
       />
       <div className={styles.container}>
         <LiveScoreMainPage seriesName={seriesName} />

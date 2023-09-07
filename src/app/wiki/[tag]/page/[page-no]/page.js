@@ -316,7 +316,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
   // const PostsOfTag = await fetchPostsByTagId(tagId[0].id, currentPage);
   if (tagId && tagId.length > 0) {
-    const PostsOfTag = await fetchPostsByTagId(tagId[0].id, currentPage);
+    var PostsOfTag = await fetchPostsByTagId(tagId[0].id, currentPage);
     // Rest of the code...
   }
 
@@ -413,8 +413,9 @@ const CategoryPosts = async ({ params, searchParams }) => {
           </div>
 
           <div className={styles.newsCardsDisplay}>
-            {Array.isArray(PostsOfTag) &&
-              PostsOfTag.map((post) => (
+            {typeof PostsOfTag !== "undefined" &&
+              Array.isArray(PostsOfTag) &&
+              PostsOfTag?.map((post) => (
                 <div className="card" key={post.ID}>
                   {/* {console.log(post.featured_image_url, "featuresdddddd")} */}
                   <a href={`/${post.primary_category_slug}/${post.slug}`}>

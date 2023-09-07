@@ -293,7 +293,7 @@ const PostDisplayMain = async (props) => {
             className="colombia columbiaMobile"
           />
           <Suspense fallback={<p>Loading Post list bar...</p>}>
-            <PostListBar category={articleBody?.categories[0].slug} />
+            <PostListBar category={articleBody?.categories[0]?.slug} />
           </Suspense>
         </div>
         <div

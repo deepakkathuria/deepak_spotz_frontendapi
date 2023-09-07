@@ -132,13 +132,13 @@ export default function RootLayout({ children }) {
         crossOrigin="anonymous"
         strategy="lazyOnload"
       ></Script>
-      <head>
-        {/* <script
+      {/* <head> */}
+      {/* <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
           crossOrigin="anonymous"
         ></script> */}
-        {/* <cript
+      {/* <cript
           async
           src="https://cdn.unibotscdn.com/ubplayer/player.js"
         ></script>
@@ -155,31 +155,31 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://cdn.rediads.com/css/style.min.css"
         ></link> */}
-        <Script
-          async
-          src="https://cdn.unibotscdn.com/ubplayer/player.js"
-        ></Script>
-        <Script
-          src="https://cdn.rediads.com/sportzwiki/js/ads.min.js"
-          defer
-        ></Script>
-        <Script
-          src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js"
-          defer
-        ></Script>
-        <Script
-          async
-          src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
-        ></Script>
-        <Script
-          src="https://cdn.rediads.com/css/style.min.css"
-          rel="stylesheet"
-        ></Script>
-        <Script
-          id="custom-ad-below-post-mobile"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
+      <Script
+        async
+        src="https://cdn.unibotscdn.com/ubplayer/player.js"
+      ></Script>
+      <Script
+        src="https://cdn.rediads.com/sportzwiki/js/ads.min.js"
+        defer
+      ></Script>
+      <Script
+        src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js"
+        defer
+      ></Script>
+      <Script
+        async
+        src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+      ></Script>
+      <Script
+        src="https://cdn.rediads.com/css/style.min.css"
+        rel="stylesheet"
+      ></Script>
+      <Script
+        id="custom-ad-below-post-mobile"
+        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{
+          __html: `
               try {
                 (function() {
                   var cads = document.createElement("script");
@@ -191,14 +191,14 @@ export default function RootLayout({ children }) {
                 })();
               } catch(e) {}
             `,
-          }}
-        ></Script>
+        }}
+      ></Script>
 
-        <Script
-          id="custom-ad-below-post-desktop"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `
+      <Script
+        id="custom-ad-below-post-desktop"
+        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{
+          __html: `
       try {
         (function() {
           var cads = document.createElement("script");
@@ -210,9 +210,9 @@ export default function RootLayout({ children }) {
         })();
       } catch(e) {}
     `,
-          }}
-        ></Script>
-      </head>
+        }}
+      ></Script>
+      {/* </head> */}
       <Script id="gtag" strategy="afterInteractive">
         {`
       window.dataLayer = window.dataLayer || [];

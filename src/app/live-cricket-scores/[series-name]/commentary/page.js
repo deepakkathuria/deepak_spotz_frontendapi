@@ -552,6 +552,8 @@
 
 import React from "react";
 import LiveScoreCommentaryPage from "@/components/scorePage/LiveScoreCommentaryPage";
+// import BreadCrumbJsonLd from "next-seo/lib/jsonld/breadcrumb";
+import { BreadcrumbJsonLd } from "next-seo";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const site_url = process.env.SITE_URL;
@@ -617,8 +619,51 @@ const page = async ({ params }) => {
       },
     ],
   };
+  const breadcrumbs = [
+    {
+      name: "Home",
+      url: "/",
+    },
+    {
+      name: `Live Cricket Scroes`,
+      url: "/live-cricket-scores",
+    },
+    {
+      name: `${info?.response?.teama?.name} vs ${info?.response?.teamb?.name}`,
+      url: `/live-cricket-scores/${seriesName}`,
+    },
+    {
+      name: `Commentary`,
+      url: `/live-cricket-scores/${seriesName}/commentary`,
+    },
+  ];
   return (
     <>
+      <BreadcrumbJsonLd
+        useAppDir={true}
+        itemListElements={[
+          {
+            position: 1,
+            name: "Home",
+            item: "sportzwiki.com",
+          },
+          {
+            position: 2,
+            name: breadcrumbs[1]?.name,
+            item: `${site_url}${breadcrumbs[1]?.url}`,
+          },
+          {
+            position: 3,
+            name: breadcrumbs[2]?.name,
+            item: `${site_url}${breadcrumbs[2]?.url}`,
+          },
+          {
+            position: 4,
+            name: breadcrumbs[3]?.name,
+            item: `${site_url}${breadcrumbs[3]?.url}`,
+          },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(createEventLD) }}

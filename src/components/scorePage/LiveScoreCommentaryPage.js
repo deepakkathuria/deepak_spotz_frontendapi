@@ -148,7 +148,7 @@ const LiveScoreCommentaryPage = (props) => {
   ];
   return (
     <>
-      <BreadcrumbJsonLd
+      {/* <BreadcrumbJsonLd
         useAppDir={true}
         itemListElements={[
           {
@@ -172,7 +172,7 @@ const LiveScoreCommentaryPage = (props) => {
             item: `${site_url}${breadcrumbs[3]?.url}`,
           },
         ]}
-      />
+      /> */}
       {/* <OrganisationLd /> */}
       {/* <EventLd
         eventName={matchInfo?.response?.competition.title ?? "-"}

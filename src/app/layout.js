@@ -158,20 +158,29 @@ export default function RootLayout({ children }) {
       <Script
         async
         src="https://cdn.unibotscdn.com/ubplayer/player.js"
+        strategy="lazyOnload"
+        crossOrigin="anonymous"
       ></Script>
       <Script
         src="https://cdn.rediads.com/sportzwiki/js/ads.min.js"
+        strategy="lazyOnload"
+        crossOrigin="anonymous"
         defer
       ></Script>
       <Script
         src="https://cdn.rediads.com/sportzwiki/js/prebid.min.js"
+        strategy="lazyOnload"
+        crossOrigin="anonymous"
         defer
       ></Script>
       <Script
         async
         src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+        strategy="lazyOnload"
+        crossOrigin="anonymous"
       ></Script>
       <Script
+        async
         src="https://cdn.rediads.com/css/style.min.css"
         rel="stylesheet"
       ></Script>

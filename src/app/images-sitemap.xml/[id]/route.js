@@ -37,7 +37,7 @@ export async function GET(request, { params }) {
     const sitemap_data = urls?.map((ele) => {
       return {
         loc: `${ele.guid.rendered}`,
-        lastmod: ele.modified_gmt,
+        lastmod: new Date(ele.modified_gmt).toISOString(),
       };
     });
     return getServerSideSitemap(sitemap_data);

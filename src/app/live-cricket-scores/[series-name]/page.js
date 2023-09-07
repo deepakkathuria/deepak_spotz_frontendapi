@@ -511,7 +511,9 @@ const page = async ({ params }) => {
         "@type": "ListItem",
         position: 3,
         item: {
-          "@id": `https://sportzwiki.com/live-cricket-scores/${seriesName}`,
+          "@id":
+            `https://sportzwiki.com/live-cricket-scores/${seriesName}` ||
+            `https://sportzwiki.com/live-cricket-scores/${seriesName}`,
           name: `${info?.response?.teama?.name} vs ${info?.response?.teamb?.name}`,
         },
       },
@@ -527,10 +529,10 @@ const page = async ({ params }) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(createEventLD) }}
       />
-      {/* <script
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(createBreadCrumbLD) }}
-      /> */}
+      />
       <div className={styles.container}>
         <LiveScoreMainPage seriesName={seriesName} />
       </div>

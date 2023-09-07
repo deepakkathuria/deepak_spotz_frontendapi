@@ -487,28 +487,6 @@ const page = async ({ params }) => {
     ],
   };
 
-  const breadcrumbs = [
-    {
-      name: "Home",
-      url: "/",
-    },
-    {
-      name: `Live Cricket Scroes`,
-      url: "/live-cricket-scores",
-    },
-    {
-      name: `${info?.response?.teama?.name} vs ${info?.response?.teamb?.name}`,
-      // url: `/live-cricket-scores/${seriesName}`,
-    },
-    // {
-    //   name: `LIVE CRICKET SCORECARD`,
-    //   url: `/live-cricket-scores/${seriesName}`,
-    // },
-  ];
-
-  {
-
-  }
   const createBreadCrumbLD = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -549,10 +527,10 @@ const page = async ({ params }) => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(createEventLD) }}
       />
-      <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(createBreadCrumbLD) }}
-      />
+      /> */}
       <div className={styles.container}>
         <LiveScoreMainPage seriesName={seriesName} />
       </div>

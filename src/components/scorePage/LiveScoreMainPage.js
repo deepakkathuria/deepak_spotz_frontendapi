@@ -24,7 +24,7 @@ import HeaderBox from "../common/HeaderBox";
 import FaqLive from "../common/FaqLive";
 import { createEventLD } from "@/json-ld/eventLDnew";
 // import type { Metadata } from 'next'
-console.log(baseUrl, "baseeeeeeeee");
+// console.log(baseUrl, "baseeeeeeeee");
 
 // const header1 = "Live Cricket Scores & Updates";
 // const description =
@@ -174,7 +174,7 @@ const LiveScoreMainPage = (props) => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(createEventLD) }}
       /> */}
 
-      <BreadcrumbJsonLd
+      {/* <BreadcrumbJsonLd
         useAppDir={true}
         itemListElements={[
           {
@@ -197,7 +197,7 @@ const LiveScoreMainPage = (props) => {
             // name: breadcrumbs[3]?.name,
           },
         ]}
-      />
+      /> */}
       {/* <OrganisationLd /> */}
       {/* <EventLd
         eventName={matchInfo?.response?.competition.title ?? ""}

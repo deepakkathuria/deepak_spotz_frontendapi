@@ -486,14 +486,72 @@ const page = async ({ params }) => {
       },
     ],
   };
+
+  const breadcrumbs = [
+    {
+      name: "Home",
+      url: "/",
+    },
+    {
+      name: `Live Cricket Scroes`,
+      url: "/live-cricket-scores",
+    },
+    {
+      name: `${info?.response?.teama?.name} vs ${info?.response?.teamb?.name}`,
+      // url: `/live-cricket-scores/${seriesName}`,
+    },
+    // {
+    //   name: `LIVE CRICKET SCORECARD`,
+    //   url: `/live-cricket-scores/${seriesName}`,
+    // },
+  ];
+
+  {
+
+  }
+  const createBreadCrumbLD = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        item: {
+          "@id": "https://sportzwiki.com/",
+          name: "Home",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        item: {
+          "@id": "https://sportzwiki.com/live-cricket-scores/",
+          name: "Live Cricket Scores",
+        },
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        item: {
+          "@id": `https://sportzwiki.com/live-cricket-scores/${seriesName}`,
+          name: `${info?.response?.teama?.name} vs ${info?.response?.teamb?.name}`,
+        },
+      },
+    ],
+  };
   // const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
   // const info = fetchMatchInfo(seriesIdInt);
   // console.log(seriesName, "seriesNameseriesNameseriesNameseriesName");
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(createEventLD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(createBreadCrumbLD) }}
       />
       <div className={styles.container}>
         <LiveScoreMainPage seriesName={seriesName} />

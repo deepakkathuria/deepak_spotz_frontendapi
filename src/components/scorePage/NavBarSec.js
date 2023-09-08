@@ -14,6 +14,9 @@ const NavBarSec = (props) => {
           <li className={props?.active === "live" ? `${styles.selected}` : ""}>
             <Link href={"/live-cricket-scores"}>Live Scores</Link>
           </li>
+          <li className={props?.active === "schedule" ? `${styles.selected}` : ""}>
+            <Link href={"/live-cricket-scores/schedule"}>Schedule</Link>
+          </li>
           <li
             className={props?.active === "series" ? `${styles.selected}` : ""}
           >

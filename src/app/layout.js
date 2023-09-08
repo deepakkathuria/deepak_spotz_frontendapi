@@ -133,12 +133,12 @@ export default function RootLayout({ children }) {
         strategy="lazyOnload"
       ></Script>
       {/* <head> */}
-      {/* <script
+            {/* <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
           crossOrigin="anonymous"
         ></script> */}
-      {/* <cript
+      {/* <script
           async
           src="https://cdn.unibotscdn.com/ubplayer/player.js"
         ></script>
@@ -155,7 +155,7 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://cdn.rediads.com/css/style.min.css"
         ></link> */}
-      <Script
+      {/* <Script
         async
         src="https://cdn.unibotscdn.com/ubplayer/player.js"
         strategy="lazyOnload"

@@ -79,7 +79,7 @@ const page = async () => {
       {/* <OrganisationLd /> */}
       <div className={styles.container}>
         <div className="navSec">
-          <NavBarSec active="live" />
+          <NavBarSec active="schedule" />
         </div>
         <div style={{ marginTop: "1rem" }} className="breadcrumb">
           <Breadcrumb breadcrumbsObj={breadcrumbs} />
@@ -93,7 +93,7 @@ const page = async () => {
         <div className="nav">
           <ul className={styles.navUl}>
             <li className={`${styles.navLi} ${styles.active}`}>
-              <a href="/live-cricket-scores/schedule">Schedule</a>
+              <a href="/live-cricket-scores/schedule">All</a>
             </li>
             <li className={`${styles.navLi}`}>
               <a href="/live-cricket-scores">Live</a>

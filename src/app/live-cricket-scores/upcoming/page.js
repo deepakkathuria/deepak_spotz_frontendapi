@@ -95,7 +95,7 @@ const page = async () => {
         <div className={styles.nav}>
           <ul className={styles.navUl}>
             <li className={`${styles.navLi}`}>
-              <a href="/live-cricket-scores/schedule">Schedule</a>
+              <a href="/live-cricket-scores/schedule">All</a>
             </li>
             <li className={`${styles.navLi}`}>
               <a href="/live-cricket-scores">Live</a>

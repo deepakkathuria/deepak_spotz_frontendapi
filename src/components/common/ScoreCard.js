@@ -39,7 +39,7 @@ const ScoreCard = (props) => {
 
               <div className={styles.countryNameScore}>
                 <div className={styles.countryNameIC}>
-                  <div className="countryIC">
+                  {/* <div className="countryIC">
                     <Image
                       src={
                         props?.teamALogo ? props.teamALogo : "/gaurav/flag.svg"
@@ -50,7 +50,7 @@ const ScoreCard = (props) => {
                       priority
                       quality={30}
                     />
-                  </div>
+                  </div> */}
                   <div className={styles.countryName}>
                     {props?.teamAName ? props.teamAName.substring(0, 60) : "-"}
                   </div>
@@ -69,7 +69,7 @@ const ScoreCard = (props) => {
 
               <div className={styles.countryNameScore}>
                 <div className={styles.countryNameIC}>
-                  <div className="countryIC">
+                  {/* <div className="countryIC">
                     <Image
                       src={
                         props?.teamBLogo ? props.teamBLogo : "/gaurav/flag.svg"
@@ -80,7 +80,7 @@ const ScoreCard = (props) => {
                       priority
                       quality={30}
                     />
-                  </div>
+                  </div> */}
                   <div className={styles.countryName}>
                     {props?.teamBName ? props.teamBName.substring(0, 60) : "-"}
                   </div>

@@ -59,7 +59,7 @@ const page = async () => {
       // url: "/",
     },
     {
-      name: `Cricket`,
+      name: `Latest Cricket News`,
       // url: "/sports/cricket",
     },
   ];

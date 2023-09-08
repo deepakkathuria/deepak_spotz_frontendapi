@@ -49,11 +49,11 @@ const page = async () => {
       url: "/",
     },
     {
-      name: `Live Cricket Scroes`,
+      name: `Live Cricket Scores`,
       url: "/live-cricket-scores",
     },
     {
-      name: `Schedule`,
+      name: `Cricket Match Schedule`,
       // url: "/live-cricket-scores",
     },
   ];

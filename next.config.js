@@ -77,6 +77,11 @@ const nextConfig = {
       source: "/wiki/:id",
       destination: "/wiki/:id/page/1",
     },
+
+    // {
+    //   source: "/feed",
+    //   destination: "/feed.xml",
+    // },
   ],
 };
 

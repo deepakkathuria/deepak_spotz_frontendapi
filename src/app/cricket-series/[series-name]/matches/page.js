@@ -54,7 +54,10 @@ const page = async ({ params }) => {
       url: "/cricket-series",
     },
     {
-      name: `${seriesName}`,
+      name: `${
+        matches?.response?.items[0]?.competition?.title || "Cricket Series"
+      }
+      Schedule and Results`,
       url: `/cricket-series/${seriesName}`,
     },
     {

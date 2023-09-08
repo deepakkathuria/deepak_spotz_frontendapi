@@ -36,7 +36,7 @@ const page = async () => {
       url: "/",
     },
     {
-      name: `Cricket Team`,
+      name: `Cricket Teams`,
       // url: "/cricket-team",
     },
     // {

@@ -3,6 +3,54 @@ import styles from "../styles/PostDisplay.module.css";
 import { FaUserTag, FaRegCalendarAlt } from "react-icons/fa";
 import Image from "next/image";
 import PostTags from "./PostTags";
+import { DateTime } from "luxon";
+
+// function MyComponent(props) {
+//   const date = props.date
+//     ? DateTime.fromISO(props.date).setZone("Asia/Kolkata")
+//     : null;
+
+//   const formattedDateLong = date
+//     ? date.toLocaleString(DateTime.DATETIME_FULL)
+//     : null;
+//   const formattedDateShort = date
+//     ? date.toLocaleString(DateTime.DATE_SHORT)
+//     : null;
+
+//   return (
+//     <div>
+//       {/* Long Format: September 1, 2023, 11:59 PM India Standard Time */}
+//       <h3>{formattedDateLong}</h3>
+
+//       {/* Short Format: 9/1/2023 */}
+//       <h3>{formattedDateShort}</h3>
+//     </div>
+//   );
+// }
+function MyComponent(props) {
+  const date = props.date
+    ? DateTime.fromISO(props.date).setZone("Asia/Kolkata")
+    : null;
+
+  const formattedDateLong = date
+    ? date.toLocaleString(DateTime.DATETIME_FULL)
+    : null;
+  const formattedDateShort = date
+    ? date.toLocaleString(DateTime.DATE_SHORT)
+    : null;
+
+  return (
+    <div>
+      {/* Long Format: September 1, 2023, 11:59 PM India Standard Time */}
+      <h3>{formattedDateLong}</h3>
+
+      {/* Short Format: 9/1/2023 */}
+      {/* <h3>{formattedDateShort}</h3> */}
+    </div>
+  );
+}
+
+// export default MyComponent;
 
 const PostDisplay = (props) => {
   // console.log(props.ad,'props.adprops.adprops.ad')
@@ -43,7 +91,18 @@ const PostDisplay = (props) => {
             </div>
             <div className={styles.publishDate}>
               <FaRegCalendarAlt size={12} />
-              <h3>{new Date(props?.date).toLocaleString("en-us")}</h3>
+              {/* <h3>{new Date(props?.date).toLocaleString("en-us")}</h3> */}
+              {/* <h3>
+                {DateTime.props?.date
+                  .setZone("Asia/Kolkata")
+                  .minus({ weeks: 1 })
+                  .endOf("day")
+                  .toISO()}
+              </h3> */}
+              <MyComponent date={props?.date} />
+              {/* <ConvertToIST
+                date={new Date(props?.date).toLocaleString("en-us")}
+              /> */}
             </div>
           </div>
           <div className={styles.postCover}>

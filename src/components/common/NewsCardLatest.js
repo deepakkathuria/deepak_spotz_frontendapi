@@ -3,6 +3,22 @@ import React from "react";
 import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
 const base_url = process.env.BASE_URL_DO;
+import { DateTime } from "luxon";
+
+function MyComponent(props) {
+  const date = props.date
+    ? DateTime.fromISO(props.date).setZone("Asia/Kolkata")
+    : null;
+
+  const formattedDateLong = date
+    ? date.toLocaleString(DateTime.DATETIME_MED)
+    : null;
+  const formattedDateShort = date
+    ? date.toLocaleString(DateTime.DATE_SHORT)
+    : null;
+
+  return <p className={styles.newsDate}>{formattedDateLong}</p>;
+}
 
 const NewsCard = async (props) => {
   return (
@@ -29,7 +45,8 @@ const NewsCard = async (props) => {
             className={styles.newsTitle}
             dangerouslySetInnerHTML={{ __html: props?.title }}
           />
-          <p>{new Date(props?.date).toLocaleString("en-US")}</p>
+          {/* <p>{new Date(props?.date).toLocaleString("en-US")}</p> */}
+          <MyComponent date={props?.date} />
         </div>
       </div>
     </>

@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "../styles/NewsCard.module.css";
 import Image from "next/image";
+import { DateTime } from "luxon";
 // const base_url = process.env.BASE_URL_DO;
 const BASE_URL_WP = process.env.BASE_URL_WP;
 const WP_API_USERNAME = process.env.WP_API_USERNAME;
@@ -24,6 +25,21 @@ const base64Credentials = buffer.toString("base64");
 //   const data = await res.json();
 //   return data.guid.rendered;
 // };
+
+function MyComponent(props) {
+  const date = props.date
+    ? DateTime.fromISO(props.date).setZone("Asia/Kolkata")
+    : null;
+
+  const formattedDateLong = date
+    ? date.toLocaleString(DateTime.DATETIME_MED)
+    : null;
+  const formattedDateShort = date
+    ? date.toLocaleString(DateTime.DATE_SHORT)
+    : null;
+
+  return <p className={styles.newsDate}>{formattedDateLong}</p>;
+}
 
 const NewsCard = async (props) => {
   return (
@@ -52,9 +68,7 @@ const NewsCard = async (props) => {
           {/* <p className={styles.newsDescription}>
             {props?.content?.substring(0, 45).replace(/(<([^>]+)>)/gi, "")}...
           </p> */}
-          <p className={styles.newsDate}>
-            {new Date(props?.date).toLocaleString()}
-          </p>
+          <MyComponent date={props?.date} />
         </div>
       </div>
     </>

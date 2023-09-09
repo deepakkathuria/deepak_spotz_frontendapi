@@ -2,6 +2,22 @@ import React from "react";
 import styles from "../styles/NewscardNoBorder.module.css";
 import Image from "next/image";
 import { getPostThumbById } from "@/lib/PostDataFetch";
+import { DateTime } from "luxon";
+
+function MyComponent(props) {
+  const date = props.date
+    ? DateTime.fromISO(props.date).setZone("Asia/Kolkata")
+    : null;
+
+  const formattedDateLong = date
+    ? date.toLocaleString(DateTime.DATETIME_MED)
+    : null;
+  const formattedDateShort = date
+    ? date.toLocaleString(DateTime.DATE_SHORT)
+    : null;
+
+  return <p className={styles.newsDate}>{formattedDateLong}</p>;
+}
 
 const NewscardNoBorder = async (props) => {
   const thumbnail =
@@ -37,7 +53,8 @@ const NewscardNoBorder = async (props) => {
           </div>
 
           <div className={styles.cardDate}>
-            {props.date ? new Date(props.date).toLocaleString("en-us") : ""}
+            {/* {props.date ? new Date(props.date).toLocaleString("en-us") : ""} */}
+            <MyComponent date={props?.date} />
           </div>
         </div>
       </div>

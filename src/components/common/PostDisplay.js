@@ -5,28 +5,6 @@ import Image from "next/image";
 import PostTags from "./PostTags";
 import { DateTime } from "luxon";
 
-// function MyComponent(props) {
-//   const date = props.date
-//     ? DateTime.fromISO(props.date).setZone("Asia/Kolkata")
-//     : null;
-
-//   const formattedDateLong = date
-//     ? date.toLocaleString(DateTime.DATETIME_FULL)
-//     : null;
-//   const formattedDateShort = date
-//     ? date.toLocaleString(DateTime.DATE_SHORT)
-//     : null;
-
-//   return (
-//     <div>
-//       {/* Long Format: September 1, 2023, 11:59 PM India Standard Time */}
-//       <h3>{formattedDateLong}</h3>
-
-//       {/* Short Format: 9/1/2023 */}
-//       <h3>{formattedDateShort}</h3>
-//     </div>
-//   );
-// }
 function MyComponent(props) {
   const date = props.date
     ? DateTime.fromISO(props.date).setZone("Asia/Kolkata")

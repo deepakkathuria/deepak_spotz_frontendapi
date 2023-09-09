@@ -16,6 +16,38 @@
   padding: 8px 12px; /* Padding for table cells for better appearance */
 }
 
+.postDescriptionContent ul {
+  list-style-type: none; /* Remove default bullets */
+  margin: 0;
+  padding: 0;
+  /* line-height: 1.1rem; */
+  cursor: default;
+}
+
+.postDescriptionContent li {
+  padding: 8px 10px; /* Vertical and horizontal padding for each list item */
+  border-bottom: 1px solid #e0e0e0; /* Horizontal line between items */
+  transition: background-color 0.3s; /* Smooth background-color change on hover */
+}
+
+.postDescriptionContent li:hover {
+  background-color: #f5f5f5;
+}
+
+.postDescriptionContent li:last-child {
+  border-bottom: none;
+}
+
+.postDescriptionContent li::before {
+  content: "●"; /* Arrow symbol as an example, but you can use other symbols or even images */
+  margin-right: 8px; /* Spacing between the symbol and the text */
+  color: #d03f38; /* Color of the symbol */
+}
+
+.postDescriptionContent li:first-child {
+  font-weight: bold; /* Making it bold for distinction */
+}
+
 /* vjsdguysvdchjgsdcjh */
 
 .postDisplayContainer {
@@ -147,7 +179,6 @@
 }
 
 @media (max-width: 768px) {
-  
   .postDescriptionContent table {
     width: 100% !important;
     border-collapse: collapse; /* This ensures borders don't double up */

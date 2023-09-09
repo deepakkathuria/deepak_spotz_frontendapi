@@ -45,7 +45,7 @@ const NewsSection = async (props) => {
                 <a href={`/${props?.slug?.toLowerCase()}/${item?.slug}`}>
                   <NewsCard
                     title={item?.title?.rendered}
-                    date={item?.date_gmt ? item.date_gmt : ""}
+                    date={item?.date ? item.date : ""}
                     content={item?.content?.rendered}
                     id={item?.id}
                     featuredMedia={item?.featured_image_url}

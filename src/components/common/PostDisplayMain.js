@@ -154,6 +154,7 @@ const PostDisplayMain = async (props) => {
   const { category, slug } = props;
 
   const articleBody = await fetchPostBySlug(slug);
+  // console.log(articleBody,'articleBodyarticleBodyarticleBody');
   const breadcrumbs = [
     {
       name: "Home",
@@ -272,7 +273,7 @@ const PostDisplayMain = async (props) => {
           <Suspense fallback="Loading...">
             <PostDisplay
               title={articleBody?.title.rendered ?? ""}
-              date={articleBody?.date_gmt ?? ""}
+              date={articleBody?.date ?? ""}
               author={articleBody?.author?.name ?? ""}
               description={articleBody?.content.rendered ?? ""}
               tags={articleBody?.tags ?? []}

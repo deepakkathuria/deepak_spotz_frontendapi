@@ -17,6 +17,8 @@ function MyComponent(props) {
     ? date.toLocaleString(DateTime.DATE_SHORT)
     : null;
 
+  // console.log(props.date, "datedatedatedatedatedatedate");
+
   return (
     <div>
       {/* Long Format: September 1, 2023, 11:59 PM India Standard Time */}

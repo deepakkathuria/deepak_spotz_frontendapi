@@ -54,7 +54,7 @@ export async function GET() {
       url: `${site_url}/${article.primary_category_slug || "news"}/${
         article.slug
       }`,
-      date: new Date(article.modified_gmt + "Z"),
+      date: new Date(article.date + "Z"),
     });
   });
 

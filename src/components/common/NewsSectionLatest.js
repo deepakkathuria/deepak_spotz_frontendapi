@@ -61,7 +61,7 @@ const NewsSection = async (props) => {
                     title={item?.title?.rendered}
                     id={item?.id}
                     // date={new Date(item?.post_modified_gmt)?.toLocaleString()}
-                    date={item?.date_gmt ? item.date_gmt : ""}
+                    date={item?.date ? item.date : ""}
                     content={item?.content?.rendered}
                     featuredMedia={item?.featured_image_url}
 

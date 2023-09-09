@@ -330,7 +330,7 @@ const PostDisplayMain = async (props) => {
                             0,
                             40
                           )}...`}
-                          date={new Date(card?.date).toLocaleString("en-us")}
+                          date={card?.date}
                           guid={card?.guid}
                           featuredMedia={card?.featured_image_url}
                         />

@@ -31,10 +31,31 @@ function MyComponent(props) {
 // export default MyComponent;
 
 const PostDisplay = (props) => {
-  // console.log(props.ad,'props.adprops.adprops.ad')
+  // const paragraphs = props.description
+  //   .split("<p>")
+  //   .filter((para) => para.trim() !== "");
+
+  // for (const ad of props.ad) {
+  //   if (ad.para_no <= paragraphs.length) {
+  //     paragraphs.splice(ad.para_no, 0, ad.code);
+  //   }
+  // }
+
+  // const finalHTMLAD = paragraphs.join("");
+
+  // const urlRegex =
+  //   /href="https:\/\/admin\.sportzwiki\.com(?!\/wp-content\/uploads)([^"]+)"/g;
+  // const finalHTML = finalHTMLAD.replace(
+  //   urlRegex,
+  //   'href="https://sportzwiki.com$1"'
+  // );
+
   const paragraphs = props.description
     .split("<p>")
     .filter((para) => para.trim() !== "");
+
+  // Insert the given div after the 3rd paragraph
+  paragraphs.splice(3, 0, '<div id="div-ub-sportzwiki"></div>');
 
   for (const ad of props.ad) {
     if (ad.para_no <= paragraphs.length) {
@@ -46,7 +67,7 @@ const PostDisplay = (props) => {
 
   const urlRegex =
     /href="https:\/\/admin\.sportzwiki\.com(?!\/wp-content\/uploads)([^"]+)"/g;
-  // console.log(finalHTML);
+
   const finalHTML = finalHTMLAD.replace(
     urlRegex,
     'href="https://sportzwiki.com$1"'

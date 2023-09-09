@@ -273,7 +273,7 @@ const PostDisplayMain = async (props) => {
           <Suspense fallback="Loading...">
             <PostDisplay
               title={articleBody?.title.rendered ?? ""}
-              date={articleBody?.date ?? ""}
+              date={articleBody?.modified_gmt ?? ""}
               author={articleBody?.author?.name ?? ""}
               description={articleBody?.content.rendered ?? ""}
               tags={articleBody?.tags ?? []}

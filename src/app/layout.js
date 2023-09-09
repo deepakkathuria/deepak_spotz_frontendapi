@@ -7,6 +7,8 @@ import Footer from "@/components/common/Footer";
 import Script from "next/script";
 import GoogleAnalytics from "./GoogleAnalytics";
 import CustomAd1 from "@/ad/CustomAd1";
+import CustomAd2 from "@/ad/CustomAd2";
+import CustomAd3 from "@/ad/CustomAd3";
 // import { WebPageSchema } from "@/json-ld/WebPageSchema";
 // import { NextSeo } from "next-seo";
 // const GTM_ID = "G-HGXKFDCKYE";
@@ -125,6 +127,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_TRACKING_ID} />
+      <CustomAd1 />
+      <CustomAd2 />
+
+      {/* <CustomAd3 /> */}
       {/* <CustomAd1 /> */}
       <Script
         async
@@ -132,8 +138,14 @@ export default function RootLayout({ children }) {
         crossOrigin="anonymous"
         strategy="lazyOnload"
       ></Script>
+      {/* <head>
+        <script
+          async
+          src="https://cdn.unibotscdn.com/ubplayer/player.js"
+        ></script>
+      </head> */}
       {/* <head> */}
-            {/* <script
+      {/* <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6125827673616617"
           crossOrigin="anonymous"
@@ -222,6 +234,42 @@ export default function RootLayout({ children }) {
         }}
       ></Script>
       {/* </head> */}
+      {/* <Script
+        id="custom-ad-below-post-desktop"
+        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{
+          __html: `
+      try {
+        (function() {
+          var cads = document.createElement("script");
+          cads.async = true;
+          cads.type = "text/javascript";
+          cads.src = "https://static.clmbtech.com/ad/commons/js/82562/colombia_v2.js";
+          var node = document.getElementsByTagName("script")[0];
+          node.parentNode.insertBefore(cads, node);
+        })();
+      } catch(e) {}
+    `,
+        }}
+      ></Script> */}
+      {/* <Script
+        id="custom-ad-below-post-mobile"
+        strategy="lazyOnload"
+        dangerouslySetInnerHTML={{
+          __html: `
+              try {
+                (function() {
+                  var cads = document.createElement("script");
+                  cads.async = true;
+                  cads.type = "text/javascript";
+                  cads.src = "https://static.clmbtech.com/ad/commons/js/82562/colombia_v2.js";
+                  var node = document.getElementsByTagName("script")[0];
+                  node.parentNode.insertBefore(cads, node);
+                })();
+              } catch(e) {}
+            `,
+        }}
+      ></Script> */}
       <Script id="gtag" strategy="afterInteractive">
         {`
       window.dataLayer = window.dataLayer || [];
@@ -249,6 +297,7 @@ export default function RootLayout({ children }) {
         />
 
         {children}
+        <div id="div-ub-sportzwiki"></div>
         <Analytics />
         <div style={{ height: "5rem" }}></div>
         <Footer />
@@ -262,6 +311,7 @@ export default function RootLayout({ children }) {
           ></div>
         </div>
       </body>
+      <CustomAd3 />
     </html>
   );
 }

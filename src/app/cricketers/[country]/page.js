@@ -162,7 +162,7 @@ const page = async ({ params }) => {
           </div>
         </div> */}
         <div className={styles.list}>
-          {Object.entries(items.response.items.players).map(
+          {Object?.entries(items?.response?.items?.players).map(
             ([playerType, playerArray], index) => (
               <div key={index}>
                 <PlayerList

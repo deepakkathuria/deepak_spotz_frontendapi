@@ -5,27 +5,51 @@ import Image from "next/image";
 import PostTags from "./PostTags";
 import { DateTime } from "luxon";
 
-function MyComponent(props) {
-  const date = props.date
-    ? DateTime.fromISO(props.date).setZone("Asia/Kolkata")
+// function MyComponent(props1) {
+//   // const date = props1.date
+//   //   ? DateTime.fromISO(props1.date).setZone("Asia/Kolkata")
+//   //   : null;
+//   const date = props1.date
+//     ? DateTime.fromISO(props1.date, { zone: "utc" }).setZone("Asia/Kolkata")
+//     : null;
+
+//   console.log("Processed Date:", date);
+
+//   const formattedDateLong = date
+//     ? date.toLocaleString(DateTime.DATETIME_MED)
+//     : null;
+//   const formattedDateShort = date
+//     ? date.toLocaleString(DateTime.DATE_SHORT)
+//     : null;
+
+//   console.log("Formatted Date:", formattedDateLong);
+
+//   return (
+//     <div>
+//       <h3>{formattedDateLong}</h3>
+//     </div>
+//   );
+// }
+
+function MyComponent(props1) {
+  // console.log("date received from wordpress : ", props1.date);
+
+  // Parse the date, if it exists
+  const date = props1.date
+    ? DateTime.fromISO(props1.date, { zone: "utc" }).setZone("Asia/Kolkata")
     : null;
 
-  const formattedDateLong = date
-    ? date.toLocaleString(DateTime.DATETIME_MED)
-    : null;
-  const formattedDateShort = date
-    ? date.toLocaleString(DateTime.DATE_SHORT)
-    : null;
+  // console.log("Processed Date:", date);
 
-  // console.log(props.date, "datedatedatedatedatedatedate");
+  // Format the date to "Sep 9, 2023 at 5:36 PM" style
+  const customFormat = "MMM d, y 'at' h:mm a";
+  const formattedDate = date ? date.toFormat(customFormat) : null;
+
+  // console.log("Formatted Date:", formattedDate);
 
   return (
     <div>
-      {/* Long Format: September 1, 2023, 11:59 PM India Standard Time */}
-      <h3>{formattedDateLong}</h3>
-
-      {/* Short Format: 9/1/2023 */}
-      {/* <h3>{formattedDateShort}</h3> */}
+      <h3>{formattedDate}</h3>
     </div>
   );
 }
@@ -33,6 +57,7 @@ function MyComponent(props) {
 // export default MyComponent;
 
 const PostDisplay = (props) => {
+  // console.log("Raw GMT:", props.date);
   // const paragraphs = props.description
   //   .split("<p>")
   //   .filter((para) => para.trim() !== "");

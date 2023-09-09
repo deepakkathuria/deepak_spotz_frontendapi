@@ -33,7 +33,7 @@ function MyComponent(props) {
     : null;
 
   const formattedDateLong = date
-    ? date.toLocaleString(DateTime.DATETIME_FULL)
+    ? date.toLocaleString(DateTime.DATETIME_MED)
     : null;
   const formattedDateShort = date
     ? date.toLocaleString(DateTime.DATE_SHORT)

@@ -138,11 +138,11 @@ export default function RootLayout({ children }) {
         crossOrigin="anonymous"
         strategy="lazyOnload"
       ></Script>
-      {/* <Script
+      <Script
         src="https://platform.twitter.com/widgets.js"
         // strategy="lazyOnLoad"
         strategy="beforeInteractive"
-      ></Script> */}
+      ></Script>
       {/* <head>
         <script
           async

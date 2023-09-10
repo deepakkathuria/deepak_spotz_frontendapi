@@ -19,11 +19,13 @@
   font-size: 1.3rem;
   transition: max-height 0.3s ease; /* Use max-height for smooth animation */
   margin-top: 1rem;
+  line-height: 2.4rem;
 }
 
 .catDescription:hover {
   max-height: none; /* Set max-height to 'none' to fully show the content on hover */
   cursor: pointer;
+  /* line-height: 2rem; */
   /* color: aqua; */
 }
 

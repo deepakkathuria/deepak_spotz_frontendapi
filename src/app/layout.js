@@ -138,6 +138,11 @@ export default function RootLayout({ children }) {
         crossOrigin="anonymous"
         strategy="lazyOnload"
       ></Script>
+      {/* <Script
+        src="https://platform.twitter.com/widgets.js"
+        // strategy="lazyOnLoad"
+        strategy="beforeInteractive"
+      ></Script> */}
       {/* <head>
         <script
           async
@@ -297,7 +302,7 @@ export default function RootLayout({ children }) {
         />
 
         {children}
-        <div id="div-ub-sportzwiki"></div>
+        {/* <div id="div-ub-sportzwiki"></div> */}
         <Analytics />
         <div style={{ height: "5rem" }}></div>
         <Footer />

@@ -162,7 +162,7 @@ export async function generateMetadata({ params }) {
 
     const metaData = await fetchMetaData(slug2);
     const headContent = metaData.head;
-    console.log(headContent,'headContentheadContentheadContent');
+    // console.log(headContent,'headContentheadContentheadContent');
 
     // Extract meta title
     const titleMatch = headContent.match(/<title>(.*?)<\/title>/);
@@ -413,7 +413,8 @@ const CategoryPosts = async ({ params, searchParams }) => {
                       id={post?.id}
                       title={post?.title.rendered}
                       content={post?.content.rendered}
-                      date={new Date(post?.date).toLocaleString("en-us")}
+                      // date={new Date(post?.date).toLocaleString("en-us")}
+                      date={post?.modified_gmt}
                       featuredMedia={post?.featured_image_url}
                     />
                   </a>

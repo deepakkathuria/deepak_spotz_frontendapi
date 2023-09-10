@@ -31,6 +31,8 @@ function MyComponent(props) {
     ? DateTime.fromISO(props.date).setZone("Asia/Kolkata")
     : null;
 
+  // console.log(date, "111");
+
   const formattedDateLong = date
     ? date.toLocaleString(DateTime.DATETIME_MED)
     : null;
@@ -38,10 +40,13 @@ function MyComponent(props) {
     ? date.toLocaleString(DateTime.DATE_SHORT)
     : null;
 
+    // console.log(formattedDateLong, "222222");
+
   return <p className={styles.newsDate}>{formattedDateLong}</p>;
 }
 
 const NewsCard = async (props) => {
+  console.log(props.date,'hererererererererer');
   return (
     <>
       <div className={styles.newsCardContainer}>

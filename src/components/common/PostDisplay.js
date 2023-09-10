@@ -57,49 +57,10 @@ function MyComponent(props1) {
 // export default MyComponent;
 
 const PostDisplay = (props) => {
-  // console.log("Raw GMT:", props.date);
-  // const paragraphs = props.description
-  //   .split("<p>")
-  //   .filter((para) => para.trim() !== "");
-
-  // for (const ad of props.ad) {
-  //   if (ad.para_no <= paragraphs.length) {
-  //     paragraphs.splice(ad.para_no, 0, ad.code);
-  //   }
-  // }
-
-  // const finalHTMLAD = paragraphs.join("");
-
-  // const urlRegex =
-  //   /href="https:\/\/admin\.sportzwiki\.com(?!\/wp-content\/uploads)([^"]+)"/g;
-  // const finalHTML = finalHTMLAD.replace(
-  //   urlRegex,
-  //   'href="https://sportzwiki.com$1"'
-  // );
-
-  const paragraphs = props.description
-    .split("<p>")
-    .filter((para) => para.trim() !== "");
-
-  // Insert the given div after the 3rd paragraph
-  paragraphs.splice(3, 0, '<div id="div-ub-sportzwiki"></div>');
-
-  for (const ad of props.ad) {
-    if (ad.para_no <= paragraphs.length) {
-      paragraphs.splice(ad.para_no, 0, ad.code);
-    }
-  }
-
-  const finalHTMLAD = paragraphs.join("");
-
-  const urlRegex =
-    /href="https:\/\/admin\.sportzwiki\.com(?!\/wp-content\/uploads)([^"]+)"/g;
-
-  const finalHTML = finalHTMLAD.replace(
-    urlRegex,
-    'href="https://sportzwiki.com$1"'
+  let updatedDescription = props.description.replace(
+    /https?:\/\/admin\.sportzwiki\.com/g,
+    "https://sportzwiki.com"
   );
-
   return (
     <>
       <div className={styles.postDisplayContainer}>
@@ -151,7 +112,7 @@ const PostDisplay = (props) => {
           <div className={styles.postDescription}>
             <div
               className={styles.postDescriptionContent}
-              dangerouslySetInnerHTML={{ __html: finalHTML }}
+              dangerouslySetInnerHTML={{ __html: updatedDescription }}
             />
           </div>
 

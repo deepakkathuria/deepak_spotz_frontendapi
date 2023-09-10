@@ -402,12 +402,14 @@ const CategoryDisplayMain = async (props) => {
             {Array.isArray(categoryPosts) &&
               categoryPosts?.map((post, index) => (
                 <div className="card" key={index}>
+                  {/* console.log(post?.modified_gmt,'udfhbfiuiu') */}
                   <a href={`/${slug}/${post?.slug}`}>
                     <NewsCard
                       id={post?.id}
                       title={post?.title.rendered}
                       content={post?.content.rendered}
-                      date={new Date(post?.date).toLocaleString("en-us")}
+                      // date={new Date(post?.date).toLocaleString("en-us")}
+                      date={post?.date}
                       featuredMedia={post?.featured_image_url}
                     />
                   </a>

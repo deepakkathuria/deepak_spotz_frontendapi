@@ -140,8 +140,7 @@ export default function RootLayout({ children }) {
       ></Script>
       <Script
         src="https://platform.twitter.com/widgets.js"
-        // strategy="lazyOnLoad"
-        strategy="beforeInteractive"
+        strategy="lazyOnload"
       ></Script>
       {/* <head>
         <script

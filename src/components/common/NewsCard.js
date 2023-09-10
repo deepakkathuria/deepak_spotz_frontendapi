@@ -46,7 +46,7 @@ function MyComponent(props) {
 }
 
 const NewsCard = async (props) => {
-  console.log(props.date,'hererererererererer');
+  // console.log(props.date,'hererererererererer');
   return (
     <>
       <div className={styles.newsCardContainer}>

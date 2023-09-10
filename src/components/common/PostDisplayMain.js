@@ -154,6 +154,7 @@ const PostDisplayMain = async (props) => {
   const { category, slug } = props;
 
   const articleBody = await fetchPostBySlug(slug);
+  // console.log(articleBody?.primary_category_slug, "jnsf bjhb");
   // const postDescription =
   let updatedPostDescription = articleBody?.content.rendered?.replace(
     /https?:\/\/admin\.sportzwiki\.com/g,
@@ -329,7 +330,12 @@ const PostDisplayMain = async (props) => {
                 relatedPosts?.map((card, index) => {
                   return (
                     <div key={index}>
-                      <a href={`/${category}/${card?.slug}`}>
+                      <a
+                        href={`/${
+                          articleBody?.primary_category_slug ||
+                          articleBody?.categories[0].slug
+                        }/${card?.slug}`}
+                      >
                         <NewsCard
                           id={card?.id}
                           title={card?.title.rendered}

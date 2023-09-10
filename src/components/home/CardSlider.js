@@ -4,7 +4,7 @@ import ScoreCard from "../common/ScoreCard";
 import Image from "next/image";
 import styles from "./CardSlider.module.css";
 
-const CardSlider = ({ cards }) => {
+const CardSlider = ({ cards, displayBtn }) => {
   const sliderRef = useRef(null);
   const cardRef = useRef(null);
   const [currentScroll, setCurrentScroll] = useState(0);
@@ -98,28 +98,31 @@ const CardSlider = ({ cards }) => {
           </div>
         ))}
       </div>
-      <div className={styles.btns}>
-        <button className={styles.btn} onClick={handleNext}>
-          <Image
-            src="/gaurav/arrow-right-c.svg"
-            width={10}
-            height={10}
-            alt="arrow-right"
-            quality={20}
-            priority
-          />
-        </button>
-        <button className={styles.btn} onClick={handlePrev}>
-          <Image
-            src="/gaurav/arrow-left-c.svg"
-            width={10}
-            height={10}
-            alt="arrow-left"
-            quality={20}
-            priority
-          />
-        </button>
-      </div>
+
+      {displayBtn !== "false" && (
+        <div className={styles.btns}>
+          <button className={styles.btn} onClick={handleNext}>
+            <Image
+              src="/gaurav/arrow-right-c.svg"
+              width={10}
+              height={10}
+              alt="arrow-right"
+              quality={20}
+              priority
+            />
+          </button>
+          <button className={styles.btn} onClick={handlePrev}>
+            <Image
+              src="/gaurav/arrow-left-c.svg"
+              width={10}
+              height={10}
+              alt="arrow-left"
+              quality={20}
+              priority
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 };

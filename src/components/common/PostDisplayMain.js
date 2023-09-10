@@ -13,15 +13,28 @@ import BreadCrumbLd from "../../json-ld/BreadCrumbLd";
 import UpdatesSound from "./UpdatesSound";
 // import HeaderBox2 from "@/components/common/HeaderBox2";
 import FaqLive from "./FaqLive";
+import CardSlider from "../home/CardSlider";
 // import Loading from "@/app/Loading";
 const baseUrlAd = process.env.BASE_URL_DO;
 const BASE_URL_WP = process.env.BASE_URL_WP;
 const WP_API_USERNAME = process.env.WP_API_USERNAME;
 const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
 
+const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+
 const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
+
+const fetchUpcomingMatches = async (matchId) => {
+  const res = await fetch(
+    `${base_url}/competitions/${matchId}/matches/?token=${key}&per_page=50&&paged=1`,
+    { next: { revalidate: 30 } }
+  );
+  const data = await res.json();
+  return data;
+};
 
 const fetchAD = async (adId) => {
   const res = await fetch(`${baseUrlAd}/getpad?selectedTypes=${adId}`, {
@@ -31,20 +44,20 @@ const fetchAD = async (adId) => {
   return ad;
 };
 
-const fetchMetaData = async (category, slug) => {
-  const res = await fetch(
-    `${BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${BASE_URL_WP}/${category}/${slug}`,
-    {
-      next: { revalidate: 1500 },
-      method: "GET",
-      headers: {
-        Authorization: `Basic ${base64Credentials}`,
-      },
-    }
-  );
-  const headData = await res.json();
-  return headData;
-};
+// const fetchMetaData = async (category, slug) => {
+//   const res = await fetch(
+//     `${BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${BASE_URL_WP}/${category}/${slug}`,
+//     {
+//       next: { revalidate: 1500 },
+//       method: "GET",
+//       headers: {
+//         Authorization: `Basic ${base64Credentials}`,
+//       },
+//     }
+//   );
+//   const headData = await res.json();
+//   return headData;
+// };
 
 const fetchRelatedPostsByTagId = async (id) => {
   const response = await fetch(
@@ -154,6 +167,9 @@ const PostDisplayMain = async (props) => {
   const { category, slug } = props;
 
   const articleBody = await fetchPostBySlug(slug);
+
+  const matchesList = await fetchUpcomingMatches(127811);
+  // console.log(matchesList, "matchesListmatchesListmatchesListmatchesList");
   // console.log(articleBody?.primary_category_slug, "jnsf bjhb");
   // const postDescription =
   let updatedPostDescription = articleBody?.content.rendered?.replace(
@@ -268,7 +284,15 @@ const PostDisplayMain = async (props) => {
       {/* <OrganisationLd /> */}
 
       <div className={styles.postPageContainer}>
-        <div style={{ marginTop: "6rem" }} className={styles.updateBox}>
+        <div className="matches">
+          {matchesList?.status === "ok" && (
+            <CardSlider
+              cards={matchesList?.response?.items}
+              displayBtn="false"
+            />
+          )}
+        </div>
+        <div style={{ marginTop: "2rem" }} className={styles.updateBox}>
           <UpdatesSound />
         </div>
         <div style={{ marginTop: "1.5rem" }} className={styles.breadcrumb}>

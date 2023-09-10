@@ -154,6 +154,11 @@ const PostDisplayMain = async (props) => {
   const { category, slug } = props;
 
   const articleBody = await fetchPostBySlug(slug);
+  // const postDescription =
+  let updatedPostDescription = articleBody?.content.rendered?.replace(
+    /https?:\/\/admin\.sportzwiki\.com/g,
+    "https://sportzwiki.com"
+  );
   // console.log(articleBody,'articleBodyarticleBodyarticleBody');
   const breadcrumbs = [
     {
@@ -275,7 +280,7 @@ const PostDisplayMain = async (props) => {
               title={articleBody?.title.rendered ?? ""}
               date={articleBody?.modified_gmt ?? ""}
               author={articleBody?.author?.name ?? ""}
-              description={articleBody?.content.rendered ?? ""}
+              description={updatedPostDescription}
               tags={articleBody?.tags ?? []}
               categories={articleBody?.categories ?? []}
               thumbnail={articleBody?.featured_image_url}

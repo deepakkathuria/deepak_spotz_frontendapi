@@ -57,10 +57,10 @@ function MyComponent(props1) {
 // export default MyComponent;
 
 const PostDisplay = (props) => {
-  let updatedDescription = props.description.replace(
-    /https?:\/\/admin\.sportzwiki\.com/g,
-    "https://sportzwiki.com"
-  );
+  // let updatedDescription = props.description.replace(
+  //   /https?:\/\/admin\.sportzwiki\.com/g,
+  //   "https://sportzwiki.com"
+  // );
   return (
     <>
       <div className={styles.postDisplayContainer}>
@@ -112,7 +112,7 @@ const PostDisplay = (props) => {
           <div className={styles.postDescription}>
             <div
               className={styles.postDescriptionContent}
-              dangerouslySetInnerHTML={{ __html: updatedDescription }}
+              dangerouslySetInnerHTML={{ __html: props?.description }}
             />
           </div>
 

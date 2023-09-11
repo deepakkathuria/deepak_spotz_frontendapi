@@ -36,7 +36,7 @@ const getData = async () => {
 };
 
 const page = async () => {
-  redirect('/cricket')
+  redirect("/cricket");
   const data = await getData();
   // console.log(data, "datatatattt");
 

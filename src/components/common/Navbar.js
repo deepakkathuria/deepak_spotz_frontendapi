@@ -46,7 +46,7 @@ const Navbar = () => {
                   </li>
                 </a>
 
-                <a href={"/sports/cricket"}>
+                <a href={"/cricket"}>
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image

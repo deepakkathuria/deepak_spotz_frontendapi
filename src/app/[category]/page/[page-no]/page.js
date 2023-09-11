@@ -48,6 +48,7 @@ import { OrganizationJsonLd } from "next-seo";
 import FaqLive from "../../../../components/common/FaqLive";
 import Link from "next/link";
 import CardSlider from "@/components/home/CardSlider";
+import NavBarSec from "@/components/scorePage/NavBarSec";
 
 const fetchMetaData = async (categorySlug) => {
   const res = await fetch(
@@ -310,7 +311,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
   //   currentPage = 1;
   // }
 
-  console.log(currentPage, "bdsjgbjhbvjhbdeibvejk");
+  // console.log(currentPage, "bdsjgbjhbvjhbdeibvejk");
 
   const dataPerPage = 48;
 
@@ -359,6 +360,12 @@ const CategoryPosts = async ({ params, searchParams }) => {
   return (
     <>
       <div className={styles.container}>
+        {category === "cricket" && (
+          <div style={{ marginTop: "4rem" }}>
+            <NavBarSec active="home" />
+            {/* {data && <CardSlider cards={sortedResponses} />} */}
+          </div>
+        )}
         <BreadcrumbJsonLd
           useAppDir={true}
           itemListElements={[

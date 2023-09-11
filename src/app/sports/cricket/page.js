@@ -10,6 +10,7 @@ import FaqLive from "@/components/common/FaqLive";
 import CardSlider from "@/components/home/CardSlider";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+import { redirect } from "next/navigation";
 
 function getCurrentDate() {
   const today = new Date();
@@ -35,6 +36,7 @@ const getData = async () => {
 };
 
 const page = async () => {
+  redirect('/cricket')
   const data = await getData();
   // console.log(data, "datatatattt");
 

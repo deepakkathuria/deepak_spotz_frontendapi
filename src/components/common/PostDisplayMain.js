@@ -172,10 +172,16 @@ const PostDisplayMain = async (props) => {
   // console.log(matchesList, "matchesListmatchesListmatchesListmatchesList");
   // console.log(articleBody?.primary_category_slug, "jnsf bjhb");
   // const postDescription =
+  // let updatedPostDescription = articleBody?.content.rendered?.replace(
+  //   /https?:\/\/admin\.sportzwiki\.com/g,
+  //   "https://sportzwiki.com"
+  // );
+
   let updatedPostDescription = articleBody?.content.rendered?.replace(
-    /https?:\/\/admin\.sportzwiki\.com/g,
+    /https?:\/\/admin\.sportzwiki\.com(?!\/wp-content\/)/g,
     "https://sportzwiki.com"
   );
+
   // console.log(articleBody,'articleBodyarticleBodyarticleBody');
   const breadcrumbs = [
     {

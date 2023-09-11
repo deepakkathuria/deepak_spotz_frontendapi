@@ -206,6 +206,11 @@ export async function generateMetadata({ params }) {
     );
     const robots = robotsMatch ? robotsMatch[1] : null;
 
+    console.log(
+      descriptionMatch,
+      "/asia-cup-2023/asia-cup-2023/asia-cup-2023/asia-cup-2023"
+    );
+
     // Split the content by commas
     const robotsProperties = robots
       .split(",")

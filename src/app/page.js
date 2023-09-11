@@ -10,21 +10,34 @@ import Link from "next/link";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
-function getCurrentDate() {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0"); // JavaScript months are 0-11, so we add 1
-  const day = String(today.getDate()).padStart(2, "0");
+// function getCurrentDate() {
+//   const today = new Date();
+//   const year = today.getFullYear();
+//   const month = String(today.getMonth() + 1).padStart(2, "0"); // JavaScript months are 0-11, so we add 1
+//   const day = String(today.getDate()).padStart(2, "0");
+
+//   return `${year}-${month}-${day}`;
+// }
+
+// const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
+
+function getDateWithOffset(offset = 0) {
+  const date = new Date();
+  date.setDate(date.getDate() + offset); // Add the offset to the current date
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0"); // JavaScript months are 0-11, so we add 1
+  const day = String(date.getDate()).padStart(2, "0");
 
   return `${year}-${month}-${day}`;
 }
 
-const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
+const formattedDate = `${getDateWithOffset(-1)}_${getDateWithOffset(1)}`;
 
 // console.log(`${base_url}/matches?token=${key}&date=${formattedDate}`);
 const getData = async () => {
   const res = await fetch(
-    `${base_url}/matches?token=${key}&date=${formattedDate}`,
+    `${base_url}/matches?token=${key}&date=${formattedDate}&per_page=50`,
 
     // cache: "no-store",
     { next: { revalidate: 60 } }
@@ -49,17 +62,41 @@ export async function generateMetadata() {
 
 const page = async () => {
   const data = await getData();
-  // console.log(data, "datatatattt");
+
+  // function customSort(a, b) {
+  //   const statusOrder = { 3: 0, 1: 1, 2: 2, 4: 3 };
+  //   const statusA = a.status.toString();
+  //   const statusB = b.status.toString();
+
+  //   return statusOrder[statusA] - statusOrder[statusB];
+  // }
+
+  // // const sortedResponses = data.slice().sort(customSort);
+  // const sortedResponses = (data ?? []).slice().sort(customSort);
 
   function customSort(a, b) {
     const statusOrder = { 3: 0, 1: 1, 2: 2, 4: 3 };
+
+    // Check if title contains 'India' (case-insensitive)
+    const aContainsIndia = a.title && a.title.toLowerCase().includes("india");
+    const bContainsIndia = b.title && b.title.toLowerCase().includes("india");
+
+    // If both have 'India' or neither have it, sort by status.
+    // If only one has 'India', that one comes first.
+    if (aContainsIndia && bContainsIndia) {
+      return 0;
+    } else if (aContainsIndia) {
+      return -1;
+    } else if (bContainsIndia) {
+      return 1;
+    }
+
     const statusA = a.status.toString();
     const statusB = b.status.toString();
 
     return statusOrder[statusA] - statusOrder[statusB];
   }
 
-  // const sortedResponses = data.slice().sort(customSort);
   const sortedResponses = (data ?? []).slice().sort(customSort);
 
   return (

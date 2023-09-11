@@ -48,7 +48,7 @@ const getData = async () => {
 };
 
 export async function generateMetadata() {
-  const siteURL = "https://sportzwiki.com/";
+  const siteURL = "https://sportzwiki.com";
 
   return {
     title: `Sports News: Get Latest News on Football, Cricket, Tennis, WWE, E-Sports`,

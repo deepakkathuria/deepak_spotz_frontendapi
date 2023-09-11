@@ -450,7 +450,7 @@ export async function generateMetadata({ params }) {
       info?.response?.short_title || info?.response?.short_title
     }, Cricket Match with live Cricket score, ball by ball commentary updates on SportzWiki.`,
     alternates: {
-      canonical: `${site_url}/live-cricket-scores/${seriesName}`,
+      canonical: `https://${site_url}/live-cricket-scores/${seriesName}`,
     },
     robots: `index, follow`,
   };

@@ -582,7 +582,7 @@ export async function generateMetadata({ params }) {
       info?.response?.short_title || info?.response?.short_title
     } live score & full commentary updates on SportzWiki.`,
     alternates: {
-      canonical: `${site_url}/live-cricket-scores/${seriesName}/commentary`,
+      canonical: `https://${site_url}/live-cricket-scores/${seriesName}/commentary`,
     },
     robots: `index, follow`,
   };

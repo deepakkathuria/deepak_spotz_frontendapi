@@ -7,19 +7,47 @@ import Breadcrumb from "../../../../components/common/Breadcrumb";
 const BASE_URL_WP = process.env.BASE_URL_WP;
 const WP_API_USERNAME = process.env.WP_API_USERNAME;
 const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
+// import CardSlider from "../../../../components/home/CardSlider";
 
 const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
 const site_url = process.env.SITE_URL;
+
+const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
+const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
+
+const getData = async () => {
+  const res = await fetch(
+    `${base_url}/matches?token=${key}&date=${formattedDate}`,
+
+    // cache: "no-store",
+    { next: { revalidate: 60 } }
+  );
+  const data = await res.json();
+  // console.log(data, "datatatatta");
+  return data.response.items;
+};
 // import OrganisationLd from "@/json-ld/OrganisationLd";
+
+function getCurrentDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, "0"); // JavaScript months are 0-11, so we add 1
+  const day = String(today.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+const formattedDate = `${getCurrentDate()}_${getCurrentDate()}`;
 
 import { BreadcrumbJsonLd } from "next-seo";
 import { OrganizationJsonLd } from "next-seo";
 // import { redirect } from "next/dist/server/api-utils";
 import FaqLive from "../../../../components/common/FaqLive";
 import Link from "next/link";
+import CardSlider from "@/components/home/CardSlider";
 
 const fetchMetaData = async (categorySlug) => {
   const res = await fetch(
@@ -310,6 +338,20 @@ const CategoryPosts = async ({ params, searchParams }) => {
     currentPage
   );
 
+  const data = await getData();
+  // console.log(data, "datatatattt");
+
+  function customSort(a, b) {
+    const statusOrder = { 3: 0, 1: 1, 2: 2, 4: 3 };
+    const statusA = a.status.toString();
+    const statusB = b.status.toString();
+
+    return statusOrder[statusA] - statusOrder[statusB];
+  }
+
+  // const sortedResponses = data.slice().sort(customSort);
+  const sortedResponses = (data ?? []).slice().sort(customSort);
+
   // console.log('hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeee')
 
   // console.log(categoryPosts[0]?.primary_category,'categoryPostscategoryPosts')
@@ -387,6 +429,11 @@ const CategoryPosts = async ({ params, searchParams }) => {
               {/* <span> </span>
               News */}
             </h1>
+            {category === "cricket" && (
+              <div style={{ marginTop: "2rem" }}>
+                {data && <CardSlider cards={sortedResponses} />}
+              </div>
+            )}
 
             {/* <p className={styles.catDescription}>
             {categoryData[0]?.description}

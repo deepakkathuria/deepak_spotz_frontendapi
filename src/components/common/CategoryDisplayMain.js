@@ -420,45 +420,45 @@ const CategoryDisplayMain = async (props) => {
 
         <div className={styles.paginationContainer}>
           {currentPage > 1 && (
-            <Link
+            <a
               className={styles.nextPrevBtn}
               aria-label="Previous page"
               href={`/${category}/${slug}/page/${currentPage - 1}`}
             >
               Previous
-            </Link>
+            </a>
           )}
           {startPage > 2 && (
             <>
-              <Link href={`/${category}/${slug}/page/1`}>1</Link>
+              <a href={`/${category}/${slug}/page/1`}>1</a>
               <span aria-hidden="true">...</span>
             </>
           )}
           {pageRange.map((page) => (
-            <Link
+            <a
               className={page === currentPage ? styles.activePage : ""}
               key={page}
               href={`/${category}/${slug}/page/${page}`}
             >
               {page}
-            </Link>
+            </a>
           ))}
           {endPage < totalPages - 1 && (
             <>
               <span aria-hidden="true">...</span>
-              <Link href={`/${category}/${slug}/page/${totalPages}`}>
+              <a href={`/${category}/${slug}/page/${totalPages}`}>
                 {totalPages}
-              </Link>
+              </a>
             </>
           )}
           {currentPage < totalPages && (
-            <Link
+            <a
               aria-label="Next page"
               href={`/${category}/${slug}/page/${currentPage + 1}`}
               className={styles.nextPrevBtn}
             >
               Next
-            </Link>
+            </a>
           )}
         </div>
 

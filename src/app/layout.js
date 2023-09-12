@@ -8,7 +8,7 @@ import Script from "next/script";
 import GoogleAnalytics from "./GoogleAnalytics";
 import CustomAd1 from "@/ad/CustomAd1";
 import CustomAd2 from "@/ad/CustomAd2";
-import CustomAd3 from "@/ad/CustomAd3";
+// import CustomAd3 from "@/ad/CustomAd3";
 // import { WebPageSchema } from "@/json-ld/WebPageSchema";
 // import { NextSeo } from "next-seo";
 // const GTM_ID = "G-HGXKFDCKYE";
@@ -315,7 +315,7 @@ export default function RootLayout({ children }) {
           ></div>
         </div>
       </body>
-      <CustomAd3 />
+      {/* <CustomAd3 /> */}
     </html>
   );
 }

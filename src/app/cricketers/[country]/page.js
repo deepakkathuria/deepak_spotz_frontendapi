@@ -161,7 +161,7 @@ const page = async ({ params }) => {
             <input type="text" placeholder="Search Player" />
           </div>
         </div> */}
-        <div className={styles.list}>
+        {/* <div className={styles.list}>
           {Object?.entries(items?.response?.items?.players).map(
             ([playerType, playerArray], index) => (
               <div key={index}>
@@ -173,7 +173,21 @@ const page = async ({ params }) => {
               </div>
             )
           )}
+        </div> */}
+        <div className={styles.list}>
+          {Object.entries(items?.response?.items?.players || {}).map(
+            ([playerType, playerArray], index) => (
+              <div key={index}>
+                <PlayerList
+                  playerArray={playerArray}
+                  playerType={playerType}
+                  country={country}
+                />
+              </div>
+            )
+          )}
         </div>
+
         {/* <div style={{ marginTop: "2rem" }} className="header">
           <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
           <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>

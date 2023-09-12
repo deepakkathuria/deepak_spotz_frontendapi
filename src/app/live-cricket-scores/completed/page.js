@@ -27,7 +27,7 @@ export const metadata = {
   description:
     "Get recent cricket match score with full commentary of International & Domestic Cricket ",
   alternates: {
-    canonical: `${site_url}/live-cricket-scores`,
+    canonical: `https://${site_url}/live-cricket-scores`,
   },
   robots: `index, follow`,
 };

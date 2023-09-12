@@ -26,7 +26,7 @@ export const metadata = {
   description:
     "View Cricket Score of upcoming International, domestic and T20 Series on SportzWiki.",
   alternates: {
-    canonical: `${site_url}/live-cricket-scores`,
+    canonical: `https://${site_url}/live-cricket-scores`,
   },
   robots: `index, follow`,
 };

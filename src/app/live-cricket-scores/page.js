@@ -37,7 +37,7 @@ export const metadata = {
   description:
     "Get live cricket scores, match schedules, ball by ball commentary of Upcoming and Ongoing International & Domestic Cricket match, latest news & many more.",
   alternates: {
-    canonical: `${site_url}/live-cricket-scores`,
+    canonical: `https://${site_url}/live-cricket-scores`,
   },
   robots: `index, follow`,
 };

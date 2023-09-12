@@ -24,7 +24,7 @@ import HeaderBox from "../common/HeaderBox";
 import FaqLive from "../common/FaqLive";
 import { createEventLD } from "@/json-ld/eventLDnew";
 // import type { Metadata } from 'next'
-console.log(baseUrl, "baseeeeeeeee");
+// console.log(baseUrl, "baseeeeeeeee");
 
 // const header1 = "Live Cricket Scores & Updates";
 // const description =
@@ -50,12 +50,12 @@ const fetchMatchInfo = async (matchId) => {
     next: { revalidate: 2 },
   });
   const matchInfo = await res.json();
-  console.log(matchInfo, "matchInfomatchInfomatchInfo");
+  // console.log(matchInfo, "matchInfomatchInfomatchInfo");
   return matchInfo;
 };
 
 const fetchMatchScoreCard = async (matchId) => {
-  console.log(`${baseUrl}/matches/${matchId}/live?token=${key}`);
+  // console.log(`${baseUrl}/matches/${matchId}/live?token=${key}`);
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
     next: { revalidate: 2 },
   });
@@ -130,7 +130,9 @@ const LiveScoreMainPage = (props) => {
       url: "/live-cricket-scores",
     },
     {
-      name: `${matchInfo?.response?.teama?.name} vs ${matchInfo?.response?.teamb?.name}`,
+      name: `${matchInfo?.response?.teama?.name || "Team A"} vs ${
+        matchInfo?.response?.teamb?.name || "Team B"
+      }`,
       // url: `/live-cricket-scores/${seriesName}`,
     },
     // {
@@ -166,6 +168,8 @@ const LiveScoreMainPage = (props) => {
       },
     ],
   };
+
+  // console.log(matchInfo?.response?.date_start_ist);
 
   return (
     <>
@@ -229,11 +233,14 @@ const LiveScoreMainPage = (props) => {
               logoTeamB={matchInfo?.response?.teamb?.logo_url ?? ""}
               nameTeamA={matchInfo?.response?.teama?.name ?? ""}
               nameTeamB={matchInfo?.response?.teamb?.name ?? ""}
-              overTeamA={matchInfo?.response?.teama?.overs ?? ""}
-              overTeamB={matchInfo?.response?.teamb?.overs ?? ""}
-              scoreTeamA={matchInfo?.response?.teama?.scores ?? ""}
-              scoreTeamB={matchInfo?.response?.teamb?.scores ?? ""}
-              currentStatus={matchInfo?.response?.status_note ?? ""}
+              overTeamA={matchInfo?.response?.teama?.overs ?? "0.0"}
+              overTeamB={matchInfo?.response?.teamb?.overs ?? "0.0"}
+              scoreTeamA={matchInfo?.response?.teama?.scores ?? "Yet to bat"}
+              scoreTeamB={matchInfo?.response?.teamb?.scores ?? "Yet to bat"}
+              currentStatus={
+                matchInfo?.response?.status_note ??
+                "Status will be available once the match starts"
+              }
               // ************************************
               batsA={
                 scoreCard?.response?.batsmen &&
@@ -423,7 +430,7 @@ const LiveScoreMainPage = (props) => {
               }
               time={
                 new Date(
-                  matchInfo?.response?.date_end_ist
+                  matchInfo?.response?.date_start_ist
                 ).toLocaleTimeString() ?? ""
               }
               venueName={matchInfo?.response?.venue.name ?? ""}

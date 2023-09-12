@@ -209,10 +209,10 @@ const LiveScoreCommentaryPage = (props) => {
               logoTeamB={matchInfo?.response?.teamb?.logo_url ?? ""}
               nameTeamA={matchInfo?.response?.teama?.name ?? ""}
               nameTeamB={matchInfo?.response?.teamb?.name ?? ""}
-              overTeamA={matchInfo?.response?.teama?.overs ?? ""}
-              overTeamB={matchInfo?.response?.teamb?.overs ?? ""}
-              scoreTeamA={matchInfo?.response?.teama?.scores ?? ""}
-              scoreTeamB={matchInfo?.response?.teamb?.scores ?? ""}
+              overTeamA={matchInfo?.response?.teama?.overs ?? "0.0"}
+              overTeamB={matchInfo?.response?.teamb?.overs ?? "0.0"}
+              scoreTeamA={matchInfo?.response?.teama?.scores ?? "Yet to bat"}
+              scoreTeamB={matchInfo?.response?.teamb?.scores ?? "Yet to bat"}
               currentStatus={matchInfo?.response?.status_note ?? ""}
               // ************************************
               batsA={
@@ -423,7 +423,7 @@ const LiveScoreCommentaryPage = (props) => {
                           scoreCard.response.batsmen.length > 0
                             ? scoreCard.response.batsmen[0]?.runs ?? "-"
                             : "-"}
-                          (12)
+                          {/* (12) */}
                         </div>
                       </div>
                     </div>
@@ -440,7 +440,7 @@ const LiveScoreCommentaryPage = (props) => {
                           scoreCard.response.batsmen.length > 0
                             ? scoreCard.response.batsmen[1]?.runs ?? "-"
                             : "-"}
-                          (12)
+                          {/* (12) */}
                         </div>
                       </div>
                     </div>

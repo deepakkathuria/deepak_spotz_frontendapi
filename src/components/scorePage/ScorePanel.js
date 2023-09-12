@@ -10,7 +10,7 @@ const ScorePanel = (props) => {
         <div className={styles.countryDetails}>
           <div className={styles.country}>
             <div className={styles.nameLogo}>
-              <div className={styles.logo}>
+              {/* <div className={styles.logo}>
                 <Image
                   src={props?.logoTeamA}
                   alt={props?.nameTeamA}
@@ -18,7 +18,7 @@ const ScorePanel = (props) => {
                   height={12}
                   priority
                 />
-              </div>
+              </div> */}
               <div className={styles.name}>{props?.nameTeamA}</div>
             </div>
             <div className={styles.scoreOver}>
@@ -29,7 +29,7 @@ const ScorePanel = (props) => {
 
           <div className={styles.country}>
             <div className={styles.nameLogo}>
-              <div className={styles.logo}>
+              {/* <div className={styles.logo}>
                 <Image
                   src={props?.logoTeamB}
                   alt={props?.nameTeamB}
@@ -37,7 +37,7 @@ const ScorePanel = (props) => {
                   height={12}
                   priority
                 />
-              </div>
+              </div> */}
               <div className={styles.name}>{props?.nameTeamB}</div>
             </div>
             <div className={styles.scoreOver}>

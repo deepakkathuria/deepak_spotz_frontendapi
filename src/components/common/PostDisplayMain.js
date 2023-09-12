@@ -6,15 +6,9 @@ import PostDisplay from "./PostDisplay";
 import PostListBar from "./PostListBar";
 import NewsCard from "./NewsCard";
 // import parse from "html-react-parser";
-// import Link from "next/link";/
-// import ArticleLd from "@/json-ld/ArticleLd";
 import BreadCrumbLd from "../../json-ld/BreadCrumbLd";
-// import OrganisationLd from "@/json-ld/OrganisationLd";
 import UpdatesSound from "./UpdatesSound";
-// import HeaderBox2 from "@/components/common/HeaderBox2";
-import FaqLive from "./FaqLive";
 import CardSlider from "../home/CardSlider";
-// import Loading from "@/app/Loading";
 const baseUrlAd = process.env.BASE_URL_DO;
 const BASE_URL_WP = process.env.BASE_URL_WP;
 const WP_API_USERNAME = process.env.WP_API_USERNAME;
@@ -43,21 +37,6 @@ const fetchAD = async (adId) => {
   const ad = res.json();
   return ad;
 };
-
-// const fetchMetaData = async (category, slug) => {
-//   const res = await fetch(
-//     `${BASE_URL_WP}/wp-json/rankmath/v1/getHead?url=${BASE_URL_WP}/${category}/${slug}`,
-//     {
-//       next: { revalidate: 1500 },
-//       method: "GET",
-//       headers: {
-//         Authorization: `Basic ${base64Credentials}`,
-//       },
-//     }
-//   );
-//   const headData = await res.json();
-//   return headData;
-// };
 
 const fetchRelatedPostsByTagId = async (id) => {
   const response = await fetch(
@@ -169,13 +148,6 @@ const PostDisplayMain = async (props) => {
   const articleBody = await fetchPostBySlug(slug);
 
   const matchesList = await fetchUpcomingMatches(127811);
-  // console.log(matchesList, "matchesListmatchesListmatchesListmatchesList");
-  // console.log(articleBody?.primary_category_slug, "jnsf bjhb");
-  // const postDescription =
-  // let updatedPostDescription = articleBody?.content.rendered?.replace(
-  //   /https?:\/\/admin\.sportzwiki\.com/g,
-  //   "https://sportzwiki.com"
-  // );
 
   let updatedPostDescription = articleBody?.content.rendered?.replace(
     /https?:\/\/admin\.sportzwiki\.com(?!\/wp-content\/)/g,
@@ -209,37 +181,25 @@ const PostDisplayMain = async (props) => {
   }
 
   const relatedPosts = await fetchRelatedPostsByTagId(randomTag);
-  // console.log(relatedPosts, "relatedPostsrelationships");
 
   const ad = await fetchAD(1);
-  // console.log(ad, "addddddddddddddddddd");
   const adAfterParaData = [];
-  // let adAfterImage = "";
 
   for (const item of ad) {
-    // if (item.selected_types === 1) {
-    // console.log("found");
     adAfterParaData.push({
       para_no: item.para_no,
       code: item.code,
     });
-    // }
-    // if (item.selected_types === "After Image") {
-    //   adAfterImage = item.code;
-    // }
   }
 
   const htmlStringTitle = articleBody?.title.rendered;
   const htmlStringDescription = articleBody?.content.rendered;
 
-  // const plainStringTitle = htmlStringTitle.replace(/<[^>]+>/g, "");
   const plainStringTitle = (htmlStringTitle ?? "").replace(/<[^>]+>/g, "");
-  // const plainStringDescription = htmlStringDescription.replace(/<[^>]+>/g, "");
   const plainStringDescription = (htmlStringDescription ?? "").replace(
     /<[^>]+>/g,
     ""
   );
-  // const metaTitle =
 
   const articleJsonLd = {
     "@context": "https://schema.org/",
@@ -274,10 +234,6 @@ const PostDisplayMain = async (props) => {
     dateModified: articleBody?.date_gmt ?? "",
   };
 
-  // console.log(headContent, "shbjfvjvcjyujh");
-
-  // console.log(adAfterImage, "jhvfhbshbskbkjsbvhk");
-
   return (
     <>
       <script
@@ -287,7 +243,6 @@ const PostDisplayMain = async (props) => {
 
       <BreadCrumbLd category={category ?? ""} slug={slug ?? ""} />
 
-      {/* <OrganisationLd /> */}
 
       <div className={styles.postPageContainer}>
         <div className="matches">

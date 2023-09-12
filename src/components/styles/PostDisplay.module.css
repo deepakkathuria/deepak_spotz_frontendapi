@@ -124,7 +124,7 @@
   /* width: 62rem; */
   margin-top: 2rem;
   font-size: 1.6rem;
-  line-height: 2.4rem;
+  line-height: 3rem;
   /* line-height: 160%; */
 }
 
@@ -204,7 +204,7 @@
   }
 
   .postDescription {
-    line-height: 2.4rem;
+    line-height: 3rem;
   }
 
   /* .postSummaryInner p{

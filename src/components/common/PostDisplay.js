@@ -4,48 +4,15 @@ import { FaUserTag, FaRegCalendarAlt } from "react-icons/fa";
 import Image from "next/image";
 import PostTags from "./PostTags";
 import { DateTime } from "luxon";
-
-// function MyComponent(props1) {
-//   // const date = props1.date
-//   //   ? DateTime.fromISO(props1.date).setZone("Asia/Kolkata")
-//   //   : null;
-//   const date = props1.date
-//     ? DateTime.fromISO(props1.date, { zone: "utc" }).setZone("Asia/Kolkata")
-//     : null;
-
-//   console.log("Processed Date:", date);
-
-//   const formattedDateLong = date
-//     ? date.toLocaleString(DateTime.DATETIME_MED)
-//     : null;
-//   const formattedDateShort = date
-//     ? date.toLocaleString(DateTime.DATE_SHORT)
-//     : null;
-
-//   console.log("Formatted Date:", formattedDateLong);
-
-//   return (
-//     <div>
-//       <h3>{formattedDateLong}</h3>
-//     </div>
-//   );
-// }
+import parse from "html-react-parser";
 
 function MyComponent(props1) {
-  // console.log("date received from wordpress : ", props1.date);
-
-  // Parse the date, if it exists
   const date = props1.date
     ? DateTime.fromISO(props1.date, { zone: "utc" }).setZone("Asia/Kolkata")
     : null;
 
-  // console.log("Processed Date:", date);
-
-  // Format the date to "Sep 9, 2023 at 5:36 PM" style
   const customFormat = "MMM d, y 'at' h:mm a";
   const formattedDate = date ? date.toFormat(customFormat) : null;
-
-  // console.log("Formatted Date:", formattedDate);
 
   return (
     <div>
@@ -61,6 +28,7 @@ const PostDisplay = (props) => {
   //   /https?:\/\/admin\.sportzwiki\.com/g,
   //   "https://sportzwiki.com"
   // );
+  // console.log(parse(props?.description));
   return (
     <>
       <div className={styles.postDisplayContainer}>
@@ -110,10 +78,13 @@ const PostDisplay = (props) => {
           </div>
           {/* <div dangerouslySetInnerHTML={{ __html: props?.adAfterImage }} /> */}
           <div className={styles.postDescription}>
-            <div
+            {/* <div
               className={styles.postDescriptionContent}
               dangerouslySetInnerHTML={{ __html: props?.description }}
-            />
+            /> */}
+            <div className={styles.postDescriptionContent}>
+              {parse(props?.description)}
+            </div>
           </div>
 
           <PostTags tags={props.tags} />

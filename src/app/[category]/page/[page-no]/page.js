@@ -206,10 +206,10 @@ export async function generateMetadata({ params }) {
     );
     const robots = robotsMatch ? robotsMatch[1] : null;
 
-    console.log(
-      descriptionMatch,
-      "/asia-cup-2023/asia-cup-2023/asia-cup-2023/asia-cup-2023"
-    );
+    // console.log(
+    //   descriptionMatch,
+    //   "/asia-cup-2023/asia-cup-2023/asia-cup-2023/asia-cup-2023"
+    // );
 
     // Split the content by commas
     const robotsProperties = robots
@@ -430,7 +430,13 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
         <div className={styles.CategoryPosts}>
           <div className={styles.categoryTitleDescription}>
-            <Breadcrumb breadcrumbsObj={breadcrumbs} />
+            <div
+              className="breadcrumb"
+              style={{ marginTop: category === "cricket" ? "1rem" : "6rem" }}
+            >
+              <Breadcrumb breadcrumbsObj={breadcrumbs} />
+            </div>
+
             {/* <h1 className={styles.categoryTitle}>
               {decodeURIComponent(params.category)} News
             </h1> */}

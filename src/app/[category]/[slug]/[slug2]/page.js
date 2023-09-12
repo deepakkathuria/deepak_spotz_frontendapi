@@ -397,7 +397,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
         />
 
         <div className={styles.CategoryPosts}>
-          <div className={styles.categoryTitleDescription}>
+          <div style={{marginTop:'6rem'}} className={styles.categoryTitleDescription}>
             <Breadcrumb breadcrumbsObj={breadcrumbs} />
             {/* <h1 className={styles.categoryTitle}>
               {decodeURIComponent(params.category)} News

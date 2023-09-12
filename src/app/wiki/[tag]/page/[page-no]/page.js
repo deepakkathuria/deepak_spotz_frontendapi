@@ -403,7 +403,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
 
       {/* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% */}
       <div className={styles.container}>
-        <div className={styles.CategoryPosts}>
+        <div style={{ marginTop: "6rem" }} className={styles.CategoryPosts}>
           <Breadcrumb breadcrumbsObj={breadcrumbs} />
           <div className={styles.categoryTitleDescription}>
             <h1 className={styles.categoryTitle}>

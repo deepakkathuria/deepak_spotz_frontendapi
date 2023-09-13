@@ -5,7 +5,7 @@ import Image from "next/image";
 import styles from "./CardSlider.module.css";
 
 const CardSlider = ({ cards, displayBtn }) => {
-  console.log(cards[0], "cardscardscardscardscardscards");
+  // console.log(cards[0], "cardscardscardscardscardscards");
   const sliderRef = useRef(null);
   const cardRef = useRef(null);
   const [currentScroll, setCurrentScroll] = useState(0);

@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 import React from "react";
 import styles from "../styles/UpdateSound.module.css";
 import Image from "next/image";
@@ -8,14 +8,17 @@ const lastFiveNews = [
     title: "News number 1",
   },
   {
-    title: "News number 1",
+    title: "News number 2",
+  },
+  {
+    title: "News number 3",
   },
 ];
 
 const UpdatesSound = () => {
   return (
     <>
-      <div className={styles.updateMainDiv}>
+      {/* <div className={styles.updateMainDiv}>
         <div className={styles.updatesIc}>
           Updates
           <div className={styles.soundOnIc}>
@@ -44,7 +47,7 @@ const UpdatesSound = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

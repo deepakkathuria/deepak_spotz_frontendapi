@@ -3,32 +3,14 @@ import React, { useState, useEffect } from "react";
 import ScorePanel from "./ScorePanel";
 import NavBarSec from "./NavBarSec";
 import AudioBar from "../scores/AudioBar";
-// import NavBarTertiary from "../scores/NavBarTertiary";
 import InfoTable from "../scores/InfoTable";
-// import Link from "next/link";
 import styles from "../scores/NavBarTertiary.module.css";
 import UpdatesSound from "../common/UpdatesSound";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../common/Breadcrumb";
-// import PostListBar from "../../../components/common/PostListBar";
-// import NavSec from "@/components/liveScore/NavSec";
-// import OrganisationLd from "@/json-ld/OrganisationLd";
-import { BreadcrumbJsonLd } from "next-seo";
-import EventLd from "../../json-ld/EventLd";
 import NavSecScore from "../liveScore/NavSecScore";
-const base_url = process.env.BASE_URL_DO;
-const site_url = process.env.SITE_URL;
-// import { Helmet } from "react-helmet";
-import HeaderBox from "../common/HeaderBox";
-import FaqLive from "../common/FaqLive";
-import { createEventLD } from "@/json-ld/eventLDnew";
-// import type { Metadata } from 'next'
-// console.log(baseUrl, "baseeeeeeeee");
-
-// const header1 = "Live Cricket Scores & Updates";
-// const description =
-//   "Stay tuned to our live cricket score page for real-time updates, ball-by-ball commentary, and comprehensive match insights. Whether its international tests, ODIs, T20s, or domestic league matches, we've got you covered with the latest scores and match highlights. Don't miss a single moment of the action!";
+import slugify from "slugify";
 
 const faqLD = {
   "@context": "https://schema.org",
@@ -120,6 +102,11 @@ const LiveScoreMainPage = (props) => {
   // const data = matchInfo.response;
   // const scoreCard = await fetchMatchScoreCard(seriesIdInt);
 
+  console.log(
+    matchInfo?.response,
+    "matchInfo.responsematchInfo.responsematchInfo.response"
+  );
+
   const breadcrumbs = [
     {
       name: "Home",
@@ -128,6 +115,25 @@ const LiveScoreMainPage = (props) => {
     {
       name: `Live Cricket Scroes`,
       url: "/live-cricket-scores",
+    },
+
+    // slugify(ele.title, {
+    //   remove: /[*+~.()'"!:@]/g,
+    //   lower: true,
+    // })
+    {
+      name: `${
+        matchInfo?.response?.competition.title
+          ? matchInfo?.response?.competition.title
+          : ""
+      }`,
+      url: `/cricket-series/${slugify(
+        matchInfo?.response?.competition?.title || "",
+        {
+          remove: /[*+~.()'"!:@]/g,
+          lower: true,
+        }
+      )}-${matchInfo?.response?.competition?.cid}`,
     },
     {
       name: `${matchInfo?.response?.teama?.name || "Team A"} vs ${

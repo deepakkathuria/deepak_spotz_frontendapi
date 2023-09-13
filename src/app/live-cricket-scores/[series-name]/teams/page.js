@@ -21,6 +21,7 @@ import EventLd from "@/json-ld/EventLd";
 import NavSecScore from "@/components/liveScore/NavSecScore";
 import HeaderBox from "@/components/common/HeaderBox";
 import FaqLive from "@/components/common/FaqLive";
+import slugify from "slugify";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -95,6 +96,20 @@ const page = async ({ params }) => {
       url: "/live-cricket-scores",
     },
     {
+      name: `${
+        matchInfo?.response?.competition.title
+          ? matchInfo?.response?.competition.title
+          : ""
+      }`,
+      url: `/cricket-series/${slugify(
+        matchInfo?.response?.competition?.title || "",
+        {
+          remove: /[*+~.()'"!:@]/g,
+          lower: true,
+        }
+      )}-${matchInfo?.response?.competition?.cid}`,
+    },
+    {
       name: `${matchInfo?.response?.teama?.name} vs ${matchInfo?.response?.teamb?.name}`,
       url: `/live-cricket-scores/${seriesName}`,
     },
@@ -159,6 +174,11 @@ const page = async ({ params }) => {
           {
             position: 4,
             name: breadcrumbs[3]?.name,
+            item: `${site_url}${breadcrumbs[3]?.url}`,
+          },
+          {
+            position: 5,
+            name: breadcrumbs[4]?.name,
             // item: `${site_url}${breadcrumbs[3]?.url}`,
           },
           // {

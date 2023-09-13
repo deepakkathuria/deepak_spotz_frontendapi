@@ -554,6 +554,7 @@ import React from "react";
 import LiveScoreCommentaryPage from "@/components/scorePage/LiveScoreCommentaryPage";
 // import BreadCrumbJsonLd from "next-seo/lib/jsonld/breadcrumb";
 import { BreadcrumbJsonLd } from "next-seo";
+import slugify from "slugify";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const site_url = process.env.SITE_URL;
@@ -571,7 +572,7 @@ export async function generateMetadata({ params }) {
   const { "series-name": seriesName } = params;
   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
   const info = await fetchMatchInfo(seriesIdInt);
-  console.log(info?.response?.title);
+  // console.log(info?.response?.title);
 
   // return an object
   return {
@@ -629,6 +630,20 @@ const page = async ({ params }) => {
       url: "/live-cricket-scores",
     },
     {
+      name: `${
+        info?.response?.competition.title
+          ? info?.response?.competition.title
+          : ""
+      }`,
+      url: `/cricket-series/${slugify(
+        info?.response?.competition?.title || "",
+        {
+          remove: /[*+~.()'"!:@]/g,
+          lower: true,
+        }
+      )}-${info?.response?.competition?.cid}`,
+    },
+    {
       name: `${info?.response?.teama?.name} vs ${info?.response?.teamb?.name}`,
       url: `/live-cricket-scores/${seriesName}`,
     },
@@ -661,6 +676,11 @@ const page = async ({ params }) => {
             position: 4,
             name: breadcrumbs[3]?.name,
             item: `${site_url}${breadcrumbs[3]?.url}`,
+          },
+          {
+            position: 5,
+            name: breadcrumbs[4]?.name,
+            item: `${site_url}${breadcrumbs[4]?.url}`,
           },
         ]}
       />

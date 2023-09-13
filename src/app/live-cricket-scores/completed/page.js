@@ -147,6 +147,8 @@ const page = async () => {
                   key={index}
                   matchID={match?.match_id}
                   title={match?.short_title ? match.short_title : "no title"}
+                  subtitle={match?.subtitle ? match?.subtitle : null}
+                  comp_abbr={match?.competition.abbr ? match?.competition.abbr : null}
                   teamAName={match?.teama.name ? match?.teama.name : "NA"}
                   teamBName={match?.teamb.name}
                   teamAScores={match?.teama.scores}

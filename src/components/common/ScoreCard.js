@@ -6,19 +6,31 @@ import dynamic from "next/dynamic";
 import slugify from "slugify";
 
 const ScoreCard = (props) => {
-  const matchNameUrl = slugify(props.title, {
-    remove: /[*+~.()'"!:@]/g,
-    lower: true,
-  });
+  // const matchNameUrl = slugify(
+  //   `${props.title}-${props.comp_abbr}-${props.subtitle}`,
+  //   {
+  //     remove: /[*+~.()'"!:@]/g,
+  //     lower: true,
+  //   }
+  // );
 
-  // console.log(matchNameUrl,'shdvhmfvkhgvskgvkgv');
+  const matchNameUrl = slugify(
+    `${props.title}-${props.comp_abbr}${
+      props.subtitle ? `-${props.subtitle}` : ""
+    }`,
+    {
+      remove: /[*+~.()'"!:@]/g,
+      lower: true,
+    }
+  );
+
   return (
     <>
       <div className={styles.scoreCardContainer}>
         <div className={styles.scoreCardInner}>
           <a
             href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/commentary`}
-          > 
+          >
             <div className={styles.scoreMain}>
               <div className={styles.matchTitleDiv}>
                 <div className={styles.liveIC}>

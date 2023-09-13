@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./CardSlider.module.css";
 
 const CardSlider = ({ cards, displayBtn }) => {
+  console.log(cards[0], "cardscardscardscardscardscards");
   const sliderRef = useRef(null);
   const cardRef = useRef(null);
   const [currentScroll, setCurrentScroll] = useState(0);
@@ -82,6 +83,8 @@ const CardSlider = ({ cards, displayBtn }) => {
               key={index}
               matchID={card?.match_id}
               title={card?.short_title ? card?.short_title : "no title"}
+              subtitle={card?.subtitle ? card?.subtitle : null}
+              comp_abbr={card?.competition.abbr ? card?.competition.abbr : null}
               teamAName={card?.teama.name ? card?.teama.name : "-"}
               teamBName={card?.teamb.name}
               teamAScores={card?.teama.scores}

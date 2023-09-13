@@ -422,6 +422,7 @@ import React from "react";
 import LiveScoreMainPage from "@/components/scorePage/LiveScoreMainPage";
 import styles from "./commonStyle.module.css";
 import { BreadcrumbJsonLd } from "next-seo";
+import slugify from "slugify";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 const site_url = process.env.SITE_URL;
@@ -500,6 +501,20 @@ const page = async ({ params }) => {
       url: "/live-cricket-scores",
     },
     {
+      name: `${
+        info?.response?.competition.title
+          ? info?.response?.competition.title
+          : ""
+      }`,
+      url: `/cricket-series/${slugify(
+        info?.response?.competition?.title || "",
+        {
+          remove: /[*+~.()'"!:@]/g,
+          lower: true,
+        }
+      )}-${info?.response?.competition?.cid}`,
+    },
+    {
       name: `${info?.response?.teama?.name} vs ${info?.response?.teamb?.name}`,
       url: `/live-cricket-scores/${seriesName}`,
     },
@@ -527,6 +542,11 @@ const page = async ({ params }) => {
             position: 3,
             name: breadcrumbs[2]?.name,
             item: `https://${site_url}${breadcrumbs[2]?.url}`,
+          },
+          {
+            position: 4,
+            name: breadcrumbs[3]?.name,
+            item: `https://${site_url}${breadcrumbs[3]?.url}`,
           },
           // {
           // position: 4,

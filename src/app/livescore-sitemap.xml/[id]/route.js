@@ -72,16 +72,21 @@ export async function GET(request, { params }) {
     const response = await fetchData(id);
 
     const baseSlug = (ele) =>
-      `${siteUrl}/live-cricket-scores/${slugify(ele.title, {
-        remove: /[*+~.()'"!:@]/g,
-        lower: true,
-      })}-${ele.match_id}`;
+      `${siteUrl}/live-cricket-scores/${slugify(
+        `${ele.short_title}-${ele.competition.abbr}${
+          ele.subtitle ? `-${ele.subtitle}` : ""
+        }`,
+        {
+          remove: /[*+~.()'"!:@]/g,
+          lower: true,
+        }
+      )}-${ele.match_id}`;
 
     const sitemap_data = response.items?.flatMap((ele) => {
       const slug = baseSlug(ele);
       return [
         {
-          loc: slug,
+          loc: `${slug}`,
           lastmod: ele.competition.datestart,
         },
         {

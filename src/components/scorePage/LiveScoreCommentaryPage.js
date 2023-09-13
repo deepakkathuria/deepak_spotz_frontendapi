@@ -2,27 +2,15 @@
 import NavBarSec from "./NavBarSec";
 import ScorePanel from "./ScorePanel";
 import AudioBar from "../scores/AudioBar";
-// import NavBarTertiary from "../../../../components/scores/NavBarTertiary";
 import React, { useState, useEffect } from "react";
 import CommentaryBox from "./Commentary/CommentaryBox";
 import styles from "../scores/NavBarTertiary.module.css";
-// import Link from "next/link";
-// import Commentary from "@/components/scorePage/Commentary";
 import UpdatesSound from "../common/UpdatesSound";
 const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 import Breadcrumb from "../common/Breadcrumb";
-// import PostListBar from "../../../../components/common/PostListBar";
-// import NavSec from "../../../../components/liveScore/NavSec";
-// import OrganisationLd from "@/json-ld/OrganisationLd";
-import { BreadcrumbJsonLd } from "next-seo";
-import EventLd from "../../json-ld/EventLd";
 import NavSecScore from "../liveScore/NavSecScore";
-const base_url = process.env.BASE_URL_DO;
-const site_url = process.env.SITE_URL;
-// import { Helmet } from "react-helmet";
-import HeaderBox from "../common/HeaderBox";
-import FaqLive from "../common/FaqLive";
+import slugify from "slugify";
 
 const fetchMatchScoreCard = async (matchId) => {
   const res = await fetch(`${baseUrl}/matches/${matchId}/live?token=${key}`, {
@@ -128,14 +116,33 @@ const LiveScoreCommentaryPage = (props) => {
   // const commentaryInfo = await fetchMatchCommentary(seriesIdInt);
   // const commentaryList = commentaryInfo?.response?.commentaries?.reverse();
 
+  console.log(
+    matchInfo?.response?.competition?.title,
+    "matchInfo?.responsematchInfo?.response"
+  );
+
   const breadcrumbs = [
     {
       name: "Home",
       url: "/",
     },
     {
-      name: `Live Cricket Scroes`,
+      name: `Live Cricket Scores`,
       url: "/live-cricket-scores",
+    },
+    {
+      name: `${
+        matchInfo?.response?.competition.title
+          ? matchInfo?.response?.competition.title
+          : ""
+      }`,
+      url: `/cricket-series/${slugify(
+        matchInfo?.response?.competition?.title || "",
+        {
+          remove: /[*+~.()'"!:@]/g,
+          lower: true,
+        }
+      )}-${matchInfo?.response?.competition?.cid}`,
     },
     {
       name: `${matchInfo?.response?.teama?.name} vs ${matchInfo?.response?.teamb?.name}`,

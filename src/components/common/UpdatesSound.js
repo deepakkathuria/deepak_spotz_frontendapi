@@ -3,6 +3,15 @@ import React from "react";
 import styles from "../styles/UpdateSound.module.css";
 import Image from "next/image";
 
+const lastFiveNews = [
+  {
+    title: "News number 1",
+  },
+  {
+    title: "News number 1",
+  },
+];
+
 const UpdatesSound = () => {
   return (
     <>

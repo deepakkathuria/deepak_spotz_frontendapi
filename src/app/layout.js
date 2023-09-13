@@ -20,6 +20,9 @@ export const metadata = {
   description:
     "Latest Sports News: Get all latest sports news today on different sports, from Cricket, Football, Tennis, WWE, Esports, Badminton, Basketball, Boxing, F1, Hockey, Kabaddi &amp; Golf.",
   themeColor: "#092d55",
+  other: {
+    "google-site-verification": "K9FUTrNupzciEuMFjqc_XONOAHPiTG6Tcpc9uQTCfLY",
+  },
 };
 
 export default function RootLayout({ children }) {

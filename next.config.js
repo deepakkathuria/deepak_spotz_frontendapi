@@ -2,6 +2,17 @@
 // module.exports = withImages();
 
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source:
+          "/asian-games-2018/comedy-of-errors-leave-top-indian-athletes-hitching-a-ride-at-asiad-torch-relay-2",
+        destination:
+          "/asian-games-2018/comedy-of-errors-leave-top-indian-athletes-hitching-a-ride-at-asiad-torch-relay",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     domains: [
       "i0.wp.com",

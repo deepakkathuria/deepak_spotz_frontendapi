@@ -8,6 +8,7 @@ import Script from "next/script";
 import GoogleAnalytics from "./GoogleAnalytics";
 import CustomAd1 from "@/ad/CustomAd1";
 import CustomAd2 from "@/ad/CustomAd2";
+import CustomAd4 from "@/ad/CustomAd4";
 // import CustomAd3 from "@/ad/CustomAd3";
 // import { WebPageSchema } from "@/json-ld/WebPageSchema";
 // import { NextSeo } from "next-seo";
@@ -132,6 +133,7 @@ export default function RootLayout({ children }) {
       <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_TRACKING_ID} />
       <CustomAd1 />
       <CustomAd2 />
+      <CustomAd4 />
 
       {/* <CustomAd3 /> */}
       {/* <CustomAd1 /> */}
@@ -145,6 +147,15 @@ export default function RootLayout({ children }) {
         src="https://platform.twitter.com/widgets.js"
         strategy="lazyOnload"
       ></Script>
+
+      <Script src="https://cdn.rediads.com/prebid/js/prebid.min.js" async />
+      <Script
+        src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+        async
+      />
+      <Script src="https://cdn.rediads.com/sportzwiki/js/ads.min.js" defer />
+
+      {/* <link rel="stylesheet" href="https://cdn.rediads.com/css/style.min.css" /> */}
       {/* <head>
         <script
           async
@@ -285,6 +296,12 @@ export default function RootLayout({ children }) {
     gtag('config', 'UA-40644512-1');
     `}
       </Script>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.rediads.com/css/style.min.css"
+        />
+      </head>
 
       <body className={inter.className}>
         <Navbar />

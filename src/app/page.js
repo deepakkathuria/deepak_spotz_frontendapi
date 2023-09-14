@@ -116,6 +116,7 @@ const page = async () => {
                 }
                 width={0}
                 height={0}
+                alt=""
                 style={{ width: "65px", height: "auto" }}
               ></Image>
               <div className={styles.triangle}>
@@ -123,6 +124,7 @@ const page = async () => {
                   src={"/gaurav/arrowRight.svg"}
                   width={0}
                   height={0}
+                  alt=""
                   style={{ width: "25px", height: "auto" }}
                 ></Image>
               </div>

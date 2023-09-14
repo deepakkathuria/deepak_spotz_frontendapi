@@ -203,8 +203,30 @@ export async function generateMetadata({ params }) {
     const imageUrl = post?.featured_image_url ?? "";
     const parsedTitle = (title ?? "").replace(/<[^>]+>/g, "");
     const parsedDescription = (description ?? "").replace(/<[^>]+>/g, "");
-    let canonicalUrl = "";
+    const date = new Date(post?.date);
+    const modified_gmt = new Date(post?.modified);
 
+    const formattedDateGmt = `${date.getFullYear()}-${String(
+      date.getMonth() + 1
+    ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}T${String(
+      date.getHours()
+    ).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}:${String(
+      date.getSeconds()
+    ).padStart(2, "0")}+05:30`;
+
+    const formatted_modified_gmt = `${modified_gmt.getFullYear()}-${String(
+      modified_gmt.getMonth() + 1
+    ).padStart(2, "0")}-${String(modified_gmt.getDate()).padStart(
+      2,
+      "0"
+    )}T${String(modified_gmt.getHours()).padStart(2, "0")}:${String(
+      modified_gmt.getMinutes()
+    ).padStart(2, "0")}:${String(modified_gmt.getSeconds()).padStart(
+      2,
+      "0"
+    )}+05:30`;
+
+    let canonicalUrl = "";
     try {
       const metaData = await fetchMetaData(
         post?.categories[0].slug,
@@ -268,6 +290,9 @@ export async function generateMetadata({ params }) {
       openGraph: {
         title: parsedTitle,
         description: parsedDescription,
+        type: "article",
+        publishedTime: formattedDateGmt,
+        modifiedTime: formatted_modified_gmt,
         url: "https://www.sportzwiki.com",
         siteName: "Sportzwiki",
         images: [
@@ -285,7 +310,7 @@ export async function generateMetadata({ params }) {
           },
         ],
         locale: "en_US",
-        type: "website",
+        // type: "website",
       },
 
       twitter: {

@@ -9,6 +9,7 @@ import NewsCard from "./NewsCard";
 import BreadCrumbLd from "../../json-ld/BreadCrumbLd";
 import UpdatesSound from "./UpdatesSound";
 import CardSlider from "../home/CardSlider";
+import Image from "next/image";
 const baseUrlAd = process.env.BASE_URL_DO;
 const BASE_URL_WP = process.env.BASE_URL_WP;
 const WP_API_USERNAME = process.env.WP_API_USERNAME;
@@ -243,8 +244,53 @@ const PostDisplayMain = async (props) => {
 
       <BreadCrumbLd category={category ?? ""} slug={slug ?? ""} />
 
-
       <div className={styles.postPageContainer}>
+        <div className={styles.quickLinks}>
+          <div className={styles.quickLinksHeading}>
+            {/* <p>ASIA CUP 2023</p> */}
+            <Image
+              src={
+                "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1694670174/asia-cup_aotqdl.svg"
+              }
+              width={0}
+              height={0}
+              alt=""
+              style={{ width: "65px", height: "auto" }}
+            ></Image>
+            <div className={styles.triangle}>
+              <Image
+                src={"/gaurav/arrowRight.svg"}
+                width={0}
+                height={0}
+                alt=""
+                style={{ width: "25px", height: "auto" }}
+              ></Image>
+            </div>
+          </div>
+          <ul className={styles.items}>
+            {/* <ul> */}
+            <li>
+              <a href="/live-cricket-scores/pak-vs-sl-asia-cup-2023-round-2-super-4s-a1-v-b1-65565/commentary">
+                PAK vs SL
+              </a>
+            </li>
+            <li>|</li>
+            <li>
+              <a href="/cricket-series/asia-cup-127811/matches">Schedule</a>
+            </li>
+            <li>|</li>
+            <li>
+              <a href="/cricket-series/asia-cup-127811/matches">Results</a>
+            </li>
+            <li>|</li>
+            <li>
+              <a href="/asia-cup-2023">News</a>
+            </li>
+            {/* </ul> */}
+          </ul>
+          {/* <div className={styles.arrowLine}></div> */}
+          {/* <a href="#">Asia Cup 2023</a> */}
+        </div>
         <div className="matches">
           {matchesList?.status === "ok" && (
             <CardSlider

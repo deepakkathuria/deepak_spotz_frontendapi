@@ -409,7 +409,7 @@ const CategoryDisplayMain = async (props) => {
                       title={post?.title.rendered}
                       content={post?.content.rendered}
                       // date={new Date(post?.date).toLocaleString("en-us")}
-                      date={post?.date}
+                      date={post?.modified}
                       featuredMedia={post?.featured_image_url}
                     />
                   </a>

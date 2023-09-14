@@ -407,7 +407,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
                       title={post?.title.rendered}
                       content={post?.content.rendered}
                       // date={new Date(post?.date).toLocaleString("en-us")}
-                      date={post?.modified_gmt}
+                      date={post?.modified}
                       featuredMedia={post?.featured_image_url}
                     />
                   </a>

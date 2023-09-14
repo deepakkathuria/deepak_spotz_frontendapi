@@ -7,6 +7,7 @@ import FaqLive from "@/components/common/FaqLive";
 import UpdatesSound from "@/components/common/UpdatesSound";
 import CardSlider from "@/components/home/CardSlider";
 import Link from "next/link";
+import Image from "next/image";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
@@ -106,6 +107,50 @@ const page = async () => {
         <div className="scores">
           {/* <Suspense fallback={"Loading..."}> */}
           <UpdatesSound />
+          <div className={styles.quickLinks}>
+            <div className={styles.quickLinksHeading}>
+              {/* <p>ASIA CUP 2023</p> */}
+              <Image
+                src={
+                  "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1694670174/asia-cup_aotqdl.svg"
+                }
+                width={0}
+                height={0}
+                style={{ width: "65px", height: "auto" }}
+              ></Image>
+              <div className={styles.triangle}>
+                <Image
+                  src={"/gaurav/arrowRight.svg"}
+                  width={0}
+                  height={0}
+                  style={{ width: "25px", height: "auto" }}
+                ></Image>
+              </div>
+            </div>
+            <ul className={styles.items}>
+              {/* <ul> */}
+              <li>
+                <a href="/live-cricket-scores/ind-vs-ban-asia-cup-2023-round-2-super-4s-a2-v-b2-65566/commentary">
+                  Ind vs Ban
+                </a>
+              </li>
+              <li>|</li>
+              <li>
+                <a href="/cricket-series/asia-cup-127811/matches">Schedule</a>
+              </li>
+              <li>|</li>
+              <li>
+                <a href="/cricket-series/asia-cup-127811/matches">Results</a>
+              </li>
+              <li>|</li>
+              <li>
+                <a href="/asia-cup-2023">News</a>
+              </li>
+              {/* </ul> */}
+            </ul>
+            {/* <div className={styles.arrowLine}></div> */}
+            {/* <a href="#">Asia Cup 2023</a> */}
+          </div>
           <div style={{ marginTop: "2rem" }} className="slider">
             <div className={styles.scoreCardMatchTypeSelector}>
               <div className={styles.matchTimingSelector}>

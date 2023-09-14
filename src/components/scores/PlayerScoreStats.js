@@ -9,10 +9,7 @@ const PlayerScoreStats = (props) => {
     <>
       <div style={{ display: "flex", gap: "1rem", flexDirection: "column" }}>
         <BatsmenStats data={props?.data} />
-        {/* ******************************************* */}
-        {/* //bowler stat name is batsmen treat as bowler */}
         <BowlerStats data={props?.data} />
-        {/* ******************************************* */}
       </div>
     </>
   );

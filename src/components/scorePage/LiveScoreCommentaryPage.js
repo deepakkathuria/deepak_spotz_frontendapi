@@ -508,7 +508,7 @@ const LiveScoreCommentaryPage = (props) => {
                 </div>
               </div>
 
-              <div className="commentaryList">
+              <div className={styles.commentaryList}>
                 {commentary?.response?.commentaries
                   ?.reverse()
                   .map((commentary, index) => {

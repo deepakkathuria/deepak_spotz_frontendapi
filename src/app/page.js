@@ -100,8 +100,8 @@ const page = async () => {
             </div>
             <ul className={styles.items}>
               <li>
-                <a href="/live-cricket-scores/pak-vs-sl-asia-cup-2023-round-2-super-4s-a1-v-b1-65565/commentary">
-                  PAK vs SL
+                <a href="/live-cricket-scores/ind-vs-ban-asia-cup-2023-round-2-super-4s-a2-v-b2-65566/commentary">
+                  IND vs BAN
                 </a>
               </li>
               <li>|</li>

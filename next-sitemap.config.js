@@ -50,5 +50,6 @@ module.exports = {
     "/livescore-sitemap.xml",
     "/series-sitemap.xml",
     "/google-news-sitemap.xml",
+    "/tags-sitemap.xml"
   ],
 };

@@ -9,3 +9,4 @@ Sitemap: https://sportzwiki.com/categories-sitemap.xml
 Sitemap: https://sportzwiki.com/livescore-sitemap.xml
 Sitemap: https://sportzwiki.com/series-sitemap.xml
 Sitemap: https://sportzwiki.com/google-news-sitemap.xml
+Sitemap: https://sportzwiki.com/tags-sitemap.xml

@@ -5544,6 +5544,11 @@ const nextConfig = {
     },
 
     {
+      source: "/tags-sitemap-:id.xml",
+      destination: "/tags-sitemap.xml/:id",
+    },
+
+    {
       source: "/cricketers",
       destination: "/cricketers/india",
     },

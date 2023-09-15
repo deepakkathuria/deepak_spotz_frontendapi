@@ -8,22 +8,55 @@ const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
-const fetchArticles = async () => {
+const getAuthorName = async (userId) => {
+  const res = await fetch(`${base_url}wp-json/wp/v2/users${userId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Basic ${base64Credentials}`,
+    },
+    cache: "no-store",
+  });
+
+  const UserData = await res.json();
+  return UserData;
+};
+
+const fetchCategoryDataBySlug = async (categorySlug) => {
   const res = await fetch(
-    `${base_url}/wp-json/wp/v2/posts?per_page=15`,
+    `${base_url}wp-json/wp/v2/categories?slug=${categorySlug}`,
     {
       method: "GET",
       headers: {
         Authorization: `Basic ${base64Credentials}`,
       },
+      cache: "no-store",
     }
   );
-  const data = await res.json();
-  return data;
+
+  const categoryData = await res.json();
+  return categoryData;
 };
 
-export async function GET() {
-  const articles = await fetchArticles();
+const fetchPostsByCategoryId = async (categoryId, currentPage) => {
+  const res = await fetch(
+    `${base_url}wp-json/wp/v2/posts?categories=${categoryId}&per_page=25`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+      cache: "no-store",
+    }
+  );
+
+  const posts = await res.json();
+  return posts ?? [];
+};
+
+export async function GET(request, { params }) {
+  const category = params.category;
+  const categoryData = await fetchCategoryDataBySlug(category);
+  const categoryPosts = await fetchPostsByCategoryId(categoryData[0]?.id);
 
   const feed = new Feed({
     title: "SportzWiki",
@@ -38,7 +71,7 @@ export async function GET() {
     generator: "SportzWiki Media",
   });
 
-  articles.forEach((article) => {
+  categoryPosts.forEach((article) => {
     feed.addItem({
       title: article.title.rendered,
       id: `https://${site_url}/${article.primary_category_slug || "news"}/${

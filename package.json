@@ -16,6 +16,7 @@
     "axios": "^1.4.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "feed": "^4.2.2",
     "html-react-parser": "^4.1.0",
     "html-to-text": "^9.0.5",
     "luxon": "^3.4.3",

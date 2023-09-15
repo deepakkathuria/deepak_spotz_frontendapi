@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./BatsmenStats.module.css";
 
 const BowlerStats = (props) => {
-  // console.log(props.data.response.innings[0].batsmen, "propeeeestatssssssssssss");
+  // console.log(props.data.batsmen, "propeeeestatssssssssssss");
   return (
     <>
       <div className={styles.container}>
@@ -16,9 +16,8 @@ const BowlerStats = (props) => {
             <div>Dots</div>
           </div>
         </div>
-        {props?.data?.response?.innings &&
-        props.data.response.innings[0]?.bowlers ? (
-          props.data.response.innings[0].bowlers.map((stat, index) => (
+        {props?.data && props.data?.bowlers ? (
+          props.data.bowlers.map((stat, index) => (
             <div key={index} className={styles.tableBody}>
               <div className={styles.nameDetails}>
                 <div className={styles.name}>{stat?.name ?? "-"}</div>

@@ -8,8 +8,12 @@ const PlayerScoreStats = (props) => {
   return (
     <>
       <div style={{ display: "flex", gap: "1rem", flexDirection: "column" }}>
-        <BatsmenStats data={props?.data} />
-        <BowlerStats data={props?.data} />
+        {props?.data?.response?.innings?.map((inning, i) => (
+          <>
+            <BatsmenStats data={inning} />
+            <BowlerStats data={inning} />
+          </>
+        ))}
       </div>
     </>
   );

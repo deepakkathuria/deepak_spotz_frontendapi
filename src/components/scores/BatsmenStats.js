@@ -2,10 +2,20 @@ import React from "react";
 import styles from "./BatsmenStats.module.css";
 
 const BatsmenStats = (props) => {
-  // console.log(props.data.response.innings[0].batsmen, "propeeeestatssssssssssss");
+  // console.log(props.data, "propeeeestatssssssssssss");
   return (
     <>
       <div className={styles.container}>
+        <p
+          style={{
+            fontSize: "2rem",
+            fontWeight: "600",
+            color: "#0c4c8a",
+            marginBottom: "1.2rem",
+          }}
+        >
+          {props?.data.name}
+        </p>
         <div className={styles.tableHead}>
           <div className={styles.batter}>Batter</div>
           <div className={styles.otherDetails}>
@@ -16,29 +26,28 @@ const BatsmenStats = (props) => {
             <div>SR</div>
           </div>
         </div>
-        {props?.data?.response?.innings?.length > 0 &&
-          props.data.response.innings[0]?.batsmen?.map((stat, index) => {
-            return (
-              <div key={index} className={styles.tableBody}>
-                <div className={styles.nameDetails}>
-                  <div className={styles.name}>{stat?.name ?? "-"}</div>
-                  <div className={styles.misc}>{stat.how_out ?? "-"}</div>
-                </div>
-                <div className={styles.otherDetails}>
-                  <div>{stat.runs ?? "-"}</div>
-                  <div>{stat.balls_faced ?? "-"}</div>
-                  <div>{stat.fours ?? "-"}</div>
-                  <div>{stat.sixes ?? "-"}</div>
-                  <div>{stat.strike_rate ?? "-"}</div>
-                </div>
+        {props.data?.batsmen?.map((stat, index) => {
+          // console.log(stat, "stateeeeeeeeeeeeeeeeeeeeeeee");
+          return (
+            <div key={index} className={styles.tableBody}>
+              <div className={styles.nameDetails}>
+                <div className={styles.name}>{stat?.name ?? "-"}</div>
+                <div className={styles.misc}>{stat.how_out ?? "-"}</div>
               </div>
-            );
-          })}
+              <div className={styles.otherDetails}>
+                <div>{stat.runs ?? "-"}</div>
+                <div>{stat.balls_faced ?? "-"}</div>
+                <div>{stat.fours ?? "-"}</div>
+                <div>{stat.sixes ?? "-"}</div>
+                <div>{stat.strike_rate ?? "-"}</div>
+              </div>
+            </div>
+          );
+        })}
         <div style={{ display: "flex" }} className={styles.fallOfWickets}>
           <p>Fall of wickets:</p>
-          {props?.data?.response?.innings &&
-          props.data.response.innings[0]?.fows ? (
-            props.data.response.innings[0].fows.map((item, index) => (
+          {props?.data && props.data?.fows ? (
+            props.data.fows.map((item, index) => (
               <div key={index}>{item.name ?? "-"}</div>
             ))
           ) : (
@@ -48,9 +57,8 @@ const BatsmenStats = (props) => {
 
         <div style={{ display: "flex" }} className={styles.didNotBat}>
           <p>Did not bat:</p>
-          {props?.data?.response?.innings &&
-          props.data.response.innings[0]?.did_not_bat ? (
-            props.data.response.innings[0].did_not_bat.map((item, index) => (
+          {props?.data && props.data?.did_not_bat ? (
+            props.data.did_not_bat.map((item, index) => (
               <div key={index}>{`  ${item?.name ?? "-"}, `}</div>
             ))
           ) : (

@@ -124,54 +124,66 @@ const ScoreCard = (props) => {
           </a>
           <hr />
           <div className={styles.matchCardsButtons}>
-            <button className={styles.matchCardButton}>
-              <div className={styles.matchCardButtonIc}>
+            <a href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}`}>
+              <button className={styles.matchCardButton}>
+                {/* <div className={styles.matchCardButtonIc}>
                 <Image
-                  src="/gaurav/fantasy-games.svg"
-                  width={13}
-                  height={13}
-                  alt="arrow-left"
-                  quality={30}
+                src="/gaurav/fantasy-games.svg"
+                width={13}
+                height={13}
+                alt="arrow-left"
+                quality={30}
                 />
-              </div>
-              Fantasy Team
-            </button>
-            <button className={styles.matchCardButton}>
-              <div className={styles.matchCardButtonIc}>
+              </div> */}
+                Information
+              </button>
+            </a>
+            <a
+              href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/full-scorecard`}
+            >
+              <button className={styles.matchCardButton}>
+                {/* <div className={styles.matchCardButtonIc}>
                 <Image
-                  src="/gaurav/bet-casino.svg"
-                  width={13}
-                  height={13}
-                  alt="arrow-left"
-                  quality={30}
+                src="/gaurav/bet-casino.svg"
+                width={13}
+                height={13}
+                alt="arrow-left"
+                quality={30}
                 />
-              </div>
-              Place a bet
-            </button>
-            <button className={styles.matchCardButton}>
-              <div className={styles.matchCardButtonIc}>
+              </div> */}
+                Score Card
+              </button>
+            </a>
+            <a
+              href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/teams`}
+            >
+              <button className={styles.matchCardButton}>
+                {/* <div className={styles.matchCardButtonIc}>
                 <Image
-                  src="/gaurav/ticket-voucher.svg"
-                  width={13}
-                  height={13}
-                  alt="arrow-left"
-                  quality={30}
+                src="/gaurav/ticket-voucher.svg"
+                width={13}
+                height={13}
+                alt="arrow-left"
+                quality={30}
                 />
-              </div>
-              Buy Ticket
-            </button>
-            <button className={styles.matchCardButton}>
-              <div className={styles.matchCardButtonIc}>
+              </div> */}
+                Teams
+              </button>
+            </a>
+            <a href={`/asia-cup-2023`}>
+              <button className={styles.matchCardButton}>
+                {/* <div className={styles.matchCardButtonIc}>
                 <Image
                   src="/gaurav/news-publishing.svg"
                   width={13}
                   height={13}
                   alt="arrow-left"
                   quality={30}
-                />
-              </div>
-              News
-            </button>
+                  />
+                </div> */}
+                News
+              </button>
+            </a>
           </div>
         </div>
       </div>

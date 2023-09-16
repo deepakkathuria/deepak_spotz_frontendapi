@@ -144,8 +144,9 @@ export default function RootLayout({ children }) {
         strategy="lazyOnload"
       ></Script>
       <Script
+        async
         src="https://platform.twitter.com/widgets.js"
-        strategy="lazyOnload"
+        // strategy="lazyOnload"
       ></Script>
 
       <Script src="https://cdn.rediads.com/prebid/js/prebid.min.js" async />

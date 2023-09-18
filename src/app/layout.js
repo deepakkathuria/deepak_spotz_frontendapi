@@ -149,7 +149,7 @@ export default function RootLayout({ children }) {
         // strategy="lazyOnload"
       ></Script>
 
-      <Script src="https://cdn.rediads.com/prebid/js/prebid.min.js" async />
+      <Script src="https://cdn.rediads.com/prebid/js/prebid.js" async />
       <Script
         src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
         async

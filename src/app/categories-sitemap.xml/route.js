@@ -1,4 +1,3 @@
-// import fetchCountOfDynamicPages from "@/lib/fetchCountOfDynamicPages";
 import { getServerSideSitemapIndex } from "next-sitemap";
 const baseUrl = process.env.BASE_URL_WP;
 const siteUrl = process.env.SITE_URL;
@@ -27,7 +26,9 @@ export async function GET(request) {
 
   const sitemaps = Array(amountOfSitemapFiles)
     .fill("")
-    .map((v, index) => `https://sportzwiki.com/categories-sitemap-${index}.xml`);
+    .map(
+      (v, index) => `https://sportzwiki.com/categories-sitemap-${index}.xml`
+    );
 
   return getServerSideSitemapIndex(sitemaps);
 }

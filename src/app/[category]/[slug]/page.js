@@ -106,7 +106,6 @@ export async function generateMetadata({ params }) {
     // console.log("here3");
 
     const metaData = await fetchMetaDataCat(slug);
-    // console.log("here4");
     const headContent = metaData.head;
 
     // Extract meta title

@@ -83,7 +83,7 @@ const page = async () => {
         <div className={styles.soundBox}>
           <UpdatesSound />
         </div>
-        <h1 style={{ marginTop: "1rem"}}>Live Cricket Scores</h1>
+        <h1 style={{ marginTop: "1rem" }}>Live Cricket Scores</h1>
         <div className={styles.nav}>
           <ul className={styles.navUl}>
             <li className={`${styles.navLi}`}>
@@ -106,14 +106,16 @@ const page = async () => {
             return (
               <div key={index} className={styles.seriesCard}>
                 <div className={styles.name}>
-                  <p>{match?.title}</p>
+                  <p>{match?.competition.abbr}</p>
                 </div>
                 <ScoreCard
                   key={index}
                   matchID={match?.match_id}
                   title={match?.short_title ? match.short_title : "no title"}
                   subtitle={match?.subtitle ? match?.subtitle : null}
-                  comp_abbr={match?.competition.abbr ? match?.competition.abbr : null}
+                  comp_abbr={
+                    match?.competition.abbr ? match?.competition.abbr : null
+                  }
                   teamAName={match?.teama.name ? match?.teama.name : "NA"}
                   teamBName={match?.teamb.name}
                   teamAScores={match?.teama.scores}

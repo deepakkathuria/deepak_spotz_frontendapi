@@ -1,4 +1,3 @@
-// import fetchCountOfDynamicPages from "@/lib/fetchCountOfDynamicPages";
 import { getServerSideSitemapIndex } from "next-sitemap";
 const baseUrl = process.env.BASE_URL_WP;
 const siteUrl = process.env.siteUrl;

@@ -95,16 +95,38 @@ export async function GET(request, { params }) {
       return data.slug;
     };
 
+    const fetchGrandParentCategorySlug = async (parentId) => {
+      const res = await fetch(
+        `${base_url}/wp-json/wp/v2/categories/${parentId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Basic ${base64Credentials}`,
+          },
+        }
+      );
+      const data = await res.json();
+      return data.parent ? await fetchParentCategorySlug(data.parent) : null;
+    };
+
     const urls = await fetchCategoriesUrl(id);
 
     const sitemap_data = await Promise.all(
       urls.map(async (ele) => {
         let parentSlug = "";
+        let grandParentSlug = "";
+
         if (ele.parent) {
           parentSlug = await fetchParentCategorySlug(ele.parent);
+          if (parentSlug) {
+            grandParentSlug = await fetchGrandParentCategorySlug(ele.parent);
+          }
         }
+
         return {
-          loc: `${site_url}/${parentSlug ? parentSlug + "/" : ""}${ele.slug}`,
+          loc: `${site_url}/${grandParentSlug ? grandParentSlug + "/" : ""}${
+            parentSlug ? parentSlug + "/" : ""
+          }${ele.slug}`,
         };
       })
     );

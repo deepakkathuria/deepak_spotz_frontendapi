@@ -11,7 +11,7 @@
 .navUl {
   margin-top: 2rem;
   display: flex;
-  gap: 1rem;
+  gap: 0.6rem;
   font-weight: 600;
   list-style-type: none;
   font-size: 1.3rem;

@@ -403,7 +403,11 @@ const CategoryDisplayMain = async (props) => {
               categoryPosts?.map((post, index) => (
                 <div className="card" key={index}>
                   {/* console.log(post?.modified_gmt,'udfhbfiuiu') */}
-                  <a href={`/${slug}/${post?.slug}`}>
+                  <a
+                    href={`/${post?.primary_category_slug || "news"}/${
+                      post?.slug
+                    }`}
+                  >
                     <NewsCard
                       id={post?.id}
                       title={post?.title.rendered}

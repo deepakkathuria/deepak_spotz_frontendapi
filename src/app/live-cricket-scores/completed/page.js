@@ -141,16 +141,14 @@ const page = async () => {
             return (
               <div key={index} className={styles.seriesCard}>
                 <div className={styles.name}>
-                  <p>{match?.competition?.abbr || "Live Score"}</p>
+                  <p>{match?.title.slice(0, 40)}</p>
                 </div>
                 <ScoreCard
                   key={index}
                   matchID={match?.match_id}
                   title={match?.short_title ? match.short_title : "no title"}
                   subtitle={match?.subtitle ? match?.subtitle : null}
-                  comp_abbr={
-                    match?.competition.abbr ? match?.competition.abbr : null
-                  }
+                  comp_abbr={match?.competition.abbr ? match?.competition.abbr : null}
                   teamAName={match?.teama.name ? match?.teama.name : "NA"}
                   teamBName={match?.teamb.name}
                   teamAScores={match?.teama.scores}

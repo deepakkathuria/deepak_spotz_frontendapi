@@ -408,7 +408,11 @@ const CategoryPosts = async ({ params, searchParams }) => {
             {Array.isArray(categoryPosts) &&
               categoryPosts?.map((post, index) => (
                 <div className="card" key={index}>
-                  <a href={`/${category}/${post?.slug}`}>
+                  <a
+                    href={`/${post?.primary_category_slug || "news"}/${
+                      post?.slug
+                    }`}
+                  >
                     <NewsCard
                       id={post?.id}
                       title={post?.title.rendered}

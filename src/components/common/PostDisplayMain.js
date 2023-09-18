@@ -22,36 +22,173 @@ const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
+// const fetchUpcomingMatches = async (matchId) => {
+//   const res = await fetch(
+//     `${base_url}/competitions/${matchId}/matches/?token=${key}&per_page=50&&paged=1`,
+//     { next: { revalidate: 30 } }
+//   );
+//   const data = await res.json();
+//   return data;
+// };
+
 const fetchUpcomingMatches = async (matchId) => {
-  const res = await fetch(
-    `${base_url}/competitions/${matchId}/matches/?token=${key}&per_page=50&&paged=1`,
-    { next: { revalidate: 30 } }
-  );
-  const data = await res.json();
+  let res;
+  try {
+    res = await fetch(
+      `${base_url}/competitions/${matchId}/matches/?token=${key}&per_page=50&&paged=1`,
+      { next: { revalidate: 30 } }
+    );
+  } catch (error) {
+    // Handle network errors
+    throw new Error("Network error: " + error.message);
+  }
+
+  if (!res.ok) {
+    // Handle HTTP response errors
+    const errorMessage = await res.text();
+    throw new Error("HTTP error: " + errorMessage);
+  }
+
+  let data;
+  try {
+    data = await res.json();
+  } catch (error) {
+    // Handle JSON parsing errors
+    throw new Error("JSON parsing error: " + error.message);
+  }
+
   return data;
 };
 
+// const fetchAD = async (adId) => {
+//   const res = await fetch(`${baseUrlAd}/getpad?selectedTypes=${adId}`, {
+//     cache: "no-store",
+//   });
+//   const ad = res.json();
+//   return ad;
+// };
 const fetchAD = async (adId) => {
-  const res = await fetch(`${baseUrlAd}/getpad?selectedTypes=${adId}`, {
-    cache: "no-store",
-  });
-  const ad = res.json();
+  let res;
+  try {
+    res = await fetch(`${baseUrlAd}/getpad?selectedTypes=${adId}`, {
+      cache: "no-store",
+    });
+  } catch (error) {
+    // Handle network errors
+    throw new Error("Network error: " + error.message);
+  }
+
+  if (!res.ok) {
+    // Handle HTTP response errors
+    const errorMessage = await res.text();
+    throw new Error("HTTP error: " + errorMessage);
+  }
+
+  let ad;
+  try {
+    ad = await res.json();
+  } catch (error) {
+    // Handle JSON parsing errors
+    throw new Error("JSON parsing error: " + error.message);
+  }
+
   return ad;
 };
 
+// const fetchRelatedPostsByTagId = async (id) => {
+//   const response = await fetch(
+//     `${BASE_URL_WP}wp-json/wp/v2/posts?tags=${id}&per_page=6`,
+//     {
+//       next: { revalidate: 1500 },
+//       method: "GET",
+//       headers: {
+//         Authorization: `Basic ${base64Credentials}`,
+//       },
+//     }
+//   );
+//   return await response.json();
+// };
+
 const fetchRelatedPostsByTagId = async (id) => {
-  const response = await fetch(
-    `${BASE_URL_WP}wp-json/wp/v2/posts?tags=${id}&per_page=6`,
-    {
-      next: { revalidate: 1500 },
-      method: "GET",
-      headers: {
-        Authorization: `Basic ${base64Credentials}`,
-      },
-    }
-  );
-  return await response.json();
+  let response;
+  try {
+    response = await fetch(
+      `${BASE_URL_WP}wp-json/wp/v2/posts?tags=${id}&per_page=6`,
+      {
+        next: { revalidate: 1500 },
+        method: "GET",
+        headers: {
+          Authorization: `Basic ${base64Credentials}`,
+        },
+      }
+    );
+  } catch (error) {
+    // Handle network errors
+    throw new Error("Network error: " + error.message);
+  }
+
+  if (!response.ok) {
+    // Handle HTTP response errors
+    const errorMessage = await response.text();
+    throw new Error(
+      "HTTP error, Status: " + response.status + ", Message: " + errorMessage
+    );
+  }
+
+  let jsonData;
+  try {
+    jsonData = await response.json();
+  } catch (error) {
+    // Handle JSON parsing errors
+    throw new Error("JSON parsing error: " + error.message);
+  }
+
+  return jsonData;
 };
+
+// const fetchPostBySlug = async (slug) => {
+//   try {
+//     const response = await fetch(
+//       `${BASE_URL_WP}wp-json/wp/v2/posts?slug=${slug}`,
+//       {
+//         method: "GET",
+//         headers: {
+//           Authorization: `Basic ${base64Credentials}`,
+//         },
+//         next: { revalidate: 1500 },
+//       }
+//     );
+
+//     const articleData = await response.json();
+
+//     // Fetch tags data and populate names
+//     const tagIds = articleData[0]?.tags || [];
+//     const tagsData = await Promise.all(
+//       tagIds.map((tagId) => fetchTagById(tagId))
+//     );
+//     const tags = tagsData.map((tag) => tag);
+
+//     // Fetch categories data and populate names
+//     const categoryIds = articleData[0]?.categories || [];
+//     const categoriesData = await Promise.all(
+//       categoryIds.map((categoryId) => fetchCategoryById(categoryId))
+//     );
+//     const categories = categoriesData.map((category) => category);
+
+//     const authorId = articleData[0]?.author || "SportzWiki Desk";
+//     const authorName = await getAuthorName(authorId);
+
+//     // Replace tag and category IDs with their respective names
+//     articleData[0].tags = tags;
+//     articleData[0].categories = categories;
+//     articleData[0].author = authorName;
+
+//     return articleData[0];
+//   } catch (error) {
+//     console.error("Error fetching article data:", error);
+//     return null;
+//   }
+// };
 
 const fetchPostBySlug = async (slug) => {
   try {
@@ -66,29 +203,66 @@ const fetchPostBySlug = async (slug) => {
       }
     );
 
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(
+        `HTTP error fetching post, Status: ${response.status}, Message: ${errorMessage}`
+      );
+    }
+
     const articleData = await response.json();
 
+    if (!articleData[0]) {
+      throw new Error("No post found for the given slug.");
+    }
+
     // Fetch tags data and populate names
-    const tagIds = articleData[0]?.tags || [];
+    const tagIds = articleData[0].tags || [];
     const tagsData = await Promise.all(
-      tagIds.map((tagId) => fetchTagById(tagId))
+      tagIds.map(async (tagId) => {
+        try {
+          return await fetchTagById(tagId);
+        } catch (tagError) {
+          console.error(`Error fetching tag with ID ${tagId}:`, tagError);
+          return null; // or return a default value or structure
+        }
+      })
     );
-    const tags = tagsData.map((tag) => tag);
+    const tags = tagsData.filter(Boolean); // Removes null values, if any
 
     // Fetch categories data and populate names
-    const categoryIds = articleData[0]?.categories || [];
+    const categoryIds = articleData[0].categories || [];
     const categoriesData = await Promise.all(
-      categoryIds.map((categoryId) => fetchCategoryById(categoryId))
+      categoryIds.map(async (categoryId) => {
+        try {
+          return await fetchCategoryById(categoryId);
+        } catch (categoryError) {
+          console.error(
+            `Error fetching category with ID ${categoryId}:`,
+            categoryError
+          );
+          return null; // or return a default value or structure
+        }
+      })
     );
-    const categories = categoriesData.map((category) => category);
+    const categories = categoriesData.filter(Boolean);
 
-    const authorId = articleData[0]?.author || "SportzWiki Desk";
-    const authorName = await getAuthorName(authorId);
+    // Fetch author data
+    const authorId = articleData[0].author || "SportzWiki Desk";
+    let authorName;
+    try {
+      authorName = await getAuthorName(authorId);
+      // console.log(authorName, "authorNameauthorNameauthorName");
+    } catch (authorError) {
+      console.error(`Error fetching author with ID ${authorId}:`, authorError);
+      authorName = "Unknown Author"; // default name in case of an error
+    }
 
     // Replace tag and category IDs with their respective names
     articleData[0].tags = tags;
     articleData[0].categories = categories;
     articleData[0].author = authorName;
+    // console.log(articleData[0].author, "articleData[0]articleData[0]");
 
     return articleData[0];
   } catch (error) {
@@ -98,47 +272,165 @@ const fetchPostBySlug = async (slug) => {
 };
 
 // Function to fetch tag data by ID
+// const fetchTagById = async (tagId) => {
+//   const response = await fetch(`${BASE_URL_WP}wp-json/wp/v2/tags/${tagId}`, {
+//     next: { revalidate: 300 },
+//     method: "GET",
+//     headers: {
+//       Authorization: `Basic ${base64Credentials}`,
+//     },
+//   });
+//   const tagData = await response.json();
+//   return tagData;
+// };
+
 const fetchTagById = async (tagId) => {
-  const response = await fetch(`${BASE_URL_WP}wp-json/wp/v2/tags/${tagId}`, {
-    next: { revalidate: 300 },
-    method: "GET",
-    headers: {
-      Authorization: `Basic ${base64Credentials}`,
-    },
-  });
-  const tagData = await response.json();
+  let response;
+  try {
+    response = await fetch(`${BASE_URL_WP}wp-json/wp/v2/tags/${tagId}`, {
+      next: { revalidate: 300 },
+      method: "GET",
+      headers: {
+        Authorization: `Basic ${base64Credentials}`,
+      },
+    });
+  } catch (error) {
+    // Handle network errors
+    throw new Error(
+      `Network error fetching tag with ID ${tagId}: ${error.message}`
+    );
+  }
+
+  if (!response.ok) {
+    // Handle HTTP response errors
+    const errorMessage = await response.text();
+    throw new Error(
+      `HTTP error fetching tag with ID ${tagId}, Status: ${response.status}, Message: ${errorMessage}`
+    );
+  }
+
+  let tagData;
+  try {
+    tagData = await response.json();
+  } catch (error) {
+    // Handle JSON parsing errors
+    throw new Error(
+      `JSON parsing error fetching tag with ID ${tagId}: ${error.message}`
+    );
+  }
+
   return tagData;
 };
 
 // Function to fetch category data by ID
+// const fetchCategoryById = async (categoryId) => {
+//   const response = await fetch(
+//     `${BASE_URL_WP}wp-json/wp/v2/categories/${categoryId}`,
+//     {
+//       next: { revalidate: 300 },
+//       method: "GET",
+//       headers: {
+//         Authorization: `Basic ${base64Credentials}`,
+//       },
+//     }
+//   );
+//   const categoryData = await response.json();
+//   return categoryData;
+// };
+
 const fetchCategoryById = async (categoryId) => {
-  const response = await fetch(
-    `${BASE_URL_WP}wp-json/wp/v2/categories/${categoryId}`,
-    {
-      next: { revalidate: 300 },
-      method: "GET",
-      headers: {
-        Authorization: `Basic ${base64Credentials}`,
-      },
-    }
-  );
-  const categoryData = await response.json();
+  let response;
+  try {
+    response = await fetch(
+      `${BASE_URL_WP}wp-json/wp/v2/categories/${categoryId}`,
+      {
+        next: { revalidate: 300 },
+        method: "GET",
+        headers: {
+          Authorization: `Basic ${base64Credentials}`,
+        },
+      }
+    );
+  } catch (error) {
+    // Handle network errors
+    throw new Error(
+      `Network error fetching category with ID ${categoryId}: ${error.message}`
+    );
+  }
+
+  if (!response.ok) {
+    // Handle HTTP response errors
+    const errorMessage = await response.text();
+    throw new Error(
+      `HTTP error fetching category with ID ${categoryId}, Status: ${response.status}, Message: ${errorMessage}`
+    );
+  }
+
+  let categoryData;
+  try {
+    categoryData = await response.json();
+  } catch (error) {
+    // Handle JSON parsing errors
+    throw new Error(
+      `JSON parsing error fetching category with ID ${categoryId}: ${error.message}`
+    );
+  }
+
   return categoryData;
 };
 
+// const getAuthorName = async (authorId) => {
+//   const response = await fetch(
+//     `${BASE_URL_WP}wp-json/wp/v2/users/${authorId}`,
+//     {
+//       next: { revalidate: 300 },
+//       method: "GET",
+//       headers: {
+//         Authorization: `Basic ${base64Credentials}`,
+//       },
+//     }
+//   );
+//   const authorName = await response.json();
+//   return authorName;
+// };
+
 const getAuthorName = async (authorId) => {
-  const response = await fetch(
-    `${BASE_URL_WP}wp-json/wp/v2/users/${authorId}`,
-    {
+  let response;
+  try {
+    response = await fetch(`${BASE_URL_WP}wp-json/wp/v2/users/${authorId}`, {
       next: { revalidate: 300 },
       method: "GET",
       headers: {
         Authorization: `Basic ${base64Credentials}`,
       },
-    }
-  );
-  const authorName = await response.json();
-  return authorName;
+    });
+  } catch (error) {
+    // Handle network errors
+    throw new Error(
+      `Network error fetching author with ID ${authorId}: ${error.message}`
+    );
+  }
+
+  if (!response.ok) {
+    // Handle HTTP response errors
+    const errorMessage = await response.text();
+    throw new Error(
+      `HTTP error fetching author with ID ${authorId}, Status: ${response.status}, Message: ${errorMessage}`
+    );
+  }
+
+  let authorData;
+  try {
+    authorData = await response.json();
+  } catch (error) {
+    // Handle JSON parsing errors
+    throw new Error(
+      `JSON parsing error fetching author with ID ${authorId}: ${error.message}`
+    );
+  }
+
+  // Assuming the author's name is stored in a field named 'name' in the response. Adjust if different.
+  return authorData.name || "Unknown Author";
 };
 
 // const site_url = process.env.SITE_URL;
@@ -183,15 +475,15 @@ const PostDisplayMain = async (props) => {
 
   const relatedPosts = await fetchRelatedPostsByTagId(randomTag);
 
-  const ad = await fetchAD(1);
-  const adAfterParaData = [];
+  // const ad = await fetchAD(1);
+  // const adAfterParaData = [];
 
-  for (const item of ad) {
-    adAfterParaData.push({
-      para_no: item.para_no,
-      code: item.code,
-    });
-  }
+  // for (const item of ad) {
+  //   adAfterParaData.push({
+  //     para_no: item.para_no,
+  //     code: item.code,
+  //   });
+  // }
 
   const htmlStringTitle = articleBody?.title.rendered;
   const htmlStringDescription = articleBody?.content.rendered;
@@ -311,13 +603,13 @@ const PostDisplayMain = async (props) => {
             <PostDisplay
               title={articleBody?.title.rendered ?? ""}
               date={articleBody?.modified_gmt ?? ""}
-              author={articleBody?.author?.name ?? ""}
+              author={articleBody?.author ?? ""}
               description={updatedPostDescription}
               tags={articleBody?.tags ?? []}
               categories={articleBody?.categories ?? []}
               thumbnail={articleBody?.featured_image_url}
               summary={articleBody?.excerpt.rendered ?? ""}
-              ad={adAfterParaData || ""}
+              // ad={adAfterParaData || ""}
               // adAfterImage={adAfterImage || ""}
             />
           </Suspense>

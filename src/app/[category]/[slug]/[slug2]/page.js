@@ -397,7 +397,10 @@ const CategoryPosts = async ({ params, searchParams }) => {
         />
 
         <div className={styles.CategoryPosts}>
-          <div style={{marginTop:'6rem'}} className={styles.categoryTitleDescription}>
+          <div
+            style={{ marginTop: "6rem" }}
+            className={styles.categoryTitleDescription}
+          >
             <Breadcrumb breadcrumbsObj={breadcrumbs} />
             {/* <h1 className={styles.categoryTitle}>
               {decodeURIComponent(params.category)} News
@@ -425,7 +428,11 @@ const CategoryPosts = async ({ params, searchParams }) => {
             {Array.isArray(categoryPosts) &&
               categoryPosts?.map((post, index) => (
                 <div className="card" key={index}>
-                  <a href={`/${slug}/${post?.slug}`}>
+                  <a
+                    href={`/${post?.primary_category_slug || "news"}/${
+                      post?.slug
+                    }`}
+                  >
                     <NewsCard
                       id={post?.id}
                       title={post?.title.rendered}

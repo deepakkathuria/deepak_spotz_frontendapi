@@ -8,6 +8,18 @@ const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
+const fetchTagById = async (tagId) => {
+  const response = await fetch(`${base_url}wp-json/wp/v2/tags/${tagId}`, {
+    next: { revalidate: 300 },
+    method: "GET",
+    headers: {
+      Authorization: `Basic ${base64Credentials}`,
+    },
+  });
+  const tagData = await response.json();
+  return tagData;
+};
+
 const isCategory = async (slug) => {
   const res = await fetch(`${base_url}wp-json/wp/v2/categories?slug=${slug}`, {
     method: "GET",

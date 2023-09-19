@@ -19,7 +19,7 @@ const PlayerList = (props) => {
                 href={`/cricketers/${props?.country}/${slugify(
                   player?.title.toLowerCase(),
                   { remove: /[*+~.()'"!:@]/g }
-                )}-${player?.pid}`}
+                )}-${player?.pid}/`}
               >
                 <PlayerCardMini
                   name={player?.title}

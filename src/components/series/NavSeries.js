@@ -13,7 +13,7 @@ const NavSeries = (props) => {
               : `${styles.NavSeriesLi}`
           }
         >
-          <Link href={"/cricket-series"}>Current Series</Link>
+          <Link href={"/cricket-series/"}>Current Series</Link>
         </li>
         <li
           className={
@@ -22,7 +22,7 @@ const NavSeries = (props) => {
               : `${styles.NavSeriesLi}`
           }
         >
-          <Link href={"/cricket-series/recent"}>Recent Series</Link>
+          <Link href={"/cricket-series/recent/"}>Recent Series</Link>
         </li>
         <li
           className={
@@ -31,7 +31,7 @@ const NavSeries = (props) => {
               : `${styles.NavSeriesLi}`
           }
         >
-          <Link href={"/cricket-series/upcoming"}>Upcoming Series</Link>
+          <Link href={"/cricket-series/upcoming/"}>Upcoming Series</Link>
         </li>
       </ul>
     </>

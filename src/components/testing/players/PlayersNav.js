@@ -6,14 +6,14 @@ const PlayersNav = (props) => {
   return (
     <>
       <ul className={styles.nav}>
-        <Link href={`/cricketers/${props.country}/${props.player}`}>
+        <Link href={`/cricketers/${props.country}/${props.player}/`}>
           <li
             className={props?.active === "overview" ? `${styles.active}` : ""}
           >
             Overview
           </li>
         </Link>
-        <Link href={`/cricketers/${props.country}/${props.player}/stats`}>
+        <Link href={`/cricketers/${props.country}/${props.player}/stats/`}>
           <li className={props?.active === "stats" ? `${styles.active}` : ""}>
             Stats
           </li>

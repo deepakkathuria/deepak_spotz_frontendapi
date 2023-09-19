@@ -418,7 +418,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
               PostsOfTag?.map((post) => (
                 <div className="card" key={post.ID}>
                   {/* {console.log(post.featured_image_url, "featuresdddddd")} */}
-                  <a href={`/${post.primary_category_slug}/${post.slug}`}>
+                  <a href={`/${post.primary_category_slug}/${post.slug}/`}>
                     <NewsCard
                       title={post?.title?.rendered}
                       content={post?.content?.rendered}
@@ -450,14 +450,14 @@ const CategoryPosts = async ({ params, searchParams }) => {
             <Link
               className={styles.nextPrevBtn}
               aria-label="Previous page"
-              href={`/wiki/${tag}/page/${currentPage - 1}`}
+              href={`/wiki/${tag}/page/${currentPage - 1}/`}
             >
               Previous
             </Link>
           )}
           {startPage > 2 && (
             <>
-              <Link href={`/wiki/${tag}/page/1`}>1</Link>
+              <Link href={`/wiki/${tag}/page/1/`}>1</Link>
               <span aria-hidden="true">...</span>
             </>
           )}
@@ -473,7 +473,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
           {endPage < totalPages - 1 && (
             <>
               <span aria-hidden="true">...</span>
-              <Link href={`/wiki/${tag}/page/${totalPages}`}>{totalPages}</Link>
+              <Link href={`/wiki/${tag}/page/${totalPages}/`}>{totalPages}</Link>
             </>
           )}
           {currentPage < totalPages && (

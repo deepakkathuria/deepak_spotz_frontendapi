@@ -22,7 +22,7 @@ const Teams = (props) => {
                     remove: /[*+~.()'"!:@]/g,
                   }).toLowerCase()}/${slugify(entry?.name, {
                     remove: /[*+~.()'"!:@]/g,
-                  }).toLowerCase()}-${entry?.player_id}`}
+                  }).toLowerCase()}-${entry?.player_id}/`}
                 >
                   <div className={styles.player}>
                     <div className={styles.photo}></div>
@@ -46,7 +46,7 @@ const Teams = (props) => {
                     remove: /[*+~.()'"!:@]/g,
                   }).toLowerCase()}/${slugify(entry?.name, {
                     remove: /[*+~.()'"!:@]/g,
-                  }).toLowerCase()}-${entry?.player_id}`}
+                  }).toLowerCase()}-${entry?.player_id}/`}
                 >
                   <div className={styles.player}>
                     <div className={styles.photo}></div>

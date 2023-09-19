@@ -23,7 +23,7 @@ const SeriesList = (props) => {
                   <Link
                     href={`/cricket-series/${slugify(seriesName?.title, {
                       remove: /[*+~.()'"!:@]/g,
-                    }).toLowerCase()}-${seriesName?.cid}`}
+                    }).toLowerCase()}-${seriesName?.cid}/`}
                   >
                     {seriesName?.title || ""}
                   </Link>

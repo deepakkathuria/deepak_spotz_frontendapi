@@ -7,7 +7,7 @@ const TeamSliderButton = (props) => {
   return (
     <>
       <div className={styles.container}>
-        <a href={`/cricketers/${props?.src}`}>
+        <a href={`/cricketers/${props?.src}/`}>
           <div className="img">
             <Image src={props?.img} height={20} width={20} alt="" />
           </div>

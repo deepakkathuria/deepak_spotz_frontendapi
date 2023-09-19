@@ -10,7 +10,7 @@ const PostCategoryBox = (props) => {
         <h4 className={styles.selected}>All</h4>
         {props.categories?.map((category, index) => {
           return (
-            <Link key={index} href={`/${category.slug}`}>
+            <Link key={index} href={`/${category.slug}/`}>
               <h4 key={category.id}>{category.name}</h4>
             </Link>
           );

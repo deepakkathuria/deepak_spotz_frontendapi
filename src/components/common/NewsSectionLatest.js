@@ -76,7 +76,7 @@ const NewsSection = async (props) => {
             return (
               <div key={index}>
                 <a
-                  href={`/${item.primary_category_slug || slug1}/${item?.slug}`}
+                  href={`/${item.primary_category_slug || slug1}/${item?.slug}/`}
                 >
                   <NewsCardLatest
                     title={item?.title?.rendered}
@@ -92,7 +92,7 @@ const NewsSection = async (props) => {
           })}
         </div>
         <div className={styles.readMoreLabel}>
-          <a href="/news">Read More</a>
+          <a href="/news/">Read More</a>
         </div>
       </div>
     </>

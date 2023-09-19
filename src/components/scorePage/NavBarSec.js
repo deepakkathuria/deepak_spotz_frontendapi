@@ -9,21 +9,21 @@ const NavBarSec = (props) => {
         <ul>
           <li className={styles.highlighted}>Cricket</li>
           <li className={props?.active === "home" ? `${styles.selected}` : ""}>
-            <Link href={"/sports/cricket"}>Home</Link>
+            <Link href={"/sports/cricket/"}>Home</Link>
           </li>
           <li className={props?.active === "live" ? `${styles.selected}` : ""}>
-            <Link href={"/live-cricket-scores"}>Live Scores</Link>
+            <Link href={"/live-cricket-scores/"}>Live Scores</Link>
           </li>
           <li className={props?.active === "schedule" ? `${styles.selected}` : ""}>
-            <Link href={"/live-cricket-scores/schedule"}>Schedule</Link>
+            <Link href={"/live-cricket-scores/schedule/"}>Schedule</Link>
           </li>
           <li
             className={props?.active === "series" ? `${styles.selected}` : ""}
           >
-            <Link href={"/cricket-series"}>Series</Link>
+            <Link href={"/cricket-series/"}>Series</Link>
           </li>
           <li className={props?.active === "teams" ? `${styles.selected}` : ""}>
-            <Link href={"/cricket-team"}>Teams</Link>
+            <Link href={"/cricket-team/"}>Teams</Link>
           </li>
           <li
             className={props?.active === "players" ? `${styles.selected}` : ""}
@@ -31,7 +31,7 @@ const NavBarSec = (props) => {
             <a href={"/cricketers/"}>Players</a>
           </li>
           <li className={props?.active === "news" ? `${styles.selected}` : ""}>
-            <Link href={"/cricket"}>News</Link>
+            <Link href={"/cricket/"}>News</Link>
           </li>
           {/* <li className={props?.active === "ipl" ? `${styles.selected}` : ""}>
             IPL

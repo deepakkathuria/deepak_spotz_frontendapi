@@ -42,7 +42,7 @@ const NewsSection = async (props) => {
           {data?.map((item, index) => {
             return (
               <div key={index}>
-                <a href={`/${props?.slug?.toLowerCase()}/${item?.slug}`}>
+                <a href={`/${props?.slug?.toLowerCase()}/${item?.slug}/`}>
                   <NewsCard
                     title={item?.title?.rendered}
                     date={item?.date ? item.date : ""}
@@ -57,7 +57,7 @@ const NewsSection = async (props) => {
           })}
         </div>
         <div className={styles.readMoreLabel}>
-          <a href={`/${props?.slug}`}>Read More</a>
+          <a href={`/${props?.slug}/`}>Read More</a>
         </div>
       </div>
     </>

@@ -29,7 +29,7 @@ const MobSecondaryNav = () => {
             </div>
             <p>HOME</p>
           </li>
-          <Link href={"/sports/cricket"}>
+          <Link href={"/sports/cricket/"}>
             <li>
               <div className={styles.icon}>
                 <Image
@@ -45,7 +45,7 @@ const MobSecondaryNav = () => {
               <p>CRICKET</p>
             </li>
           </Link>
-          <Link href={"/football"}>
+          <Link href={"/football/"}>
             <li>
               <div className={styles.icon}>
                 <Image

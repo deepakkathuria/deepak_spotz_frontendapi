@@ -84,27 +84,27 @@ const Footer = () => {
           <div className={styles.heading}>Site Links</div>
           <ul className={styles.listUl}>
             <li>
-              <a href="/aboutus">About us</a>
+              <a href="/aboutus/">About us</a>
             </li>
             <li>
-              <a href="/dmca">DMCA</a>
+              <a href="/dmca/">DMCA</a>
             </li>
             <li>
-              <a href="/disclaimer">Disclaimer</a>
+              <a href="/disclaimer/">Disclaimer</a>
             </li>
             <li>
-              <a href="/copyright-notice">Copyright Notice</a>
+              <a href="/copyright-notice/">Copyright Notice</a>
             </li>
             <li>
-              <a href="/privacy-and-cookies-policy">
+              <a href="/privacy-and-cookies-policy/">
                 Privacy and cookies Policy
               </a>
             </li>
             <li>
-              <a href="/sitemap.xml">Sitemap</a>
+              <a href="/sitemap.xml/">Sitemap</a>
             </li>
             <li>
-              <a href="/contact-us">Contact Us</a>
+              <a href="/contact-us/">Contact Us</a>
             </li>
           </ul>
         </div>

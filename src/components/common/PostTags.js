@@ -14,7 +14,7 @@ const PostTags = (props) => {
           {props?.tags.map((tag) => {
             return (
               <div key={tag.id} className={styles.tags}>
-                <a href={`/wiki/${tag.slug}`}>
+                <a href={`/wiki/${tag.slug}/`}>
                   <h3>{tag.name}</h3>
                 </a>
               </div>

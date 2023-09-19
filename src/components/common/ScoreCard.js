@@ -29,7 +29,7 @@ const ScoreCard = (props) => {
       <div className={styles.scoreCardContainer}>
         <div className={styles.scoreCardInner}>
           <a
-            href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/commentary`}
+            href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/commentary/`}
           >
             <div className={styles.scoreMain}>
               <div className={styles.matchTitleDiv}>
@@ -124,7 +124,7 @@ const ScoreCard = (props) => {
           </a>
           <hr />
           <div className={styles.matchCardsButtons}>
-            <a href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}`}>
+            <a href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/`}>
               <button className={styles.matchCardButton}>
                 {/* <div className={styles.matchCardButtonIc}>
                 <Image
@@ -139,7 +139,7 @@ const ScoreCard = (props) => {
               </button>
             </a>
             <a
-              href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/full-scorecard`}
+              href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/full-scorecard/`}
             >
               <button className={styles.matchCardButton}>
                 {/* <div className={styles.matchCardButtonIc}>
@@ -155,7 +155,7 @@ const ScoreCard = (props) => {
               </button>
             </a>
             <a
-              href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/teams`}
+              href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/teams/`}
             >
               <button className={styles.matchCardButton}>
                 {/* <div className={styles.matchCardButtonIc}>
@@ -170,7 +170,7 @@ const ScoreCard = (props) => {
                 Teams
               </button>
             </a>
-            <a href={`/asia-cup-2023`}>
+            <a href={`/asia-cup-2023/`}>
               <button className={styles.matchCardButton}>
                 {/* <div className={styles.matchCardButtonIc}>
                 <Image

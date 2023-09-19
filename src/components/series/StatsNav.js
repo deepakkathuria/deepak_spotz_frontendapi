@@ -13,7 +13,7 @@ const StatsNav = (props) => {
               : `${styles.tertiaryNavLi}`
           }
         >
-          <Link href={`/cricket-series/${props?.seriesName}`}>Overview</Link>
+          <Link href={`/cricket-series/${props?.seriesName}/`}>Overview</Link>
         </li>
         <li
           className={
@@ -22,7 +22,7 @@ const StatsNav = (props) => {
               : `${styles.tertiaryNavLi}`
           }
         >
-          <Link href={`/cricket-series/${props?.seriesName}/matches`}>
+          <Link href={`/cricket-series/${props?.seriesName}/matches/`}>
             Schedule & Results
           </Link>
         </li>
@@ -33,7 +33,7 @@ const StatsNav = (props) => {
               : `${styles.tertiaryNavLi}`
           }
         >
-          <Link href={`/cricket-series/${props?.seriesName}/news`}>News</Link>
+          <Link href={`/cricket-series/${props?.seriesName}/news/`}>News</Link>
         </li>
         {/* <li
           className={

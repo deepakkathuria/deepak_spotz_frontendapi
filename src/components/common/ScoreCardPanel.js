@@ -147,13 +147,13 @@ const ScoreCardPanel = async (props) => {
               All
             </button>
             <button className={`${styles.matchTimingSelectorButton}`}>
-              <Link href={"/live-cricket-scores"}>Live</Link>
+              <Link href={"/live-cricket-scores/"}>Live</Link>
             </button>
             <button className={styles.matchTimingSelectorButton}>
-              <Link href={"/live-cricket-scores/completed"}>Recent</Link>
+              <Link href={"/live-cricket-scores/completed/"}>Recent</Link>
             </button>
             <button className={styles.matchTimingSelectorButton}>
-              <Link href={"/live-cricket-scores/upcoming"}></Link>
+              <Link href={"/live-cricket-scores/upcoming/"}></Link>
               Upcoming
             </button>
           </div>

@@ -23,7 +23,7 @@ const TeamsTable = (props) => {
                 key={index}
                 href={`/cricket-team/${slugify(team?.title, {
                   remove: /[*+~.()'"!:@]/g,
-                }).toLowerCase()}-${team?.tid}`}
+                }).toLowerCase()}-${team?.tid}/`}
               >
                 <tr
                   className={styles.TeamsTableBodyTr}

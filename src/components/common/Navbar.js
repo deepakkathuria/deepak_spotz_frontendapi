@@ -46,7 +46,7 @@ const Navbar = () => {
                   </li>
                 </a>
 
-                <a href={"/cricket"}>
+                <a href={"/cricket/"}>
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image
@@ -61,7 +61,7 @@ const Navbar = () => {
                   </li>
                 </a>
 
-                <a href={"/football"}>
+                <a href={"/football/"}>
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image
@@ -77,7 +77,7 @@ const Navbar = () => {
                   </li>
                 </a>
 
-                <a href={"/wwe"}>
+                <a href={"/wwe/"}>
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image
@@ -93,7 +93,7 @@ const Navbar = () => {
                   </li>
                 </a>
 
-                <a href={"/esports"}>
+                <a href={"/esports/"}>
                   <li className={styles.navLi}>
                     <div className={styles.navItemIcon}>
                       <Image
@@ -130,7 +130,7 @@ const Navbar = () => {
               {/* <div className={styles.search}>
                 <SearchBar />
               </div> */}
-              <a href={"/search"}>
+              <a href={"/search/"}>
                 <div className="navSearch">
                   <Image
                     priority
@@ -196,7 +196,7 @@ const Navbar = () => {
             </li> */}
             {navBarLinks?.map((item) => {
               return (
-                <a key={item.id} href={`${item.path}`}>
+                <a key={item.id} href={`${item.path}/`}>
                   <li>{item.title}</li>
                 </a>
               );

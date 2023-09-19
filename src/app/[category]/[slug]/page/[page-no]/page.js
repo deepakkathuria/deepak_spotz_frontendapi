@@ -404,7 +404,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
                   <a
                     href={`/${post?.primary_category_slug || "news"}/${
                       post?.slug
-                    }`}
+                    }/`}
                   >
                     <NewsCard
                       id={post?.id}
@@ -425,14 +425,14 @@ const CategoryPosts = async ({ params, searchParams }) => {
             <a
               className={styles.nextPrevBtn}
               aria-label="Previous page"
-              href={`/${category}/${slug}/page/${currentPage - 1}`}
+              href={`/${category}/${slug}/page/${currentPage - 1}/`}
             >
               Previous
             </a>
           )}
           {startPage > 2 && (
             <>
-              <a href={`/${category}/${slug}/page/1`}>1</a>
+              <a href={`/${category}/${slug}/page/1/`}>1</a>
               <span aria-hidden="true">...</span>
             </>
           )}
@@ -440,7 +440,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
             <a
               className={page === currentPage ? styles.activePage : ""}
               key={page}
-              href={`/${category}/${slug}/page/${page}`}
+              href={`/${category}/${slug}/page/${page}/`}
             >
               {page}
             </a>
@@ -448,7 +448,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
           {endPage < totalPages - 1 && (
             <>
               <span aria-hidden="true">...</span>
-              <a href={`/${category}/${slug}/page/${totalPages}`}>
+              <a href={`/${category}/${slug}/page/${totalPages}/`}>
                 {totalPages}
               </a>
             </>
@@ -456,7 +456,7 @@ const CategoryPosts = async ({ params, searchParams }) => {
           {currentPage < totalPages && (
             <a
               aria-label="Next page"
-              href={`/${category}/${slug}/page/${currentPage + 1}`}
+              href={`/${category}/${slug}/page/${currentPage + 1}/`}
               className={styles.nextPrevBtn}
             >
               Next

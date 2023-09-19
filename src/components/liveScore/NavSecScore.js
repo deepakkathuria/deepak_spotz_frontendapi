@@ -6,12 +6,12 @@ const NavSecScore = (props) => {
   return (
     <>
       <div className={styles.container}>
-        <Link href={`/live-cricket-scores/${props?.seriesName}`}>
+        <Link href={`/live-cricket-scores/${props?.seriesName}/`}>
           <p className={props?.active === "info" ? `${styles.active}` : ""}>
             Info
           </p>
         </Link>
-        <Link href={`/live-cricket-scores/${props?.seriesName}/commentary`}>
+        <Link href={`/live-cricket-scores/${props?.seriesName}/commentary/`}>
           <p
             className={props?.active === "commentary" ? `${styles.active}` : ""}
           >
@@ -34,7 +34,7 @@ const NavSecScore = (props) => {
             Scorecard
           </p>
         </Link>
-        <Link href={`/live-cricket-scores/${props?.seriesName}/teams`}>
+        <Link href={`/live-cricket-scores/${props?.seriesName}/teams/`}>
           <p className={props?.active === "teams" ? `${styles.active}` : ""}>
             Teams
           </p>

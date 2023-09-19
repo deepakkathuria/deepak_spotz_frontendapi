@@ -91,16 +91,16 @@ const page = async () => {
         <div className="nav">
           <ul className={styles.navUl}>
             <li className={`${styles.navLi} ${styles.active}`}>
-              <a href="/live-cricket-scores/schedule">All</a>
+              <a href="/live-cricket-scores/schedule/">All</a>
             </li>
             <li className={`${styles.navLi}`}>
-              <a href="/live-cricket-scores">Live</a>
+              <a href="/live-cricket-scores/">Live</a>
             </li>
             <li className={styles.navLi}>
-              <a href="/live-cricket-scores/completed">Completed</a>
+              <a href="/live-cricket-scores/completed/">Completed</a>
             </li>
             <li className={styles.navLi}>
-              <a href="/live-cricket-scores/upcoming">Upcoming</a>
+              <a href="/live-cricket-scores/upcoming/">Upcoming</a>
             </li>
           </ul>
         </div>

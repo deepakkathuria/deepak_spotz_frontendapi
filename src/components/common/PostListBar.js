@@ -42,7 +42,7 @@ const PostListBar = async (props) => {
                   <a
                     href={`/${item.primary_category_slug || "news"}/${
                       item?.slug
-                    }`}
+                    }/`}
                   >
                     <NewscardNoBorder
                       title={item?.title.rendered}

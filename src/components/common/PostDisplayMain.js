@@ -562,21 +562,21 @@ const PostDisplayMain = async (props) => {
           <ul className={styles.items}>
             {/* <ul> */}
             <li>
-              <a href="/live-cricket-scores/ind-vs-ban-asia-cup-2023-round-2-super-4s-a2-v-b2-65566/commentary">
+              <a href="/live-cricket-scores/ind-vs-ban-asia-cup-2023-round-2-super-4s-a2-v-b2-65566/commentary/">
                 IND vs BAN
               </a>
             </li>
             <li>|</li>
             <li>
-              <a href="/cricket-series/asia-cup-127811/matches">Schedule</a>
+              <a href="/cricket-series/asia-cup-127811/matches/">Schedule</a>
             </li>
             <li>|</li>
             <li>
-              <a href="/cricket-series/asia-cup-127811/matches">Results</a>
+              <a href="/cricket-series/asia-cup-127811/matches/">Results</a>
             </li>
             <li>|</li>
             <li>
-              <a href="/asia-cup-2023">News</a>
+              <a href="/asia-cup-2023/">News</a>
             </li>
             {/* </ul> */}
           </ul>
@@ -657,7 +657,7 @@ const PostDisplayMain = async (props) => {
                         href={`/${
                           articleBody?.primary_category_slug ||
                           articleBody?.categories[0].slug
-                        }/${card?.slug}`}
+                        }/${card?.slug}/`}
                       >
                         <NewsCard
                           id={card?.id}

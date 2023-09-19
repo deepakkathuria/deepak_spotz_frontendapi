@@ -13,21 +13,21 @@ const NavBarTertiary = (props) => {
     <>
       <div className={styles.container}>
         <p className={styles.active}>Info</p>
-        <Link href="cricket-full-commentary">
+        <Link href="cricket-full-commentary/">
           <p>Commentary</p>
         </Link>
         <p>Live Blog</p>
         <Link href={`/live-cricket-scorecard/`}>
           <p>Scorecard</p>
         </Link>
-        <Link href={"/cricket-match-squads"}>
+        <Link href={"/cricket-match-squads/"}>
           <p>Teams</p>
         </Link>
         <p>Videos</p>
-        <Link href={"/cricket-match-news"}>
+        <Link href={"/cricket-match-news/"}>
           <p>News</p>
         </Link>
-        <Link href={"cricket-match-photos"}>
+        <Link href={"cricket-match-photos/"}>
           <p>Photos</p>
         </Link>
         <p>Wagon Wheel</p>

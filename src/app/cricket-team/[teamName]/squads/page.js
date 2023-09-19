@@ -47,7 +47,7 @@ const page = async ({ params }) => {
                   { remove: /[*+~.()'"!:@]/g }
                 ).toLowerCase()}/${slugify(player?.title.toLowerCase(), {
                   remove: /[*+~.()'"!:@]/g,
-                })}-${player?.pid}`}
+                })}-${player?.pid}/`}
               >
                 <PlayerCardMini
                   key={index}

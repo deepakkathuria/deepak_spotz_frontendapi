@@ -13,7 +13,7 @@ const TeamCountryNav = (props) => {
                 : `${styles.TeamCountryNavLi}`
             }
           >
-            <a href={`/cricket-team/${props.currentCountry}`}>About</a>
+            <a href={`/cricket-team/${props.currentCountry}/`}>About</a>
           </li>
           {/* <li
             className={
@@ -33,7 +33,7 @@ const TeamCountryNav = (props) => {
                 : `${styles.TeamCountryNavLi}`
             }
           >
-            <a href={`/cricket-team/${props.currentCountry}/schedule`}>
+            <a href={`/cricket-team/${props.currentCountry}/schedule/`}>
               Schedule & Results
             </a>
           </li>
@@ -44,7 +44,7 @@ const TeamCountryNav = (props) => {
                 : `${styles.TeamCountryNavLi}`
             }
           >
-            <a href={`/cricket-team/${props.currentCountry}/news`}>News</a>
+            <a href={`/cricket-team/${props.currentCountry}/news/`}>News</a>
           </li>
           {/* <li
             className={

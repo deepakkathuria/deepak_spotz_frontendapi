@@ -100,21 +100,21 @@ const page = async () => {
             </div>
             <ul className={styles.items}>
               <li>
-                <a href="/live-cricket-scores/ind-vs-ban-asia-cup-2023-round-2-super-4s-a2-v-b2-65566/commentary">
+                <a href="/live-cricket-scores/ind-vs-ban-asia-cup-2023-round-2-super-4s-a2-v-b2-65566/commentary/">
                   IND vs BAN
                 </a>
               </li>
               <li>|</li>
               <li>
-                <a href="/cricket-series/asia-cup-127811/matches">Schedule</a>
+                <a href="/cricket-series/asia-cup-127811/matches/">Schedule</a>
               </li>
               <li>|</li>
               <li>
-                <a href="/cricket-series/asia-cup-127811/matches">Results</a>
+                <a href="/cricket-series/asia-cup-127811/matches/">Results</a>
               </li>
               <li>|</li>
               <li>
-                <a href="/asia-cup-2023">News</a>
+                <a href="/asia-cup-2023/">News</a>
               </li>
             </ul>
           </div>
@@ -127,13 +127,13 @@ const page = async () => {
                   All
                 </button>
                 <button className={`${styles.matchTimingSelectorButton}`}>
-                  <Link href={"/live-cricket-scores"}>Live</Link>
+                  <Link href={"/live-cricket-scores/"}>Live</Link>
                 </button>
                 <button className={styles.matchTimingSelectorButton}>
-                  <Link href={"/live-cricket-scores/completed"}>Recent</Link>
+                  <Link href={"/live-cricket-scores/completed/"}>Recent</Link>
                 </button>
                 <button className={styles.matchTimingSelectorButton}>
-                  <Link href={"/live-cricket-scores/upcoming"}>Upcoming</Link>
+                  <Link href={"/live-cricket-scores/upcoming/"}>Upcoming</Link>
                 </button>
               </div>
             </div>

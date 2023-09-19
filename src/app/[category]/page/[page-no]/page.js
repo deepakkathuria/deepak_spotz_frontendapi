@@ -499,8 +499,9 @@ const CategoryPosts = async ({ params, searchParams }) => {
           )}
           {startPage > 2 && (
             <>
-              <a href={`/${category}/page/1/`}>1</a>
-              <span aria-hidden="true">...</span>
+              <a href={`/${category}/page/1/`}>
+                1<span aria-hidden="true">...</span>
+              </a>
             </>
           )}
           {pageRange.map((page) => (

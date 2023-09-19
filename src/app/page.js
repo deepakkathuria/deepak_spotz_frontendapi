@@ -81,12 +81,17 @@ const page = async () => {
             <div className={styles.quickLinksHeading}>
               <Image
                 src={
-                  "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1694670174/asia-cup_aotqdl.svg"
+                  "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1695101726/world-cup_aqepah.svg"
                 }
                 width={0}
                 height={0}
                 alt=""
-                style={{ width: "65px", height: "auto" }}
+                style={{
+                  width: "20px",
+                  height: "auto",
+                  borderRadius: "5px",
+                  marginRight: "10px",
+                }}
               ></Image>
               <div className={styles.triangle}>
                 <Image
@@ -99,22 +104,26 @@ const page = async () => {
               </div>
             </div>
             <ul className={styles.items}>
-              <li>
+              {/* <li>
                 <a href="/live-cricket-scores/ind-vs-ban-asia-cup-2023-round-2-super-4s-a2-v-b2-65566/commentary/">
                   IND vs BAN
+                </a>
+              </li> */}
+              <li>|</li>
+              <li>
+                <a href="/cricket-series/icc-mens-world-cup-warm-up-matches-127865/matches">
+                  Schedule
                 </a>
               </li>
               <li>|</li>
               <li>
-                <a href="/cricket-series/asia-cup-127811/matches/">Schedule</a>
+                <a href="/cricket-series/icc-mens-world-cup-warm-up-matches-127865/matches">
+                  Results
+                </a>
               </li>
               <li>|</li>
               <li>
-                <a href="/cricket-series/asia-cup-127811/matches/">Results</a>
-              </li>
-              <li>|</li>
-              <li>
-                <a href="/asia-cup-2023/">News</a>
+                <a href="/cricket/">News</a>
               </li>
             </ul>
           </div>

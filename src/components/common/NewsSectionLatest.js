@@ -9,20 +9,20 @@ const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
 
-const getCategoryById = async (id) => {
-  const res = await fetch(
-    `${BASE_URL_WP}wp-json/wp/v2/categories/${id}
-  `,
-    {
-      method: "GET",
-      cache: "no-store",
-      headers: {
-        Authorization: `Basic ${base64Credentials}`,
-      },
-    }
-  );
-  return res.json();
-};
+// const getCategoryById = async (id) => {
+//   const res = await fetch(
+//     `${BASE_URL_WP}wp-json/wp/v2/categories/${id}
+//   `,
+//     {
+//       method: "GET",
+//       cache: "no-store",
+//       headers: {
+//         Authorization: `Basic ${base64Credentials}`,
+//       },
+//     }
+//   );
+//   return res.json();
+// };
 
 const fetchLatestNews = async (postRequired) => {
   const res = await fetch(
@@ -71,12 +71,14 @@ const NewsSection = async (props) => {
         </div>
         <div className={styles.newsCardsDiv}>
           {data?.map((item, index) => {
-            const slug1 = item.categoriesDetail?.[0]?.slug || "news";
+            // const slug1 = item.categoriesDetail?.[0]?.slug || "news";
 
             return (
               <div key={index}>
                 <a
-                  href={`/${item.primary_category_slug || slug1}/${item?.slug}/`}
+                  href={`/${item.primary_category_slug || "news"}/${
+                    item?.slug
+                  }/`}
                 >
                   <NewsCardLatest
                     title={item?.title?.rendered}

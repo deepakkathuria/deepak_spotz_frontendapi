@@ -79,7 +79,7 @@ const page = async () => {
           <UpdatesSound />
           <div className={styles.quickLinks}>
             <div className={styles.quickLinksHeading}>
-              <Image
+              {/* <Image
                 src={
                   "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1695101726/world-cup_aqepah.svg"
                 }
@@ -92,7 +92,10 @@ const page = async () => {
                   borderRadius: "5px",
                   marginRight: "10px",
                 }}
-              ></Image>
+              ></Image> */}
+              <div className="eventName" style={{ marginRight: "1rem" }}>
+                ICC World Cup
+              </div>
               <div className={styles.triangle}>
                 <Image
                   src={"/gaurav/arrowRight.svg"}
@@ -109,7 +112,7 @@ const page = async () => {
                   IND vs BAN
                 </a>
               </li> */}
-              <li>|</li>
+              {/* <li>|</li> */}
               <li>
                 <a href="/cricket-series/icc-mens-world-cup-warm-up-matches-127865/matches">
                   Schedule

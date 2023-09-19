@@ -593,8 +593,18 @@ const page = async ({ params }) => {
   const { "series-name": seriesName } = params;
   const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
   const info = await fetchMatchInfo(seriesIdInt);
+  // const dateLd = info?.response?.date_start_ist;
+  // const isoDate = new Date(dateLd).toISOString();
   const dateLd = info?.response?.date_start_ist;
-  const isoDate = new Date(dateLd).toISOString();
+  let isoDate;
+
+  if (dateLd && !isNaN(new Date(dateLd).getTime())) {
+    isoDate = new Date(dateLd).toISOString();
+  } else {
+    console.error("Invalid date:", dateLd);
+    // Handle the error or set a default value for isoDate
+  }
+
   const createEventLD = {
     "@context": "http://schema.org",
     "@type": "SportsEvent",
@@ -607,7 +617,7 @@ const page = async ({ params }) => {
     startDate: isoDate,
     location: {
       "@type": "Place",
-      name: info?.response?.venue.name,
+      name: info?.response?.venue?.name,
     },
     competitor: [
       {
@@ -631,8 +641,8 @@ const page = async ({ params }) => {
     },
     {
       name: `${
-        info?.response?.competition.title
-          ? info?.response?.competition.title
+        info?.response?.competition?.title
+          ? info?.response?.competition?.title
           : ""
       }`,
       url: `/cricket-series/${slugify(

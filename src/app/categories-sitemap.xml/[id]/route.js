@@ -56,7 +56,7 @@ export async function GET(request, { params }) {
         return {
           loc: `${SITE_URL}/${grandParentSlug ? grandParentSlug + "/" : ""}${
             parentSlug ? parentSlug + "/" : ""
-          }${ele.slug}`,
+          }${ele.slug}/`,
         };
       })
     );

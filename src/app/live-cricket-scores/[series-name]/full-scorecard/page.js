@@ -124,8 +124,18 @@ const page = async ({ params }) => {
 
   // const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
   // const info = await fetchMatchInfo(seriesIdInt);
-  const dateLd = matchInfo?.response?.date_start_ist;
-  const isoDate = new Date(dateLd).toISOString();
+  // const dateLd = matchInfo?.response?.date_start_ist;
+  // const isoDate = new Date(dateLd).toISOString();
+  const dateLd = info?.response?.date_start_ist;
+  let isoDate;
+
+  if (dateLd && !isNaN(new Date(dateLd).getTime())) {
+    isoDate = new Date(dateLd).toISOString();
+  } else {
+    console.error("Invalid date:", dateLd);
+    // Handle the error or set a default value for isoDate
+  }
+
   const createEventLD = {
     "@context": "http://schema.org",
     "@type": "SportsEvent",

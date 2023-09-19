@@ -86,19 +86,19 @@ export async function GET(request, { params }) {
       const slug = baseSlug(ele);
       return [
         {
-          loc: `${slug}`,
+          loc: `${slug}/`,
           lastmod: ele.competition.datestart,
         },
         {
-          loc: `${slug}/commentary`,
+          loc: `${slug}/commentary/`,
           lastmod: ele.competition.datestart,
         },
         {
-          loc: `${slug}/teams`,
+          loc: `${slug}/teams/`,
           lastmod: ele.competition.datestart,
         },
         {
-          loc: `${slug}/full-scorecard`,
+          loc: `${slug}/full-scorecard/`,
           lastmod: ele.competition.datestart,
         },
       ];

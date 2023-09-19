@@ -32,7 +32,7 @@ export async function GET(request, { params }) {
         loc: `${siteUrl}/live-cricket-scores/${slugify(ele.title, {
           remove: /[*+~.()'"!:@]/g,
           lower: true,
-        })}-${ele.cid}`,
+        })}-${ele.cid}/`,
         lastmod: ele.datestart,
       };
     });

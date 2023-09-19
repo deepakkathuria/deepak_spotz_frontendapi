@@ -73,7 +73,7 @@ export async function GET(request, { params }) {
       let formattedDate = formatDateWithOffset(gmtDate);
 
       return {
-        loc: `${site_url}/${primaryCategorySlug}/${ele.slug}`,
+        loc: `${site_url}/${primaryCategorySlug}/${ele.slug}/`,
         lastmod: formattedDate,
       };
     });

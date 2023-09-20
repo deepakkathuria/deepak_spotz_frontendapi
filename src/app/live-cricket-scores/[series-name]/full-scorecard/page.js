@@ -123,7 +123,7 @@ const page = async ({ params }) => {
   ];
 
   // const seriesIdInt = seriesName.split("-")[seriesName.split("-").length - 1];
-  // const info = await fetchMatchInfo(seriesIdInt);
+  const info = await fetchMatchInfo(seriesIdInt);
   // const dateLd = matchInfo?.response?.date_start_ist;
   // const isoDate = new Date(dateLd).toISOString();
   const dateLd = info?.response?.date_start_ist;

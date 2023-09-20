@@ -204,6 +204,8 @@ const Navbar = () => {
           </ul>
         </div>
       </div>
+
+      {/* new nav */}
     </>
   );
 };

@@ -79,20 +79,6 @@ const page = async () => {
           <UpdatesSound />
           <div className={styles.quickLinks}>
             <div className={styles.quickLinksHeading}>
-              {/* <Image
-                src={
-                  "https://res.cloudinary.com/dbb7g0jqa/image/upload/v1695101726/world-cup_aqepah.svg"
-                }
-                width={0}
-                height={0}
-                alt=""
-                style={{
-                  width: "20px",
-                  height: "auto",
-                  borderRadius: "5px",
-                  marginRight: "10px",
-                }}
-              ></Image> */}
               <div className="eventName" style={{ marginRight: "1rem" }}>
                 ICC World Cup
               </div>

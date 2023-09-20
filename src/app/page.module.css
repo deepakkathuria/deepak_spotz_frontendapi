@@ -37,7 +37,7 @@
 
 .matchTimingSelector {
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .quickLinks {
@@ -48,6 +48,7 @@
   align-content: center;
   white-space: nowrap;
   /* overflow: scroll; */
+  margin-top: 5.5rem;
 }
 
 .items {
@@ -101,11 +102,15 @@
   border: none;
   font-size: 1.3rem;
   font-weight: bold;
+  padding-bottom: 0.1rem;
 }
 
 .selected {
   color: #003161 !important;
-  text-decoration: underline;
+  /* text-decoration: underline;
+  line-height: 1rem; */
+  border-bottom: 1.5px solid #003161;
+  padding: 0;
 }
 
 .matchTypeSelector {
@@ -193,7 +198,7 @@
     margin-bottom: 0;
   }
   .selected {
-    border-bottom: 1.6px solid #003161;
+    border-bottom: 2px solid #003161;
     /* border: none; */
   }
 }

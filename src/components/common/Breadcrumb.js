@@ -4,7 +4,11 @@ import parse from "html-react-parser";
 
 const Breadcrumb = (props) => {
   function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    if (typeof string === "string") {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    // Handle cases where string is not a string, e.g., if it's not defined.
+    return string;
   }
 
   return (

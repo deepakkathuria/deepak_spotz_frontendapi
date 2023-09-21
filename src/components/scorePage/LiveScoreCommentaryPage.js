@@ -116,10 +116,10 @@ const LiveScoreCommentaryPage = (props) => {
   // const commentaryInfo = await fetchMatchCommentary(seriesIdInt);
   // const commentaryList = commentaryInfo?.response?.commentaries?.reverse();
 
-  console.log(
-    matchInfo?.response?.competition?.title,
-    "matchInfo?.responsematchInfo?.response"
-  );
+  // console.log(
+  //   matchInfo?.response?.competition?.title,
+  //   "matchInfo?.responsematchInfo?.response"
+  // );
 
   const breadcrumbs = [
     {

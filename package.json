@@ -18,7 +18,6 @@
     "eslint-config-next": "13.4.1",
     "feed": "^4.2.2",
     "html-react-parser": "^4.1.0",
-    "html-to-text": "^9.0.5",
     "luxon": "^3.4.3",
     "next": "13.4.1",
     "next-images": "^1.8.5",
@@ -26,15 +25,12 @@
     "next-sitemap": "^4.0.9",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-helmet": "^6.1.0",
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
     "react-slick": "^0.29.0",
     "react-twitter-embed": "^4.0.4",
-    "rss": "^1.2.2",
     "slick-carousel": "^1.8.1",
     "slugify": "^1.6.6",
-    "socket.io-client": "^4.7.2",
     "swr": "^2.2.0"
   },
   "devDependencies": {

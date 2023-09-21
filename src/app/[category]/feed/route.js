@@ -76,10 +76,10 @@ export async function GET(request, { params }) {
       title: article.title.rendered,
       id: `https://${site_url}/${article.primary_category_slug || "news"}/${
         article.slug
-      }`,
+      }/`,
       link: `https://${site_url}/${article.primary_category_slug || "news"}/${
         article.slug
-      }`,
+      }/`,
       description: article.excerpt.rendered,
       content: article.content.rendered,
 

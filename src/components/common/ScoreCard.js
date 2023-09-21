@@ -22,7 +22,18 @@ const ScoreCard = (props) => {
           >
             <div className={styles.scoreMain}>
               <div className={styles.matchTitleDiv}>
-                <div className={styles.liveIC}>
+                <div
+                  style={
+                    props?.status === 3
+                      ? { backgroundColor: "#169a00" }
+                      : props?.status === 4
+                      ? { backgroundColor: "#f83030" }
+                      : props?.status === 1
+                      ? { backgroundColor: "#022954" }
+                      : {} // Default empty style object if neither condition is met
+                  }
+                  className={styles.liveIC}
+                >
                   {props?.status === 3
                     ? "Live"
                     : props?.status === 1

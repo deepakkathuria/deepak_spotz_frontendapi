@@ -18,6 +18,7 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  /* height: 35rem; */
 }
 
 .slider::-webkit-scrollbar {

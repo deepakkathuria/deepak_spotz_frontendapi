@@ -97,8 +97,8 @@ const page = async ({ params }) => {
     },
     {
       name: `${
-        matchInfo?.response?.competition.title
-          ? matchInfo?.response?.competition.title
+        matchInfo?.response?.competition?.title
+          ? matchInfo?.response?.competition?.title
           : ""
       }`,
       url: `/cricket-series/${slugify(
@@ -144,7 +144,7 @@ const page = async ({ params }) => {
     startDate: isoDate,
     location: {
       "@type": "Place",
-      name: matchInfo?.response?.venue.name,
+      name: matchInfo?.response?.venue?.name,
     },
     competitor: [
       {

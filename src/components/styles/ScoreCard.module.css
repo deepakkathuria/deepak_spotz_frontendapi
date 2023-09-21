@@ -1,14 +1,9 @@
 .scoreCardContainer {
   flex-direction: column;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  border-radius: 5px;
-  /* padding-left: 0.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem; */
-  padding: 0.5rem;
-  /* width: 34.2rem; */
+  border: 1px solid rgba(152, 204, 255, 0.3);
+  border-radius: 20px;
+  padding: 1rem;
   width: 33rem;
-  /* height: 14rem; */
 }
 
 .matchCardButton {
@@ -29,14 +24,22 @@
 }
 
 .matchScoreDetails {
-  font-size: 1rem !important;
-  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.2rem !important;
+  color: #0c4c8a;
   font-weight: bold;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+
+.hRule {
+  border-color: rgba(152, 204, 255, 0.2);
+  border-width: 1px 0 0 0;
+  margin-bottom: 0.3rem;
 }
 
 .matchCardsButtons {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   gap: 0.3rem;
 }
 
@@ -45,14 +48,18 @@
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  width: 100%;
-  background-color: rgb(152, 204, 255,0.5);
+  background-color: rgb(152, 204, 255, 0.5);
   border: none;
-  padding: 0.4rem 0.3rem;
-  border-radius: 3px;
+  padding: 0.4rem 1.6rem;
+  border-radius: 20px;
   white-space: nowrap;
   cursor: pointer;
-  height: 2rem;
+  height: 2.4rem;
+}
+
+.matchCardsButtons a button {
+  color: #0c4c8a;
+  font-weight: 600;
 }
 
 .matchCardButton {
@@ -60,19 +67,6 @@
   border: none;
   cursor: pointer;
 }
-
-/* .matchCardButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  width: 100%;
-  background-color: #0000001a;
-  border: none;
-  padding: 0.4rem 0.3rem;
-  border-radius: 3px;
-  white-space: nowrap;
-} */
 
 .countryNameIC {
   display: flex;
@@ -84,24 +78,27 @@
 .matchTitleDiv {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 .countryNameScore {
   display: flex;
   justify-content: space-between;
-  /* padding-right: 0.5rem; */
+  margin-top: 0.3rem;
 }
 
 .liveIC {
-  background-color: #d03f38;
+  background-color: #169a00;
   color: #fff;
   font-weight: bold;
-  padding: 0.1rem 0.3rem;
-  border-radius: 2px;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.2rem;
+  border-radius: 4px;
 }
 
 .countryScore {
   display: flex;
   gap: 0.3rem;
+  align-items: center;
 }
 
 .countryScoreOver {
@@ -114,8 +111,15 @@
 }
 
 .matchTitle {
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.6);
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0);
+  display: flex;
+}
+
+.matchTitle :nth-child(1),
+.matchTitle :nth-child(2) {
+  font-weight: 700;
 }
 
 .countryName {
@@ -123,64 +127,14 @@
   font-weight: bold;
 }
 
-/* @media (min-width: 1450px) {
-  .scoreCardContainer {
-    width: 40rem;
-  }
-} */
-
-/* @media (min-width: 1330px) {
-  .scoreCardContainer {
-    width: 35rem;
-  }
-}
-
-@media (min-width: 1350px) {
-  .scoreCardContainer {
-    width: 36rem;
-  }
-}
-
-@media (min-width: 1400px) {
-  .scoreCardContainer {
-    width: 36rem;
-  }
-} */
-
-/* @media (min-width: 1450px) {
-  .scoreCardContainer {
-    width: 38rem;
-  }
-}
-
-@media (min-width: 1500px) {
-  .scoreCardContainer {
-    width: 40rem;
-  }
-}
-
-@media (min-width: 1550px) {
-  .scoreCardContainer {
-    width: 42rem;
-  }
-} */
-
-/* @media (min-width: 1600px) {
-  .scoreCardContainer {
-    width: 44rem;
-  }
-} */
-
 @media (max-width: 576px) {
   .matchCardsButtons a {
     height: 3rem;
+    padding: 0.4rem 2.2rem;
   }
 
   .scoreCardContainer {
-    padding: 0.5rem;
     width: 100%;
-    height: 14rem;
-    /* width: 30rem; */
   }
 
   .scoreCardInner {
@@ -199,9 +153,5 @@
   .countryScoreRuns {
     font-size: 1.7rem;
     font-weight: bold;
-  }
-
-  .matchCardButton {
-    padding: 0.6rem 0.3rem;
   }
 }

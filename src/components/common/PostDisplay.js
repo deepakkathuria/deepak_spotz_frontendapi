@@ -33,10 +33,11 @@ const PostDisplay = (props) => {
     <>
       <div className={styles.postDisplayContainer}>
         <div className={styles.postHeading}>
-          <h1
+          {/* <h1
             className={styles.postHeadingInner}
             dangerouslySetInnerHTML={{ __html: props?.title }}
-          ></h1>
+          ></h1> */}
+          <h1>{parse(props?.title)}</h1>
         </div>
         <div className={styles.authorDateDiv}>
           <div className={styles.authorDetail}>

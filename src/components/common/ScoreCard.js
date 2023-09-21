@@ -1,19 +1,8 @@
-// "use client";
 import React from "react";
 import styles from "../styles/ScoreCard.module.css";
-import Image from "next/image";
-import dynamic from "next/dynamic";
 import slugify from "slugify";
 
 const ScoreCard = (props) => {
-  // const matchNameUrl = slugify(
-  //   `${props.title}-${props.comp_abbr}-${props.subtitle}`,
-  //   {
-  //     remove: /[*+~.()'"!:@]/g,
-  //     lower: true,
-  //   }
-  // );
-
   const matchNameUrl = slugify(
     `${props.title}-${props.comp_abbr}${
       props.subtitle ? `-${props.subtitle}` : ""
@@ -45,24 +34,16 @@ const ScoreCard = (props) => {
                     : "Scorecard"}
                 </div>
                 <div className={styles.matchTitle}>
-                  {props?.title ? props.title.substring(0, 60) : "-"}
+                  <p>{`${props?.subtitle ? props?.subtitle : ""}`}</p>
+                  &nbsp;
+                  <p>{`${props?.format_str ? props?.format_str : ""}`}</p>
+                  {", "}&nbsp;
+                  <p>{`${props?.venue ? props?.venue : ""}`}</p>
                 </div>
               </div>
 
               <div className={styles.countryNameScore}>
                 <div className={styles.countryNameIC}>
-                  {/* <div className="countryIC">
-                    <Image
-                      src={
-                        props?.teamALogo ? props.teamALogo : "/gaurav/flag.svg"
-                      }
-                      alt="country name"
-                      width={18}
-                      height={12}
-                      priority
-                      quality={30}
-                    />
-                  </div> */}
                   <div className={styles.countryName}>
                     {props?.teamAName ? props.teamAName.substring(0, 60) : "-"}
                   </div>
@@ -81,18 +62,6 @@ const ScoreCard = (props) => {
 
               <div className={styles.countryNameScore}>
                 <div className={styles.countryNameIC}>
-                  {/* <div className="countryIC">
-                    <Image
-                      src={
-                        props?.teamBLogo ? props.teamBLogo : "/gaurav/flag.svg"
-                      }
-                      alt="country name"
-                      width={18}
-                      height={12}
-                      priority
-                      quality={30}
-                    />
-                  </div> */}
                   <div className={styles.countryName}>
                     {props?.teamBName ? props.teamBName.substring(0, 60) : "-"}
                   </div>
@@ -122,67 +91,23 @@ const ScoreCard = (props) => {
               </div>
             </div>
           </a>
-          <hr />
+          <hr className={styles.hRule} />
           <div className={styles.matchCardsButtons}>
             <a href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/`}>
-              <button className={styles.matchCardButton}>
-                {/* <div className={styles.matchCardButtonIc}>
-                <Image
-                src="/gaurav/fantasy-games.svg"
-                width={13}
-                height={13}
-                alt="arrow-left"
-                quality={30}
-                />
-              </div> */}
-                Information
-              </button>
+              <button className={styles.matchCardButton}>Info</button>
             </a>
             <a
               href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/full-scorecard/`}
             >
-              <button className={styles.matchCardButton}>
-                {/* <div className={styles.matchCardButtonIc}>
-                <Image
-                src="/gaurav/bet-casino.svg"
-                width={13}
-                height={13}
-                alt="arrow-left"
-                quality={30}
-                />
-              </div> */}
-                Score Card
-              </button>
+              <button className={styles.matchCardButton}>Scorecard</button>
             </a>
             <a
               href={`/live-cricket-scores/${matchNameUrl}-${props.matchID}/teams/`}
             >
-              <button className={styles.matchCardButton}>
-                {/* <div className={styles.matchCardButtonIc}>
-                <Image
-                src="/gaurav/ticket-voucher.svg"
-                width={13}
-                height={13}
-                alt="arrow-left"
-                quality={30}
-                />
-              </div> */}
-                Teams
-              </button>
+              <button className={styles.matchCardButton}>Teams</button>
             </a>
             <a href={`/asia-cup-2023/`}>
-              <button className={styles.matchCardButton}>
-                {/* <div className={styles.matchCardButtonIc}>
-                <Image
-                  src="/gaurav/news-publishing.svg"
-                  width={13}
-                  height={13}
-                  alt="arrow-left"
-                  quality={30}
-                  />
-                </div> */}
-                News
-              </button>
+              <button className={styles.matchCardButton}>News</button>
             </a>
           </div>
         </div>
@@ -192,4 +117,3 @@ const ScoreCard = (props) => {
 };
 
 export default ScoreCard;
-// export default dynamic(() => Promise.resolve(ScoreCard, { ssr: false }));

@@ -5,7 +5,7 @@ import Link from "next/link";
 const BASE_URL_WP = process.env.BASE_URL_WP;
 const WP_API_USERNAME = process.env.WP_API_USERNAME;
 const WP_API_PASSWORD = process.env.WP_API_PASSWORD;
-
+import parse from "html-react-parser";
 const credentials = `${WP_API_USERNAME}:${WP_API_PASSWORD}`;
 const buffer = Buffer.from(credentials, "utf-8");
 const base64Credentials = buffer.toString("base64");
@@ -197,7 +197,7 @@ export async function generateMetadata({ params }) {
   } else {
     const post = await fetchPostBySlug(slug);
 
-    const title = post?.title?.rendered ?? "SportzWiki";
+    const title = parse(post?.title?.rendered) ?? "SportzWiki";
     const description = post?.meta_description ?? "SportzWiki";
     const imageUrl = post?.featured_image_url ?? "";
     const parsedTitle = (title ?? "").replace(/<[^>]+>/g, "");

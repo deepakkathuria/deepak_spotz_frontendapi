@@ -46,18 +46,7 @@ const PostDisplay = (props) => {
             </div>
             <div className={styles.publishDate}>
               <FaRegCalendarAlt size={12} />
-              {/* <h3>{new Date(props?.date).toLocaleString("en-us")}</h3> */}
-              {/* <h3>
-                {DateTime.props?.date
-                  .setZone("Asia/Kolkata")
-                  .minus({ weeks: 1 })
-                  .endOf("day")
-                  .toISO()}
-              </h3> */}
               <MyComponent date={props?.date} />
-              {/* <ConvertToIST
-                date={new Date(props?.date).toLocaleString("en-us")}
-              /> */}
             </div>
           </div>
           <div className={styles.postCover}>

@@ -24,13 +24,13 @@ const Teams = (props) => {
                 //     remove: /[*+~.()'"!:@]/g,
                 //   }).toLowerCase()}-${entry?.player_id}/`}
                 // >
-                  <div className={styles.player}>
-                    <div className={styles.photo}></div>
-                    <div className={styles.nameRole}>
-                      <div className={styles.name}>{entry?.name ?? "-"}</div>
-                      <div className={styles.role}>{entry?.role ?? "-"}</div>
-                    </div>
+                <div key={index} className={styles.player}>
+                  <div className={styles.photo}></div>
+                  <div className={styles.nameRole}>
+                    <div className={styles.name}>{entry?.name ?? "-"}</div>
+                    <div className={styles.role}>{entry?.role ?? "-"}</div>
                   </div>
+                </div>
                 // </Link>
               );
             })}
@@ -48,13 +48,13 @@ const Teams = (props) => {
                 //     remove: /[*+~.()'"!:@]/g,
                 //   }).toLowerCase()}-${entry?.player_id}/`}
                 // >
-                  <div className={styles.player}>
-                    <div className={styles.photo}></div>
-                    <div className={styles.nameRole}>
-                      <div className={styles.name}>{entry?.name ?? "-"}</div>
-                      <div className={styles.role}>{entry?.role ?? "-"}</div>
-                    </div>
+                <div key={index} className={styles.player}>
+                  <div className={styles.photo}></div>
+                  <div className={styles.nameRole}>
+                    <div className={styles.name}>{entry?.name ?? "-"}</div>
+                    <div className={styles.role}>{entry?.role ?? "-"}</div>
                   </div>
+                </div>
                 // </Link>
               );
             })}

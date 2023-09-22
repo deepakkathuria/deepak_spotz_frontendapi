@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Teams.module.css";
 import Link from "next/link";
-import slugify from "slugify";
+// import slugify from "slugify";
 
 const Teams = (props) => {
   // console.log(props?.data?.response?.teama?.squads, "fsjdbhfhsbd");
@@ -16,14 +16,14 @@ const Teams = (props) => {
           <div className={styles.playerTeamA}>
             {props?.data?.response?.teama?.squads?.map((entry, index) => {
               return (
-                <Link
-                  key={index}
-                  href={`/cricketers/${slugify(props?.nameTeamA, {
-                    remove: /[*+~.()'"!:@]/g,
-                  }).toLowerCase()}/${slugify(entry?.name, {
-                    remove: /[*+~.()'"!:@]/g,
-                  }).toLowerCase()}-${entry?.player_id}/`}
-                >
+                // <Link
+                //   key={index}
+                //   href={`/cricketers/${slugify(props?.nameTeamA, {
+                //     remove: /[*+~.()'"!:@]/g,
+                //   }).toLowerCase()}/${slugify(entry?.name, {
+                //     remove: /[*+~.()'"!:@]/g,
+                //   }).toLowerCase()}-${entry?.player_id}/`}
+                // >
                   <div className={styles.player}>
                     <div className={styles.photo}></div>
                     <div className={styles.nameRole}>
@@ -31,7 +31,7 @@ const Teams = (props) => {
                       <div className={styles.role}>{entry?.role ?? "-"}</div>
                     </div>
                   </div>
-                </Link>
+                // </Link>
               );
             })}
           </div>
@@ -40,14 +40,14 @@ const Teams = (props) => {
           <div className={styles.playerTeamB}>
             {props?.data?.response?.teamb?.squads?.map((entry, index) => {
               return (
-                <Link
-                  key={index}
-                  href={`/cricketers/${slugify(props?.nameTeamB, {
-                    remove: /[*+~.()'"!:@]/g,
-                  }).toLowerCase()}/${slugify(entry?.name, {
-                    remove: /[*+~.()'"!:@]/g,
-                  }).toLowerCase()}-${entry?.player_id}/`}
-                >
+                // <Link
+                //   key={index}
+                //   href={`/cricketers/${slugify(props?.nameTeamB, {
+                //     remove: /[*+~.()'"!:@]/g,
+                //   }).toLowerCase()}/${slugify(entry?.name, {
+                //     remove: /[*+~.()'"!:@]/g,
+                //   }).toLowerCase()}-${entry?.player_id}/`}
+                // >
                   <div className={styles.player}>
                     <div className={styles.photo}></div>
                     <div className={styles.nameRole}>
@@ -55,7 +55,7 @@ const Teams = (props) => {
                       <div className={styles.role}>{entry?.role ?? "-"}</div>
                     </div>
                   </div>
-                </Link>
+                // </Link>
               );
             })}
           </div>

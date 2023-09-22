@@ -60,4 +60,8 @@
   .card {
     width: calc(100% - 20px);
   }
+
+  .btns {
+    display: none;
+  }
 }

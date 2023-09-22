@@ -35,11 +35,12 @@ const CurrentSeries = async () => {
           if (item.category === "international") {
             return (
               <a
+                key={item.cid}
                 href={`/cricket-series/${slugify(item?.title, {
                   remove: /[*+~.()'"!:@]/g,
                 }).toLowerCase()}-${item?.cid}/`}
               >
-                <li key={item.cid}>{item.title}</li>
+                <li>{item.title}</li>
               </a>
             );
           }

@@ -7,6 +7,7 @@ import UpdatesSound from "@/components/common/UpdatesSound";
 import CardSlider from "@/components/home/CardSlider";
 import Link from "next/link";
 import Image from "next/image";
+import CurrentSeries from "@/components/home/CurrentSeries";
 const base_url = process.env.NEXT_PUBLIC_ENTITY_URL;
 const key = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
@@ -75,6 +76,9 @@ const page = async () => {
     <>
       <MobSecondaryNav />
       <div className={styles.homeContainer}>
+        <div className={styles.CurrentSeriesContainer}>
+          <CurrentSeries />
+        </div>
         <div className="scores">
           <UpdatesSound />
           <div className={styles.quickLinks}>

@@ -1,34 +1,34 @@
-"use client";
-import React, { useState } from "react";
+// "use client";
+// import React from "react";
 import styles from "../styles/MobSecondaryNav.module.css";
 import Image from "next/image";
 import Link from "next/link";
 
 const MobSecondaryNav = () => {
-  const [moreItems, setMoreItem] = useState(false);
+  // const [moreItems, setMoreItem] = useState(false);
 
-  const handleMoreButton = () => {
-    setMoreItem(!moreItems);
-  };
+  // const handleMoreButton = () => {
+  //   setMoreItem(!moreItems);
+  // };
 
   return (
     <>
       <div className={styles.mobSecondaryNavContainer}>
         <ul className={styles.mobSecondaryNavUl}>
-          <li className={styles.activeLi}>
+          {/* <li className={styles.activeLi}>
             <div className={styles.icon}>
               <Image
                 priority
                 src="/gaurav/home_ic.svg"
                 alt="home menu icon"
-                width={12}
-                height={12}
+                width={18}
+                height={18}
                 quality={20}
                 // className={styles.plainIc}
               />
             </div>
             <p>HOME</p>
-          </li>
+          </li> */}
           <Link href={"/sports/cricket/"}>
             <li>
               <div className={styles.icon}>
@@ -36,8 +36,8 @@ const MobSecondaryNav = () => {
                   priority
                   src="/gaurav/cricket_ic.svg"
                   alt="home menu icon"
-                  width={12}
-                  height={12}
+                  width={18}
+                  height={18}
                   quality={20}
                   // className={styles.plainIc}
                 />
@@ -52,8 +52,8 @@ const MobSecondaryNav = () => {
                   priority
                   src="/gaurav/football_ic.svg"
                   alt="home menu icon"
-                  width={12}
-                  height={12}
+                  width={18}
+                  height={18}
                   quality={20}
                   // className={styles.plainIc}
                 />
@@ -67,8 +67,8 @@ const MobSecondaryNav = () => {
                 priority
                 src="/gaurav/wwe_ic.svg"
                 alt="home menu icon"
-                width={12}
-                height={12}
+                width={18}
+                height={18}
                 quality={20}
                 // className={styles.plainIc}
               />
@@ -81,8 +81,8 @@ const MobSecondaryNav = () => {
                 priority
                 src="/gaurav/gamepad_ic.svg"
                 alt="home menu icon"
-                width={12}
-                height={12}
+                width={18}
+                height={18}
                 quality={20}
                 // className={styles.plainIc}
               />
@@ -90,7 +90,7 @@ const MobSecondaryNav = () => {
             <p>ESPORTS</p>
           </li>
         </ul>
-        <div onClick={handleMoreButton} className={styles.moreItems}>
+        {/* <div onClick={handleMoreButton} className={styles.moreItems}>
           More
           <div className={styles.icon}>
             <Image
@@ -103,10 +103,10 @@ const MobSecondaryNav = () => {
               // className={styles.plainIc}
             />
           </div>
-        </div>
+        </div> */}
       </div>
 
-      <div
+      {/* <div
         className={
           moreItems
             ? `${styles.moreItemsContainer} ${styles.active}`
@@ -538,7 +538,7 @@ const MobSecondaryNav = () => {
             F1
           </li>
         </ul>
-      </div>
+      </div> */}
     </>
   );
 };

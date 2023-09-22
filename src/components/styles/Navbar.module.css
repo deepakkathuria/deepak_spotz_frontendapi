@@ -9,7 +9,7 @@
 
 .navContainer {
   display: flex;
-  border-bottom: 1px solid #0000001a;
+  /* border-bottom: 1px solid #0000001a; */
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /*Position the navbar at the top of the page */
   width: 100vw;
@@ -21,7 +21,8 @@
   align-content: center;
   /* gap: 2rem; */
   /* background-color: #0c4c8a; */
-  background-color: #fff;
+  /* background-color: #fff; */
+  background-color: #acd3ff;
   height: 4rem;
   /* margin-inline: auto; */
   /* padding: 0 165px 0 165px; */

@@ -8,6 +8,10 @@
   margin-top: 5rem;
 }
 
+.CurrentSeriesContainer {
+  margin-top: 4rem;
+}
+
 .updateSoundDiv {
   margin-bottom: 2rem;
 }
@@ -49,7 +53,8 @@
   align-content: center;
   white-space: nowrap;
   /* overflow: scroll; */
-  margin-top: 5.5rem;
+  margin-top: 1rem;
+  margin-left: 2rem;
 }
 
 .items {
@@ -139,6 +144,15 @@
     margin-left: 1rem;
     margin-right: 1rem;
     margin-top: 1.2rem;
+  }
+
+  .quickLinks {
+    margin-left: 1rem;
+    margin-top: 0;
+  }
+
+  .CurrentSeriesContainer {
+    margin-top: 0rem;
   }
   .updateSoundDiv {
     margin-bottom: 1rem;

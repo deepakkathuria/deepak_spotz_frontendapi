@@ -31,6 +31,7 @@ const CurrentSeries = async () => {
   return (
     <>
       <ul className={styles.ulList}>
+        <li style={{ fontWeight: "bold", color: "#bd0000" }}>Quick Links</li>
         {data?.response?.items?.map((item) => {
           if (item.category === "international") {
             return (

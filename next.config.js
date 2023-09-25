@@ -5514,6 +5514,7 @@ const nextConfig = {
       "demo2.sportzwiki.com",
       "swdupli.sportzwiki.com",
       "admin.sportzwiki.com",
+      "www.sportzwiki.com",
     ],
   },
   // ...

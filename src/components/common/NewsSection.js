@@ -23,7 +23,6 @@ const fetchPostByCategoryId = async (id, perPage) => {
         Authorization: `Basic ${base64Credentials}`,
       },
       next: { revalidate: 300 },
-      // { cache: "no-store" }
     }
   );
   return await res.json();

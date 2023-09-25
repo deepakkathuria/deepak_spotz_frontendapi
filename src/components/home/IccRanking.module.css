@@ -1,0 +1,100 @@
+.btns {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+}
+
+.btns button {
+  border: none;
+  border-radius: 45px;
+  padding: 0.6rem 2.9rem;
+  color: #003161;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+.selected {
+  background-color: #98ccff !important;
+}
+
+.statsType {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.statsType button {
+  background-color: transparent;
+  color: #444;
+  border: none;
+  font-size: 1.3rem;
+}
+/* 
+.hr {
+  border-color: rgba(216, 236, 255, 0.7);
+  border-width: 1px 0 0 0;
+} */
+
+.rectangle {
+  background-color: #98ccff;
+  border-radius: 2px;
+  border-style: solid;
+  border-color: transparent;
+  border-width: 1.5px;
+  width: 6.5rem;
+  margin-top: 0.2rem;
+}
+
+.heading {
+  display: flex;
+  color: #444444;
+  opacity: 0.699;
+  margin-top: 1.5rem;
+  margin-left: 0.3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.heading :nth-child(1) {
+  width: 23%;
+}
+
+.heading :nth-child(2) {
+  width: 62%;
+}
+
+.heading :nth-child(3) {
+  width: 17%;
+}
+
+.data1 {
+  display: flex;
+  color: #444444;
+}
+
+.data {
+  display: flex;
+  gap: 1.3rem;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  margin-left: 1.3rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.data1 :nth-child(1) {
+  width: 22%;
+}
+
+.data1 :nth-child(2) {
+  width: 71%;
+}
+
+.data1 :nth-child(3) {
+  width: 15%;
+}
+
+.hrData {
+  width: 90%;
+  border-color: rgba(216, 236, 255, 0.7);
+}

@@ -1,0 +1,57 @@
+.imageContent {
+  display: flex;
+}
+
+.titleTime {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-left: 1.5rem;
+}
+
+.title {
+  color: #444;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.5rem;
+}
+
+.time {
+  color: #767676;
+  font-size: 1.2rem;
+}
+
+.imageClass {
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .titleTime {
+    gap: 0;
+    margin-left: 0.5rem;
+  }
+
+  .imageContent {
+    flex-direction: column;
+    padding-bottom: 0.5rem;
+  }
+
+  /* .time{
+    margin-left: 1rem;
+  } */
+
+  .title {
+    /* text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap; */
+    height: 8rem;
+    overflow: hidden;
+  }
+
+  .imageClass {
+    margin-bottom: 0.5rem;
+    width: 100%;
+    height: 80%;
+    border-radius: 12px 12px 0 0 !important;
+  }
+}

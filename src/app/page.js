@@ -37,7 +37,6 @@ const formattedDate = `${getDateWithOffset(-1)}_${getDateWithOffset(1)}`;
 const getData = async () => {
   const res = await fetch(
     `${base_url}/matches?token=${key}&date=${formattedDate}&per_page=50`,
-
     { next: { revalidate: 60 } }
   );
   const data = await res.json();
@@ -49,11 +48,11 @@ const getLatestPosts = async () => {
     const apiUrl = `${baseWpUrl}/wp-json/wp/v2/posts?per_page=5`;
 
     const response = await fetch(apiUrl, {
+      next: { revalidate: 10 },
       method: "GET",
       headers: {
         Authorization: `Basic ${base64Credentials}`,
       },
-      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -73,11 +72,11 @@ const getCategoryNewsByID = async (id) => {
     const apiUrl = `${baseWpUrl}/wp-json/wp/v2/posts?per_page=5&categories=${id}`;
 
     const response = await fetch(apiUrl, {
+      next: { revalidate: 60 },
       method: "GET",
       headers: {
         Authorization: `Basic ${base64Credentials}`,
       },
-      cache: "no-store",
     });
 
     if (!response.ok) {
@@ -338,6 +337,7 @@ const page = async () => {
                     cover={latestPosts[0]?.featured_image_url}
                     category_slug={latestPosts[0].primary_category_slug}
                     post_slug={latestPosts[0].slug}
+                    date={latestPosts[0].modified}
                   />
                 </div>
               )}
@@ -367,8 +367,9 @@ const page = async () => {
                   <NewNewsCardHome
                     title={categoryNewsA[0]?.title?.rendered || "no title"}
                     cover={categoryNewsA[0]?.featured_image_url}
-                    category_slug={categoryNewsA[0].primary_category_slug}
-                    post_slug={categoryNewsA[0].slug}
+                    category_slug={categoryNewsA[0]?.primary_category_slug}
+                    post_slug={categoryNewsA[0]?.slug}
+                    date={latestPosts[0]?.modified}
                   />
                 </div>
               )}
@@ -378,8 +379,8 @@ const page = async () => {
                     key={index}
                     title={item?.title?.rendered || "no title"}
                     cover={item?.featured_image_url}
-                    category_slug={item.primary_category_slug}
-                    post_slug={item.slug}
+                    category_slug={item?.primary_category_slug}
+                    post_slug={item?.slug}
                   />
                 ))}
               </div>
@@ -398,8 +399,9 @@ const page = async () => {
                   <NewNewsCardHome
                     title={categoryNewsB[0].title.rendered || "no title"}
                     cover={categoryNewsB[0]?.featured_image_url}
-                    category_slug={categoryNewsB[0].primary_category_slug}
-                    post_slug={categoryNewsB[0].slug}
+                    category_slug={categoryNewsB[0]?.primary_category_slug}
+                    post_slug={categoryNewsB[0]?.slug}
+                    date={latestPosts[0]?.modified}
                   />
                 </div>
               )}
@@ -409,8 +411,8 @@ const page = async () => {
                     key={index}
                     title={item.title.rendered || "no title"}
                     cover={item?.featured_image_url}
-                    category_slug={item.primary_category_slug}
-                    post_slug={item.slug}
+                    category_slug={item?.primary_category_slug}
+                    post_slug={item?.slug}
                   />
                 ))}
               </div>
@@ -432,8 +434,9 @@ const page = async () => {
                   <NewNewsCardHome
                     title={categoryNewsC[0].title.rendered || "no title"}
                     cover={categoryNewsC[0]?.featured_image_url}
-                    category_slug={categoryNewsC[0].primary_category_slug}
-                    post_slug={categoryNewsC[0].slug}
+                    category_slug={categoryNewsC[0]?.primary_category_slug}
+                    post_slug={categoryNewsC[0]?.slug}
+                    date={latestPosts[0]?.modified}
                   />
                 </div>
               )}
@@ -443,8 +446,8 @@ const page = async () => {
                     key={index}
                     title={item.title.rendered || "no title"}
                     cover={item?.featured_image_url}
-                    category_slug={item.primary_category_slug}
-                    post_slug={item.slug}
+                    category_slug={item?.primary_category_slug}
+                    post_slug={item?.slug}
                   />
                 ))}
               </div>

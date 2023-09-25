@@ -25,7 +25,9 @@ const NewNewsCardHome = (props) => {
           Impressive Return */}
               {/* {parse(props?.title) || "Loading"} */}
             </div>
-            <div className={styles.time}>9 Aug 2023</div>
+            <div className={styles.time}>
+              {new Date(props?.date).toDateString()}
+            </div>
           </div>
         </div>
       </a>

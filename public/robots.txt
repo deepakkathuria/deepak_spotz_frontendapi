@@ -1,5 +1,11 @@
-# *
 User-agent: *
+Disallow: /wiki/
+Disallow: /tag/
+Disallow: /amp/
+Disallow: /author/
+Disallow: /favicon.ico/
+Disallow: /search/
+Disallow: /sentry-example-page/
 
 # Sitemaps
 Sitemap: https://sportzwiki.com/sitemap.xml

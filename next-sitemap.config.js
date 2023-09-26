@@ -6,7 +6,7 @@ const siteUrl =
 module.exports = {
   siteUrl,
   // generateRobotsTxt: true,
-  generateIndexSitemap: false,
+  // generateIndexSitemap: false,
   sitemapSize: 7000,
   // robotsTxtOptions: {
   //   policies: [

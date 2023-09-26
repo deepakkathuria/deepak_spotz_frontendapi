@@ -5,7 +5,7 @@ import Image from "next/image";
 const NewNewsCardHomeDynamicSize = (props) => {
   return (
     <>
-      <a href={`/${props?.category_slug || "news"}/${props?.post_slug}`}>
+      <a href={`/${props?.category_slug || "news"}/${props?.post_slug}`} className={styles.anchor}>
         <div className={styles.newsContainer}>
           <Image
             className={styles.newsContainerImage}

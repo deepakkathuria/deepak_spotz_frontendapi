@@ -138,7 +138,7 @@ const page = async () => {
   const [categoryNewsA, categoryNewsB, categoryNewsC, tempCategory] =
     await Promise.all(categoryNewsPromises);
 
-  console.log(tempCategory, "latestPostslatestPosts");
+  // console.log(tempCategory, "latestPostslatestPosts");
 
   return (
     <>

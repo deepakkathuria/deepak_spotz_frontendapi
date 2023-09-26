@@ -27,11 +27,13 @@ const fetchSeriesList = async () => {
 
 const CurrentSeries = async () => {
   const data = await fetchSeriesList();
-  //   console.log(data.response.items, "dahfbjsvfihbk999");
+    // console.log(data.response.items, "dahfbjsvfihbk999");
   return (
     <>
       <ul className={styles.ulList}>
-        <li style={{ fontWeight: "bold", color: "#bd0000" }}>Quick Links</li>
+        <li style={{ fontWeight: "bold", color: "#bd0000" }}>
+          Quick Links &#58;
+        </li>
         {data?.response?.items?.map((item) => {
           if (item.category === "international") {
             return (
@@ -41,7 +43,7 @@ const CurrentSeries = async () => {
                   remove: /[*+~.()'"!:@]/g,
                 }).toLowerCase()}-${item?.cid}/`}
               >
-                <li>{item.title}</li>
+                <li>{item.abbr}</li>
               </a>
             );
           }

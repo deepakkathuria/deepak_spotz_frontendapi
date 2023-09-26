@@ -28,7 +28,8 @@
 @media (max-width: 768px) {
   .titleTime {
     gap: 0;
-    margin-left: 0.5rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
   }
 
   .imageContent {

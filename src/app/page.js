@@ -37,7 +37,8 @@ const formattedDate = `${getDateWithOffset(-1)}_${getDateWithOffset(1)}`;
 const getData = async () => {
   const res = await fetch(
     `${base_url}/matches?token=${key}&date=${formattedDate}&per_page=50`,
-    { next: { revalidate: 60 } }
+    // `http://localhost:3003/matches?token=73d62591af4b3ccb51986ff5f8af5676&date=${formattedDate}&per_page=50`,
+    { next: { revalidate: 1 } }
   );
   const data = await res.json();
   return data.response.items;

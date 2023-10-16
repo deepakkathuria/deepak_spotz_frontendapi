@@ -17,16 +17,21 @@ const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
 const fetchPlayerInfoById = async (playerId) => {
-  const res = await fetch(`${baseUrl}/players/${playerId}?token=${token}`);
+  // const res = await fetch(`${baseUrl}/players/${playerId}?token=${token}`);
+    const res = await fetch(`http://localhost:4003/api/playerstats/${playerId}`);
+
+
   const data = await res.json();
   return data;
 };
 
 const fetchPlayerStatsById = async (playerId) => {
   const res = await fetch(
-    `${baseUrl}/players/${playerId}/stats?token=${token}`
+    // `${baseUrl}/players/${playerId}/stats?token=${token}`
+    `http://localhost:4003/api/playerstats/${playerId}`
   );
   const data = await res.json();
+  console.log(data,"jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj")
   return data;
 };
 
@@ -76,7 +81,7 @@ const page = async ({ params }) => {
       url: `/cricketers/${country}`,
     },
     {
-      name: `${playerInfo?.response?.player?.title}`,
+      name: `${playerInfo?.player?.title}`,
       // url: `/cricketers/${country}/${player}`,
     },
     // {
@@ -121,7 +126,7 @@ const page = async ({ params }) => {
           <UpdatesSound />
         </div>
         <h1 style={{ marginTop: "1rem" }}>
-          {playerInfo?.response?.player?.title || ""}
+          {playerInfo?.player?.title || ""}
         </h1>
         <div className={styles.dataMain}>
           <div className={styles.bannerNav}>
@@ -136,35 +141,35 @@ const page = async ({ params }) => {
           </div>
           <div className={styles.details}>
             <PlayerInfoTable
-              name={playerInfo?.response?.player?.title || ""}
-              dob={playerInfo?.response?.player?.birthdate || ""}
-              short_name={playerInfo?.response?.player?.short_name}
-              first_name={playerInfo?.response?.player?.first_name}
-              last_name={playerInfo?.response?.player?.last_name}
-              middle_name={playerInfo?.response?.player?.middle_name}
-              birthplace={playerInfo?.response?.player?.birthplace}
-              country={playerInfo?.response?.player?.country}
-              primary_team={playerInfo?.response?.player?.primary_team}
-              playing_role={playerInfo?.response?.player?.playing_role}
-              batting_style={playerInfo?.response?.player?.batting_style}
-              bowling_style={playerInfo?.response?.player?.bowling_style}
+              name={playerInfo?.title || ""}
+              dob={playerInfo?.birthdate || ""}
+              short_name={playerInfo?.short_name}
+              first_name={playerInfo?.first_name}
+              last_name={playerInfo?.last_name}
+              middle_name={playerInfo?.middle_name}
+              birthplace={playerInfo?.birthplace}
+              country={playerInfo?.country}
+              primary_team={playerInfo?.primary_team}
+              playing_role={playerInfo?.playing_role}
+              batting_style={playerInfo?.batting_style}
+              bowling_style={playerInfo?.bowling_style}
               fielding_position={
-                playerInfo?.response?.player?.fielding_position
+                playerInfo?.fielding_position
               }
-              recent_match={playerInfo?.response?.player?.recent_match}
+              recent_match={playerInfo?.recent_match}
               recent_appearance={
-                playerInfo?.response?.player?.recent_appearance
+                playerInfo?.recent_appearance
               }
               fantasy_player_rating={
-                playerInfo?.response?.player?.fantasy_player_rating
+                playerInfo?.fantasy_player_rating
               }
-              alt_name={playerInfo?.response?.player?.alt_name}
-              facebook_profile={playerInfo?.response?.player?.facebook_profile}
-              twitter_profile={playerInfo?.response?.player?.twitter_profile}
+              alt_name={playerInfo?.alt_name}
+              facebook_profile={playerInfo?.facebook_profile}
+              twitter_profile={playerInfo?.twitter_profile}
               instagram_profile={
-                playerInfo?.response?.player?.instagram_profile
+                playerInfo?.instagram_profile
               }
-              nationality={playerInfo?.response?.player?.nationality}
+              nationality={playerInfo?.nationality}
             />
           </div>
           {/* <div className={styles.about}>
@@ -259,12 +264,12 @@ const page = async ({ params }) => {
           </div> */}
           <div className={styles.table}>
             <StatsTable
-              data={playerStats.response.batting}
+              data={playerStats.batting}
               type="Batting Stats"
               typeStr="bat"
             />
             <StatsTableBowling
-              data={playerStats.response.bowling}
+              data={playerStats.bowling}
               type="Bowling Stats"
               typeStr="bowl"
             />

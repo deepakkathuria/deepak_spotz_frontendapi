@@ -17,14 +17,16 @@ const baseUrl = process.env.NEXT_PUBLIC_ENTITY_URL;
 const token = process.env.NEXT_PUBLIC_ENTITY_TOKEN;
 
 const fetchPlayerInfoById = async (playerId) => {
-  const res = await fetch(`${baseUrl}/players/${playerId}?token=${token}`);
+  // const res = await fetch(`${baseUrl}/players/${playerId}?token=${token}`);
+    const res = await fetch(`http://localhost:4003/api/playerstats/${playerId}`);
+
   const data = await res.json();
   return data;
 };
 
 const fetchPlayerStatsById = async (playerId) => {
   const res = await fetch(
-    `${baseUrl}/players/${playerId}/stats?token=${token}`
+    `http://localhost:4003/api/playerstats/${playerId}`
   );
   const data = await res.json();
   return data;
@@ -38,11 +40,11 @@ export async function generateMetadata({ params }) {
   const playerInfo = await fetchPlayerInfoById(playerIdInt);
   // console.log(playerInfo);
   return {
-    title: `${playerInfo?.response?.player?.title || ""} | ${
-      playerInfo?.response?.player?.nationality
+    title: `${playerInfo?.player?.title || ""} | ${
+      playerInfo?.player?.nationality
     } Cricketers Information | International &  Domestic`,
     description: `Full player information of ${
-      playerInfo?.response?.player?.title || ""
+      playerInfo?.player?.title || ""
     }, full details, career on SportzWiki.`,
   };
 }
@@ -131,50 +133,50 @@ const page = async ({ params }) => {
           </div>
           <div className={styles.details}>
             <PlayerInfoTable
-              name={playerInfo?.response?.player?.title || ""}
-              dob={playerInfo?.response?.player?.birthdate || ""}
-              short_name={playerInfo?.response?.player?.short_name || ""}
-              first_name={playerInfo?.response?.player?.first_name || ""}
-              last_name={playerInfo?.response?.player?.last_name || ""}
-              middle_name={playerInfo?.response?.player?.middle_name || ""}
-              birthplace={playerInfo?.response?.player?.birthplace || ""}
-              country={playerInfo?.response?.player?.country || ""}
-              primary_team={playerInfo?.response?.player?.primary_team || ""}
-              playing_role={playerInfo?.response?.player?.playing_role || ""}
-              batting_style={playerInfo?.response?.player?.batting_style || ""}
-              bowling_style={playerInfo?.response?.player?.bowling_style || ""}
+              name={playerInfo?.player?.title || ""}
+              dob={playerInfo?.player?.birthdate || ""}
+              short_name={playerInfo?.player?.short_name || ""}
+              first_name={playerInfo?.player?.first_name || ""}
+              last_name={playerInfo?.player?.last_name || ""}
+              middle_name={playerInfo?.player?.middle_name || ""}
+              birthplace={playerInfo?.player?.birthplace || ""}
+              country={playerInfo?.player?.country || ""}
+              primary_team={playerInfo?.player?.primary_team || ""}
+              playing_role={playerInfo?.player?.playing_role || ""}
+              batting_style={playerInfo?.player?.batting_style || ""}
+              bowling_style={playerInfo?.player?.bowling_style || ""}
               fielding_position={
-                playerInfo?.response?.player?.fielding_position || ""
+                playerInfo?.player?.fielding_position || ""
               }
-              recent_match={playerInfo?.response?.player?.recent_match || ""}
+              recent_match={playerInfo?.player?.recent_match || ""}
               recent_appearance={
-                playerInfo?.response?.player?.recent_appearance || ""
+                playerInfo?.player?.recent_appearance || ""
               }
               fantasy_player_rating={
-                playerInfo?.response?.player?.fantasy_player_rating || ""
+                playerInfo?.player?.fantasy_player_rating || ""
               }
-              alt_name={playerInfo?.response?.player?.alt_name || ""}
+              alt_name={playerInfo?.player?.alt_name || ""}
               facebook_profile={
-                playerInfo?.response?.player?.facebook_profile || ""
+                playerInfo?.player?.facebook_profile || ""
               }
               twitter_profile={
-                playerInfo?.response?.player?.twitter_profile || ""
+                playerInfo?.player?.twitter_profile || ""
               }
               instagram_profile={
-                playerInfo?.response?.player?.instagram_profile || ""
+                playerInfo?.player?.instagram_profile || ""
               }
-              nationality={playerInfo?.response?.player?.nationality || ""}
+              nationality={playerInfo?.player?.nationality || ""}
             />
           </div>
 
           <div className={styles.table}>
             <StatsTable
-              data={playerStats.response.batting}
+              data={playerStats.batting}
               type="Batting Stats"
               typeStr="bat"
             />
             <StatsTableBowling
-              data={playerStats.response.bowling}
+              data={playerStats.bowling}
               type="Bowling Stats"
               typeStr="bowl"
             />

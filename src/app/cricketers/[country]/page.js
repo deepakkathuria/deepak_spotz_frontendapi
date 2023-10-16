@@ -15,7 +15,7 @@ const site_url = process.env.SITE_URL;
 
 const fetchPlayersListByTeamId = async (teamIdResult) => {
   const res = await fetch(
-    `${baseUrl}/teams/${teamIdResult}/player?token=${token}`
+    `http://localhost:4003/v2/teams/${teamIdResult}/player`
   );
   const data = await res.json();
   return data;
@@ -88,7 +88,7 @@ const page = async ({ params }) => {
   const teamIdResult = getIdFromName(country);
 
   const items = await fetchPlayersListByTeamId(teamIdResult);
-
+  console.log(items?.players[0]?.t20i, "itemsarray")
   const breadcrumbs = [
     {
       name: "Home",
@@ -150,57 +150,52 @@ const page = async ({ params }) => {
         </div>
 
         {/* <div className={styles.playerGenderSelectorAndSearchContainer}>
-          <div className={styles.genderSelector}>
-            <ul>
-              <li className={styles.active}>All</li>
-              <li>Men</li>
-              <li>Women</li>
-            </ul>
-          </div>
-          <div className={styles.search}>
-            <input type="text" placeholder="Search Player" />
-          </div>
-        </div> */}
+            <div className={styles.genderSelector}>
+              <ul>
+                <li className={styles.active}>All</li>
+                <li>Men</li>
+                <li>Women</li>
+              </ul>
+            </div>
+            <div className={styles.search}>
+              <input type="text" placeholder="Search Player" />
+            </div>
+          </div> */}
         {/* <div className={styles.list}>
-          {Object?.entries(items?.response?.items?.players).map(
-            ([playerType, playerArray], index) => (
-              <div key={index}>
-                <PlayerList
-                  playerArray={playerArray}
-                  playerType={playerType}
-                  country={country}
-                />
-              </div>
-            )
-          )}
-        </div> */}
+            {Object?.entries(items?.response?.items?.players).map(
+              ([playerType, playerArray], index) => (
+                <div key={index}>
+                  <PlayerList
+                    playerArray={playerArray}
+                    playerType={playerType}
+                    country={country}
+                  />
+                </div>
+              )
+            )}
+          </div> */}
         <div className={styles.list}>
-          {Object.entries(items?.response?.items?.players || {}).map(
-            ([playerType, playerArray], index) => (
-              <div key={index}>
-                <PlayerList
-                  playerArray={playerArray}
-                  playerType={playerType}
-                  country={country}
-                />
-              </div>
-            )
-          )}
+          <div className={styles.list}>
+            <PlayerList playerArray={items?.players[0]?.t20i || []} playerType="T20i" country={country} />
+            <PlayerList playerArray={items?.players[0]?.test || []} playerType="Test" country={country} />
+            <PlayerList playerArray={items?.players[0]?.odi || []} playerType="ODI" country={country} />
+            {/* Add more sections if there are other formats */}
+          </div>
         </div>
 
         {/* <div style={{ marginTop: "2rem" }} className="header">
-          <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
-          <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>
-            It is an honour to introduce—Sportzwiki – sports is life, is one of
-            the leading online sports mediums across the globe. The digital
-            platform over the years has grabbed the attention of an audience
-            worldwide.From the cricketing ground to the badminton court—the
-            dedicated team at Sportzwiki has been always on the lookout to
-            provide insights, pre and post-match stuff and plenty with 24/7
-            window.
-          </p>
-        </div>
-        <FaqLive /> */}
+            <h2 style={{ fontSize: "1.4rem" }}>SportzWiki Media</h2>
+            <p style={{ marginTop: "1rem", fontSize: "1.3rem" }}>
+              It is an honour to introduce—Sportzwiki – sports is life, is one of
+              the leading online sports mediums across the globe. The digital
+              platform over the years has grabbed the attention of an audience
+              worldwide.From the cricketing ground to the badminton court—the
+              dedicated team at Sportzwiki has been always on the lookout to
+              provide insights, pre and post-match stuff and plenty with 24/7
+              window.
+            </p>
+          </div>
+          <FaqLive /> */}
       </div>
     </>
   );

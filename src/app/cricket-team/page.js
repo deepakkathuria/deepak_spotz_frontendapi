@@ -16,9 +16,13 @@ const site_url = process.env.SITE_URL;
 
 const fetchTeamList = async () => {
   const res = await fetch(
-    `${base_url}/teams/?token=${token}&page=30&type=country&sex=male&per_page=50`
+    // `${base_url}/teams/?token=${token}&type=country&sex=male&per_page=50`
+    // http://localhost:4001/teams/?type=country&sex=male
+    `http://localhost:4003/teams/?type=country&sex=male`
   );
   const data = await res.json();
+  console.log(data,"dddddddddddddddddddddddddddddddddddddddddddddd")
+
   return data;
 };
 
@@ -89,7 +93,9 @@ const page = async () => {
           <TeamsPageNav active="main" />
         </div> */}
         <div style={{ marginTop: "2rem" }} className="table">
-          <TeamsTable name="Country List" data={teams?.response?.items} />
+          <TeamsTable name="Country List" data={teams} />
+          {/* <TeamsTable name="Country List" data={teams?.response?.items} /> */}
+
           {/* <TeamsTable /> */}
         </div>
         {/* <div style={{ marginTop: "2rem" }} className="header">

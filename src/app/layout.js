@@ -1,7 +1,7 @@
 // import Navbar from "../components/common/Navbar";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
 import Script from "next/script";
@@ -14,7 +14,7 @@ import CustomAd4 from "@/ad/CustomAd4";
 // import { NextSeo } from "next-seo";
 // const GTM_ID = "G-HGXKFDCKYE";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Sports News, Breaking Sports News, Latest Sports News - Sportzwiki",
@@ -99,7 +99,7 @@ export default function RootLayout({ children }) {
       },
     ],
     sameAs: [
-      "https://www.facebook.com/SportzWiki/",
+      "https://www.facebook.com/SportzWiki/",   
       "https://twitter.com/sportzwiki",
       "https://www.instagram.com/sportzwikiinsta/",
       "https://in.linkedin.com/company/sportz-wiki",
@@ -304,7 +304,7 @@ export default function RootLayout({ children }) {
         />
       </head>
 
-      <body className={inter.className}>
+      <body>
         <Navbar />
         <script
           type="application/ld+json"

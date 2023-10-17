@@ -21,3 +21,4 @@ const categorySlice = createSlice({
 
 export const { setCategory, setCategoryName } = searchSlice.actions;
 export default categorySlice.reducer;
+//comment
